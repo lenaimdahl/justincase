@@ -1,0 +1,16 @@
+{
+  "description": "A lightweight inventory tracker with expiry awareness",
+  "devDependencies": {
+    "prettier": "3.8.1"
+  },
+  "engines": {
+    "node": ">= 20.0"
+  },
+  "license": "GPL-3.0",
+  "name": "justincase",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@4.12.0"
+}
