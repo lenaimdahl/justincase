@@ -1001,9 +1001,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/common@npm:11.0.1":
-  version: 11.0.1
-  resolution: "@nestjs/common@npm:11.0.1"
+"@nestjs/common@npm:11.0.16":
+  version: 11.0.16
+  resolution: "@nestjs/common@npm:11.0.16"
   dependencies:
     iterare: "npm:1.2.1"
     tslib: "npm:2.8.1"
@@ -1011,6 +1011,7 @@ __metadata:
   peerDependencies:
     class-transformer: "*"
     class-validator: "*"
+    file-type: ^20.4.1
     reflect-metadata: ^0.1.12 || ^0.2.0
     rxjs: ^7.1.0
   peerDependenciesMeta:
@@ -1018,7 +1019,7 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: 10c0/f7b3b3d6a2e7d6982bdff4572d0e44c8504343c3c17d6db7b493f7c284a9109e353d119ae7205190beedcda6f6027058d26fd260d514df59284377c01571a97c
+  checksum: 10c0/4786dd4ec744a2a6151dc58fbd433370390c84d461b1bf87b77809b67748ce03f4d79977aa142b5ce5b0a2331434955f60b92e8cbf1a5ac93daca438633629fc
   languageName: node
   linkType: hard
 
@@ -3731,7 +3732,7 @@ __metadata:
   resolution: "justincase-backend@workspace:packages/backend"
   dependencies:
     "@nestjs/cli": "npm:11.0.0"
-    "@nestjs/common": "npm:11.0.1"
+    "@nestjs/common": "npm:11.0.16"
     "@nestjs/core": "npm:11.0.1"
     "@nestjs/platform-express": "npm:11.0.1"
     "@nestjs/schematics": "npm:11.0.0"
