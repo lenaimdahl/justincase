@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2025",
+    "target": "es6",
     "lib": ["ESNext"],
     "module": "ESNext",
     "types": ["node"],
