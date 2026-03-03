@@ -27,7 +27,11 @@ jobs:
           git config --global "user.email" "${GIT_AUTHOR_EMAIL}"
           git config --global "user.name" "${GIT_AUTHOR_NAME}"
 
+      - name: Trigger vercel deployment
+        run: |
           if [ "${LAST_GIT_AUTHOR_EMAIL}" != "${GIT_AUTHOR_EMAIL}" ] && [ "${LAST_GIT_AUTHOR_EMAIL}" != "${GIT_AUTHOR_EMAIL_ALTERNATIVE_1}" ] && [[ "${LAST_GIT_AUTHOR_EMAIL}" != *"${GIT_AUTHOR_EMAIL_ALTERNATIVE_2}"* ]]; then
             git commit --allow-empty -m "chore: trigger vercel deployment [ci skip]"
             git push
+          else
+            echo "Nothing to do."
           fi
