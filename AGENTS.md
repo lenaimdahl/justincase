@@ -1,4 +1,4 @@
-# JustInCase - AGENT.md
+# JustInCase - AGENTS.md
 
 This document describes the **project conventions, development workflow, and guidelines** for contributors.
 
@@ -166,4 +166,4 @@ yarn test
 
 ---
 
-*This AGENT.md is the canonical source for coding and workflow standards for the JustInCase project.*
+*This AGENTS.md is the canonical source for coding and workflow standards for the JustInCase project.*
