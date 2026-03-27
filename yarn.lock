@@ -1119,9 +1119,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/testing@npm:11.1.15":
-  version: 11.1.15
-  resolution: "@nestjs/testing@npm:11.1.15"
+"@nestjs/testing@npm:11.1.17":
+  version: 11.1.17
+  resolution: "@nestjs/testing@npm:11.1.17"
   dependencies:
     tslib: "npm:2.8.1"
   peerDependencies:
@@ -1134,7 +1134,7 @@ __metadata:
       optional: true
     "@nestjs/platform-express":
       optional: true
-  checksum: 10c0/5508206a8e681dbe56f41adc54c43e372e3d2ddf4c8abc56db37e01ba996690980f9e4c3051bc997052464dc9acdc8d8fc380004f239aac2b4356936fb6b0aad
+  checksum: 10c0/fe6408ad155c328beaff4eec2b36bcf853e7bbf2c16806f6cf64dd293fd4de1e3d1232df81bfcece12614de866c7551f728aa8474e2990ae22fe07e69dea8f21
   languageName: node
   linkType: hard
 
@@ -3935,7 +3935,7 @@ __metadata:
     "@nestjs/core": "npm:11.1.15"
     "@nestjs/platform-express": "npm:11.1.14"
     "@nestjs/schematics": "npm:11.0.9"
-    "@nestjs/testing": "npm:11.1.15"
+    "@nestjs/testing": "npm:11.1.17"
     "@types/express": "npm:5.0.6"
     "@types/node": "npm:~24"
     "@typescript-eslint/eslint-plugin": "npm:^8.57.1"
