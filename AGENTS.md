@@ -158,7 +158,15 @@ yarn test
 
 ---
 
-## 10. Additional notes
+## 10. Dependency versioning
+
+* All dependencies in **every `package.json` file** must use **exact versions** (no `^`, `~`, or other range specifiers)
+* Example: `"react": "18.2.0"` instead of `"react": "^18.2.0"`
+* This ensures reproducible builds across all environments
+
+---
+
+## 11. Additional notes
 
 * All dates in items must be handled in UTC+1
 * Status highlights (yellow/red) are derived from the date logic in frontend
