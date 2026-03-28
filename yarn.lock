@@ -458,6 +458,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ffflorian/prettier-config@npm:^0.6.7":
+  version: 0.6.7
+  resolution: "@ffflorian/prettier-config@npm:0.6.7"
+  peerDependencies:
+    prettier: ">= 1.17.0"
+  checksum: 10c0/8ff33be36fe14b3aeb04af47fc98c61abb877e6f64c7b3f52fd6ac10d5658c0e5547a75255ad62e9f73712831a7fcf1e24884f59ab93aca3d7973b05f8d36a51
+  languageName: node
+  linkType: hard
+
 "@humanfs/core@npm:^0.19.1":
   version: 0.19.1
   resolution: "@humanfs/core@npm:0.19.1"
@@ -3909,6 +3918,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "justincase@workspace:."
   dependencies:
+    "@ffflorian/prettier-config": "npm:^0.6.7"
     prettier: "npm:3.8.1"
   languageName: unknown
   linkType: soft
