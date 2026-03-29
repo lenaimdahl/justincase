@@ -1,6 +1,14 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { CreateListDto } from 'src/dtos/create-list.dto';
-import { List, ListsService } from 'src/services/lists.service';
+import { type List, ListsService } from 'src/services/lists.service';
 
 @Controller('lists')
 export class ListsController {

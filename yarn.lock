@@ -429,7 +429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:^10.0.1":
+"@eslint/js@npm:10.0.1":
   version: 10.0.1
   resolution: "@eslint/js@npm:10.0.1"
   peerDependencies:
@@ -1082,7 +1082,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/config@npm:^4.0.3":
+"@nestjs/config@npm:4.0.3":
   version: 4.0.3
   resolution: "@nestjs/config@npm:4.0.3"
   dependencies:
@@ -1760,7 +1760,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:8.57.1, @typescript-eslint/eslint-plugin@npm:^8.57.1":
+"@typescript-eslint/eslint-plugin@npm:8.57.1":
   version: 8.57.1
   resolution: "@typescript-eslint/eslint-plugin@npm:8.57.1"
   dependencies:
@@ -1780,7 +1780,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:8.57.1, @typescript-eslint/parser@npm:^8.57.1":
+"@typescript-eslint/parser@npm:8.57.1":
   version: 8.57.1
   resolution: "@typescript-eslint/parser@npm:8.57.1"
   dependencies:
@@ -3071,7 +3071,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^10.1.8":
+"eslint-config-prettier@npm:10.1.8":
   version: 10.1.8
   resolution: "eslint-config-prettier@npm:10.1.8"
   peerDependencies:
@@ -3082,7 +3082,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:^5.5.5":
+"eslint-plugin-prettier@npm:5.5.5":
   version: 5.5.5
   resolution: "eslint-plugin-prettier@npm:5.5.5"
   dependencies:
@@ -3138,7 +3138,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^10.1.0":
+"eslint@npm:10.1.0":
   version: 10.1.0
   resolution: "eslint@npm:10.1.0"
   dependencies:
@@ -3968,10 +3968,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "justincase-backend@workspace:packages/backend"
   dependencies:
-    "@eslint/js": "npm:^10.0.1"
+    "@eslint/js": "npm:10.0.1"
     "@nestjs/cli": "npm:11.0.16"
     "@nestjs/common": "npm:11.1.17"
-    "@nestjs/config": "npm:^4.0.3"
+    "@nestjs/config": "npm:4.0.3"
     "@nestjs/core": "npm:11.1.17"
     "@nestjs/mongoose": "npm:11.0.4"
     "@nestjs/platform-express": "npm:11.1.17"
@@ -3979,21 +3979,21 @@ __metadata:
     "@nestjs/testing": "npm:11.1.17"
     "@types/express": "npm:5.0.6"
     "@types/node": "npm:~24"
-    "@typescript-eslint/eslint-plugin": "npm:^8.57.1"
-    "@typescript-eslint/parser": "npm:^8.57.1"
+    "@typescript-eslint/eslint-plugin": "npm:8.57.1"
+    "@typescript-eslint/parser": "npm:8.57.1"
     class-transformer: "npm:0.5.1"
     class-validator: "npm:0.14.4"
-    eslint: "npm:^10.1.0"
-    eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-prettier: "npm:^5.5.5"
+    eslint: "npm:10.1.0"
+    eslint-config-prettier: "npm:10.1.8"
+    eslint-plugin-prettier: "npm:5.5.5"
     mongoose: "npm:9.3.3"
-    prettier: "npm:^3.8.1"
+    prettier: "npm:3.8.1"
     reflect-metadata: "npm:0.2.2"
     rxjs: "npm:7.8.2"
     source-map-support: "npm:0.5.21"
     tsconfig-paths: "npm:4.2.0"
     typescript: "npm:5.9.3"
-    typescript-eslint: "npm:^8.57.1"
+    typescript-eslint: "npm:8.57.1"
     vitest: "npm:4.1.0"
   languageName: unknown
   linkType: soft
@@ -4915,7 +4915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.8.1, prettier@npm:^3.8.1":
+"prettier@npm:3.8.1":
   version: 3.8.1
   resolution: "prettier@npm:3.8.1"
   bin:
@@ -5905,7 +5905,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-eslint@npm:^8.57.1":
+"typescript-eslint@npm:8.57.1":
   version: 8.57.1
   resolution: "typescript-eslint@npm:8.57.1"
   dependencies:
