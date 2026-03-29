@@ -5,6 +5,7 @@
     "module": "ESNext",
     "types": ["node"],
     "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"],
 
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

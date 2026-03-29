@@ -3,6 +3,7 @@
     "navigation": {
       "brand": "JustInCase",
       "home": "Startseite",
+      "lists": "Listen",
       "items": "Artikel",
       "settings": "Einstellungen"
     }
@@ -11,6 +12,16 @@
     "home": {
       "title": "Willkommen bei JustInCase",
       "description": "Verwalten Sie Ihre Artikel und behalten Sie den Überblick über das, was für Sie zählt."
+    },
+    "listOverview": {
+      "title": "Meine Listen",
+      "subtitle": "Organisieren Sie Ihre Artikel in Listen",
+      "createButton": "Liste erstellen",
+      "dialogTitle": "Neue Liste erstellen",
+      "inputLabel": "Listenname",
+      "cancelButton": "Abbrechen",
+      "emptyState": "Noch keine Listen",
+      "emptyStateDescription": "Erstellen Sie Ihre erste Liste, um zu beginnen"
     }
   }
 }
