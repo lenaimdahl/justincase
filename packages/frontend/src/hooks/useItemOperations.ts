@@ -7,10 +7,10 @@ const DEBOUNCE_DELAY = 1000; // ms
 interface UseItemOperationsReturn {
   editingState: Record<string, EditingItem>;
   itemsInEditMode: Set<string>;
-  newItem: CreateItemRequest;
+  newItem: CreateItemRequest & {expiryDates?: string[]};
   creatingItem: boolean;
   createError: string | null;
-  setNewItem: (item: CreateItemRequest) => void;
+  setNewItem: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
   setCreateError: (error: string | null) => void;
   updateField: (itemId: string, field: keyof UpdateItemRequest, value: string | number) => void;
   handleAdjustQuantity: (itemId: string, adjustment: number) => Promise<void>;
@@ -26,12 +26,13 @@ interface UseItemOperationsReturn {
 export const useItemOperations = (listId: string, onItemsChange: () => Promise<void>): UseItemOperationsReturn => {
   const [editingState, setEditingState] = useState<Record<string, EditingItem>>({});
   const [itemsInEditMode, setItemsInEditMode] = useState<Set<string>>(new Set());
-  const [newItem, setNewItem] = useState<CreateItemRequest>({
+  const [newItem, setNewItem] = useState<CreateItemRequest & {expiryDates?: string[]}>({
     name: '',
-    quantity: 0,
+    quantity: 1,
     unit: '',
     expiryDate: '',
     comment: '',
+    expiryDates: [],
   });
   const [creatingItem, setCreatingItem] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
@@ -179,13 +180,31 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
     setCreateError(null);
 
     try {
-      await createItem(listId, newItem);
+      // If multiple items with individual expiry dates, create separate items
+      const expiryDates = (newItem as any).expiryDates || [];
+      if (expiryDates.length > 1) {
+        // Create one item for each expiry date
+        for (let i = 0; i < expiryDates.length; i++) {
+          await createItem(listId, {
+            name: newItem.name,
+            quantity: 1,
+            unit: newItem.unit,
+            expiryDate: expiryDates[i],
+            comment: newItem.comment,
+          });
+        }
+      } else {
+        // Create single item
+        await createItem(listId, newItem);
+      }
+
       setNewItem({
         name: '',
-        quantity: 0,
+        quantity: 1,
         unit: '',
         expiryDate: '',
         comment: '',
+        expiryDates: [],
       });
       await onItemsChange();
     } catch (err) {

@@ -76,6 +76,7 @@ export const ItemView = ({listId, items, fieldConfig, onItemsChange}: ItemViewPr
       expiryDate: '',
       unit: '',
       comment: '',
+      expiryDates: [],
     });
   };
 
@@ -237,13 +238,51 @@ export const ItemView = ({listId, items, fieldConfig, onItemsChange}: ItemViewPr
               type="number"
               placeholder="Menge"
               value={newItem.quantity || 1}
-              onChange={e => setNewItem({...newItem, quantity: parseInt(e.target.value) || 1})}
+              onChange={e => {
+                const qty = parseInt(e.target.value) || 1;
+                const expiryDates = (newItem as any).expiryDates || [];
+                // Adjust array size to match quantity
+                if (fieldConfig.hasExpiryDate) {
+                  while (expiryDates.length < qty) {
+                    expiryDates.push('');
+                  }
+                  while (expiryDates.length > qty) {
+                    expiryDates.pop();
+                  }
+                }
+                setNewItem({...newItem, quantity: qty, expiryDates});
+              }}
               disabled={creatingItem}
               inputProps={{min: 1}}
             />
           )}
 
-          {fieldConfig.hasExpiryDate && (
+          {fieldConfig.hasExpiryDate && fieldConfig.hasQuantity && (newItem.quantity || 1) > 1 ? (
+            <Box sx={{border: '1px solid #ddd', borderRadius: 1, p: 1.5, bgcolor: '#f9f9f9'}}>
+              <Box component="strong" sx={{fontSize: '0.9em', display: 'block', mb: 1}}>
+                Ablaufdatum für jede Menge:
+              </Box>
+              {Array.from({length: newItem.quantity || 1}).map((_, idx) => (
+                <TextField
+                  key={idx}
+                  size="small"
+                  type="date"
+                  placeholder={`Menge ${idx + 1}`}
+                  value={(newItem as any).expiryDates?.[idx] || ''}
+                  onChange={e => {
+                    const expiryDates = [...((newItem as any).expiryDates || [])];
+                    expiryDates[idx] = e.target.value;
+                    setNewItem({...(newItem as any), expiryDates});
+                  }}
+                  disabled={creatingItem}
+                  InputLabelProps={{shrink: true}}
+                  sx={{mb: 1}}
+                  label={`Menge ${idx + 1}`}
+                  fullWidth
+                />
+              ))}
+            </Box>
+          ) : fieldConfig.hasExpiryDate ? (
             <TextField
               size="small"
               type="date"
@@ -252,7 +291,7 @@ export const ItemView = ({listId, items, fieldConfig, onItemsChange}: ItemViewPr
               disabled={creatingItem}
               InputLabelProps={{shrink: true}}
             />
-          )}
+          ) : null}
 
           {fieldConfig.hasNotes && (
             <TextField
