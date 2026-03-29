@@ -20,6 +20,9 @@ export class Item {
   @Prop()
   expiryDate?: Date;
 
+  @Prop({ type: [Date] })
+  expiryDates?: Date[];
+
   @Prop()
   comment?: string;
 }

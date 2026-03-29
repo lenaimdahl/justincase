@@ -9,6 +9,7 @@ export interface Item {
   quantity: number;
   unit?: string;
   expiryDate?: string;
+  expiryDates?: string[];
   comment?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -19,6 +20,7 @@ export interface CreateItemRequest {
   quantity: number;
   unit?: string;
   expiryDate?: string;
+  expiryDates?: string[];
   comment?: string;
 }
 
@@ -27,6 +29,7 @@ export interface UpdateItemRequest {
   quantity?: number;
   unit?: string;
   expiryDate?: string;
+  expiryDates?: string[];
   comment?: string;
 }
 

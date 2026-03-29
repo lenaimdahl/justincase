@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsString,
   Min,
+  IsArray,
 } from 'class-validator';
 
 export class CreateItemDto {
@@ -23,6 +24,11 @@ export class CreateItemDto {
   @IsOptional()
   @IsDateString()
   expiryDate?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsDateString({}, { each: true })
+  expiryDates?: string[];
 
   @IsOptional()
   @IsString()

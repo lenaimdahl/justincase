@@ -40,6 +40,10 @@ export class ItemsService {
       data.expiryDate = toUtcPlusOne(dto.expiryDate);
     }
 
+    if (dto.expiryDates && Array.isArray(dto.expiryDates)) {
+      data.expiryDates = dto.expiryDates.map(date => toUtcPlusOne(date));
+    }
+
     const item = new this.itemModel(data);
     return item.save();
   }
@@ -57,6 +61,8 @@ export class ItemsService {
     if (dto.comment !== undefined) update.comment = dto.comment;
     if (dto.expiryDate !== undefined)
       update.expiryDate = toUtcPlusOne(dto.expiryDate);
+    if (dto.expiryDates !== undefined && Array.isArray(dto.expiryDates))
+      update.expiryDates = dto.expiryDates.map(date => toUtcPlusOne(date));
 
     const item = await this.itemModel
       .findOneAndUpdate({ _id: itemId, listId }, update, { new: true })

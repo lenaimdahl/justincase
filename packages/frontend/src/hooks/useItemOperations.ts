@@ -180,23 +180,22 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
     setCreateError(null);
 
     try {
-      // If multiple items with individual expiry dates, create separate items
+      // Create a single item with expiryDates array if multiple dates provided
       const expiryDates = (newItem as any).expiryDates || [];
-      if (expiryDates.length > 1) {
-        // Create one item for each expiry date
-        for (let i = 0; i < expiryDates.length; i++) {
-          await createItem(listId, {
-            name: newItem.name,
-            quantity: 1,
-            unit: newItem.unit,
-            expiryDate: expiryDates[i],
-            comment: newItem.comment,
-          });
-        }
-      } else {
-        // Create single item
-        await createItem(listId, newItem);
+      const itemToCreate: CreateItemRequest & {expiryDates?: string[]} = {
+        name: newItem.name,
+        quantity: newItem.quantity || 1,
+        unit: newItem.unit,
+        comment: newItem.comment,
+      };
+
+      if (expiryDates.length > 0) {
+        itemToCreate.expiryDates = expiryDates;
+      } else if (newItem.expiryDate) {
+        itemToCreate.expiryDate = newItem.expiryDate;
       }
+
+      await createItem(listId, itemToCreate);
 
       setNewItem({
         name: '',

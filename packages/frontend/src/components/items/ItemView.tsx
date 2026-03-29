@@ -173,7 +173,39 @@ export const ItemView = ({listId, items, fieldConfig, onItemsChange}: ItemViewPr
                     <Box>
                       <div>{state.name}</div>
                       {fieldConfig.hasQuantity && state.quantity && <small>Menge: {state.quantity}</small>}
-                      {fieldConfig.hasExpiryDate && state.expiryDate && <small>📅 {state.expiryDate}</small>}
+                      {fieldConfig.hasExpiryDate && (
+                        <>
+                          {(state as any).expiryDates &&
+                          Array.isArray((state as any).expiryDates) &&
+                          ((state as any).expiryDates as any[]).filter(d => d).length > 0 ? (
+                            <Box sx={{mt: 0.5}}>
+                              {((state as any).expiryDates as any[]).map((date, idx) => {
+                                if (!date) return null;
+                                const dateStr =
+                                  typeof date === 'string'
+                                    ? date.startsWith('2')
+                                      ? date.split('T')[0]
+                                      : date
+                                    : new Date(date).toISOString().split('T')[0];
+                                return (
+                                  <small key={idx} style={{display: 'block'}}>
+                                    📅 {idx + 1}. {dateStr}
+                                  </small>
+                                );
+                              })}
+                            </Box>
+                          ) : state.expiryDate ? (
+                            <small>
+                              📅{' '}
+                              {typeof state.expiryDate === 'string'
+                                ? state.expiryDate.startsWith('2')
+                                  ? state.expiryDate.split('T')[0]
+                                  : state.expiryDate
+                                : new Date(state.expiryDate).toISOString().split('T')[0]}
+                            </small>
+                          ) : null}
+                        </>
+                      )}
                       {fieldConfig.hasNotes && state.comment && <small>📝 {state.comment}</small>}
                     </Box>
                   </Box>
