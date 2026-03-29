@@ -23,6 +23,10 @@ export class ItemsService {
     @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
   ) {}
 
+  async findAll(listId: string): Promise<ItemDocument[]> {
+    return this.itemModel.find({ listId }).exec();
+  }
+
   async create(listId: string, dto: CreateItemDto): Promise<ItemDocument> {
     const data: Partial<Item> = {
       listId,
@@ -34,6 +38,10 @@ export class ItemsService {
 
     if (dto.expiryDate) {
       data.expiryDate = toUtcPlusOne(dto.expiryDate);
+    }
+
+    if (dto.expiryDates && Array.isArray(dto.expiryDates)) {
+      data.expiryDates = dto.expiryDates.map(date => toUtcPlusOne(date));
     }
 
     const item = new this.itemModel(data);
@@ -53,6 +61,8 @@ export class ItemsService {
     if (dto.comment !== undefined) update.comment = dto.comment;
     if (dto.expiryDate !== undefined)
       update.expiryDate = toUtcPlusOne(dto.expiryDate);
+    if (dto.expiryDates !== undefined && Array.isArray(dto.expiryDates))
+      update.expiryDates = dto.expiryDates.map(date => toUtcPlusOne(date));
 
     const item = await this.itemModel
       .findOneAndUpdate({ _id: itemId, listId }, update, { new: true })

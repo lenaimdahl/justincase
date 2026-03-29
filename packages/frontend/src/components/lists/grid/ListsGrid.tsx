@@ -26,6 +26,9 @@ export const ListsGrid = ({lists, onListClick}: ListsGridProps) => {
           id={list.id}
           name={list.name}
           itemCount={list.itemCount}
+          icon={list.icon}
+          color={list.color}
+          fieldConfig={list.fieldConfig}
           onClick={() => onListClick(list.id)}
         />
       ))}

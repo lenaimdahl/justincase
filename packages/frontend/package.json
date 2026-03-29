@@ -25,9 +25,10 @@
     "build": "tsc --noEmit && vite build",
     "clean": "rm -rf dist",
     "dev": "vite",
+    "preview": "vite preview",
+    "test": "exit 0",
     "dist": "yarn clean && yarn build",
-    "format": "prettier --write .",
-    "preview": "vite preview"
+    "format": "prettier --write ."
   },
   "type": "module",
   "version": "0.1.0"

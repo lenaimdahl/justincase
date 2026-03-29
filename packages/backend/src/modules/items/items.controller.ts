@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   HttpCode,
   HttpStatus,
   Param,
@@ -19,6 +20,11 @@ import { ItemsService } from 'src/modules/items/items.service';
 @UsePipes(new ValidationPipe({ whitelist: true }))
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
+
+  @Get()
+  findAll(@Param('id') listId: string) {
+    return this.itemsService.findAll(listId);
+  }
 
   @Post()
   create(@Param('id') listId: string, @Body() dto: CreateItemDto) {

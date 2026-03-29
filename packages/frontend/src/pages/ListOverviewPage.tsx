@@ -1,42 +1,45 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Container, Box, CircularProgress, Alert} from '@mui/material';
-import {ListOverviewHeader} from 'src/components/lists/ListOverviewHeader';
-import {ListsGrid} from 'src/components/lists/ListsGrid';
-import {EmptyListsState} from 'src/components/lists/EmptyListsState';
-import {CreateListDialog} from 'src/components/lists/CreateListDialog';
+import {ListOverviewHeader} from 'src/components/lists/grid/ListOverviewHeader';
+import {ListsGrid} from 'src/components/lists/grid/ListsGrid';
+import {EmptyListsState} from 'src/components/lists/grid/EmptyListsState';
+import {ListConfigurator} from 'src/components/lists/dialogs/ListConfigurator';
 import {useFetchLists} from 'src/hooks/useFetchLists';
+import {createList} from 'src/api/lists';
+import type {FieldConfig} from 'src/api/lists';
 
 export const ListOverviewPage = () => {
   const navigate = useNavigate();
   const {lists, loading, error, refetch} = useFetchLists();
-  const [openDialog, setOpenDialog] = useState(false);
-  const [newListName, setNewListName] = useState('');
+  const [openConfigurator, setOpenConfigurator] = useState(false);
+  const [creatingList, setCreatingList] = useState(false);
 
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
+  const handleOpenConfigurator = () => {
+    setOpenConfigurator(true);
   };
 
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-    setNewListName('');
+  const handleCloseConfigurator = () => {
+    setOpenConfigurator(false);
   };
 
-  const handleCreateList = async () => {
-    if (!newListName.trim()) {
-      return;
+  const handleCreateList = async (name: string, icon: string, color: string, fieldConfig: FieldConfig) => {
+    setCreatingList(true);
+
+    try {
+      await createList({
+        name,
+        icon,
+        color,
+        fieldConfig,
+      });
+      handleCloseConfigurator();
+      await refetch();
+    } catch (err) {
+      console.error('Failed to create list:', err);
+    } finally {
+      setCreatingList(false);
     }
-
-    // TODO: Connect to backend API
-    // const response = await fetch('/api/lists', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ name: newListName }),
-    // });
-
-    console.log('Creating list:', newListName);
-    handleCloseDialog();
-    refetch();
   };
 
   const handleListCardClick = (listId: string) => {
@@ -51,7 +54,7 @@ export const ListOverviewPage = () => {
         flex: 1,
       }}
     >
-      <ListOverviewHeader onCreateClick={handleOpenDialog} />
+      <ListOverviewHeader onCreateClick={handleOpenConfigurator} />
 
       {error && (
         <Alert severity="error" sx={{mb: 3}}>
@@ -69,12 +72,11 @@ export const ListOverviewPage = () => {
 
       {!loading && lists.length > 0 && <ListsGrid lists={lists} onListClick={handleListCardClick} />}
 
-      <CreateListDialog
-        open={openDialog}
-        value={newListName}
-        onChange={setNewListName}
-        onClose={handleCloseDialog}
+      <ListConfigurator
+        open={openConfigurator}
+        onClose={handleCloseConfigurator}
         onSubmit={handleCreateList}
+        loading={creatingList}
       />
     </Container>
   );

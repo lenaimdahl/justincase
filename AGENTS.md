@@ -12,8 +12,8 @@ src/
   backend/    # NestJS app with MongoDB
 ```
 
-* **frontend**: Contains all React components, pages, hooks, and assets.
-* **backend**: Contains NestJS modules, controllers, services, schemas, and configuration.
+- **frontend**: Contains all React components, pages, hooks, and assets.
+- **backend**: Contains NestJS modules, controllers, services, schemas, and configuration.
 
 All code is written in **TypeScript**.
 
@@ -21,9 +21,9 @@ All code is written in **TypeScript**.
 
 ## 2. Branching and workflow
 
-* **Main branch**: `main` (production-ready)
-* **Feature branches**: `feature/<short-description>`
-* **Bugfix branches**: `fix/<short-description>`
+- **Main branch**: `main` (production-ready)
+- **Feature branches**: `feature/<short-description>`
+- **Bugfix branches**: `fix/<short-description>`
 
 **Merge strategy**: Pull requests only, reviewed by at least one developer.
 
@@ -41,13 +41,13 @@ We follow **Conventional Commits**: [https://www.conventionalcommits.org/](https
 
 **Types:**
 
-* `feat` – new feature
-* `fix` – bug fix
-* `docs` – documentation
-* `style` – formatting, missing semicolons, etc. (no code changes)
-* `refactor` – refactoring without changing functionality
-* `test` – adding or fixing tests
-* `chore` – build process, dependencies, configs
+- `feat` – new feature
+- `fix` – bug fix
+- `docs` – documentation
+- `style` – formatting, missing semicolons, etc. (no code changes)
+- `refactor` – refactoring without changing functionality
+- `test` – adding or fixing tests
+- `chore` – build process, dependencies, configs
 
 **Examples:**
 
@@ -63,9 +63,9 @@ docs: update README with setup instructions
 
 **Frontend**
 
-* Language: TypeScript + React
-* Linting: ESLint + Prettier
-* Folder structure:
+- Language: TypeScript + React
+- Linting: ESLint + Prettier
+- Folder structure:
 
 ```
 src/frontend/
@@ -82,23 +82,23 @@ All imports in the frontend must use absolute `src/` paths instead of relative p
 
 ```typescript
 // ✅ CORRECT
-import { ListCard } from 'src/components/lists/ListCard';
-import { useFetchLists } from 'src/hooks/useFetchLists';
-import type { List } from 'src/types/list';
+import {ListCard} from 'src/components/lists/ListCard';
+import {useFetchLists} from 'src/hooks/useFetchLists';
+import type {List} from 'src/types/list';
 
 // ❌ WRONG
-import { ListCard } from './ListCard';
-import { useFetchLists } from '../../hooks/useFetchLists';
-import type { List } from '../types/list';
+import {ListCard} from './ListCard';
+import {useFetchLists} from '../../hooks/useFetchLists';
+import type {List} from '../types/list';
 ```
 
 This improves readability, prevents import path issues when moving files, and makes refactoring easier.
 
 **Backend**
 
-* Language: TypeScript + NestJS
-* Linting: ESLint + Prettier
-* Folder structure:
+- Language: TypeScript + NestJS
+- Linting: ESLint + Prettier
+- Folder structure:
 
 ```
 src/backend/
@@ -132,15 +132,15 @@ yarn install
 yarn dev
 ```
 
-* MongoDB connection string: `.env` file in `src/backend/` (example `.env.example` provided)
+- MongoDB connection string: `.env` file in `src/backend/` (example `.env.example` provided)
 
 ---
 
 ## 6. Testing
 
-* Unit tests are colocated with the source code and have the `.test.ts` extension
-* Jest is used for both frontend and backend
-* Run all tests before merge:
+- Unit tests are colocated with the source code and have the `.test.ts` extension
+- vitest is used for both frontend and backend
+- Run all tests before merge:
 
 ```bash
 yarn test
@@ -150,46 +150,46 @@ yarn test
 
 ## 7. Code review guidelines
 
-* Pull request titles follow conventional commits
-* Each PR should describe:
+- Pull request titles follow conventional commits
+- Each PR should describe:
+  - What is done
+  - Why it is done
 
-  * What is done
-  * Why it is done
-* Code must be linted and pass all tests
-* Prefer small PRs for easier review
+- Code must be linted and pass all tests
+- Prefer small PRs for easier review
 
 ---
 
 ## 8. Contributions
 
-* Open issues or tickets first
-* Assign yourself to a ticket before work
-* Reference tickets in commit messages (`feat(frontend): add item table component #10`)
+- Open issues or tickets first
+- Assign yourself to a ticket before work
+- Reference tickets in commit messages (`feat(frontend): add item table component #10`)
 
 ---
 
 ## 9. Deployment
 
-* Frontend and backend are automatically deployed via Vercel on merge to `main`
-* Use environment variables for sensitive data
-* Avoid committing secrets
+- Frontend and backend are automatically deployed via Vercel on merge to `main`
+- Use environment variables for sensitive data
+- Avoid committing secrets
 
 ---
 
 ## 10. Dependency versioning
 
-* All dependencies in **every `package.json` file** must use **exact versions** (no `^`, `~`, or other range specifiers)
-* Example: `"react": "18.2.0"` instead of `"react": "^18.2.0"`
-* This ensures reproducible builds across all environments
+- All dependencies in **every `package.json` file** must use **exact versions** (no `^`, `~`, or other range specifiers)
+- Example: `"react": "18.2.0"` instead of `"react": "^18.2.0"`
+- This ensures reproducible builds across all environments
 
 ---
 
 ## 11. Additional notes
 
-* All dates in items must be handled in UTC+1
-* Status highlights (yellow/red) are derived from the date logic in frontend
-* Use Tailwind or equivalent utility classes for styling (optional, can vary per frontend setup)
+- All dates in items must be handled in UTC+1
+- Status highlights (yellow/red) are derived from the date logic in frontend
+- Use Tailwind or equivalent utility classes for styling (optional, can vary per frontend setup)
 
 ---
 
-*This AGENTS.md is the canonical source for coding and workflow standards for the JustInCase project.*
+_This AGENTS.md is the canonical source for coding and workflow standards for the JustInCase project._
