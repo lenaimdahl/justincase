@@ -4,7 +4,7 @@ import {UpdateListDto} from 'src/dtos/update-list.dto';
 import {ItemsService} from 'src/modules/items/items.service';
 import {type List, ListsService} from 'src/services/lists.service';
 
-@Controller('lists')
+@Controller('api/lists')
 export class ListsController {
   private readonly logger = new Logger(ListsController.name);
 

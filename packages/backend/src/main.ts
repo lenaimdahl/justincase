@@ -13,7 +13,7 @@ async function bootstrap() {
     credentials: true,
     origin: isProduction ? frontendURL : true,
   });
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('');
   await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
   logger.debug(`Server started on port ${process.env.PORT ?? 3000}`);
   if (isProduction) {

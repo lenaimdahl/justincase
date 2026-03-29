@@ -17,7 +17,7 @@ import {CreateItemDto} from 'src/dtos/create-item.dto';
 import {UpdateItemDto} from 'src/dtos/update-item.dto';
 import {ItemsService} from 'src/modules/items/items.service';
 
-@Controller('lists/:id/items')
+@Controller('api/lists/:id/items')
 @UsePipes(new ValidationPipe({whitelist: true}))
 export class ItemsController {
   private readonly logger = new Logger(ItemsController.name);
