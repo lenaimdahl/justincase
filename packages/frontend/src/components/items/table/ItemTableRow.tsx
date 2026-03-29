@@ -66,7 +66,7 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
           disabled={isSaving}
           error={hasError}
-          InputLabelProps={{shrink: true}}
+          slotProps={{input: {}}}
           sx={{maxWidth: 150}}
         />
       </TableCell>

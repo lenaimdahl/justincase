@@ -56,7 +56,7 @@ export const ItemTableNewItemRow = ({newItem, creatingItem, onItemChange, onSubm
           value={newItem.expiryDate}
           onChange={e => onItemChange({...newItem, expiryDate: e.target.value})}
           disabled={creatingItem}
-          InputLabelProps={{shrink: true}}
+          slotProps={{input: {}}}
           sx={{maxWidth: 150}}
         />
       </TableCell>

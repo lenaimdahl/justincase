@@ -1,9 +1,9 @@
 import {Dialog, DialogTitle, DialogContent, DialogActions, Button, Stepper, Step, StepLabel} from '@mui/material';
 import {useState} from 'react';
 import type {FieldConfig} from 'src/api/lists';
-import {ListBasicsStep} from './ListBasicsStep';
-import {ListFieldsStep} from './ListFieldsStep';
-import {ListCheckboxesStep} from './ListCheckboxesStep';
+import {ListBasicsStep} from 'src/components/lists/dialogs/ListBasicsStep';
+import {ListFieldsStep} from 'src/components/lists/dialogs/ListFieldsStep';
+import {ListCheckboxesStep} from 'src/components/lists/dialogs/ListCheckboxesStep';
 import {PRESET_TEMPLATES, DEFAULT_FIELD_CONFIG} from 'src/constants/listTemplates';
 
 interface ListConfiguratorProps {

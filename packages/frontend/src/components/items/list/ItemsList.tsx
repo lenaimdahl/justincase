@@ -1,7 +1,7 @@
-import {Box, Card, CardContent} from '@mui/material';
+import {Box} from '@mui/material';
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
-import {ItemRow} from './ItemRow';
+import {ItemRow} from 'src/components/items/list/ItemRow';
 
 interface ItemsListProps {
   items: Item[];

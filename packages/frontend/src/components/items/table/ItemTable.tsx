@@ -2,9 +2,9 @@ import {useEffect} from 'react';
 import {Table, TableBody, TableContainer, TableHead, Paper, CircularProgress, Box, Alert} from '@mui/material';
 import type {Item} from 'src/types/item';
 import {useItemOperations} from 'src/hooks/useItemOperations';
-import {ItemTableHeader} from './ItemTableHeader';
-import {ItemTableRow} from './ItemTableRow';
-import {ItemTableNewItemRow} from './ItemTableNewItemRow';
+import {ItemTableHeader} from 'src/components/items/table/ItemTableHeader';
+import {ItemTableRow} from 'src/components/items/table/ItemTableRow';
+import {ItemTableNewItemRow} from 'src/components/items/table/ItemTableNewItemRow';
 
 interface ItemTableProps {
   listId: string;
