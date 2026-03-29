@@ -57,8 +57,8 @@ See [AGENTS.md](./AGENTS.md) for project conventions, branching strategy, commit
 
 ## Authors
 
-- [Florian Imdahl](https://github.com/ffflorian) — [ffflorian.dev](https://ffflorian.dev)
-- Lena Imdahl
+- [Florian Imdahl](https://github.com/ffflorian)
+- [Lena Imdahl](https://github.com/lenaimdahl)
 
 ## License
 
