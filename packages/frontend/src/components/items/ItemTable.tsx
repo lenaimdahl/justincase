@@ -202,7 +202,6 @@ export const ItemTable = ({
                     setNewItem({ ...newItem, name: e.target.value })
                   }
                   disabled={creatingItem}
-                  autoFocus
                   fullWidth
                   sx={{ maxWidth: 200 }}
                 />
