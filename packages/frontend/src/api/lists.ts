@@ -36,6 +36,9 @@ export interface CreateListRequest {
 
 export interface UpdateListRequest {
   name?: string;
+  icon?: string;
+  color?: string;
+  fieldConfig?: FieldConfig;
 }
 
 /**
