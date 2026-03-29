@@ -3,8 +3,8 @@ import {useState, useEffect} from 'react';
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 import {useItemOperations} from 'src/hooks/useItemOperations';
-import {ItemsList} from './ItemsList';
-import {ItemForm} from './ItemForm';
+import {ItemsList} from './list/ItemsList';
+import {ItemForm} from './forms/ItemForm';
 
 interface ItemViewProps {
   listId: string;

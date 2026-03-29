@@ -1,5 +1,5 @@
 import {Box} from '@mui/material';
-import {ListCard} from 'src/components/lists/ListCard';
+import {ListCard} from './ListCard';
 import type {List} from 'src/types/list';
 
 interface ListsGridProps {
@@ -26,6 +26,9 @@ export const ListsGrid = ({lists, onListClick}: ListsGridProps) => {
           id={list.id}
           name={list.name}
           itemCount={list.itemCount}
+          icon={list.icon}
+          color={list.color}
+          fieldConfig={list.fieldConfig}
           onClick={() => onListClick(list.id)}
         />
       ))}
