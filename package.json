@@ -17,7 +17,9 @@
     "build": "yarn workspaces foreach --all --parallel --topological --exclude justincase run build",
     "clean": "yarn workspaces foreach --all --parallel --exclude justincase run clean",
     "dist": "yarn workspaces foreach --all --parallel --exclude justincase run dist",
-    "format": "yarn workspaces foreach --all --parallel --exclude justincase run format"
+    "lint": "yarn workspaces foreach --all --parallel --exclude justincase run lint",
+    "format": "yarn workspaces foreach --all --parallel --exclude justincase run format",
+    "test": "CI=true yarn workspaces foreach --all --parallel --exclude justincase run test"
   },
   "workspaces": [
     "packages/*"
