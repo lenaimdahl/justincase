@@ -6,9 +6,11 @@ import {
   HttpCode,
   Logger,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { CreateListDto } from 'src/dtos/create-list.dto';
+import { UpdateListDto } from 'src/dtos/update-list.dto';
 import { type List, ListsService } from 'src/services/lists.service';
 
 @Controller('lists')
@@ -35,6 +37,13 @@ export class ListsController {
   findOne(@Param('id') id: string): List {
     const result = this.listsService.findOne(id);
     this.logger.debug(`GET /lists/${id} -> 200 OK`);
+    return result;
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateListDto: UpdateListDto): List {
+    const result = this.listsService.update(id, updateListDto);
+    this.logger.debug(`PATCH /lists/${id} -> 200 OK`);
     return result;
   }
 

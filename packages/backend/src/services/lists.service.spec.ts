@@ -1,6 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { CreateListDto } from 'src/dtos/create-list.dto';
+import { UpdateListDto } from 'src/dtos/update-list.dto';
 import { ListsService } from 'src/services/lists.service';
 
 describe('ListsService', () => {
@@ -56,6 +57,32 @@ describe('ListsService', () => {
 
     it('should throw NotFoundException for an unknown id', () => {
       expect(() => service.findOne('999')).toThrow(NotFoundException);
+    });
+  });
+
+  describe('update', () => {
+    it('should update the name of a list', () => {
+      const created = service.create({ name: 'Old Name' });
+      const dto: UpdateListDto = { name: 'New Name' };
+      const updated = service.update(created.id, dto);
+
+      expect(updated.name).toBe('New Name');
+      expect(updated.id).toBe(created.id);
+    });
+
+    it('should update icon and color', () => {
+      const created = service.create({ name: 'My List' });
+      const dto: UpdateListDto = { icon: '🛒', color: '#ff0000' };
+      const updated = service.update(created.id, dto);
+
+      expect(updated.icon).toBe('🛒');
+      expect(updated.color).toBe('#ff0000');
+      expect(updated.name).toBe('My List');
+    });
+
+    it('should throw NotFoundException for an unknown id', () => {
+      const dto: UpdateListDto = { name: 'X' };
+      expect(() => service.update('999', dto)).toThrow(NotFoundException);
     });
   });
 
