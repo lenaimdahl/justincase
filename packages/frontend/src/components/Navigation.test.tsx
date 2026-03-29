@@ -10,8 +10,18 @@ describe('Navigation Component', () => {
         <Navigation />
       </BrowserRouter>
     );
-    const nav = screen.getByRole('navigation');
-    expect(nav).toBeInTheDocument();
+    const banner = screen.getByRole('banner');
+    expect(banner).toBeInTheDocument();
+  });
+
+  it('should have navigation links', () => {
+    render(
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    );
+    const links = screen.getAllByRole('link');
+    expect(links.length).toBeGreaterThan(0);
   });
 
   it('should have a home link', () => {
@@ -20,7 +30,8 @@ describe('Navigation Component', () => {
         <Navigation />
       </BrowserRouter>
     );
-    const homeLink = screen.getByRole('link', {name: /justincase|home/i});
+    const homeLink = screen.getByRole('link', {name: /components.navigation.home/i});
     expect(homeLink).toBeInTheDocument();
+    expect(homeLink).toHaveAttribute('href', '/');
   });
 });
