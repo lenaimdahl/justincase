@@ -65,7 +65,7 @@ export async function fetchListById(listId: string): Promise<List> {
 export async function createList(data: CreateListRequest): Promise<List> {
   const response = await fetch(`${API_BASE}/lists`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data),
   });
   if (!response.ok) {
@@ -77,13 +77,10 @@ export async function createList(data: CreateListRequest): Promise<List> {
 /**
  * Update a list
  */
-export async function updateList(
-  listId: string,
-  data: UpdateListRequest,
-): Promise<List> {
+export async function updateList(listId: string, data: UpdateListRequest): Promise<List> {
   const response = await fetch(`${API_BASE}/lists/${listId}`, {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data),
   });
   if (!response.ok) {

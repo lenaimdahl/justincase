@@ -16,8 +16,8 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useState } from 'react';
-import type { FieldConfig } from 'src/api/lists';
+import {useState} from 'react';
+import type {FieldConfig} from 'src/api/lists';
 
 interface ListConfiguratorProps {
   open: boolean;
@@ -30,13 +30,18 @@ const ICONS = ['📝', '🛒', '👥', '🏠', '✈️', '🎉', '📚', '⚽', 
 const COLORS = ['#9c27b0', '#e91e63', '#f44336', '#ff9800', '#4caf50', '#2196f3', '#00bcd4', '#9e9e9e'];
 
 const PRESET_TEMPLATES = {
-  shopping: { name: 'Einkaufsliste', hasCheckbox: true, hasQuantity: true },
-  guestlist: { name: 'Gästeliste', hasCheckbox: true, multipleCheckboxes: true, checkboxLabels: ['Zugesagt', 'Abgesagt'] },
-  packing: { name: 'Packliste', hasCheckbox: true },
-  pantry: { name: 'Vorratsschrank', hasQuantity: true, hasExpiryDate: true },
+  shopping: {name: 'Einkaufsliste', hasCheckbox: true, hasQuantity: true},
+  guestlist: {
+    name: 'Gästeliste',
+    hasCheckbox: true,
+    multipleCheckboxes: true,
+    checkboxLabels: ['Zugesagt', 'Abgesagt'],
+  },
+  packing: {name: 'Packliste', hasCheckbox: true},
+  pantry: {name: 'Vorratsschrank', hasQuantity: true, hasExpiryDate: true},
 };
 
-export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: ListConfiguratorProps) => {
+export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: ListConfiguratorProps) => {
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');
   const [icon, setIcon] = useState('📝');
@@ -82,18 +87,18 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
   const handleCheckboxLabelChange = (index: number, value: string) => {
     const labels = [...(fieldConfig.checkboxLabels || [])];
     labels[index] = value;
-    setFieldConfig({ ...fieldConfig, checkboxLabels: labels });
+    setFieldConfig({...fieldConfig, checkboxLabels: labels});
   };
 
   const handleAddCheckboxLabel = () => {
     const labels = [...(fieldConfig.checkboxLabels || [])];
     labels.push('');
-    setFieldConfig({ ...fieldConfig, checkboxLabels: labels });
+    setFieldConfig({...fieldConfig, checkboxLabels: labels});
   };
 
   const handleRemoveCheckboxLabel = (index: number) => {
     const labels = (fieldConfig.checkboxLabels || []).filter((_, i) => i !== index);
-    setFieldConfig({ ...fieldConfig, checkboxLabels: labels });
+    setFieldConfig({...fieldConfig, checkboxLabels: labels});
   };
 
   const handleApplyTemplate = (template: keyof typeof PRESET_TEMPLATES) => {
@@ -142,7 +147,7 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
   return (
     <Dialog open={open} onClose={handleReset} maxWidth="sm" fullWidth>
       <DialogTitle>Liste konfigurieren</DialogTitle>
-      <Stepper activeStep={step} sx={{ p: 2 }}>
+      <Stepper activeStep={step} sx={{p: 2}}>
         <Step>
           <StepLabel>Basis</StepLabel>
         </Step>
@@ -154,28 +159,28 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
         </Step>
       </Stepper>
 
-      <DialogContent sx={{ minHeight: 400 }}>
+      <DialogContent sx={{minHeight: 400}}>
         {/* Step 0: Basis */}
         {step === 0 && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
+          <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
             <TextField
               autoFocus
               fullWidth
               label="Listen-Name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={e => setName(e.target.value)}
               disabled={loading}
             />
 
             <Box>
-              <Box sx={{ mb: 1, fontWeight: 'bold', fontSize: '0.9em' }}>Icon</Box>
+              <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>Icon</Box>
               <Grid container spacing={1}>
-                {ICONS.map((ic) => (
+                {ICONS.map(ic => (
                   <Grid item key={ic}>
                     <Button
                       variant={icon === ic ? 'contained' : 'outlined'}
                       onClick={() => setIcon(ic)}
-                      sx={{ p: 1, minWidth: 50, fontSize: '1.5em' }}
+                      sx={{p: 1, minWidth: 50, fontSize: '1.5em'}}
                       disabled={loading}
                     >
                       {ic}
@@ -186,9 +191,9 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
             </Box>
 
             <Box>
-              <Box sx={{ mb: 1, fontWeight: 'bold', fontSize: '0.9em' }}>Farbe</Box>
+              <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>Farbe</Box>
               <Grid container spacing={1}>
-                {COLORS.map((col) => (
+                {COLORS.map(col => (
                   <Grid item key={col}>
                     <Button
                       variant={color === col ? 'contained' : 'outlined'}
@@ -206,16 +211,16 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
               </Grid>
             </Box>
 
-            <Box sx={{ pt: 2 }}>
-              <Box sx={{ fontWeight: 'bold', mb: 1, fontSize: '0.85em' }}>Oder Template:</Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Box sx={{pt: 2}}>
+              <Box sx={{fontWeight: 'bold', mb: 1, fontSize: '0.85em'}}>Oder Template:</Box>
+              <Box sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
                 {Object.entries(PRESET_TEMPLATES).map(([key, preset]) => (
                   <Button
                     key={key}
                     variant="outlined"
                     onClick={() => handleApplyTemplate(key as keyof typeof PRESET_TEMPLATES)}
                     disabled={loading}
-                    sx={{ justifyContent: 'flex-start' }}
+                    sx={{justifyContent: 'flex-start'}}
                   >
                     {preset.name}
                   </Button>
@@ -227,7 +232,7 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
 
         {/* Step 1: Felder */}
         {step === 1 && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
+          <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -293,23 +298,21 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
 
         {/* Step 2: Checkbox Labels */}
         {step === 2 && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}>
+          <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
             {!fieldConfig.multipleCheckboxes ? (
-              <Box sx={{ textAlign: 'center', color: '#999', py: 4 }}>
-                Keine Checkbox-Kategorien benötigt
-              </Box>
+              <Box sx={{textAlign: 'center', color: '#999', py: 4}}>Keine Checkbox-Kategorien benötigt</Box>
             ) : (
               <>
-                <Box sx={{ fontWeight: 'bold' }}>Checkbox-Kategorien:</Box>
+                <Box sx={{fontWeight: 'bold'}}>Checkbox-Kategorien:</Box>
                 {(fieldConfig.checkboxLabels || []).map((label, index) => (
-                  <Box key={index} sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                  <Box key={index} sx={{display: 'flex', gap: 1, alignItems: 'center'}}>
                     <TextField
                       size="small"
                       value={label}
-                      onChange={(e) => handleCheckboxLabelChange(index, e.target.value)}
+                      onChange={e => handleCheckboxLabelChange(index, e.target.value)}
                       disabled={loading}
                       placeholder={`Kategorie ${index + 1}`}
-                      sx={{ flex: 1 }}
+                      sx={{flex: 1}}
                     />
                     <IconButton
                       size="small"
@@ -326,7 +329,7 @@ export const ListConfigurator = ({ open, onClose, onSubmit, loading = false }: L
                   startIcon={<AddCircleIcon />}
                   onClick={handleAddCheckboxLabel}
                   disabled={loading}
-                  sx={{ justifyContent: 'flex-start', pl: 0 }}
+                  sx={{justifyContent: 'flex-start', pl: 0}}
                 >
                   Kategorie hinzufügen
                 </Button>

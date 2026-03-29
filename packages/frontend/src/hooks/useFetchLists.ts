@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import type { List } from 'src/api/lists';
-import { fetchLists } from 'src/api/lists';
+import {useState, useEffect} from 'react';
+import type {List} from 'src/api/lists';
+import {fetchLists} from 'src/api/lists';
 
 interface UseFetchListsReturn {
   lists: List[];
@@ -35,5 +35,5 @@ export const useFetchLists = (): UseFetchListsReturn => {
     fetchListsData();
   }, []);
 
-  return { lists, loading, error, refetch: fetchListsData };
+  return {lists, loading, error, refetch: fetchListsData};
 };

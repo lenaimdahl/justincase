@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import type { Item } from 'src/types/item';
-import { fetchItemsByListId } from 'src/api/items';
+import {useState, useEffect, useCallback} from 'react';
+import type {Item} from 'src/types/item';
+import {fetchItemsByListId} from 'src/api/items';
 
 interface UseFetchItemsReturn {
   items: Item[];
@@ -35,5 +35,5 @@ export const useFetchItems = (listId: string): UseFetchItemsReturn => {
     fetchItems();
   }, [fetchItems]);
 
-  return { items, loading, error, refetch: fetchItems };
+  return {items, loading, error, refetch: fetchItems};
 };

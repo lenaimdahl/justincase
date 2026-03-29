@@ -12,8 +12,8 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 
 interface CreateListDialogProps {
   open: boolean;
@@ -32,7 +32,7 @@ export const CreateListDialog = ({
   onSubmit,
   loading = false,
 }: CreateListDialogProps) => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const [requiresExpiryDate, setRequiresExpiryDate] = useState(true);
   const [hasCheckboxes, setHasCheckboxes] = useState(false);
   const [checkboxOptions, setCheckboxOptions] = useState<string[]>([]);
@@ -73,21 +73,21 @@ export const CreateListDialog = ({
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <DialogTitle>{t('pages.listOverview.dialogTitle')}</DialogTitle>
-      <DialogContent sx={{ pt: 2 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <DialogContent sx={{pt: 2}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: 2}}>
           <TextField
             autoFocus
             fullWidth
             label={t('pages.listOverview.inputLabel')}
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={e => onChange(e.target.value)}
             onKeyDown={handleKeyDown}
           />
           <FormControlLabel
             control={
               <Checkbox
                 checked={requiresExpiryDate}
-                onChange={(e) => setRequiresExpiryDate(e.target.checked)}
+                onChange={e => setRequiresExpiryDate(e.target.checked)}
                 disabled={loading}
               />
             }
@@ -97,7 +97,7 @@ export const CreateListDialog = ({
             control={
               <Checkbox
                 checked={hasCheckboxes}
-                onChange={(e) => {
+                onChange={e => {
                   setHasCheckboxes(e.target.checked);
                   if (!e.target.checked) {
                     setCheckboxOptions([]);
@@ -109,23 +109,18 @@ export const CreateListDialog = ({
             label="Checkboxes benötigt"
           />
           {hasCheckboxes && (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pl: 4 }}>
+            <Box sx={{display: 'flex', flexDirection: 'column', gap: 1, pl: 4}}>
               {checkboxOptions.map((option, index) => (
-                <Box key={index} sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                <Box key={index} sx={{display: 'flex', gap: 1, alignItems: 'center'}}>
                   <TextField
                     size="small"
                     value={option}
-                    onChange={(e) => handleOptionChange(index, e.target.value)}
+                    onChange={e => handleOptionChange(index, e.target.value)}
                     disabled={loading}
                     placeholder={`Option ${index + 1}`}
-                    sx={{ flex: 1 }}
+                    sx={{flex: 1}}
                   />
-                  <IconButton
-                    size="small"
-                    onClick={() => handleRemoveOption(index)}
-                    disabled={loading}
-                    color="error"
-                  >
+                  <IconButton size="small" onClick={() => handleRemoveOption(index)} disabled={loading} color="error">
                     <DeleteIcon fontSize="small" />
                   </IconButton>
                 </Box>
@@ -135,7 +130,7 @@ export const CreateListDialog = ({
                 startIcon={<AddCircleIcon />}
                 onClick={handleAddOption}
                 disabled={loading}
-                sx={{ justifyContent: 'flex-start', pl: 0 }}
+                sx={{justifyContent: 'flex-start', pl: 0}}
               >
                 Option hinzufügen
               </Button>

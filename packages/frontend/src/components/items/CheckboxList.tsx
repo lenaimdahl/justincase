@@ -1,9 +1,9 @@
-import { Box, Button, Card, CardContent, IconButton, List, TextField, CircularProgress, Alert } from '@mui/material';
+import {Box, Button, Card, CardContent, IconButton, List, TextField, CircularProgress, Alert} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { useState, useEffect } from 'react';
-import type { Item } from 'src/types/item';
-import { useItemOperations } from 'src/hooks/useItemOperations';
+import {useState, useEffect} from 'react';
+import type {Item} from 'src/types/item';
+import {useItemOperations} from 'src/hooks/useItemOperations';
 
 interface CheckboxListProps {
   listId: string;
@@ -12,35 +12,23 @@ interface CheckboxListProps {
   onItemsChange: () => Promise<void>;
 }
 
-export const CheckboxList = ({
-  listId,
-  items,
-  checkboxOptions,
-  onItemsChange,
-}: CheckboxListProps) => {
-  const {
-    editingState,
-    newItem,
-    creatingItem,
-    createError,
-    setNewItem,
-    handleDeleteItem,
-    handleCreateItem,
-  } = useItemOperations(listId, onItemsChange);
+export const CheckboxList = ({listId, items, checkboxOptions, onItemsChange}: CheckboxListProps) => {
+  const {editingState, newItem, creatingItem, createError, setNewItem, handleDeleteItem, handleCreateItem} =
+    useItemOperations(listId, onItemsChange);
 
   const [checkedByOption, setCheckedByOption] = useState<Record<string, Set<string>>>({});
 
   useEffect(() => {
     // Initialize checkbox state from items
     const state: Record<string, Set<string>> = {};
-    checkboxOptions.forEach((option) => {
+    checkboxOptions.forEach(option => {
       state[option] = new Set();
     });
     setCheckedByOption(state);
   }, [items, checkboxOptions]);
 
   const handleCheckOption = (itemId: string, option: string) => {
-    const newState = { ...checkedByOption };
+    const newState = {...checkedByOption};
     if (!newState[option]) {
       newState[option] = new Set();
     }
@@ -54,20 +42,20 @@ export const CheckboxList = ({
 
   const handleAddItem = async () => {
     await handleCreateItem();
-    setNewItem({ name: '', quantity: 1, expiryDate: '', unit: '', comment: '' });
+    setNewItem({name: '', quantity: 1, expiryDate: '', unit: '', comment: ''});
   };
 
   const displayItems = items;
 
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto', p: 2 }}>
+    <Box sx={{maxWidth: 800, mx: 'auto', p: 2}}>
       {createError && (
-        <Alert severity="error" sx={{ mb: 2 }}>
+        <Alert severity="error" sx={{mb: 2}}>
           {createError}
         </Alert>
       )}
 
-      <Card sx={{ mb: 2 }}>
+      <Card sx={{mb: 2}}>
         <CardContent>
           {/* Checkbox headers */}
           <Box
@@ -82,16 +70,16 @@ export const CheckboxList = ({
             }}
           >
             <Box>Name</Box>
-            {checkboxOptions.map((option) => (
-              <Box key={option} sx={{ textAlign: 'center', fontSize: '0.9em' }}>
+            {checkboxOptions.map(option => (
+              <Box key={option} sx={{textAlign: 'center', fontSize: '0.9em'}}>
                 {option}
               </Box>
             ))}
             <Box />
           </Box>
 
-          <List sx={{ p: 0 }}>
-            {displayItems.map((item) => {
+          <List sx={{p: 0}}>
+            {displayItems.map(item => {
               const state = editingState[item._id] || item;
 
               return (
@@ -109,11 +97,9 @@ export const CheckboxList = ({
                     },
                   }}
                 >
-                  <Box sx={{ opacity: state.isSaving ? 0.6 : 1 }}>
-                    {state.name}
-                  </Box>
-                  {checkboxOptions.map((option) => (
-                    <Box key={option} sx={{ textAlign: 'center' }}>
+                  <Box sx={{opacity: state.isSaving ? 0.6 : 1}}>{state.name}</Box>
+                  {checkboxOptions.map(option => (
+                    <Box key={option} sx={{textAlign: 'center'}}>
                       <input
                         type="checkbox"
                         checked={checkedByOption[option]?.has(item._id) ?? false}
@@ -151,15 +137,15 @@ export const CheckboxList = ({
       </Card>
 
       {/* New item input */}
-      <Card sx={{ p: 2 }}>
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-end' }}>
+      <Card sx={{p: 2}}>
+        <Box sx={{display: 'flex', gap: 1, alignItems: 'flex-end'}}>
           <TextField
             size="small"
             placeholder="Name (z.B. Gast, Aufgabe)..."
             value={newItem.name || ''}
-            onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+            onChange={e => setNewItem({...newItem, name: e.target.value})}
             disabled={creatingItem}
-            sx={{ flex: 1, minWidth: 200 }}
+            sx={{flex: 1, minWidth: 200}}
           />
           <Button
             variant="contained"

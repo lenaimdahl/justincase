@@ -1,9 +1,21 @@
-import { Box, Button, Card, CardContent, IconButton, List, ListItem, ListItemText, TextField, CircularProgress, Alert } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  TextField,
+  CircularProgress,
+  Alert,
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { useState, useEffect } from 'react';
-import type { Item } from 'src/types/item';
-import { useItemOperations } from 'src/hooks/useItemOperations';
+import {useState, useEffect} from 'react';
+import type {Item} from 'src/types/item';
+import {useItemOperations} from 'src/hooks/useItemOperations';
 
 interface ItemChecklistProps {
   listId: string;
@@ -12,21 +24,9 @@ interface ItemChecklistProps {
   onItemsChange: () => Promise<void>;
 }
 
-export const ItemChecklist = ({
-  listId,
-  items,
-  requiresExpiryDate,
-  onItemsChange,
-}: ItemChecklistProps) => {
-  const {
-    editingState,
-    newItem,
-    creatingItem,
-    createError,
-    setNewItem,
-    handleDeleteItem,
-    handleCreateItem,
-  } = useItemOperations(listId, onItemsChange);
+export const ItemChecklist = ({listId, items, requiresExpiryDate, onItemsChange}: ItemChecklistProps) => {
+  const {editingState, newItem, creatingItem, createError, setNewItem, handleDeleteItem, handleCreateItem} =
+    useItemOperations(listId, onItemsChange);
 
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
 
@@ -47,24 +47,24 @@ export const ItemChecklist = ({
 
   const handleAddItem = async () => {
     await handleCreateItem();
-    setNewItem({ name: '', expiryDate: '', quantity: 1, unit: '', comment: '' });
+    setNewItem({name: '', expiryDate: '', quantity: 1, unit: '', comment: ''});
   };
 
   // Display all items
   const displayItems = items;
 
   return (
-    <Box sx={{ maxWidth: 600, mx: 'auto', p: 2 }}>
+    <Box sx={{maxWidth: 600, mx: 'auto', p: 2}}>
       {createError && (
-        <Alert severity="error" sx={{ mb: 2 }}>
+        <Alert severity="error" sx={{mb: 2}}>
           {createError}
         </Alert>
       )}
 
-      <Card sx={{ mb: 2 }}>
+      <Card sx={{mb: 2}}>
         <CardContent>
-          <List sx={{ p: 0 }}>
-            {displayItems.map((item) => {
+          <List sx={{p: 0}}>
+            {displayItems.map(item => {
               const state = editingState[item._id] || item;
               const isChecked = checkedItems.has(item._id);
 
@@ -87,20 +87,18 @@ export const ItemChecklist = ({
                     },
                   }}
                 >
-                  <Box sx={{ flex: 1, cursor: 'pointer' }} onClick={() => handleCheck(item._id)}>
+                  <Box sx={{flex: 1, cursor: 'pointer'}} onClick={() => handleCheck(item._id)}>
                     <input
                       type="checkbox"
                       checked={isChecked}
                       onChange={() => handleCheck(item._id)}
                       disabled={state.isSaving}
-                      style={{ marginRight: 12 }}
+                      style={{marginRight: 12}}
                     />
                     <ListItemText
                       primary={state.name}
-                      secondary={
-                        requiresExpiryDate && state.expiryDate ? `📅 ${state.expiryDate}` : undefined
-                      }
-                      sx={{ display: 'inline', ml: 1 }}
+                      secondary={requiresExpiryDate && state.expiryDate ? `📅 ${state.expiryDate}` : undefined}
+                      sx={{display: 'inline', ml: 1}}
                     />
                   </Box>
                   <IconButton
@@ -132,35 +130,35 @@ export const ItemChecklist = ({
       </Card>
 
       {/* New item input */}
-      <Card sx={{ p: 2 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'flex-end' }}>
+      <Card sx={{p: 2}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'flex-end'}}>
           <TextField
             size="small"
             placeholder="Item name..."
             value={newItem.name || ''}
-            onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+            onChange={e => setNewItem({...newItem, name: e.target.value})}
             disabled={creatingItem}
-            sx={{ flex: 1, minWidth: 200 }}
+            sx={{flex: 1, minWidth: 200}}
           />
           <TextField
             size="small"
             type="number"
             placeholder="Menge"
             value={newItem.quantity || 1}
-            onChange={(e) => setNewItem({ ...newItem, quantity: parseInt(e.target.value) || 1 })}
+            onChange={e => setNewItem({...newItem, quantity: parseInt(e.target.value) || 1})}
             disabled={creatingItem}
-            inputProps={{ min: 1 }}
-            sx={{ width: 120 }}
+            inputProps={{min: 1}}
+            sx={{width: 120}}
           />
           {requiresExpiryDate && (
             <TextField
               size="small"
               type="date"
               value={newItem.expiryDate || ''}
-              onChange={(e) => setNewItem({ ...newItem, expiryDate: e.target.value })}
+              onChange={e => setNewItem({...newItem, expiryDate: e.target.value})}
               disabled={creatingItem}
-              InputLabelProps={{ shrink: true }}
-              sx={{ width: 180 }}
+              InputLabelProps={{shrink: true}}
+              sx={{width: 180}}
             />
           )}
           <Button

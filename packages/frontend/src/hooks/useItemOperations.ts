@@ -1,16 +1,6 @@
-import { useState, useCallback } from 'react';
-import type {
-  Item,
-  CreateItemRequest,
-  UpdateItemRequest,
-  EditingItem,
-} from 'src/types/item';
-import {
-  createItem,
-  updateItem,
-  deleteItem,
-  adjustItemQuantity,
-} from 'src/api/items';
+import {useState, useCallback} from 'react';
+import type {Item, CreateItemRequest, UpdateItemRequest, EditingItem} from 'src/types/item';
+import {createItem, updateItem, deleteItem, adjustItemQuantity} from 'src/api/items';
 
 const DEBOUNCE_DELAY = 1000; // ms
 
@@ -22,11 +12,7 @@ interface UseItemOperationsReturn {
   createError: string | null;
   setNewItem: (item: CreateItemRequest) => void;
   setCreateError: (error: string | null) => void;
-  updateField: (
-    itemId: string,
-    field: keyof UpdateItemRequest,
-    value: string | number,
-  ) => void;
+  updateField: (itemId: string, field: keyof UpdateItemRequest, value: string | number) => void;
   handleAdjustQuantity: (itemId: string, adjustment: number) => Promise<void>;
   handleDeleteItem: (itemId: string) => Promise<void>;
   handleCreateItem: () => Promise<void>;
@@ -37,13 +23,8 @@ interface UseItemOperationsReturn {
 /**
  * Hook to manage item operations (create, update, delete, adjust quantity)
  */
-export const useItemOperations = (
-  listId: string,
-  onItemsChange: () => Promise<void>,
-): UseItemOperationsReturn => {
-  const [editingState, setEditingState] = useState<
-    Record<string, EditingItem>
-  >({});
+export const useItemOperations = (listId: string, onItemsChange: () => Promise<void>): UseItemOperationsReturn => {
+  const [editingState, setEditingState] = useState<Record<string, EditingItem>>({});
   const [itemsInEditMode, setItemsInEditMode] = useState<Set<string>>(new Set());
   const [newItem, setNewItem] = useState<CreateItemRequest>({
     name: '',
@@ -55,26 +36,29 @@ export const useItemOperations = (
   const [creatingItem, setCreatingItem] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
 
-  const initializeEditingState = useCallback((items: Item[]) => {
-    const newState: Record<string, EditingItem> = {};
-    items.forEach((item) => {
-      if (!editingState[item._id]) {
-        newState[item._id] = {
-          ...item,
-          isEditing: false,
-          isSaving: false,
-          error: null,
-        };
+  const initializeEditingState = useCallback(
+    (items: Item[]) => {
+      const newState: Record<string, EditingItem> = {};
+      items.forEach(item => {
+        if (!editingState[item._id]) {
+          newState[item._id] = {
+            ...item,
+            isEditing: false,
+            isSaving: false,
+            error: null,
+          };
+        }
+      });
+      if (Object.keys(newState).length > 0) {
+        setEditingState(prev => ({...prev, ...newState}));
       }
-    });
-    if (Object.keys(newState).length > 0) {
-      setEditingState((prev) => ({ ...prev, ...newState }));
-    }
-  }, [editingState]);
+    },
+    [editingState]
+  );
 
   const updateField = useCallback(
     (itemId: string, field: keyof UpdateItemRequest, value: string | number) => {
-      setEditingState((prev) => ({
+      setEditingState(prev => ({
         ...prev,
         [itemId]: {
           ...prev[itemId],
@@ -90,22 +74,21 @@ export const useItemOperations = (
         const updateData: UpdateItemRequest = {};
         (updateData as Record<string, string | number>)[field] = value;
 
-        setEditingState((prev) => ({
+        setEditingState(prev => ({
           ...prev,
-          [itemId]: { ...prev[itemId], isSaving: true },
+          [itemId]: {...prev[itemId], isSaving: true},
         }));
 
         try {
           await updateItem(listId, itemId, updateData);
           await onItemsChange();
-          setEditingState((prev) => ({
+          setEditingState(prev => ({
             ...prev,
-            [itemId]: { ...prev[itemId], isSaving: false },
+            [itemId]: {...prev[itemId], isSaving: false},
           }));
         } catch (err) {
-          const errorMessage =
-            err instanceof Error ? err.message : 'Update failed';
-          setEditingState((prev) => ({
+          const errorMessage = err instanceof Error ? err.message : 'Update failed';
+          setEditingState(prev => ({
             ...prev,
             [itemId]: {
               ...prev[itemId],
@@ -118,7 +101,7 @@ export const useItemOperations = (
 
       return () => clearTimeout(timer);
     },
-    [listId, editingState, onItemsChange],
+    [listId, editingState, onItemsChange]
   );
 
   const handleAdjustQuantity = useCallback(
@@ -129,22 +112,21 @@ export const useItemOperations = (
       // Prevent negative quantities
       if (item.quantity + adjustment < 0) return;
 
-      setEditingState((prev) => ({
+      setEditingState(prev => ({
         ...prev,
-        [itemId]: { ...prev[itemId], isSaving: true },
+        [itemId]: {...prev[itemId], isSaving: true},
       }));
 
       try {
         await adjustItemQuantity(listId, itemId, adjustment);
         await onItemsChange();
-        setEditingState((prev) => ({
+        setEditingState(prev => ({
           ...prev,
-          [itemId]: { ...prev[itemId], isSaving: false },
+          [itemId]: {...prev[itemId], isSaving: false},
         }));
       } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : 'Quantity adjustment failed';
-        setEditingState((prev) => ({
+        const errorMessage = err instanceof Error ? err.message : 'Quantity adjustment failed';
+        setEditingState(prev => ({
           ...prev,
           [itemId]: {
             ...prev[itemId],
@@ -154,28 +136,27 @@ export const useItemOperations = (
         }));
       }
     },
-    [listId, editingState, onItemsChange],
+    [listId, editingState, onItemsChange]
   );
 
   const handleDeleteItem = useCallback(
     async (itemId: string) => {
-      setEditingState((prev) => ({
+      setEditingState(prev => ({
         ...prev,
-        [itemId]: { ...prev[itemId], isSaving: true },
+        [itemId]: {...prev[itemId], isSaving: true},
       }));
 
       try {
         await deleteItem(listId, itemId);
         await onItemsChange();
-        setEditingState((prev) => {
-          const newState = { ...prev };
+        setEditingState(prev => {
+          const newState = {...prev};
           delete newState[itemId];
           return newState;
         });
       } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : 'Delete failed';
-        setEditingState((prev) => ({
+        const errorMessage = err instanceof Error ? err.message : 'Delete failed';
+        setEditingState(prev => ({
           ...prev,
           [itemId]: {
             ...prev[itemId],
@@ -185,7 +166,7 @@ export const useItemOperations = (
         }));
       }
     },
-    [listId, onItemsChange],
+    [listId, onItemsChange]
   );
 
   const handleCreateItem = useCallback(async () => {
@@ -208,8 +189,7 @@ export const useItemOperations = (
       });
       await onItemsChange();
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : 'Failed to create item';
+      const errorMessage = err instanceof Error ? err.message : 'Failed to create item';
       setCreateError(errorMessage);
     } finally {
       setCreatingItem(false);
@@ -217,7 +197,7 @@ export const useItemOperations = (
   }, [listId, newItem, onItemsChange]);
 
   const toggleEditMode = useCallback((itemId: string) => {
-    setItemsInEditMode((prev) => {
+    setItemsInEditMode(prev => {
       const newSet = new Set(prev);
       if (newSet.has(itemId)) {
         newSet.delete(itemId);

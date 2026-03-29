@@ -1,10 +1,25 @@
-import { Box, Button, Card, CardContent, IconButton, List, ListItem, TextField, CircularProgress, Alert, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  IconButton,
+  List,
+  ListItem,
+  TextField,
+  CircularProgress,
+  Alert,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { useState, useEffect } from 'react';
-import type { Item } from 'src/types/item';
-import type { FieldConfig } from 'src/types/list';
-import { useItemOperations } from 'src/hooks/useItemOperations';
+import {useState, useEffect} from 'react';
+import type {Item} from 'src/types/item';
+import type {FieldConfig} from 'src/types/list';
+import {useItemOperations} from 'src/hooks/useItemOperations';
 
 interface ItemViewProps {
   listId: string;
@@ -13,21 +28,9 @@ interface ItemViewProps {
   onItemsChange: () => Promise<void>;
 }
 
-export const ItemView = ({
-  listId,
-  items,
-  fieldConfig,
-  onItemsChange,
-}: ItemViewProps) => {
-  const {
-    editingState,
-    newItem,
-    creatingItem,
-    createError,
-    setNewItem,
-    handleDeleteItem,
-    handleCreateItem,
-  } = useItemOperations(listId, onItemsChange);
+export const ItemView = ({listId, items, fieldConfig, onItemsChange}: ItemViewProps) => {
+  const {editingState, newItem, creatingItem, createError, setNewItem, handleDeleteItem, handleCreateItem} =
+    useItemOperations(listId, onItemsChange);
 
   const [checkedItems, setCheckedItems] = useState<Record<string, Set<string>>>({});
 
@@ -35,7 +38,7 @@ export const ItemView = ({
     // Initialize checkbox states
     const state: Record<string, Set<string>> = {};
     if (fieldConfig.multipleCheckboxes && fieldConfig.checkboxLabels) {
-      fieldConfig.checkboxLabels.forEach((label) => {
+      fieldConfig.checkboxLabels.forEach(label => {
         state[label] = new Set();
       });
     }
@@ -49,11 +52,11 @@ export const ItemView = ({
     } else {
       newChecked.add(itemId);
     }
-    setCheckedItems({ ...checkedItems, simple: newChecked });
+    setCheckedItems({...checkedItems, simple: newChecked});
   };
 
   const handleCheckMultiple = (itemId: string, label: string) => {
-    const newState = { ...checkedItems };
+    const newState = {...checkedItems};
     if (!newState[label]) {
       newState[label] = new Set();
     }
@@ -79,15 +82,15 @@ export const ItemView = ({
   const displayItems = items;
 
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto', p: 2 }}>
+    <Box sx={{maxWidth: 800, mx: 'auto', p: 2}}>
       {createError && (
-        <Alert severity="error" sx={{ mb: 2 }}>
+        <Alert severity="error" sx={{mb: 2}}>
           {createError}
         </Alert>
       )}
 
       {/* Items List */}
-      <Card sx={{ mb: 2 }}>
+      <Card sx={{mb: 2}}>
         <CardContent>
           {fieldConfig.multipleCheckboxes && fieldConfig.checkboxLabels && (
             <Box
@@ -102,8 +105,8 @@ export const ItemView = ({
               }}
             >
               <Box>Name</Box>
-              {fieldConfig.checkboxLabels.map((label) => (
-                <Box key={label} sx={{ textAlign: 'center', fontSize: '0.9em' }}>
+              {fieldConfig.checkboxLabels.map(label => (
+                <Box key={label} sx={{textAlign: 'center', fontSize: '0.9em'}}>
                   {label}
                 </Box>
               ))}
@@ -111,8 +114,8 @@ export const ItemView = ({
             </Box>
           )}
 
-          <List sx={{ p: 0 }}>
-            {displayItems.map((item) => {
+          <List sx={{p: 0}}>
+            {displayItems.map(item => {
               const state = editingState[item._id] || item;
               const isChecked = checkedItems['simple']?.has(item._id) ?? false;
 
@@ -121,14 +124,16 @@ export const ItemView = ({
                   key={item._id}
                   sx={{
                     opacity: state.isSaving ? 0.6 : 1,
-                    backgroundColor: isChecked && fieldConfig.hasCheckbox && !fieldConfig.multipleCheckboxes ? '#f5f5f5' : 'transparent',
-                    textDecoration: isChecked && fieldConfig.hasCheckbox && !fieldConfig.multipleCheckboxes ? 'line-through' : 'none',
+                    backgroundColor:
+                      isChecked && fieldConfig.hasCheckbox && !fieldConfig.multipleCheckboxes
+                        ? '#f5f5f5'
+                        : 'transparent',
+                    textDecoration:
+                      isChecked && fieldConfig.hasCheckbox && !fieldConfig.multipleCheckboxes ? 'line-through' : 'none',
                     color: isChecked && fieldConfig.hasCheckbox && !fieldConfig.multipleCheckboxes ? '#999' : 'auto',
                     py: 1,
                     px: 0,
-                    display: fieldConfig.multipleCheckboxes
-                      ? 'grid'
-                      : 'flex',
+                    display: fieldConfig.multipleCheckboxes ? 'grid' : 'flex',
                     gridTemplateColumns: fieldConfig.multipleCheckboxes
                       ? `1fr ${(fieldConfig.checkboxLabels?.length || 0) * 120}px 50px`
                       : undefined,
@@ -161,7 +166,7 @@ export const ItemView = ({
                         checked={isChecked}
                         onChange={() => handleCheck(item._id)}
                         disabled={state.isSaving}
-                        style={{ marginRight: 8 }}
+                        style={{marginRight: 8}}
                       />
                     )}
                     <Box>
@@ -174,8 +179,8 @@ export const ItemView = ({
 
                   {/* Multiple Checkboxes */}
                   {fieldConfig.multipleCheckboxes &&
-                    fieldConfig.checkboxLabels?.map((label) => (
-                      <Box key={label} sx={{ textAlign: 'center' }}>
+                    fieldConfig.checkboxLabels?.map(label => (
+                      <Box key={label} sx={{textAlign: 'center'}}>
                         <input
                           type="checkbox"
                           checked={checkedItems[label]?.has(item._id) ?? false}
@@ -215,13 +220,13 @@ export const ItemView = ({
       </Card>
 
       {/* New Item Form */}
-      <Card sx={{ p: 2 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+      <Card sx={{p: 2}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
           <TextField
             size="small"
             placeholder="Item name..."
             value={newItem.name || ''}
-            onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+            onChange={e => setNewItem({...newItem, name: e.target.value})}
             disabled={creatingItem}
             fullWidth
           />
@@ -232,9 +237,9 @@ export const ItemView = ({
               type="number"
               placeholder="Menge"
               value={newItem.quantity || 1}
-              onChange={(e) => setNewItem({ ...newItem, quantity: parseInt(e.target.value) || 1 })}
+              onChange={e => setNewItem({...newItem, quantity: parseInt(e.target.value) || 1})}
               disabled={creatingItem}
-              inputProps={{ min: 1 }}
+              inputProps={{min: 1}}
             />
           )}
 
@@ -243,9 +248,9 @@ export const ItemView = ({
               size="small"
               type="date"
               value={newItem.expiryDate || ''}
-              onChange={(e) => setNewItem({ ...newItem, expiryDate: e.target.value })}
+              onChange={e => setNewItem({...newItem, expiryDate: e.target.value})}
               disabled={creatingItem}
-              InputLabelProps={{ shrink: true }}
+              InputLabelProps={{shrink: true}}
             />
           )}
 
@@ -254,7 +259,7 @@ export const ItemView = ({
               size="small"
               placeholder="Notiz..."
               value={newItem.comment || ''}
-              onChange={(e) => setNewItem({ ...newItem, comment: e.target.value })}
+              onChange={e => setNewItem({...newItem, comment: e.target.value})}
               disabled={creatingItem}
               multiline
               rows={2}
@@ -267,7 +272,7 @@ export const ItemView = ({
               <Select
                 value={newItem.comment?.split('|priority:')[1]?.split('|')[0] || ''}
                 label="Priorität"
-                onChange={(e) => setNewItem({ ...newItem, comment: e.target.value })}
+                onChange={e => setNewItem({...newItem, comment: e.target.value})}
                 disabled={creatingItem}
               >
                 <MenuItem value="">Keine</MenuItem>

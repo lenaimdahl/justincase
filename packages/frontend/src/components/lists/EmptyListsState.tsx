@@ -1,8 +1,8 @@
-import { Typography, Paper } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import {Typography, Paper} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 
 export const EmptyListsState = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <Paper
@@ -13,10 +13,10 @@ export const EmptyListsState = () => {
         border: '2px dashed #e1bee7',
       }}
     >
-      <Typography variant="h6" sx={{ color: '#757575', mb: 1 }}>
+      <Typography variant="h6" sx={{color: '#757575', mb: 1}}>
         {t('pages.listOverview.emptyState')}
       </Typography>
-      <Typography variant="body2" sx={{ color: '#bdbdbd' }}>
+      <Typography variant="body2" sx={{color: '#bdbdbd'}}>
         {t('pages.listOverview.emptyStateDescription')}
       </Typography>
     </Paper>

@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ItemTable } from './ItemTable';
+import {ItemTable} from './ItemTable';
 import * as itemsApi from 'src/api/items';
-import type { Item } from 'src/types/item';
+import type {Item} from 'src/types/item';
 
 // Mock the items API
 jest.mock('src/api/items');
@@ -38,27 +38,14 @@ describe('ItemTable', () => {
   });
 
   it('renders items in a table', () => {
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     expect(screen.getByDisplayValue('Milk')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Bread')).toBeInTheDocument();
   });
 
   it('displays loading state when loading prop is true', () => {
-    render(
-      <ItemTable
-        listId="list1"
-        items={[]}
-        loading={true}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={[]} loading={true} onItemsChange={mockOnItemsChange} />);
 
     expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
@@ -66,13 +53,7 @@ describe('ItemTable', () => {
   it('allows updating item name with debounce', async () => {
     mockItemsApi.updateItem.mockResolvedValue(mockItems[0]);
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const nameInput = screen.getByDisplayValue('Milk') as HTMLInputElement;
     await userEvent.clear(nameInput);
@@ -86,7 +67,7 @@ describe('ItemTable', () => {
       expect(mockItemsApi.updateItem).toHaveBeenCalledWith(
         'list1',
         '1',
-        expect.objectContaining({ name: 'Almond Milk' }),
+        expect.objectContaining({name: 'Almond Milk'})
       );
     });
   });
@@ -97,36 +78,20 @@ describe('ItemTable', () => {
       quantity: 3,
     });
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const addButtons = screen.getAllByTitle('Increase quantity');
     fireEvent.click(addButtons[0]);
 
     await waitFor(() => {
-      expect(mockItemsApi.adjustItemQuantity).toHaveBeenCalledWith(
-        'list1',
-        '1',
-        1,
-      );
+      expect(mockItemsApi.adjustItemQuantity).toHaveBeenCalledWith('list1', '1', 1);
     });
   });
 
   it('disables decrease button when quantity is 0', () => {
-    const zeroQuantityItem = { ...mockItems[0], quantity: 0 };
+    const zeroQuantityItem = {...mockItems[0], quantity: 0};
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={[zeroQuantityItem]}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={[zeroQuantityItem]} onItemsChange={mockOnItemsChange} />);
 
     const removeButton = screen.getByTitle('Decrease quantity');
     expect(removeButton).toBeDisabled();
@@ -135,13 +100,7 @@ describe('ItemTable', () => {
   it('allows deleting an item', async () => {
     mockItemsApi.deleteItem.mockResolvedValue(undefined);
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const deleteButtons = screen.getAllByTitle('Delete item');
     fireEvent.click(deleteButtons[0]);
@@ -163,17 +122,9 @@ describe('ItemTable', () => {
       comment: 'Free range',
     });
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
-    const nameInput = screen.getByPlaceholderText(
-      'New item name',
-    ) as HTMLInputElement;
+    const nameInput = screen.getByPlaceholderText('New item name') as HTMLInputElement;
     const quantityInput = screen.getByDisplayValue('') as HTMLInputElement;
     const addButton = screen.getByTitle('Add item');
 
@@ -188,20 +139,14 @@ describe('ItemTable', () => {
         expect.objectContaining({
           name: 'Eggs',
           quantity: 12,
-        }),
+        })
       );
       expect(mockOnItemsChange).toHaveBeenCalled();
     });
   });
 
   it('shows error message when create fails without name', async () => {
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const addButton = screen.getByTitle('Add item');
     fireEvent.click(addButton);
@@ -213,16 +158,10 @@ describe('ItemTable', () => {
 
   it('disables controls during save operations', async () => {
     mockItemsApi.updateItem.mockImplementation(
-      () => new Promise((resolve) => setTimeout(() => resolve(mockItems[0]), 500)),
+      () => new Promise(resolve => setTimeout(() => resolve(mockItems[0]), 500))
     );
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const nameInput = screen.getByDisplayValue('Milk') as HTMLInputElement;
     await userEvent.clear(nameInput);
@@ -233,17 +172,9 @@ describe('ItemTable', () => {
   });
 
   it('shows error state when update fails', async () => {
-    mockItemsApi.updateItem.mockRejectedValue(
-      new Error('Network error'),
-    );
+    mockItemsApi.updateItem.mockRejectedValue(new Error('Network error'));
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const nameInput = screen.getByDisplayValue('Milk') as HTMLInputElement;
     await userEvent.clear(nameInput);
@@ -265,13 +196,7 @@ describe('ItemTable', () => {
       comment: '',
     });
 
-    render(
-      <ItemTable
-        listId="list1"
-        items={mockItems}
-        onItemsChange={mockOnItemsChange}
-      />,
-    );
+    render(<ItemTable listId="list1" items={mockItems} onItemsChange={mockOnItemsChange} />);
 
     const nameInput = screen.getByPlaceholderText('New item name');
     await userEvent.type(nameInput, 'Cheese');

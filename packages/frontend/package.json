@@ -29,12 +29,14 @@
   "name": "justincase-frontend",
   "private": true,
   "scripts": {
-    "build": "tsc -b && vite build",
-    "format": "prettier --write .",
+    "build": "tsc --noEmit && vite build",
+    "clean": "rm -rf dist",
     "dev": "vite",
     "preview": "vite preview",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "dist": "yarn clean && yarn build",
+    "format": "prettier --write ."
   },
   "type": "module",
   "version": "0.1.0"

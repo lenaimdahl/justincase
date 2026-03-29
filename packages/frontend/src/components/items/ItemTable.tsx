@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import {
   Table,
   TableBody,
@@ -20,8 +20,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-import type { Item } from 'src/types/item';
-import { useItemOperations } from 'src/hooks/useItemOperations';
+import type {Item} from 'src/types/item';
+import {useItemOperations} from 'src/hooks/useItemOperations';
 
 interface ItemTableProps {
   listId: string;
@@ -30,12 +30,7 @@ interface ItemTableProps {
   onItemsChange: () => Promise<void>;
 }
 
-export const ItemTable = ({
-  listId,
-  items,
-  loading = false,
-  onItemsChange,
-}: ItemTableProps) => {
+export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemTableProps) => {
   const {
     editingState,
     itemsInEditMode,
@@ -58,38 +53,38 @@ export const ItemTable = ({
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+      <Box sx={{display: 'flex', justifyContent: 'center', py: 4}}>
         <CircularProgress />
       </Box>
     );
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{width: '100%'}}>
       {createError && (
-        <Alert severity="error" sx={{ mb: 2 }}>
+        <Alert severity="error" sx={{mb: 2}}>
           {createError}
         </Alert>
       )}
 
-      <TableContainer component={Paper} sx={{ mb: 3 }}>
+      <TableContainer component={Paper} sx={{mb: 3}}>
         <Table>
           <TableHead>
-            <TableRow sx={{ backgroundColor: '#f5f5f5' }}>
-              <TableCell sx={{ fontWeight: 'bold' }}>Name</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold' }}>
+            <TableRow sx={{backgroundColor: '#f5f5f5'}}>
+              <TableCell sx={{fontWeight: 'bold'}}>Name</TableCell>
+              <TableCell align="right" sx={{fontWeight: 'bold'}}>
                 Quantity
               </TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Unit</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Expiry Date</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Comment</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 'bold' }}>
+              <TableCell sx={{fontWeight: 'bold'}}>Unit</TableCell>
+              <TableCell sx={{fontWeight: 'bold'}}>Expiry Date</TableCell>
+              <TableCell sx={{fontWeight: 'bold'}}>Comment</TableCell>
+              <TableCell align="center" sx={{fontWeight: 'bold'}}>
                 Actions
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => {
+            {items.map(item => {
               const state = editingState[item._id] || item;
               const isSaving = state.isSaving;
               const hasError = !!state.error;
@@ -106,7 +101,7 @@ export const ItemTable = ({
                     <Typography variant="body2">{state.name}</Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
                       <IconButton
                         size="small"
                         onClick={() => handleAdjustQuantity(item._id, -1)}
@@ -115,9 +110,7 @@ export const ItemTable = ({
                       >
                         <RemoveIcon fontSize="small" />
                       </IconButton>
-                      <Box sx={{ minWidth: 40, textAlign: 'center' }}>
-                        {state.quantity}
-                      </Box>
+                      <Box sx={{minWidth: 40, textAlign: 'center'}}>{state.quantity}</Box>
                       <IconButton
                         size="small"
                         onClick={() => handleAdjustQuantity(item._id, 1)}
@@ -132,13 +125,11 @@ export const ItemTable = ({
                     <TextField
                       size="small"
                       value={state.unit || ''}
-                      onChange={(e) =>
-                        updateField(item._id, 'unit', e.target.value)
-                      }
+                      onChange={e => updateField(item._id, 'unit', e.target.value)}
                       placeholder="kg, liters, pcs"
                       disabled={isSaving}
                       error={hasError}
-                      sx={{ maxWidth: 120 }}
+                      sx={{maxWidth: 120}}
                     />
                   </TableCell>
                   <TableCell>
@@ -146,26 +137,22 @@ export const ItemTable = ({
                       size="small"
                       type="date"
                       value={state.expiryDate || ''}
-                      onChange={(e) =>
-                        updateField(item._id, 'expiryDate', e.target.value)
-                      }
+                      onChange={e => updateField(item._id, 'expiryDate', e.target.value)}
                       disabled={isSaving}
                       error={hasError}
-                      InputLabelProps={{ shrink: true }}
-                      sx={{ maxWidth: 150 }}
+                      InputLabelProps={{shrink: true}}
+                      sx={{maxWidth: 150}}
                     />
                   </TableCell>
                   <TableCell>
                     <TextField
                       size="small"
                       value={state.comment || ''}
-                      onChange={(e) =>
-                        updateField(item._id, 'comment', e.target.value)
-                      }
+                      onChange={e => updateField(item._id, 'comment', e.target.value)}
                       placeholder="Optional note"
                       disabled={isSaving}
                       error={hasError}
-                      sx={{ maxWidth: 150 }}
+                      sx={{maxWidth: 150}}
                     />
                   </TableCell>
                   <TableCell align="center">
@@ -176,11 +163,7 @@ export const ItemTable = ({
                       color="error"
                       title="Delete item"
                     >
-                      {isSaving ? (
-                        <CircularProgress size={20} />
-                      ) : (
-                        <DeleteIcon fontSize="small" />
-                      )}
+                      {isSaving ? <CircularProgress size={20} /> : <DeleteIcon fontSize="small" />}
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -188,18 +171,16 @@ export const ItemTable = ({
             })}
 
             {/* New item row */}
-            <TableRow sx={{ backgroundColor: '#f9f9f9' }}>
+            <TableRow sx={{backgroundColor: '#f9f9f9'}}>
               <TableCell>
                 <TextField
                   size="small"
                   placeholder="New item name"
                   value={newItem.name}
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, name: e.target.value })
-                  }
+                  onChange={e => setNewItem({...newItem, name: e.target.value})}
                   disabled={creatingItem}
                   fullWidth
-                  sx={{ maxWidth: 200 }}
+                  sx={{maxWidth: 200}}
                 />
               </TableCell>
               <TableCell align="right">
@@ -207,15 +188,15 @@ export const ItemTable = ({
                   size="small"
                   type="number"
                   value={newItem.quantity}
-                  onChange={(e) =>
+                  onChange={e =>
                     setNewItem({
                       ...newItem,
                       quantity: Math.max(0, parseInt(e.target.value) || 0),
                     })
                   }
                   disabled={creatingItem}
-                  inputProps={{ min: 0 }}
-                  sx={{ maxWidth: 80 }}
+                  inputProps={{min: 0}}
+                  sx={{maxWidth: 80}}
                 />
               </TableCell>
               <TableCell>
@@ -223,11 +204,9 @@ export const ItemTable = ({
                   size="small"
                   placeholder="kg, liters, pcs"
                   value={newItem.unit}
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, unit: e.target.value })
-                  }
+                  onChange={e => setNewItem({...newItem, unit: e.target.value})}
                   disabled={creatingItem}
-                  sx={{ maxWidth: 120 }}
+                  sx={{maxWidth: 120}}
                 />
               </TableCell>
               <TableCell>
@@ -235,12 +214,10 @@ export const ItemTable = ({
                   size="small"
                   type="date"
                   value={newItem.expiryDate}
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, expiryDate: e.target.value })
-                  }
+                  onChange={e => setNewItem({...newItem, expiryDate: e.target.value})}
                   disabled={creatingItem}
-                  InputLabelProps={{ shrink: true }}
-                  sx={{ maxWidth: 150 }}
+                  InputLabelProps={{shrink: true}}
+                  sx={{maxWidth: 150}}
                 />
               </TableCell>
               <TableCell>
@@ -248,11 +225,9 @@ export const ItemTable = ({
                   size="small"
                   placeholder="Optional note"
                   value={newItem.comment}
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, comment: e.target.value })
-                  }
+                  onChange={e => setNewItem({...newItem, comment: e.target.value})}
                   disabled={creatingItem}
-                  sx={{ maxWidth: 150 }}
+                  sx={{maxWidth: 150}}
                 />
               </TableCell>
               <TableCell align="center">
@@ -263,11 +238,7 @@ export const ItemTable = ({
                   color="primary"
                   title="Add item"
                 >
-                  {creatingItem ? (
-                    <CircularProgress size={20} />
-                  ) : (
-                    <AddIcon fontSize="small" />
-                  )}
+                  {creatingItem ? <CircularProgress size={20} /> : <AddIcon fontSize="small" />}
                 </IconButton>
               </TableCell>
             </TableRow>
