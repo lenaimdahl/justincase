@@ -23,7 +23,12 @@ export const useFetchLists = (): UseFetchListsReturn => {
 
     try {
       const data = await fetchLists();
-      setLists(data);
+      // Transform items array to itemCount number
+      const transformedData = data.map(list => ({
+        ...list,
+        itemCount: Array.isArray(list.items) ? list.items.length : 0,
+      }));
+      setLists(transformedData);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {

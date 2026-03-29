@@ -11,7 +11,8 @@ export interface FieldConfig {
 export interface List {
   id: string;
   name: string;
-  itemCount: number;
+  itemCount?: number;
+  items?: any[];
   icon: string;
   color: string;
   fieldConfig: FieldConfig;
