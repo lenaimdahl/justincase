@@ -38,7 +38,7 @@
   "name": "justincase-backend",
   "private": true,
   "scripts": {
-    "build": "tsc -p tsconfig.build.json --noEmit && nest build",
+    "build": "nest build -p tsconfig.build.json --noEmit && nest build",
     "clean": "rm -rf dist",
     "dist": "yarn clean && yarn build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
