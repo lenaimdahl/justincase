@@ -54,15 +54,17 @@ export class ItemsService {
 
   async update(listId: string, itemId: string, dto: UpdateItemDto): Promise<ItemDocument> {
     this.logger.debug(`Updating item ${itemId} in list ${listId}`);
-    const update: Partial<Item> = {};
+    const update: Partial<Item> = {
+      ...(dto.name !== undefined && {name: dto.name}),
+      ...(dto.quantity !== undefined && {quantity: dto.quantity}),
+      ...(dto.unit !== undefined && {unit: dto.unit}),
+      ...(dto.comment !== undefined && {comment: dto.comment}),
+      ...(dto.expiryDate !== undefined && {expiryDate: toUtcPlusOne(dto.expiryDate)}),
+    };
 
-    if (dto.name !== undefined) update.name = dto.name;
-    if (dto.quantity !== undefined) update.quantity = dto.quantity;
-    if (dto.unit !== undefined) update.unit = dto.unit;
-    if (dto.comment !== undefined) update.comment = dto.comment;
-    if (dto.expiryDate !== undefined) update.expiryDate = toUtcPlusOne(dto.expiryDate);
-    if (dto.expiryDates !== undefined && Array.isArray(dto.expiryDates))
+    if (dto.expiryDates !== undefined && Array.isArray(dto.expiryDates)) {
       update.expiryDates = dto.expiryDates.map(date => toUtcPlusOne(date));
+    }
 
     const item = await this.itemModel.findOneAndUpdate({_id: itemId, listId}, update, {new: true}).exec();
 

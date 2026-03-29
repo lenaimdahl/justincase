@@ -76,6 +76,18 @@ src/frontend/
   utils/
 ```
 
+**if-cases without curly braces** are not allowed. Always use curly braces for clarity:
+
+```typescript
+// ✅ CORRECT
+if (condition) {
+  doSomething();
+}
+
+// ❌ WRONG
+if (condition) doSomething();
+```
+
 **Module path imports (Frontend)**
 
 All imports in the frontend must use absolute `src/` paths instead of relative paths:
