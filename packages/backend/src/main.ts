@@ -3,7 +3,7 @@ import {Logger, ValidationPipe} from '@nestjs/common';
 import {AppModule} from './app.module';
 
 const isProduction = process.env.NODE_ENV !== 'development';
-const productionUrl = process.env.RENDER_EXTERNAL_URL || process.env.PROD_URL || '';
+const productionUrl = process.env.PROD_URL || '';
 const logger = new Logger('main');
 
 async function bootstrap() {
