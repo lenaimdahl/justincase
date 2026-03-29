@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from 'src/app.controller';
-import { AppService } from 'src/services/app.service';
 import { HealthController } from 'src/controllers/health.controller';
 import { ListsController } from 'src/controllers/lists.controller';
+import { ItemsModule } from 'src/modules/items/items.module';
+import { AppService } from 'src/services/app.service';
 import { ListsService } from 'src/services/lists.service';
 
 @Module({
@@ -12,6 +14,13 @@ import { ListsService } from 'src/services/lists.service';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    MongooseModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        uri: config.getOrThrow<string>('MONGODB_URI'),
+      }),
+    }),
+    ItemsModule,
   ],
   controllers: [AppController, HealthController, ListsController],
   providers: [AppService, ListsService],
