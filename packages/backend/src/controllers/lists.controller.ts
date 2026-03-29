@@ -48,7 +48,7 @@ export class ListsController {
     const list = this.listsService.findOne(id);
     const itemCount = await this.itemsService.countByListId(id);
     this.logger.debug(`GET /lists/${id} -> 200 OK`);
-    return {...list, itemCount};
+    return { ...list, itemCount };
   }
 
   @Patch(':id')

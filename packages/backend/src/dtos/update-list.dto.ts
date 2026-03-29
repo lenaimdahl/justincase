@@ -1,5 +1,5 @@
-import {IsString, IsNotEmpty, IsOptional} from 'class-validator';
-import type {FieldConfig} from 'src/dtos/create-list.dto';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import type { FieldConfig } from 'src/dtos/create-list.dto';
 
 export class UpdateListDto {
   @IsString()

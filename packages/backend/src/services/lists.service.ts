@@ -85,7 +85,8 @@ export class ListsService {
     if (updateListDto.name !== undefined) list.name = updateListDto.name;
     if (updateListDto.icon !== undefined) list.icon = updateListDto.icon;
     if (updateListDto.color !== undefined) list.color = updateListDto.color;
-    if (updateListDto.fieldConfig !== undefined) list.fieldConfig = updateListDto.fieldConfig;
+    if (updateListDto.fieldConfig !== undefined)
+      list.fieldConfig = updateListDto.fieldConfig;
     this.lists.set(id, list);
     this.logger.debug(`List with id ${id} updated`);
     return list;
