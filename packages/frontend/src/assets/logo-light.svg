@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="JustInCase logo">
-  <!-- Background -->
-  <rect width="200" height="200" rx="32" fill="#F1F5F9"/>
+  <!-- Background: light purple -->
+  <rect width="200" height="200" rx="32" fill="#f3e5f5"/>
 
   <!-- Top shelf board -->
-  <rect x="30" y="38" width="140" height="11" rx="5" fill="#94A3B8"/>
+  <rect x="30" y="38" width="140" height="11" rx="5" fill="#9c27b0"/>
 
   <!-- Cabinet body -->
-  <rect x="38" y="49" width="124" height="112" rx="4" fill="#E2E8F0"/>
+  <rect x="38" y="49" width="124" height="112" rx="4" fill="#e1bee7"/>
 
   <!-- Drawer 1 - Green -->
   <rect x="46" y="57" width="108" height="30" rx="7" fill="#22C55E"/>
@@ -21,9 +21,9 @@
   <rect x="84" y="146" width="32" height="7" rx="3.5" fill="#B91C1C"/>
 
   <!-- Bottom shelf board -->
-  <rect x="30" y="161" width="140" height="11" rx="5" fill="#94A3B8"/>
+  <rect x="30" y="161" width="140" height="11" rx="5" fill="#9c27b0"/>
 
   <!-- Shelf legs -->
-  <rect x="46" y="172" width="12" height="20" rx="4" fill="#94A3B8"/>
-  <rect x="142" y="172" width="12" height="20" rx="4" fill="#94A3B8"/>
+  <rect x="46" y="172" width="12" height="20" rx="4" fill="#9c27b0"/>
+  <rect x="142" y="172" width="12" height="20" rx="4" fill="#9c27b0"/>
 </svg>
