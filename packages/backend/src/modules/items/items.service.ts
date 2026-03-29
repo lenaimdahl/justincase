@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AdjustQuantityDto } from 'src/dtos/adjust-quantity.dto';
@@ -15,7 +19,9 @@ function toUtcPlusOne(dateStr: string): Date {
 
 @Injectable()
 export class ItemsService {
-  constructor(@InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>) {}
+  constructor(
+    @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
+  ) {}
 
   async create(listId: string, dto: CreateItemDto): Promise<ItemDocument> {
     const data: Partial<Item> = {
@@ -34,14 +40,19 @@ export class ItemsService {
     return item.save();
   }
 
-  async update(listId: string, itemId: string, dto: UpdateItemDto): Promise<ItemDocument> {
+  async update(
+    listId: string,
+    itemId: string,
+    dto: UpdateItemDto,
+  ): Promise<ItemDocument> {
     const update: Partial<Item> = {};
 
     if (dto.name !== undefined) update.name = dto.name;
     if (dto.quantity !== undefined) update.quantity = dto.quantity;
     if (dto.unit !== undefined) update.unit = dto.unit;
     if (dto.comment !== undefined) update.comment = dto.comment;
-    if (dto.expiryDate !== undefined) update.expiryDate = toUtcPlusOne(dto.expiryDate);
+    if (dto.expiryDate !== undefined)
+      update.expiryDate = toUtcPlusOne(dto.expiryDate);
 
     const item = await this.itemModel
       .findOneAndUpdate({ _id: itemId, listId }, update, { new: true })
@@ -55,14 +66,20 @@ export class ItemsService {
   }
 
   async remove(listId: string, itemId: string): Promise<void> {
-    const result = await this.itemModel.deleteOne({ _id: itemId, listId }).exec();
+    const result = await this.itemModel
+      .deleteOne({ _id: itemId, listId })
+      .exec();
 
     if (result.deletedCount === 0) {
       throw new NotFoundException(`Item ${itemId} not found in list ${listId}`);
     }
   }
 
-  async adjustQuantity(listId: string, itemId: string, dto: AdjustQuantityDto): Promise<ItemDocument> {
+  async adjustQuantity(
+    listId: string,
+    itemId: string,
+    dto: AdjustQuantityDto,
+  ): Promise<ItemDocument> {
     const item = await this.itemModel
       .findOneAndUpdate(
         { _id: itemId, listId },
@@ -76,7 +93,9 @@ export class ItemsService {
     }
 
     if (item.quantity < 0) {
-      await this.itemModel.findByIdAndUpdate(itemId, { $inc: { quantity: -dto.adjustment } }).exec();
+      await this.itemModel
+        .findByIdAndUpdate(itemId, { $inc: { quantity: -dto.adjustment } })
+        .exec();
       throw new BadRequestException('Quantity cannot be negative');
     }
 

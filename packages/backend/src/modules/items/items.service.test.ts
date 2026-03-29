@@ -42,7 +42,10 @@ describe('ItemsService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ItemsService,
-        { provide: getModelToken(Item.name), useValue: MockItemModelConstructor },
+        {
+          provide: getModelToken(Item.name),
+          useValue: MockItemModelConstructor,
+        },
       ],
     }).compile();
 
@@ -74,7 +77,9 @@ describe('ItemsService', () => {
 
   describe('update', () => {
     it('returns updated item', async () => {
-      mockItemModel.findOneAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(mockItem) });
+      mockItemModel.findOneAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(mockItem),
+      });
 
       const dto: UpdateItemDto = { name: 'Oat Milk', quantity: 3 };
       const result = await service.update('list-id', 'item-id', dto);
@@ -88,40 +93,58 @@ describe('ItemsService', () => {
     });
 
     it('throws NotFoundException when item not found', async () => {
-      mockItemModel.findOneAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(null) });
+      mockItemModel.findOneAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(null),
+      });
 
-      await expect(service.update('list-id', 'missing-id', {})).rejects.toThrow(NotFoundException);
+      await expect(service.update('list-id', 'missing-id', {})).rejects.toThrow(
+        NotFoundException,
+      );
     });
 
     it('converts expiryDate to UTC+1', async () => {
-      mockItemModel.findOneAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(mockItem) });
+      mockItemModel.findOneAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(mockItem),
+      });
 
       const dto: UpdateItemDto = { expiryDate: '2026-04-02T00:00:00.000Z' };
       await service.update('list-id', 'item-id', dto);
 
       const updateArg = mockItemModel.findOneAndUpdate.mock.calls[0][1];
-      expect(updateArg.expiryDate).toEqual(new Date('2026-04-01T23:00:00.000Z'));
+      expect(updateArg.expiryDate).toEqual(
+        new Date('2026-04-01T23:00:00.000Z'),
+      );
     });
   });
 
   describe('remove', () => {
     it('deletes the item', async () => {
-      mockItemModel.deleteOne.mockReturnValue({ exec: vi.fn().mockResolvedValue({ deletedCount: 1 }) });
+      mockItemModel.deleteOne.mockReturnValue({
+        exec: vi.fn().mockResolvedValue({ deletedCount: 1 }),
+      });
 
-      await expect(service.remove('list-id', 'item-id')).resolves.toBeUndefined();
+      await expect(
+        service.remove('list-id', 'item-id'),
+      ).resolves.toBeUndefined();
     });
 
     it('throws NotFoundException when item not found', async () => {
-      mockItemModel.deleteOne.mockReturnValue({ exec: vi.fn().mockResolvedValue({ deletedCount: 0 }) });
+      mockItemModel.deleteOne.mockReturnValue({
+        exec: vi.fn().mockResolvedValue({ deletedCount: 0 }),
+      });
 
-      await expect(service.remove('list-id', 'missing-id')).rejects.toThrow(NotFoundException);
+      await expect(service.remove('list-id', 'missing-id')).rejects.toThrow(
+        NotFoundException,
+      );
     });
   });
 
   describe('adjustQuantity', () => {
     it('adjusts quantity atomically', async () => {
       const updated = { ...mockItem, quantity: 5 };
-      mockItemModel.findOneAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(updated) });
+      mockItemModel.findOneAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(updated),
+      });
 
       const dto: AdjustQuantityDto = { adjustment: 3 };
       const result = await service.adjustQuantity('list-id', 'item-id', dto);
@@ -135,19 +158,31 @@ describe('ItemsService', () => {
     });
 
     it('throws NotFoundException when item not found', async () => {
-      mockItemModel.findOneAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(null) });
+      mockItemModel.findOneAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(null),
+      });
 
-      await expect(service.adjustQuantity('list-id', 'missing-id', { adjustment: 1 })).rejects.toThrow(NotFoundException);
+      await expect(
+        service.adjustQuantity('list-id', 'missing-id', { adjustment: 1 }),
+      ).rejects.toThrow(NotFoundException);
     });
 
     it('throws BadRequestException and rolls back when quantity would go negative', async () => {
       const updated = { ...mockItem, quantity: -1 };
-      mockItemModel.findOneAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(updated) });
-      mockItemModel.findByIdAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(mockItem) });
+      mockItemModel.findOneAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(updated),
+      });
+      mockItemModel.findByIdAndUpdate.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(mockItem),
+      });
 
       const dto: AdjustQuantityDto = { adjustment: -5 };
-      await expect(service.adjustQuantity('list-id', 'item-id', dto)).rejects.toThrow(BadRequestException);
-      expect(mockItemModel.findByIdAndUpdate).toHaveBeenCalledWith('item-id', { $inc: { quantity: 5 } });
+      await expect(
+        service.adjustQuantity('list-id', 'item-id', dto),
+      ).rejects.toThrow(BadRequestException);
+      expect(mockItemModel.findByIdAndUpdate).toHaveBeenCalledWith('item-id', {
+        $inc: { quantity: 5 },
+      });
     });
   });
 });

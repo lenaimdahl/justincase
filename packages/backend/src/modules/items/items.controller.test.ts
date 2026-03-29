@@ -52,7 +52,11 @@ describe('ItemsController', () => {
     const result = await controller.update('list-id', 'item-id', dto);
 
     expect(result).toEqual(mockItem);
-    expect(mockItemsService.update).toHaveBeenCalledWith('list-id', 'item-id', dto);
+    expect(mockItemsService.update).toHaveBeenCalledWith(
+      'list-id',
+      'item-id',
+      dto,
+    );
   });
 
   it('remove calls service.remove with listId and itemId', async () => {
@@ -71,6 +75,10 @@ describe('ItemsController', () => {
     const result = await controller.adjustQuantity('list-id', 'item-id', dto);
 
     expect(result).toEqual(adjusted);
-    expect(mockItemsService.adjustQuantity).toHaveBeenCalledWith('list-id', 'item-id', dto);
+    expect(mockItemsService.adjustQuantity).toHaveBeenCalledWith(
+      'list-id',
+      'item-id',
+      dto,
+    );
   });
 });

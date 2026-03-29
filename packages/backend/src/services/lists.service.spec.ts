@@ -40,7 +40,9 @@ describe('ListsService', () => {
 
       const lists = service.findAll();
       expect(lists).toHaveLength(2);
-      expect(lists.map(l => l.name)).toEqual(expect.arrayContaining(['List A', 'List B']));
+      expect(lists.map(l => l.name)).toEqual(
+        expect.arrayContaining(['List A', 'List B']),
+      );
     });
   });
 

@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, HttpCode, HttpStatus, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AdjustQuantityDto } from 'src/dtos/adjust-quantity.dto';
 import { CreateItemDto } from 'src/dtos/create-item.dto';
 import { UpdateItemDto } from 'src/dtos/update-item.dto';
@@ -15,7 +26,11 @@ export class ItemsController {
   }
 
   @Patch(':itemId')
-  update(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: UpdateItemDto) {
+  update(
+    @Param('id') listId: string,
+    @Param('itemId') itemId: string,
+    @Body() dto: UpdateItemDto,
+  ) {
     return this.itemsService.update(listId, itemId, dto);
   }
 
@@ -26,7 +41,11 @@ export class ItemsController {
   }
 
   @Patch(':itemId/adjust')
-  adjustQuantity(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: AdjustQuantityDto) {
+  adjustQuantity(
+    @Param('id') listId: string,
+    @Param('itemId') itemId: string,
+    @Body() dto: AdjustQuantityDto,
+  ) {
     return this.itemsService.adjustQuantity(listId, itemId, dto);
   }
 }
