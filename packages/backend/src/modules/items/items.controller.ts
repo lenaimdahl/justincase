@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, HttpCode, HttpStatus, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { AdjustQuantityDto } from 'src/modules/items/dto/adjust-quantity.dto';
-import { CreateItemDto } from 'src/modules/items/dto/create-item.dto';
-import { UpdateItemDto } from 'src/modules/items/dto/update-item.dto';
+import { AdjustQuantityDto } from 'src/dtos/adjust-quantity.dto';
+import { CreateItemDto } from 'src/dtos/create-item.dto';
+import { UpdateItemDto } from 'src/dtos/update-item.dto';
 import { ItemsService } from 'src/modules/items/items.service';
 
 @Controller('lists/:id/items')

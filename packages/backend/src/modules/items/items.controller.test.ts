@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AdjustQuantityDto } from 'src/modules/items/dto/adjust-quantity.dto';
-import { CreateItemDto } from 'src/modules/items/dto/create-item.dto';
-import { UpdateItemDto } from 'src/modules/items/dto/update-item.dto';
+import { AdjustQuantityDto } from 'src/dtos/adjust-quantity.dto';
+import { CreateItemDto } from 'src/dtos/create-item.dto';
+import { UpdateItemDto } from 'src/dtos/update-item.dto';
 import { ItemsController } from 'src/modules/items/items.controller';
 import { ItemsService } from 'src/modules/items/items.service';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

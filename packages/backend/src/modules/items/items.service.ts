@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { AdjustQuantityDto } from 'src/modules/items/dto/adjust-quantity.dto';
-import { CreateItemDto } from 'src/modules/items/dto/create-item.dto';
-import { UpdateItemDto } from 'src/modules/items/dto/update-item.dto';
+import { AdjustQuantityDto } from 'src/dtos/adjust-quantity.dto';
+import { CreateItemDto } from 'src/dtos/create-item.dto';
+import { UpdateItemDto } from 'src/dtos/update-item.dto';
 import { Item, ItemDocument } from 'src/modules/items/schemas/item.schema';
 
 const UTC_PLUS_ONE_OFFSET_MS = 60 * 60 * 1000;
