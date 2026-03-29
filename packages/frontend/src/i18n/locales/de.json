@@ -1,0 +1,16 @@
+{
+  "components": {
+    "navigation": {
+      "brand": "JustInCase",
+      "home": "Startseite",
+      "items": "Artikel",
+      "settings": "Einstellungen"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Willkommen bei JustInCase",
+      "description": "Verwalten Sie Ihre Artikel und behalten Sie den Überblick über das, was für Sie zählt."
+    }
+  }
+}
