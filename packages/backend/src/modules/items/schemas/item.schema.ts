@@ -1,17 +1,17 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import {HydratedDocument} from 'mongoose';
 
 export type ItemDocument = HydratedDocument<Item>;
 
-@Schema({ timestamps: true })
+@Schema({timestamps: true})
 export class Item {
-  @Prop({ required: true })
+  @Prop({required: true})
   listId!: string;
 
-  @Prop({ required: true })
+  @Prop({required: true})
   name!: string;
 
-  @Prop({ required: true, min: 0 })
+  @Prop({required: true, min: 0})
   quantity!: number;
 
   @Prop()
@@ -20,7 +20,7 @@ export class Item {
   @Prop()
   expiryDate?: Date;
 
-  @Prop({ type: [Date] })
+  @Prop({type: [Date]})
   expiryDates?: Date[];
 
   @Prop()

@@ -1,15 +1,10 @@
-import {
-  BadRequestException,
-  Injectable,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { AdjustQuantityDto } from 'src/dtos/adjust-quantity.dto';
-import { CreateItemDto } from 'src/dtos/create-item.dto';
-import { UpdateItemDto } from 'src/dtos/update-item.dto';
-import { Item, ItemDocument } from 'src/modules/items/schemas/item.schema';
+import {BadRequestException, Injectable, Logger, NotFoundException} from '@nestjs/common';
+import {InjectModel} from '@nestjs/mongoose';
+import {Model} from 'mongoose';
+import {AdjustQuantityDto} from 'src/dtos/adjust-quantity.dto';
+import {CreateItemDto} from 'src/dtos/create-item.dto';
+import {UpdateItemDto} from 'src/dtos/update-item.dto';
+import {Item, ItemDocument} from 'src/modules/items/schemas/item.schema';
 
 const UTC_PLUS_ONE_OFFSET_MS = 60 * 60 * 1000;
 
@@ -22,17 +17,15 @@ function toUtcPlusOne(dateStr: string): Date {
 export class ItemsService {
   private readonly logger = new Logger(ItemsService.name);
 
-  constructor(
-    @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
-  ) {}
+  constructor(@InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>) {}
 
   async countByListId(listId: string): Promise<number> {
-    return this.itemModel.countDocuments({ listId }).exec();
+    return this.itemModel.countDocuments({listId}).exec();
   }
 
   async findAll(listId: string): Promise<ItemDocument[]> {
     this.logger.debug(`Fetching all items for list ${listId}`);
-    return this.itemModel.find({ listId }).exec();
+    return this.itemModel.find({listId}).exec();
   }
 
   async create(listId: string, dto: CreateItemDto): Promise<ItemDocument> {
@@ -59,11 +52,7 @@ export class ItemsService {
     return saved;
   }
 
-  async update(
-    listId: string,
-    itemId: string,
-    dto: UpdateItemDto,
-  ): Promise<ItemDocument> {
+  async update(listId: string, itemId: string, dto: UpdateItemDto): Promise<ItemDocument> {
     this.logger.debug(`Updating item ${itemId} in list ${listId}`);
     const update: Partial<Item> = {};
 
@@ -71,14 +60,11 @@ export class ItemsService {
     if (dto.quantity !== undefined) update.quantity = dto.quantity;
     if (dto.unit !== undefined) update.unit = dto.unit;
     if (dto.comment !== undefined) update.comment = dto.comment;
-    if (dto.expiryDate !== undefined)
-      update.expiryDate = toUtcPlusOne(dto.expiryDate);
+    if (dto.expiryDate !== undefined) update.expiryDate = toUtcPlusOne(dto.expiryDate);
     if (dto.expiryDates !== undefined && Array.isArray(dto.expiryDates))
       update.expiryDates = dto.expiryDates.map(date => toUtcPlusOne(date));
 
-    const item = await this.itemModel
-      .findOneAndUpdate({ _id: itemId, listId }, update, { new: true })
-      .exec();
+    const item = await this.itemModel.findOneAndUpdate({_id: itemId, listId}, update, {new: true}).exec();
 
     if (!item) {
       this.logger.error(`Item ${itemId} not found in list ${listId}`);
@@ -91,9 +77,7 @@ export class ItemsService {
 
   async remove(listId: string, itemId: string): Promise<void> {
     this.logger.debug(`Removing item ${itemId} from list ${listId}`);
-    const result = await this.itemModel
-      .deleteOne({ _id: itemId, listId })
-      .exec();
+    const result = await this.itemModel.deleteOne({_id: itemId, listId}).exec();
 
     if (result.deletedCount === 0) {
       this.logger.error(`Item ${itemId} not found in list ${listId}`);
@@ -103,20 +87,10 @@ export class ItemsService {
     this.logger.debug(`Item ${itemId} removed from list ${listId}`);
   }
 
-  async adjustQuantity(
-    listId: string,
-    itemId: string,
-    dto: AdjustQuantityDto,
-  ): Promise<ItemDocument> {
-    this.logger.debug(
-      `Adjusting quantity of item ${itemId} in list ${listId} by ${dto.adjustment}`,
-    );
+  async adjustQuantity(listId: string, itemId: string, dto: AdjustQuantityDto): Promise<ItemDocument> {
+    this.logger.debug(`Adjusting quantity of item ${itemId} in list ${listId} by ${dto.adjustment}`);
     const item = await this.itemModel
-      .findOneAndUpdate(
-        { _id: itemId, listId },
-        { $inc: { quantity: dto.adjustment } },
-        { new: true },
-      )
+      .findOneAndUpdate({_id: itemId, listId}, {$inc: {quantity: dto.adjustment}}, {new: true})
       .exec();
 
     if (!item) {
@@ -125,18 +99,12 @@ export class ItemsService {
     }
 
     if (item.quantity < 0) {
-      this.logger.error(
-        `Quantity adjustment of ${dto.adjustment} would make item ${itemId} quantity negative`,
-      );
-      await this.itemModel
-        .findByIdAndUpdate(itemId, { $inc: { quantity: -dto.adjustment } })
-        .exec();
+      this.logger.error(`Quantity adjustment of ${dto.adjustment} would make item ${itemId} quantity negative`);
+      await this.itemModel.findByIdAndUpdate(itemId, {$inc: {quantity: -dto.adjustment}}).exec();
       throw new BadRequestException('Quantity cannot be negative');
     }
 
-    this.logger.debug(
-      `Item ${itemId} quantity adjusted to ${item.quantity} in list ${listId}`,
-    );
+    this.logger.debug(`Item ${itemId} quantity adjusted to ${item.quantity} in list ${listId}`);
     return item;
   }
 }

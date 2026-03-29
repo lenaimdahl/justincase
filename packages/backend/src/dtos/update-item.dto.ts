@@ -1,12 +1,4 @@
-import {
-  IsDateString,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Min,
-  IsArray,
-} from 'class-validator';
+import {IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, Min, IsArray} from 'class-validator';
 
 export class UpdateItemDto {
   @IsOptional()
@@ -29,7 +21,7 @@ export class UpdateItemDto {
 
   @IsOptional()
   @IsArray()
-  @IsDateString({}, { each: true })
+  @IsDateString({}, {each: true})
   expiryDates?: string[];
 
   @IsOptional()

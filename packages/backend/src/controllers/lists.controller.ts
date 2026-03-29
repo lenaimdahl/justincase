@@ -1,18 +1,8 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  Logger,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
-import { CreateListDto } from 'src/dtos/create-list.dto';
-import { UpdateListDto } from 'src/dtos/update-list.dto';
-import { ItemsService } from 'src/modules/items/items.service';
-import { type List, ListsService } from 'src/services/lists.service';
+import {Body, Controller, Delete, Get, HttpCode, Logger, Param, Patch, Post} from '@nestjs/common';
+import {CreateListDto} from 'src/dtos/create-list.dto';
+import {UpdateListDto} from 'src/dtos/update-list.dto';
+import {ItemsService} from 'src/modules/items/items.service';
+import {type List, ListsService} from 'src/services/lists.service';
 
 @Controller('lists')
 export class ListsController {
@@ -20,7 +10,7 @@ export class ListsController {
 
   constructor(
     private readonly listsService: ListsService,
-    private readonly itemsService: ItemsService,
+    private readonly itemsService: ItemsService
   ) {}
 
   @Post()
@@ -37,7 +27,7 @@ export class ListsController {
       lists.map(async list => ({
         ...list,
         itemCount: await this.itemsService.countByListId(list.id),
-      })),
+      }))
     );
     this.logger.debug(`GET /lists -> 200 OK (${result.length} lists)`);
     return result;
@@ -48,7 +38,7 @@ export class ListsController {
     const list = this.listsService.findOne(id);
     const itemCount = await this.itemsService.countByListId(id);
     this.logger.debug(`GET /lists/${id} -> 200 OK`);
-    return { ...list, itemCount };
+    return {...list, itemCount};
   }
 
   @Patch(':id')
