@@ -1,13 +1,7 @@
-import { Navigation } from './components/Navigation';
-import { Home } from './pages/Home';
+import Router from './routes/Router';
 
 function App() {
-  return (
-    <>
-      <Navigation />
-      <Home />
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
