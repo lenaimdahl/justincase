@@ -23,6 +23,10 @@ export class ItemsService {
     @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
   ) {}
 
+  async findAll(listId: string): Promise<ItemDocument[]> {
+    return this.itemModel.find({ listId }).exec();
+  }
+
   async create(listId: string, dto: CreateItemDto): Promise<ItemDocument> {
     const data: Partial<Item> = {
       listId,
