@@ -36,7 +36,9 @@
   "name": "justincase-backend",
   "private": true,
   "scripts": {
-    "build": "nest build",
+    "build": "tsc --noEmit && nest build",
+    "clean": "rm -rf dist",
+    "dist": "yarn clean && yarn build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "start": "nest start",

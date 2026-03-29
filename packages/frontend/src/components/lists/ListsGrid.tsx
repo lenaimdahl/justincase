@@ -1,13 +1,13 @@
-import { Box } from '@mui/material';
-import { ListCard } from 'src/components/lists/ListCard';
-import type { List } from 'src/types/list';
+import {Box} from '@mui/material';
+import {ListCard} from 'src/components/lists/ListCard';
+import type {List} from 'src/types/list';
 
 interface ListsGridProps {
   lists: List[];
   onListClick: (listId: string) => void;
 }
 
-export const ListsGrid = ({ lists, onListClick }: ListsGridProps) => {
+export const ListsGrid = ({lists, onListClick}: ListsGridProps) => {
   return (
     <Box
       sx={{
@@ -20,7 +20,7 @@ export const ListsGrid = ({ lists, onListClick }: ListsGridProps) => {
         gap: 3,
       }}
     >
-      {lists.map((list) => (
+      {lists.map(list => (
         <ListCard
           key={list.id}
           id={list.id}

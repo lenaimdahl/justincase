@@ -9,9 +9,16 @@
   },
   "license": "GPL-3.0",
   "name": "justincase",
+  "packageManager": "yarn@4.13.0",
+  "prettier": "@ffflorian/prettier-config",
   "private": true,
+  "scripts": {
+    "build": "yarn workspaces foreach --all --parallel --topological --exclude justincase run build",
+    "clean": "yarn workspaces foreach --all --parallel --exclude justincase run clean",
+    "dist": "yarn workspaces foreach --all --parallel --exclude justincase run dist",
+    "format": "yarn workspaces foreach --all --parallel --exclude justincase run format"
+  },
   "workspaces": [
     "packages/*"
-  ],
-  "packageManager": "yarn@4.13.0"
+  ]
 }
