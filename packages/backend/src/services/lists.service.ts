@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateListDto } from 'src/dtos/create-list.dto';
 
 export interface ListItem {
@@ -30,6 +30,7 @@ export interface List {
 
 @Injectable()
 export class ListsService {
+  private readonly logger = new Logger(ListsService.name);
   private readonly lists = new Map<string, List>();
   private idCounter = 1;
 
@@ -38,6 +39,7 @@ export class ListsService {
   }
 
   create(createListDto: CreateListDto): List {
+    this.logger.debug(`Creating list with name "${createListDto.name}"`);
     const list: List = {
       id: this.generateId(),
       name: createListDto.name,
@@ -56,25 +58,32 @@ export class ListsService {
       createdAt: new Date(),
     };
     this.lists.set(list.id, list);
+    this.logger.debug(`List created with id ${list.id}`);
     return list;
   }
 
   findAll(): List[] {
+    this.logger.debug(`Fetching all lists (count: ${this.lists.size})`);
     return Array.from(this.lists.values());
   }
 
   findOne(id: string): List {
+    this.logger.debug(`Fetching list with id ${id}`);
     const list = this.lists.get(id);
     if (!list) {
+      this.logger.error(`List with id ${id} not found`);
       throw new NotFoundException(`List with id ${id} not found`);
     }
     return list;
   }
 
   remove(id: string): void {
+    this.logger.debug(`Removing list with id ${id}`);
     if (!this.lists.has(id)) {
+      this.logger.error(`List with id ${id} not found`);
       throw new NotFoundException(`List with id ${id} not found`);
     }
     this.lists.delete(id);
+    this.logger.debug(`List with id ${id} removed`);
   }
 }

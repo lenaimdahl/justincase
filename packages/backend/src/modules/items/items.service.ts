@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -19,15 +20,19 @@ function toUtcPlusOne(dateStr: string): Date {
 
 @Injectable()
 export class ItemsService {
+  private readonly logger = new Logger(ItemsService.name);
+
   constructor(
     @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
   ) {}
 
   async findAll(listId: string): Promise<ItemDocument[]> {
+    this.logger.debug(`Fetching all items for list ${listId}`);
     return this.itemModel.find({ listId }).exec();
   }
 
   async create(listId: string, dto: CreateItemDto): Promise<ItemDocument> {
+    this.logger.debug(`Creating item "${dto.name}" in list ${listId}`);
     const data: Partial<Item> = {
       listId,
       name: dto.name,
@@ -45,7 +50,9 @@ export class ItemsService {
     }
 
     const item = new this.itemModel(data);
-    return item.save();
+    const saved = await item.save();
+    this.logger.debug(`Item created with id ${saved._id} in list ${listId}`);
+    return saved;
   }
 
   async update(
@@ -53,6 +60,7 @@ export class ItemsService {
     itemId: string,
     dto: UpdateItemDto,
   ): Promise<ItemDocument> {
+    this.logger.debug(`Updating item ${itemId} in list ${listId}`);
     const update: Partial<Item> = {};
 
     if (dto.name !== undefined) update.name = dto.name;
@@ -69,20 +77,26 @@ export class ItemsService {
       .exec();
 
     if (!item) {
+      this.logger.error(`Item ${itemId} not found in list ${listId}`);
       throw new NotFoundException(`Item ${itemId} not found in list ${listId}`);
     }
 
+    this.logger.debug(`Item ${itemId} updated in list ${listId}`);
     return item;
   }
 
   async remove(listId: string, itemId: string): Promise<void> {
+    this.logger.debug(`Removing item ${itemId} from list ${listId}`);
     const result = await this.itemModel
       .deleteOne({ _id: itemId, listId })
       .exec();
 
     if (result.deletedCount === 0) {
+      this.logger.error(`Item ${itemId} not found in list ${listId}`);
       throw new NotFoundException(`Item ${itemId} not found in list ${listId}`);
     }
+
+    this.logger.debug(`Item ${itemId} removed from list ${listId}`);
   }
 
   async adjustQuantity(
@@ -90,6 +104,9 @@ export class ItemsService {
     itemId: string,
     dto: AdjustQuantityDto,
   ): Promise<ItemDocument> {
+    this.logger.debug(
+      `Adjusting quantity of item ${itemId} in list ${listId} by ${dto.adjustment}`,
+    );
     const item = await this.itemModel
       .findOneAndUpdate(
         { _id: itemId, listId },
@@ -99,16 +116,23 @@ export class ItemsService {
       .exec();
 
     if (!item) {
+      this.logger.error(`Item ${itemId} not found in list ${listId}`);
       throw new NotFoundException(`Item ${itemId} not found in list ${listId}`);
     }
 
     if (item.quantity < 0) {
+      this.logger.error(
+        `Quantity adjustment of ${dto.adjustment} would make item ${itemId} quantity negative`,
+      );
       await this.itemModel
         .findByIdAndUpdate(itemId, { $inc: { quantity: -dto.adjustment } })
         .exec();
       throw new BadRequestException('Quantity cannot be negative');
     }
 
+    this.logger.debug(
+      `Item ${itemId} quantity adjusted to ${item.quantity} in list ${listId}`,
+    );
     return item;
   }
 }
