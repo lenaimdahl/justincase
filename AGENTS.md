@@ -76,6 +76,24 @@ src/frontend/
   utils/
 ```
 
+**Module path imports (Frontend)**
+
+All imports in the frontend must use absolute `src/` paths instead of relative paths:
+
+```typescript
+// ✅ CORRECT
+import { ListCard } from 'src/components/lists/ListCard';
+import { useFetchLists } from 'src/hooks/useFetchLists';
+import type { List } from 'src/types/list';
+
+// ❌ WRONG
+import { ListCard } from './ListCard';
+import { useFetchLists } from '../../hooks/useFetchLists';
+import type { List } from '../types/list';
+```
+
+This improves readability, prevents import path issues when moving files, and makes refactoring easier.
+
 **Backend**
 
 * Language: TypeScript + NestJS
