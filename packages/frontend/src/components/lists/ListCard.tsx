@@ -6,10 +6,9 @@ import {
   Box,
   Chip,
 } from '@mui/material';
+import type { List } from 'src/types/list';
 
-interface ListCardProps {
-  name: string;
-  itemCount: number;
+interface ListCardProps extends List {
   onClick: () => void;
 }
 
@@ -31,7 +30,11 @@ export const ListCard = ({
         },
       }}
     >
-      <CardActionArea onClick={onClick} sx={{ flexGrow: 1 }}>
+      <CardActionArea
+        onClick={onClick}
+        sx={{ flexGrow: 1 }}
+        aria-label={`${name}, ${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}
+      >
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           <Typography variant="h6" component="div" sx={{ color: '#6a1b9a' }}>
             {name}

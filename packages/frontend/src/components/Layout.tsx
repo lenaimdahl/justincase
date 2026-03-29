@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { Navigation } from './Navigation';
+import { Navigation } from 'src/components/Navigation';
 
 export function Layout() {
   return (
