@@ -1,13 +1,13 @@
-import { Box, Typography, Button } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
-import { useTranslation } from 'react-i18next';
+import {Box, Typography, Button} from '@mui/material';
+import {Add as AddIcon} from '@mui/icons-material';
+import {useTranslation} from 'react-i18next';
 
 interface ListOverviewHeaderProps {
   onCreateClick: () => void;
 }
 
-export const ListOverviewHeader = ({ onCreateClick }: ListOverviewHeaderProps) => {
-  const { t } = useTranslation();
+export const ListOverviewHeader = ({onCreateClick}: ListOverviewHeaderProps) => {
+  const {t} = useTranslation();
 
   return (
     <Box
@@ -19,10 +19,10 @@ export const ListOverviewHeader = ({ onCreateClick }: ListOverviewHeaderProps) =
       }}
     >
       <Box>
-        <Typography variant="h3" component="h1" sx={{ color: '#6a1b9a', mb: 1 }}>
+        <Typography variant="h3" component="h1" sx={{color: '#6a1b9a', mb: 1}}>
           {t('pages.listOverview.title')}
         </Typography>
-        <Typography variant="body1" sx={{ color: '#757575' }}>
+        <Typography variant="body1" sx={{color: '#757575'}}>
           {t('pages.listOverview.subtitle')}
         </Typography>
       </Box>

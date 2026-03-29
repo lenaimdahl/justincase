@@ -1,14 +1,8 @@
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  Link as MuiLink,
-} from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import {AppBar, Toolbar, Typography, Box, Link as MuiLink} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 
 export const Navigation = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
 
   return (
     <AppBar position="sticky">
@@ -23,7 +17,7 @@ export const Navigation = () => {
         >
           {t('components.navigation.brand')}
         </Typography>
-        <Box sx={{ display: 'flex', gap: 3 }}>
+        <Box sx={{display: 'flex', gap: 3}}>
           <MuiLink
             href="/"
             sx={{

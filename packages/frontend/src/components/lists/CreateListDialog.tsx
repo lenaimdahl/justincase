@@ -1,12 +1,5 @@
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import {Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 
 interface CreateListDialogProps {
   open: boolean;
@@ -16,14 +9,8 @@ interface CreateListDialogProps {
   onSubmit: () => void;
 }
 
-export const CreateListDialog = ({
-  open,
-  value,
-  onChange,
-  onClose,
-  onSubmit,
-}: CreateListDialogProps) => {
-  const { t } = useTranslation();
+export const CreateListDialog = ({open, value, onChange, onClose, onSubmit}: CreateListDialogProps) => {
+  const {t} = useTranslation();
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && value.trim()) {
@@ -34,13 +21,13 @@ export const CreateListDialog = ({
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle>{t('pages.listOverview.dialogTitle')}</DialogTitle>
-      <DialogContent sx={{ pt: 2 }}>
+      <DialogContent sx={{pt: 2}}>
         <TextField
           autoFocus
           fullWidth
           label={t('pages.listOverview.inputLabel')}
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={e => onChange(e.target.value)}
           onKeyDown={handleKeyDown}
         />
       </DialogContent>

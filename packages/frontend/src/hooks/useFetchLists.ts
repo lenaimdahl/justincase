@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 
 interface List {
   id: string;
@@ -36,11 +36,11 @@ export const useFetchLists = (): UseFetchListsReturn => {
       // setLists(data);
 
       // Mock data for now
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 500));
       setLists([
-        { id: '1', name: 'Kitchen', itemCount: 5 },
-        { id: '2', name: 'Bathroom', itemCount: 3 },
-        { id: '3', name: 'Bedroom', itemCount: 8 },
+        {id: '1', name: 'Kitchen', itemCount: 5},
+        {id: '2', name: 'Bathroom', itemCount: 3},
+        {id: '3', name: 'Bedroom', itemCount: 8},
       ]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -53,5 +53,5 @@ export const useFetchLists = (): UseFetchListsReturn => {
     fetchLists();
   }, []);
 
-  return { lists, loading, error, refetch: fetchLists };
+  return {lists, loading, error, refetch: fetchLists};
 };
