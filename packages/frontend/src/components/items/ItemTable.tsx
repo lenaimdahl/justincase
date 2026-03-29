@@ -189,7 +189,7 @@ export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemT
                     })
                   }
                   disabled={creatingItem}
-                  inputProps={{min: 0}}
+                  slotProps={{htmlInput: {min: 0}}}
                   sx={{maxWidth: 80}}
                 />
               </TableCell>

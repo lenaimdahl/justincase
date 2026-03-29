@@ -55,7 +55,7 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
               onItemChange({...newItem, quantity: qty, expiryDates});
             }}
             disabled={creatingItem}
-            inputProps={{min: 1}}
+            slotProps={{htmlInput: {min: 1}}}
             sx={{minWidth: 100}}
           />
         )}
@@ -68,7 +68,6 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
             value={newItem.expiryDate || ''}
             onChange={e => onItemChange({...newItem, expiryDate: e.target.value})}
             disabled={creatingItem}
-            InputLabelProps={{shrink: true}}
             sx={{minWidth: 140}}
           />
         )}
@@ -141,7 +140,6 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
                   onItemChange({...(newItem as any), expiryDates});
                 }}
                 disabled={creatingItem}
-                InputLabelProps={{shrink: true}}
                 label={`Menge ${idx + 1}`}
               />
             ))}

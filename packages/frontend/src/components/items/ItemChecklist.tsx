@@ -147,7 +147,7 @@ export const ItemChecklist = ({listId, items, requiresExpiryDate, onItemsChange}
             value={newItem.quantity || 1}
             onChange={e => setNewItem({...newItem, quantity: parseInt(e.target.value) || 1})}
             disabled={creatingItem}
-            inputProps={{min: 1}}
+            slotProps={{htmlInput: {min: 1}}}
             sx={{width: 120}}
           />
           {requiresExpiryDate && (
