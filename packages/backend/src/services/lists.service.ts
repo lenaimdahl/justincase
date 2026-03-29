@@ -8,10 +8,23 @@ export interface ListItem {
   createdAt: Date;
 }
 
+export interface FieldConfig {
+  hasCheckbox?: boolean;
+  multipleCheckboxes?: boolean;
+  checkboxLabels?: string[];
+  hasExpiryDate?: boolean;
+  hasQuantity?: boolean;
+  hasNotes?: boolean;
+  hasPriority?: boolean;
+}
+
 export interface List {
   id: string;
   name: string;
   items: ListItem[];
+  icon: string;
+  color: string;
+  fieldConfig: FieldConfig;
   createdAt: Date;
 }
 
@@ -29,6 +42,17 @@ export class ListsService {
       id: this.generateId(),
       name: createListDto.name,
       items: [],
+      icon: createListDto.icon || '📝',
+      color: createListDto.color || '#9c27b0',
+      fieldConfig: createListDto.fieldConfig || {
+        hasCheckbox: true,
+        multipleCheckboxes: false,
+        checkboxLabels: [],
+        hasExpiryDate: false,
+        hasQuantity: false,
+        hasNotes: false,
+        hasPriority: false,
+      },
       createdAt: new Date(),
     };
     this.lists.set(list.id, list);

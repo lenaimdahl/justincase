@@ -16,6 +16,7 @@ const DEBOUNCE_DELAY = 1000; // ms
 
 interface UseItemOperationsReturn {
   editingState: Record<string, EditingItem>;
+  itemsInEditMode: Set<string>;
   newItem: CreateItemRequest;
   creatingItem: boolean;
   createError: string | null;
@@ -29,6 +30,7 @@ interface UseItemOperationsReturn {
   handleAdjustQuantity: (itemId: string, adjustment: number) => Promise<void>;
   handleDeleteItem: (itemId: string) => Promise<void>;
   handleCreateItem: () => Promise<void>;
+  toggleEditMode: (itemId: string) => void;
   initializeEditingState: (items: Item[]) => void;
 }
 
@@ -42,6 +44,7 @@ export const useItemOperations = (
   const [editingState, setEditingState] = useState<
     Record<string, EditingItem>
   >({});
+  const [itemsInEditMode, setItemsInEditMode] = useState<Set<string>>(new Set());
   const [newItem, setNewItem] = useState<CreateItemRequest>({
     name: '',
     quantity: 0,
@@ -213,8 +216,21 @@ export const useItemOperations = (
     }
   }, [listId, newItem, onItemsChange]);
 
+  const toggleEditMode = useCallback((itemId: string) => {
+    setItemsInEditMode((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
+    });
+  }, []);
+
   return {
     editingState,
+    itemsInEditMode,
     newItem,
     creatingItem,
     createError,
@@ -224,6 +240,7 @@ export const useItemOperations = (
     handleAdjustQuantity,
     handleDeleteItem,
     handleCreateItem,
+    toggleEditMode,
     initializeEditingState,
   };
 };

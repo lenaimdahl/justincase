@@ -12,10 +12,14 @@ import {
   CircularProgress,
   Box,
   Alert,
+  Typography,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
+import CloseIcon from '@mui/icons-material/Close';
 import type { Item } from 'src/types/item';
 import { useItemOperations } from 'src/hooks/useItemOperations';
 
@@ -34,6 +38,7 @@ export const ItemTable = ({
 }: ItemTableProps) => {
   const {
     editingState,
+    itemsInEditMode,
     newItem,
     creatingItem,
     createError,
@@ -42,6 +47,7 @@ export const ItemTable = ({
     handleAdjustQuantity,
     handleDeleteItem,
     handleCreateItem,
+    toggleEditMode,
     initializeEditingState,
   } = useItemOperations(listId, onItemsChange);
 
@@ -97,17 +103,7 @@ export const ItemTable = ({
                   }}
                 >
                   <TableCell>
-                    <TextField
-                      size="small"
-                      value={state.name || ''}
-                      onChange={(e) =>
-                        updateField(item._id, 'name', e.target.value)
-                      }
-                      disabled={isSaving}
-                      fullWidth
-                      error={hasError}
-                      sx={{ maxWidth: 200 }}
-                    />
+                    <Typography variant="body2">{state.name}</Typography>
                   </TableCell>
                   <TableCell align="right">
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
