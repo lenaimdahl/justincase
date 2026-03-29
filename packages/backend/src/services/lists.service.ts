@@ -27,6 +27,7 @@ export interface List {
   color: string;
   fieldConfig: FieldConfig;
   createdAt: Date;
+  itemCount?: number;
 }
 
 @Injectable()

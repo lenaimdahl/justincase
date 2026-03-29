@@ -11,13 +11,17 @@ import {
 } from '@nestjs/common';
 import { CreateListDto } from 'src/dtos/create-list.dto';
 import { UpdateListDto } from 'src/dtos/update-list.dto';
+import { ItemsService } from 'src/modules/items/items.service';
 import { type List, ListsService } from 'src/services/lists.service';
 
 @Controller('lists')
 export class ListsController {
   private readonly logger = new Logger(ListsController.name);
 
-  constructor(private readonly listsService: ListsService) {}
+  constructor(
+    private readonly listsService: ListsService,
+    private readonly itemsService: ItemsService,
+  ) {}
 
   @Post()
   create(@Body() createListDto: CreateListDto): List {
@@ -27,17 +31,24 @@ export class ListsController {
   }
 
   @Get()
-  findAll(): List[] {
-    const result = this.listsService.findAll();
+  async findAll(): Promise<List[]> {
+    const lists = this.listsService.findAll();
+    const result = await Promise.all(
+      lists.map(async list => ({
+        ...list,
+        itemCount: await this.itemsService.countByListId(list.id),
+      })),
+    );
     this.logger.debug(`GET /lists -> 200 OK (${result.length} lists)`);
     return result;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): List {
-    const result = this.listsService.findOne(id);
+  async findOne(@Param('id') id: string): Promise<List> {
+    const list = this.listsService.findOne(id);
+    const itemCount = await this.itemsService.countByListId(id);
     this.logger.debug(`GET /lists/${id} -> 200 OK`);
-    return result;
+    return {...list, itemCount};
   }
 
   @Patch(':id')

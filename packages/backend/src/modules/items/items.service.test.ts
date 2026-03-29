@@ -19,6 +19,7 @@ const mockItem = {
 };
 
 const mockItemModel = {
+  countDocuments: vi.fn(),
   deleteOne: vi.fn(),
   findByIdAndUpdate: vi.fn(),
   findOneAndUpdate: vi.fn(),
@@ -50,6 +51,21 @@ describe('ItemsService', () => {
     }).compile();
 
     service = module.get<ItemsService>(ItemsService);
+  });
+
+  describe('countByListId', () => {
+    it('returns the count of items for a list', async () => {
+      mockItemModel.countDocuments.mockReturnValue({
+        exec: vi.fn().mockResolvedValue(3),
+      });
+
+      const result = await service.countByListId('list-id');
+
+      expect(result).toBe(3);
+      expect(mockItemModel.countDocuments).toHaveBeenCalledWith({
+        listId: 'list-id',
+      });
+    });
   });
 
   describe('create', () => {

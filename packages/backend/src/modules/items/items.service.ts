@@ -26,6 +26,10 @@ export class ItemsService {
     @InjectModel(Item.name) private readonly itemModel: Model<ItemDocument>,
   ) {}
 
+  async countByListId(listId: string): Promise<number> {
+    return this.itemModel.countDocuments({ listId }).exec();
+  }
+
   async findAll(listId: string): Promise<ItemDocument[]> {
     this.logger.debug(`Fetching all items for list ${listId}`);
     return this.itemModel.find({ listId }).exec();
