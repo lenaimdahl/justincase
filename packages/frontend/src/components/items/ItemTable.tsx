@@ -17,9 +17,6 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import SaveIcon from '@mui/icons-material/Save';
-import CloseIcon from '@mui/icons-material/Close';
 import type {Item} from 'src/types/item';
 import {useItemOperations} from 'src/hooks/useItemOperations';
 
@@ -33,7 +30,6 @@ interface ItemTableProps {
 export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemTableProps) => {
   const {
     editingState,
-    itemsInEditMode,
     newItem,
     creatingItem,
     createError,
@@ -42,11 +38,9 @@ export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemT
     handleAdjustQuantity,
     handleDeleteItem,
     handleCreateItem,
-    toggleEditMode,
     initializeEditingState,
   } = useItemOperations(listId, onItemsChange);
 
-  // Initialize editing state when items change
   useEffect(() => {
     initializeEditingState(items);
   }, [items, initializeEditingState]);
