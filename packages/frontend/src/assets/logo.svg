@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="JustInCase logo">
+  <!-- Background rounded square -->
+  <rect width="200" height="200" rx="28" fill="#1565C0"/>
+
+  <!-- Box body -->
+  <rect x="28" y="92" width="144" height="82" rx="10" fill="#FFFFFF"/>
+
+  <!-- Box lid -->
+  <rect x="28" y="60" width="144" height="42" rx="10" fill="#E3F2FD"/>
+
+  <!-- Lid latch/clasp -->
+  <rect x="82" y="79" width="36" height="18" rx="6" fill="#1565C0"/>
+  <rect x="90" y="84" width="20" height="8" rx="3" fill="#90CAF9"/>
+
+  <!-- Handle on top of lid -->
+  <path d="M76 60 Q76 44 100 44 Q124 44 124 60" fill="none" stroke="#E3F2FD" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Status dots row inside box (green/yellow/red = freshness indicators) -->
+  <!-- Green dot -->
+  <circle cx="68" cy="130" r="14" fill="#4CAF50"/>
+  <polyline points="62,130 67,136 76,122" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Yellow dot -->
+  <circle cx="100" cy="130" r="14" fill="#FFC107"/>
+  <text x="100" y="135" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">!</text>
+
+  <!-- Red dot -->
+  <circle cx="132" cy="130" r="14" fill="#F44336"/>
+  <line x1="128" y1="126" x2="136" y2="134" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="136" y1="126" x2="128" y2="134" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- "JiC" monogram on lid -->
+  <text x="100" y="90" font-family="Georgia, serif" font-size="19" font-weight="bold" fill="#1565C0" text-anchor="middle" letter-spacing="2">JiC</text>
+</svg>
