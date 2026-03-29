@@ -2,8 +2,9 @@ services:
   - type: web
     name: justincase-backend
     env: node
-    buildCommand: yarn install && yarn workspace justincase-backend build
-    startCommand: node packages/backend/dist/main.js
+    rootDir: packages/backend
+    buildCommand: yarn --immutable && yarn build
+    startCommand: node dist/main.js
     envVars:
       - key: MONGODB_URI
         sync: false
