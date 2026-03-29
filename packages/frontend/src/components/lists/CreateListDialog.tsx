@@ -14,6 +14,7 @@ interface CreateListDialogProps {
   onChange: (value: string) => void;
   onClose: () => void;
   onSubmit: () => void;
+  loading?: boolean;
 }
 
 export const CreateListDialog = ({
@@ -22,11 +23,12 @@ export const CreateListDialog = ({
   onChange,
   onClose,
   onSubmit,
+  loading = false,
 }: CreateListDialogProps) => {
   const { t } = useTranslation();
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && value.trim()) {
+    if (e.key === 'Enter' && value.trim() && !loading) {
       onSubmit();
     }
   };
@@ -45,13 +47,13 @@ export const CreateListDialog = ({
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} aria-label={t('pages.listOverview.cancelButton')}>
+        <Button onClick={onClose} disabled={loading} aria-label={t('pages.listOverview.cancelButton')}>
           {t('pages.listOverview.cancelButton')}
         </Button>
         <Button
           onClick={onSubmit}
           variant="contained"
-          disabled={!value.trim()}
+          disabled={!value.trim() || loading}
           aria-label={t('pages.listOverview.createButton')}
           sx={{
             background: 'linear-gradient(135deg, #9c27b0 0%, #e91e63 100%)',

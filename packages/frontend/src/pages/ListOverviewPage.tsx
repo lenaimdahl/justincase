@@ -6,12 +6,14 @@ import { ListsGrid } from 'src/components/lists/ListsGrid';
 import { EmptyListsState } from 'src/components/lists/EmptyListsState';
 import { CreateListDialog } from 'src/components/lists/CreateListDialog';
 import { useFetchLists } from 'src/hooks/useFetchLists';
+import { createList } from 'src/api/lists';
 
 export const ListOverviewPage = () => {
   const navigate = useNavigate();
   const { lists, loading, error, refetch } = useFetchLists();
   const [openDialog, setOpenDialog] = useState(false);
   const [newListName, setNewListName] = useState('');
+  const [creatingList, setCreatingList] = useState(false);
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -27,16 +29,17 @@ export const ListOverviewPage = () => {
       return;
     }
 
-    // TODO: Connect to backend API
-    // const response = await fetch('/api/lists', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ name: newListName }),
-    // });
+    setCreatingList(true);
 
-    console.log('Creating list:', newListName);
-    handleCloseDialog();
-    refetch();
+    try {
+      await createList({ name: newListName });
+      handleCloseDialog();
+      await refetch();
+    } catch (err) {
+      console.error('Failed to create list:', err);
+    } finally {
+      setCreatingList(false);
+    }
   };
 
   const handleListCardClick = (listId: string) => {
@@ -77,6 +80,7 @@ export const ListOverviewPage = () => {
         onChange={setNewListName}
         onClose={handleCloseDialog}
         onSubmit={handleCreateList}
+        loading={creatingList}
       />
     </Container>
   );
