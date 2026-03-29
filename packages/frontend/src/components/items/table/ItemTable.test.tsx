@@ -7,12 +7,14 @@ describe('ItemTable Component', () => {
   const mockItems: Item[] = [
     {
       _id: '1',
+      listId: 'list-1',
       name: 'Apple',
       quantity: 5,
       unit: 'pieces',
     },
     {
       _id: '2',
+      listId: 'list-1',
       name: 'Orange',
       quantity: 3,
       unit: 'pieces',

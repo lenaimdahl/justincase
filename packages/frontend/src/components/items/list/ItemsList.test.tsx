@@ -8,6 +8,7 @@ describe('ItemsList Component', () => {
   const mockItems: Item[] = [
     {
       _id: '1',
+      listId: 'list-1',
       name: 'Milk',
       quantity: 2,
       unit: 'liters',
@@ -15,6 +16,7 @@ describe('ItemsList Component', () => {
     },
     {
       _id: '2',
+      listId: 'list-1',
       name: 'Bread',
       quantity: 1,
       unit: 'piece',
