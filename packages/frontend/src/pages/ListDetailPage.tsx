@@ -3,7 +3,6 @@ import {Container, Box, Alert, Typography, CircularProgress} from '@mui/material
 import {ItemView} from 'src/components/items/ItemView';
 import {useFetchItems} from 'src/hooks/useFetchItems';
 import {fetchListById} from 'src/api/lists';
-import {useNotification} from 'src/hooks/useNotification';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 import {useState, useEffect} from 'react';
 import type {List} from 'src/api/lists';
@@ -14,7 +13,6 @@ export const ListDetailPage = () => {
   const [list, setList] = useState<List | null>(null);
   const [listLoading, setListLoading] = useState(true);
   const [listError, setListError] = useState<string>('');
-  const notification = useNotification();
   const {handleError} = useApiErrorHandler();
 
   useEffect(() => {

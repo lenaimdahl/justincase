@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import type {List} from 'src/api/lists';
 import {fetchLists} from 'src/api/lists';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
@@ -19,7 +19,7 @@ export const useFetchLists = (): UseFetchListsReturn => {
   const [error, setError] = useState<string | null>(null);
   const {handleError} = useApiErrorHandler();
 
-  const fetchListsData = async () => {
+  const fetchListsData = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -32,11 +32,11 @@ export const useFetchLists = (): UseFetchListsReturn => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [handleError]);
 
   useEffect(() => {
     fetchListsData();
-  }, [handleError]);
+  }, [fetchListsData]);
 
   return {lists, loading, error, refetch: fetchListsData};
 };

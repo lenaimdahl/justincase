@@ -31,7 +31,7 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           {state.name}
         </Typography>
       </TableCell>
-      <TableCell align="right">
+      <TableCell align="right" sx={{overflow: 'hidden'}}>
         <Box sx={{display: 'flex', alignItems: 'center', gap: 0.5}}>
           <IconButton
             size="small"
@@ -54,35 +54,38 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           </IconButton>
         </Box>
       </TableCell>
-      <TableCell>
+      <TableCell sx={{overflow: 'hidden'}}>
         <TextField
           size="small"
+          label="Einheit"
+          variant="standard"
           value={state.unit || ''}
           onChange={e => onUpdateField(item._id, 'unit', e.target.value)}
-          placeholder="kg, liters, pcs"
           disabled={isSaving}
           error={hasError}
           sx={{maxWidth: {xs: 80, sm: 120}}}
         />
       </TableCell>
-      <TableCell>
+      <TableCell sx={{overflow: 'hidden'}}>
         <TextField
           size="small"
           type="date"
+          variant="standard"
+          label="Ablaufdatum"
           value={state.expiryDate || ''}
           onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
           disabled={isSaving}
           error={hasError}
-          slotProps={{input: {}}}
           sx={{maxWidth: {xs: 120, sm: 150}}}
         />
       </TableCell>
-      <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}}}>
+      <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}, overflow: 'hidden'}}>
         <TextField
           size="small"
+          label="Notiz"
+          variant="standard"
           value={state.comment || ''}
           onChange={e => onUpdateField(item._id, 'comment', e.target.value)}
-          placeholder="Optional note"
           disabled={isSaving}
           error={hasError}
           sx={{maxWidth: 150}}
