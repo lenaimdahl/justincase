@@ -31,8 +31,19 @@ jobs:
       - name: Trigger vercel deployment
         run: |
           export LAST_GIT_AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          export COMMIT_BODY=$(git log -1 --pretty=format:'%b')
+
+          IS_FLORIAN_SOLE_AUTHOR=true
 
           if [ "${LAST_GIT_AUTHOR_EMAIL}" != "${GIT_AUTHOR_EMAIL}" ] && [ "${LAST_GIT_AUTHOR_EMAIL}" != "${GIT_AUTHOR_EMAIL_ALTERNATIVE_1}" ] && [[ "${LAST_GIT_AUTHOR_EMAIL}" != *dependabot* ]]; then
+            IS_FLORIAN_SOLE_AUTHOR=false
+          fi
+
+          if echo "${COMMIT_BODY}" | grep -qi "^Co-authored-by:"; then
+            IS_FLORIAN_SOLE_AUTHOR=false
+          fi
+
+          if [ "${IS_FLORIAN_SOLE_AUTHOR}" = "false" ]; then
             git commit --allow-empty -m "chore: trigger vercel deployment [ci skip]"
             git push
           fi
