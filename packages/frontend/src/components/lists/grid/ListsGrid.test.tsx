@@ -1,7 +1,7 @@
 import {describe, it, expect, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {ListsGrid} from './ListsGrid';
+import {ListsGrid} from 'src/components/lists/grid/ListsGrid';
 import type {List} from 'src/types/list';
 
 describe('ListsGrid Component', () => {

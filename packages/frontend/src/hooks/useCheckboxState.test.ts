@@ -1,6 +1,6 @@
 import {describe, it, expect} from 'vitest';
 import {renderHook, act} from '@testing-library/react';
-import {useCheckboxState} from './useCheckboxState';
+import {useCheckboxState} from 'src/hooks/useCheckboxState';
 
 describe('useCheckboxState Hook', () => {
   it('should initialize with empty checked state', () => {

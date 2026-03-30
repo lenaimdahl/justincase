@@ -1,7 +1,7 @@
 import {describe, it, expect, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {ListCard} from './ListCard';
+import {ListCard} from 'src/components/lists/ListCard';
 import type {List} from 'src/types/list';
 
 describe('ListCard Component', () => {

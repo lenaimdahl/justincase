@@ -1,6 +1,6 @@
 import {describe, it, expect} from 'vitest';
 import {render, screen} from '@testing-library/react';
-import {EmptyListsState} from './EmptyListsState';
+import {EmptyListsState} from 'src/components/lists/grid/EmptyListsState';
 
 describe('EmptyListsState Component', () => {
   it('should render empty state paper container', () => {

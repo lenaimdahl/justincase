@@ -1,6 +1,6 @@
 import {describe, it, expect, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
-import {ItemsList} from './ItemsList';
+import {ItemsList} from 'src/components/items/list/ItemsList';
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 

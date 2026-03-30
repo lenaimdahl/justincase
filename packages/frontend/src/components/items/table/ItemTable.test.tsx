@@ -1,6 +1,6 @@
 import {describe, it, expect, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
-import {ItemTable} from './ItemTable';
+import {ItemTable} from 'src/components/items/table/ItemTable';
 import type {Item} from 'src/types/item';
 
 describe('ItemTable Component', () => {
