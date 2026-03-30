@@ -64,7 +64,7 @@ docs: update README with setup instructions
 **Frontend**
 
 - Language: TypeScript + React
-- Linting: ESLint + Prettier
+- Linting: Prettier
 - Folder structure:
 
 ```
@@ -109,7 +109,7 @@ This improves readability, prevents import path issues when moving files, and ma
 **Backend**
 
 - Language: TypeScript + NestJS
-- Linting: ESLint + Prettier
+- Linting: Prettier
 - Folder structure:
 
 ```
