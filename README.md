@@ -1,5 +1,9 @@
 # JustInCase
 
+<p align="center">
+  <img src="packages/frontend/public/logo.svg" alt="JustInCase logo" width="120"/>
+</p>
+
 JustInCase is a lightweight inventory tracker where users manage multiple lists of items with quantities, units, expiry dates, and visual status indicators for freshness.
 
 ## Live

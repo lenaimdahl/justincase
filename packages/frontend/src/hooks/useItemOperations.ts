@@ -70,7 +70,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
 
       const timer = setTimeout(async () => {
         const item = editingState[itemId];
-        if (!item) return;
+        if (!item) {
+          return;
+        }
 
         const updateData: UpdateItemRequest = {};
         (updateData as Record<string, string | number>)[field] = value;
@@ -108,10 +110,14 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
   const handleAdjustQuantity = useCallback(
     async (itemId: string, adjustment: number) => {
       const item = editingState[itemId];
-      if (!item) return;
+      if (!item) {
+        return;
+      }
 
       // Prevent negative quantities
-      if (item.quantity + adjustment < 0) return;
+      if (item.quantity + adjustment < 0) {
+        return;
+      }
 
       setEditingState(prev => ({
         ...prev,

@@ -64,7 +64,7 @@ docs: update README with setup instructions
 **Frontend**
 
 - Language: TypeScript + React
-- Linting: ESLint + Prettier
+- Linting: Prettier
 - Folder structure:
 
 ```
@@ -74,6 +74,18 @@ src/frontend/
   pages/
   styles/
   utils/
+```
+
+**if-cases without curly braces** are not allowed. Always use curly braces for clarity:
+
+```typescript
+// ✅ CORRECT
+if (condition) {
+  doSomething();
+}
+
+// ❌ WRONG
+if (condition) doSomething();
 ```
 
 **Module path imports (Frontend)**
@@ -97,7 +109,7 @@ This improves readability, prevents import path issues when moving files, and ma
 **Backend**
 
 - Language: TypeScript + NestJS
-- Linting: ESLint + Prettier
+- Linting: Prettier
 - Folder structure:
 
 ```

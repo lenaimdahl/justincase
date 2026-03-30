@@ -1,10 +1,4 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsBoolean,
-  IsOptional,
-  IsArray,
-} from 'class-validator';
+import {IsNotEmpty, IsString, IsBoolean, IsOptional, IsArray} from 'class-validator';
 
 export interface FieldConfig {
   hasCheckbox?: boolean;

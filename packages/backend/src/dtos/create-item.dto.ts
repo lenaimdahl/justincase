@@ -1,12 +1,4 @@
-import {
-  IsDateString,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Min,
-  IsArray,
-} from 'class-validator';
+import {IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, Min, IsArray} from 'class-validator';
 
 export class CreateItemDto {
   @IsNotEmpty()
@@ -27,7 +19,7 @@ export class CreateItemDto {
 
   @IsOptional()
   @IsArray()
-  @IsDateString({}, { each: true })
+  @IsDateString({}, {each: true})
   expiryDates?: string[];
 
   @IsOptional()

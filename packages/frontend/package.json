@@ -16,6 +16,7 @@
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.1",
     "@types/node": "24.10.1",
+    "@ffflorian/prettier-config": "0.6.7",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.1",
@@ -27,17 +28,20 @@
     "vitest": "4.1.0"
   },
   "name": "justincase-frontend",
+  "prettier": "@ffflorian/prettier-config",
   "private": true,
   "scripts": {
     "build": "tsc --noEmit && vite build",
     "clean": "rm -rf dist",
-    "dev": "vite",
+    "dev": "yarn start:dev",
+    "format": "yarn prettier --write",
+    "lint": "yarn prettier --list-different",
+    "prettier": "prettier --ignore-path ../../.prettierignore .",
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "dist": "yarn clean && yarn build",
-    "format": "prettier --write ."
+    "dist": "yarn clean && yarn build"
   },
   "type": "module",
   "version": "0.1.0"

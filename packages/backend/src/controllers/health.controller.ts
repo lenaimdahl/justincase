@@ -1,14 +1,14 @@
-import { Controller, Get, HttpCode } from '@nestjs/common';
+import {Controller, Get, HttpCode} from '@nestjs/common';
 
-@Controller('health')
+@Controller('/api/health')
 export class HealthController {
   @Get()
   check() {
-    return { status: 'ok' };
+    return {status: 'ok'};
   }
 }
 
-@Controller('_health')
+@Controller('/api/_health')
 export class UnderscoreHealthController {
   @Get()
   @HttpCode(200)
