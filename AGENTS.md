@@ -193,6 +193,7 @@ yarn test
 - All dependencies in **every `package.json` file** must use **exact versions** (no `^`, `~`, or other range specifiers)
 - Example: `"react": "18.2.0"` instead of `"react": "^18.2.0"`
 - This ensures reproducible builds across all environments
+- Only example: `@types/node` – this has to stay at `~24`
 
 ---
 
