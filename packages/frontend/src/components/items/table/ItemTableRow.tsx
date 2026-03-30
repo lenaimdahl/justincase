@@ -21,27 +21,34 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
       sx={{
         opacity: isSaving ? 0.6 : 1,
         backgroundColor: hasError ? '#ffebee' : 'transparent',
+        '& .MuiTableCell-root': {
+          padding: {xs: '8px 4px', sm: '16px'},
+        },
       }}
     >
       <TableCell>
-        <Typography variant="body2">{state.name}</Typography>
+        <Typography variant="body2" sx={{fontSize: {xs: '0.875rem', sm: '1rem'}}}>
+          {state.name}
+        </Typography>
       </TableCell>
       <TableCell align="right">
-        <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
+        <Box sx={{display: 'flex', alignItems: 'center', gap: 0.5}}>
           <IconButton
             size="small"
             onClick={() => onAdjustQuantity(item._id, -1)}
             disabled={isSaving || state.quantity <= 0}
             title="Decrease quantity"
+            sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
           >
             <RemoveIcon fontSize="small" />
           </IconButton>
-          <Box sx={{minWidth: 40, textAlign: 'center'}}>{state.quantity}</Box>
+          <Box sx={{minWidth: 30, textAlign: 'center', fontSize: {xs: '0.875rem', sm: '1rem'}}}>{state.quantity}</Box>
           <IconButton
             size="small"
             onClick={() => onAdjustQuantity(item._id, 1)}
             disabled={isSaving}
             title="Increase quantity"
+            sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
           >
             <AddIcon fontSize="small" />
           </IconButton>
@@ -55,7 +62,7 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           placeholder="kg, liters, pcs"
           disabled={isSaving}
           error={hasError}
-          sx={{maxWidth: 120}}
+          sx={{maxWidth: {xs: 80, sm: 120}}}
         />
       </TableCell>
       <TableCell>
@@ -67,10 +74,10 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           disabled={isSaving}
           error={hasError}
           slotProps={{input: {}}}
-          sx={{maxWidth: 150}}
+          sx={{maxWidth: {xs: 120, sm: 150}}}
         />
       </TableCell>
-      <TableCell>
+      <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}}}>
         <TextField
           size="small"
           value={state.comment || ''}
@@ -88,6 +95,7 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           disabled={isSaving}
           color="error"
           title="Delete item"
+          sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
         >
           {isSaving ? <CircularProgress size={20} /> : <DeleteIcon fontSize="small" />}
         </IconButton>

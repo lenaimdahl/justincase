@@ -6,6 +6,8 @@ import {ListsGrid} from 'src/components/lists/grid/ListsGrid';
 import {EmptyListsState} from 'src/components/lists/grid/EmptyListsState';
 import {ListConfigurator} from 'src/components/lists/dialogs/ListConfigurator';
 import {useFetchLists} from 'src/hooks/useFetchLists';
+import {useNotification} from 'src/hooks/useNotification';
+import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 import {createList} from 'src/api/lists';
 import type {FieldConfig} from 'src/api/lists';
 
@@ -14,6 +16,8 @@ export const ListOverviewPage = () => {
   const {lists, loading, error, refetch} = useFetchLists();
   const [openConfigurator, setOpenConfigurator] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
+  const notification = useNotification();
+  const {handleError} = useApiErrorHandler();
 
   const handleOpenConfigurator = () => {
     setOpenConfigurator(true);
@@ -35,8 +39,9 @@ export const ListOverviewPage = () => {
       });
       handleCloseConfigurator();
       await refetch();
+      notification.success(`List "${name}" created successfully`);
     } catch (err) {
-      console.error('Failed to create list:', err);
+      handleError(err, 'Failed to create list');
     } finally {
       setCreatingList(false);
     }
@@ -49,9 +54,11 @@ export const ListOverviewPage = () => {
   return (
     <Container
       component="main"
+      maxWidth="xl"
       sx={{
-        py: 4,
+        py: {xs: 2, sm: 4},
         flex: 1,
+        px: {xs: 1, sm: 2},
       }}
     >
       <ListOverviewHeader onCreateClick={handleOpenConfigurator} />

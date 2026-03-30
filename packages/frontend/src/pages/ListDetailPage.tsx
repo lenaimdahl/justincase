@@ -3,6 +3,8 @@ import {Container, Box, Alert, Typography, CircularProgress} from '@mui/material
 import {ItemView} from 'src/components/items/ItemView';
 import {useFetchItems} from 'src/hooks/useFetchItems';
 import {fetchListById} from 'src/api/lists';
+import {useNotification} from 'src/hooks/useNotification';
+import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 import {useState, useEffect} from 'react';
 import type {List} from 'src/api/lists';
 
@@ -12,6 +14,8 @@ export const ListDetailPage = () => {
   const [list, setList] = useState<List | null>(null);
   const [listLoading, setListLoading] = useState(true);
   const [listError, setListError] = useState<string>('');
+  const notification = useNotification();
+  const {handleError} = useApiErrorHandler();
 
   useEffect(() => {
     if (!listId) return;
@@ -21,19 +25,19 @@ export const ListDetailPage = () => {
         const data = await fetchListById(listId);
         setList(data);
       } catch (err) {
-        setListError('Failed to load list');
-        console.error(err);
+        const {errorMessage} = handleError(err, 'Failed to load list');
+        setListError(errorMessage);
       } finally {
         setListLoading(false);
       }
     };
 
     loadList();
-  }, [listId]);
+  }, [listId, handleError]);
 
   if (!listId) {
     return (
-      <Container component="main" sx={{py: 4}}>
+      <Container component="main" sx={{py: {xs: 2, sm: 4}}}>
         <Alert severity="error">List ID not found</Alert>
       </Container>
     );
@@ -41,7 +45,7 @@ export const ListDetailPage = () => {
 
   if (listLoading) {
     return (
-      <Container component="main" sx={{py: 4}}>
+      <Container component="main" sx={{py: {xs: 2, sm: 4}}}>
         <Box sx={{display: 'flex', justifyContent: 'center'}}>
           <CircularProgress />
         </Box>
@@ -51,7 +55,7 @@ export const ListDetailPage = () => {
 
   if (!list) {
     return (
-      <Container component="main" sx={{py: 4}}>
+      <Container component="main" sx={{py: {xs: 2, sm: 4}}}>
         <Alert severity="error">{listError || 'List not found'}</Alert>
       </Container>
     );
@@ -60,13 +64,22 @@ export const ListDetailPage = () => {
   return (
     <Container
       component="main"
+      maxWidth="lg"
       sx={{
-        py: 4,
+        py: {xs: 2, sm: 4},
         flex: 1,
+        px: {xs: 1, sm: 2},
       }}
     >
       <Box sx={{mb: 3}}>
-        <Typography variant="h4" component="h1" sx={{color: list.color}}>
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{
+            color: list.color,
+            fontSize: {xs: '1.75rem', sm: '2.125rem'},
+          }}
+        >
           {list.icon} {list.name}
         </Typography>
       </Box>
