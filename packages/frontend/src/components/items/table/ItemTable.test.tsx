@@ -1,7 +1,20 @@
-import {describe, it, expect, vi} from 'vitest';
-import {render, screen} from '@testing-library/react';
+import {describe, it, expect, vi, beforeEach} from 'vitest';
+import {render, screen, waitFor} from '@testing-library/react';
 import {ItemTable} from 'src/components/items/table/ItemTable';
+import {NotificationProvider} from 'src/contexts/NotificationContext';
 import type {Item} from 'src/types/item';
+
+// Mock the API calls
+vi.mock('src/api/items', () => ({
+  createItem: vi.fn(),
+  updateItem: vi.fn(),
+  deleteItem: vi.fn(),
+  adjustItemQuantity: vi.fn(),
+}));
+
+const renderWithNotification = (component: React.ReactNode) => {
+  return render(<NotificationProvider>{component}</NotificationProvider>);
+};
 
 describe('ItemTable Component', () => {
   const mockItems: Item[] = [
@@ -28,61 +41,77 @@ describe('ItemTable Component', () => {
     onItemsChange: vi.fn(),
   };
 
-  it('should render table container', () => {
-    render(<ItemTable {...defaultProps} />);
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
-    const table = screen.getByRole('table');
-    expect(table).toBeInTheDocument();
+  it('should render table container', async () => {
+    renderWithNotification(<ItemTable {...defaultProps} />);
+
+    await waitFor(() => {
+      const table = screen.getByRole('table');
+      expect(table).toBeInTheDocument();
+    });
   });
 
   it('should render loading spinner when loading', () => {
-    render(<ItemTable {...defaultProps} loading={true} />);
+    renderWithNotification(<ItemTable {...defaultProps} loading={true} />);
 
     const progressbar = screen.getByRole('progressbar');
     expect(progressbar).toBeInTheDocument();
   });
 
   it('should not show items when loading', () => {
-    render(<ItemTable {...defaultProps} loading={true} />);
+    renderWithNotification(<ItemTable {...defaultProps} loading={true} />);
 
     expect(screen.queryByText('Apple')).not.toBeInTheDocument();
   });
 
-  it('should render table head', () => {
-    render(<ItemTable {...defaultProps} />);
+  it('should render table head', async () => {
+    renderWithNotification(<ItemTable {...defaultProps} />);
 
-    const thead = document.querySelector('thead');
-    expect(thead).toBeInTheDocument();
+    await waitFor(() => {
+      const thead = document.querySelector('thead');
+      expect(thead).toBeInTheDocument();
+    });
   });
 
-  it('should render items in table rows', () => {
-    render(<ItemTable {...defaultProps} />);
+  it('should render items in table rows', async () => {
+    renderWithNotification(<ItemTable {...defaultProps} />);
 
-    expect(screen.getByText('Apple')).toBeInTheDocument();
-    expect(screen.getByText('Orange')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Apple')).toBeInTheDocument();
+      expect(screen.getByText('Orange')).toBeInTheDocument();
+    });
   });
 
-  it('should display item quantities', () => {
-    render(<ItemTable {...defaultProps} />);
+  it('should display item quantities', async () => {
+    renderWithNotification(<ItemTable {...defaultProps} />);
 
-    expect(screen.getByText('5')).toBeInTheDocument();
-    expect(screen.getByText('3')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('5')).toBeInTheDocument();
+      expect(screen.getByText('3')).toBeInTheDocument();
+    });
   });
 
-  it('should render empty table when no items provided', () => {
-    render(<ItemTable {...defaultProps} items={[]} />);
+  it('should render empty table when no items provided', async () => {
+    renderWithNotification(<ItemTable {...defaultProps} items={[]} />);
 
-    const table = screen.getByRole('table');
-    expect(table).toBeInTheDocument();
+    await waitFor(() => {
+      const table = screen.getByRole('table');
+      expect(table).toBeInTheDocument();
+    });
 
     // Table head should exist but no item rows
     expect(screen.queryByText('Apple')).not.toBeInTheDocument();
   });
 
-  it('should initialize with provided listId', () => {
-    render(<ItemTable {...defaultProps} listId="test-list-123" />);
+  it('should initialize with provided listId', async () => {
+    renderWithNotification(<ItemTable {...defaultProps} listId="test-list-123" />);
 
-    const table = screen.getByRole('table');
-    expect(table).toBeInTheDocument();
+    await waitFor(() => {
+      const table = screen.getByRole('table');
+      expect(table).toBeInTheDocument();
+    });
   });
 });
