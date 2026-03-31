@@ -6,6 +6,7 @@ export const LIST_COLORS = ['#9c27b0', '#e91e63', '#f44336', '#ff9800', '#4caf50
 
 export interface PresetTemplate {
   name: string;
+  description?: string;
   hasCheckbox?: boolean;
   multipleCheckboxes?: boolean;
   checkboxLabels?: string[];
@@ -18,21 +19,25 @@ export interface PresetTemplate {
 export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
   shopping: {
     name: 'Einkaufsliste',
+    description: 'Mit Häkchen und Mengen',
     hasCheckbox: true,
     hasQuantity: true,
   },
   guestlist: {
     name: 'Gästeliste',
+    description: 'Mit Zusagen und Absagen',
     hasCheckbox: true,
     multipleCheckboxes: true,
     checkboxLabels: ['Zugesagt', 'Abgesagt'],
   },
   packing: {
     name: 'Packliste',
+    description: 'Mit Häkchen zum Abhaken',
     hasCheckbox: true,
   },
   pantry: {
     name: 'Vorratsschrank',
+    description: 'Mit Verfallsdaten und Mengen',
     hasQuantity: true,
     hasExpiryDate: true,
   },

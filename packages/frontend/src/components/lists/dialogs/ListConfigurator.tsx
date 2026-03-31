@@ -1,7 +1,10 @@
-import {Dialog, DialogTitle, DialogContent, DialogActions, Button, Stepper, Step, StepLabel} from '@mui/material';
+import {Dialog, DialogTitle, DialogContent, DialogActions, Button, Stepper, Step, StepLabel, Box} from '@mui/material';
 import {useState} from 'react';
 import type {FieldConfig} from 'src/api/lists';
-import {ListBasicsStep} from 'src/components/lists/dialogs/ListBasicsStep';
+import {ListTemplateStep} from 'src/components/lists/dialogs/ListTemplateStep';
+import {ListColorStep} from 'src/components/lists/dialogs/ListColorStep';
+import {ListIconStep} from 'src/components/lists/dialogs/ListIconStep';
+import {ListNameStep} from 'src/components/lists/dialogs/ListNameStep';
 import {ListFieldsStep} from 'src/components/lists/dialogs/ListFieldsStep';
 import {ListCheckboxesStep} from 'src/components/lists/dialogs/ListCheckboxesStep';
 import {PRESET_TEMPLATES, DEFAULT_FIELD_CONFIG} from 'src/constants/listTemplates';
@@ -20,9 +23,11 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
   const [color, setColor] = useState('#9c27b0');
   const [fieldConfig, setFieldConfig] = useState<FieldConfig>(DEFAULT_FIELD_CONFIG);
 
+  const totalSteps = 6; // Templates, Color, Icon, Name, Fields, Checkboxes
+
   const handleNext = () => {
-    if (step === 0 && !name.trim()) return;
-    if (step < 2) {
+    if (step === 3 && !name.trim()) return; // Validate name before moving to fields
+    if (step < totalSteps - 1) {
       setStep(step + 1);
     }
   };
@@ -87,6 +92,8 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
     });
 
     setFieldConfig(newConfig);
+    // Move to next step after template selection
+    setStep(1);
   };
 
   const handleSubmit = () => {
@@ -106,10 +113,19 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
 
   return (
     <Dialog open={open} onClose={handleReset} maxWidth="sm" fullWidth>
-      <DialogTitle>Liste konfigurieren</DialogTitle>
+      <DialogTitle>Liste erstellen</DialogTitle>
       <Stepper activeStep={step} sx={{p: 2}}>
         <Step>
-          <StepLabel>Basis</StepLabel>
+          <StepLabel>Vorlage</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Farbe</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Icon</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Name</StepLabel>
         </Step>
         <Step>
           <StepLabel>Felder</StepLabel>
@@ -119,32 +135,32 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
         </Step>
       </Stepper>
 
-      <DialogContent sx={{minHeight: 400}}>
-        {step === 0 && (
-          <ListBasicsStep
-            name={name}
-            icon={icon}
-            color={color}
-            loading={loading}
-            onNameChange={setName}
-            onIconChange={setIcon}
-            onColorChange={setColor}
-            onTemplateSelect={handleApplyTemplate}
-          />
-        )}
+      <DialogContent sx={{minHeight: 300}}>
+        {step === 0 && <ListTemplateStep loading={loading} onTemplateSelect={handleApplyTemplate} />}
 
-        {step === 1 && <ListFieldsStep fieldConfig={fieldConfig} loading={loading} onFieldChange={handleFieldChange} />}
+        {step === 1 && <ListColorStep color={color} loading={loading} onColorChange={setColor} />}
 
-        {step === 2 && (
+        {step === 2 && <ListIconStep icon={icon} loading={loading} onIconChange={setIcon} />}
+
+        {step === 3 && <ListNameStep name={name} icon={icon} loading={loading} onNameChange={setName} />}
+
+        {step === 4 && <ListFieldsStep fieldConfig={fieldConfig} loading={loading} onFieldChange={handleFieldChange} />}
+
+        {step === 5 && (
           <ListCheckboxesStep
             fieldConfig={fieldConfig}
             loading={loading}
-            onMultipleCheckboxesChange={val => handleFieldChange('multipleCheckboxes')}
+            onMultipleCheckboxesChange={() => handleFieldChange('multipleCheckboxes')}
             onCheckboxLabelChange={handleCheckboxLabelChange}
             onAddCheckboxLabel={handleAddCheckboxLabel}
             onRemoveCheckboxLabel={handleRemoveCheckboxLabel}
           />
         )}
+
+        {/* Progress indicator */}
+        <Box sx={{mt: 3, mb: -2, textAlign: 'center', fontSize: '0.9em', color: '#999'}}>
+          Schritt {step + 1} von {totalSteps}
+        </Box>
       </DialogContent>
 
       <DialogActions>
@@ -156,12 +172,12 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
             Zurück
           </Button>
         )}
-        {step < 2 && (
-          <Button onClick={handleNext} variant="contained" disabled={!name.trim() || loading}>
+        {step < totalSteps - 1 && (
+          <Button onClick={handleNext} variant="contained" disabled={(step === 3 && !name.trim()) || loading}>
             Weiter
           </Button>
         )}
-        {step === 2 && (
+        {step === totalSteps - 1 && (
           <Button onClick={handleSubmit} variant="contained" disabled={!name.trim() || loading}>
             Erstellen
           </Button>

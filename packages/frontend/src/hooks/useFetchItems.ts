@@ -1,6 +1,7 @@
 import {useState, useEffect, useCallback} from 'react';
 import type {Item} from 'src/types/item';
 import {fetchItemsByListId} from 'src/api/items';
+import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 
 interface UseFetchItemsReturn {
   items: Item[];
@@ -16,6 +17,7 @@ export const useFetchItems = (listId: string): UseFetchItemsReturn => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const {handleError} = useApiErrorHandler();
 
   const fetchItems = useCallback(async () => {
     setLoading(true);
@@ -25,11 +27,12 @@ export const useFetchItems = (listId: string): UseFetchItemsReturn => {
       const data = await fetchItemsByListId(listId);
       setItems(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch items');
+      const {errorMessage} = handleError(err, 'Failed to fetch items');
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
-  }, [listId]);
+  }, [listId, handleError]);
 
   useEffect(() => {
     fetchItems();

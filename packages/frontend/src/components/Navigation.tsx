@@ -45,19 +45,6 @@ export const Navigation = () => {
             {t('components.navigation.lists')}
           </MuiLink>
           <MuiLink
-            href="/items"
-            sx={{
-              color: 'inherit',
-              textDecoration: 'none',
-              fontWeight: 500,
-              '&:hover': {
-                opacity: 0.8,
-              },
-            }}
-          >
-            {t('components.navigation.items')}
-          </MuiLink>
-          <MuiLink
             href="/settings"
             sx={{
               color: 'inherit',
