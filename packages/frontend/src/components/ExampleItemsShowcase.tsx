@@ -32,15 +32,31 @@ export const ExampleItemsShowcase = () => {
       {(!expandedList || expandedList === 'example-pantry') && (
         <Box sx={{display: 'flex', gap: 3, mb: 4, flexWrap: 'wrap'}}>
           <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
-            <Box sx={{width: 16, height: 16, backgroundColor: 'transparent', border: '1px solid #ccc'}} />
+            <Box sx={{width: 12, height: 12, borderRadius: '50%', border: '2px solid #d0d0d0'}} />
             <Typography variant="caption">{t('pages.home.exampleLabelFresh')}</Typography>
           </Box>
           <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
-            <Box sx={{width: 16, height: 16, backgroundColor: '#fef3c7'}} />
+            <Box
+              sx={{
+                width: 12,
+                height: 12,
+                borderRadius: '50%',
+                backgroundColor: '#eab308',
+                boxShadow: '0 0 0 1px #eab308',
+              }}
+            />
             <Typography variant="caption">{t('pages.home.exampleLabelWarning')}</Typography>
           </Box>
           <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
-            <Box sx={{width: 16, height: 16, backgroundColor: '#fee2e2'}} />
+            <Box
+              sx={{
+                width: 12,
+                height: 12,
+                borderRadius: '50%',
+                backgroundColor: '#f87171',
+                boxShadow: '0 0 0 1px #f87171',
+              }}
+            />
             <Typography variant="caption">{t('pages.home.exampleLabelExpired')}</Typography>
           </Box>
         </Box>
