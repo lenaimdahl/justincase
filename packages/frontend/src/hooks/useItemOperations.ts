@@ -1,6 +1,8 @@
 import {useState, useCallback} from 'react';
 import type {Item, CreateItemRequest, UpdateItemRequest, EditingItem} from 'src/types/item';
 import {createItem, updateItem, deleteItem, adjustItemQuantity} from 'src/api/items';
+import {useNotification} from 'src/hooks/useNotification';
+import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 
 const DEBOUNCE_DELAY = 1000; // ms
 
@@ -36,6 +38,8 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
   });
   const [creatingItem, setCreatingItem] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
+  const notification = useNotification();
+  const {handleError} = useApiErrorHandler();
 
   const initializeEditingState = useCallback(
     (items: Item[]) => {
@@ -89,8 +93,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
             ...prev,
             [itemId]: {...prev[itemId], isSaving: false},
           }));
+          notification.success('Item updated');
         } catch (err) {
-          const errorMessage = err instanceof Error ? err.message : 'Update failed';
+          const {errorMessage} = handleError(err, 'Update failed');
           setEditingState(prev => ({
             ...prev,
             [itemId]: {
@@ -104,7 +109,7 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
 
       return () => clearTimeout(timer);
     },
-    [listId, editingState, onItemsChange]
+    [listId, editingState, onItemsChange, notification, handleError]
   );
 
   const handleAdjustQuantity = useCallback(
@@ -131,8 +136,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
           ...prev,
           [itemId]: {...prev[itemId], isSaving: false},
         }));
+        notification.success('Quantity updated');
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Quantity adjustment failed';
+        const {errorMessage} = handleError(err, 'Quantity adjustment failed');
         setEditingState(prev => ({
           ...prev,
           [itemId]: {
@@ -143,7 +149,7 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         }));
       }
     },
-    [listId, editingState, onItemsChange]
+    [listId, editingState, onItemsChange, notification, handleError]
   );
 
   const handleDeleteItem = useCallback(
@@ -161,8 +167,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
           delete newState[itemId];
           return newState;
         });
+        notification.success('Item deleted');
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Delete failed';
+        const {errorMessage} = handleError(err, 'Delete failed');
         setEditingState(prev => ({
           ...prev,
           [itemId]: {
@@ -173,12 +180,13 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         }));
       }
     },
-    [listId, onItemsChange]
+    [listId, onItemsChange, notification, handleError]
   );
 
   const handleCreateItem = useCallback(async () => {
     if (!newItem.name.trim()) {
       setCreateError('Item name is required');
+      notification.error('Item name is required');
       return;
     }
 
@@ -212,13 +220,14 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         expiryDates: [],
       });
       await onItemsChange();
+      notification.success('Item created successfully');
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to create item';
+      const {errorMessage} = handleError(err, 'Failed to create item');
       setCreateError(errorMessage);
     } finally {
       setCreatingItem(false);
     }
-  }, [listId, newItem, onItemsChange]);
+  }, [listId, newItem, onItemsChange, notification, handleError]);
 
   const toggleEditMode = useCallback((itemId: string) => {
     setItemsInEditMode(prev => {

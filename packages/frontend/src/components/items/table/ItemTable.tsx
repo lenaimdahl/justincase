@@ -47,8 +47,28 @@ export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemT
         </Alert>
       )}
 
-      <TableContainer component={Paper} sx={{mb: 3}}>
-        <Table>
+      <TableContainer
+        component={Paper}
+        sx={{
+          mb: 3,
+          overflowX: 'auto',
+          // Enable horizontal scroll on mobile
+          '&::-webkit-scrollbar': {
+            height: 8,
+          },
+          '&::-webkit-scrollbar-track': {
+            background: '#f1f1f1',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: '#888',
+            borderRadius: 4,
+            '&:hover': {
+              background: '#555',
+            },
+          },
+        }}
+      >
+        <Table sx={{minWidth: {xs: 600, sm: 700}}}>
           <TableHead>
             <ItemTableHeader />
           </TableHead>
