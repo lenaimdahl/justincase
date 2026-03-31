@@ -1,4 +1,12 @@
 {
+  "common": {
+    "name": "Name",
+    "quantity": "Quantity",
+    "comment": "Comment",
+    "unit": "Unit",
+    "expiryDate": "Expiry Date",
+    "actions": "Actions"
+  },
   "components": {
     "navigation": {
       "brand": "JustInCase",
@@ -11,7 +19,54 @@
   "pages": {
     "home": {
       "title": "Welcome to JustInCase",
-      "description": "Manage your items and keep track of what matters to you."
+      "description": "Manage your items and keep track of what matters to you.",
+      "exampleTitle": "Example Lists with Status Highlighting",
+      "exampleDescription": "Click on a list to view example items. Items are color-coded by expiry status:",
+      "exampleLabelFresh": "Fresh (More than 7 days)",
+      "exampleLabelWarning": "Warning (Within 7 days)",
+      "exampleLabelExpired": "Expired (Past expiry date)",
+      "exampleTip": "Tip: Click \"Lists\" in the menu to create your own lists and add items. Only your custom items will appear there—these examples are for demonstration purposes only."
+    },
+    "exampleLists": {
+      "shopping": "Shopping List",
+      "guests": "Guest List",
+      "packing": "Packing List",
+      "pantry": "Pantry"
+    },
+    "exampleItems": {
+      "shoppingMilk": "Milk",
+      "shoppingMilkComment": "Best before min. 1 week",
+      "shoppingBread": "Bread",
+      "shoppingBreadComment": "Whole wheat",
+      "shoppingApples": "Apples",
+      "guestAnna": "Anna Mueller",
+      "guestTom": "Tom Schmidt",
+      "guestTomQuantity": "4",
+      "guestLisa": "Lisa Weber",
+      "packingClothes": "Clothes",
+      "packingClothesComment": "T-shirts and pants",
+      "packingToothbrush": "Toothbrush",
+      "packingDocuments": "Documents",
+      "packingDocumentsComment": "Passport, tickets, insurance",
+      "pantryFlour": "Flour",
+      "pantryFlourComment": "Fresh - long shelf life",
+      "pantryYogurt": "Yogurt",
+      "pantryYogurtComment": "Warning - expires in 5 days",
+      "pantryKetchup": "Ketchup",
+      "pantryKetchupComment": "Expired - needs replacing"
+    },
+    "guestListTable": {
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "shopping": {
+      "yumLabel": "Bought"
+    },
+    "pantry": {
+      "buyNewLabel": "Buy New"
+    },
+    "packing": {
+      "packedLabel": "Packed"
     },
     "listOverview": {
       "title": "My Lists",

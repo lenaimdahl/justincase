@@ -1,4 +1,12 @@
 {
+  "common": {
+    "name": "Name",
+    "quantity": "Menge",
+    "comment": "Bemerkung",
+    "unit": "Einheit",
+    "expiryDate": "Verfallsdatum",
+    "actions": "Aktionen"
+  },
   "components": {
     "navigation": {
       "brand": "JustInCase",
@@ -11,7 +19,54 @@
   "pages": {
     "home": {
       "title": "Willkommen bei JustInCase",
-      "description": "Verwalten Sie Ihre Artikel und behalten Sie den Überblick über das, was für Sie zählt."
+      "description": "Verwalten Sie Ihre Artikel und behalten Sie den Überblick über das, was für Sie zählt.",
+      "exampleTitle": "Beispiellisten mit Statushervorhebung",
+      "exampleDescription": "Klicken Sie auf eine Liste, um Beispielartikel anzuzeigen. Artikel sind nach Ablaufdatum farbcodiert:",
+      "exampleLabelFresh": "Frisch (mehr als 7 Tage)",
+      "exampleLabelWarning": "Warnung (innerhalb von 7 Tagen)",
+      "exampleLabelExpired": "Abgelaufen (nach Ablaufdatum)",
+      "exampleTip": "Tipp: Klicken Sie im Menü auf \"Listen\", um Ihre eigenen Listen zu erstellen und Artikel hinzuzufügen. Nur Ihre benutzerdefinierten Artikel werden dort angezeigt – diese Beispiele dienen nur zu Demonstrationszwecken."
+    },
+    "exampleLists": {
+      "shopping": "Einkaufsliste",
+      "guests": "Gästeliste",
+      "packing": "Packliste",
+      "pantry": "Vorratsschrank"
+    },
+    "exampleItems": {
+      "shoppingMilk": "Milch",
+      "shoppingMilkComment": "Mindestens 1 Woche haltbar",
+      "shoppingBread": "Brot",
+      "shoppingBreadComment": "Vollkornbrot",
+      "shoppingApples": "Äpfel",
+      "guestAnna": "Anna Müller",
+      "guestTom": "Tom Schmidt",
+      "guestTomQuantity": "4",
+      "guestLisa": "Lisa Weber",
+      "packingClothes": "Kleidung",
+      "packingClothesComment": "T-Shirts und Hosen",
+      "packingToothbrush": "Zahnbürste",
+      "packingDocuments": "Dokumente",
+      "packingDocumentsComment": "Pass, Tickets, Versicherung",
+      "pantryFlour": "Mehl",
+      "pantryFlourComment": "Frisch - lange haltbar",
+      "pantryYogurt": "Joghurt",
+      "pantryYogurtComment": "Warnung - läuft in 5 Tagen ab",
+      "pantryKetchup": "Ketchup",
+      "pantryKetchupComment": "Abgelaufen - austauschen"
+    },
+    "guestListTable": {
+      "confirmed": "Zugesagt",
+      "cancelled": "Abgesagt"
+    },
+    "shopping": {
+      "yumLabel": "Gekauft"
+    },
+    "pantry": {
+      "buyNewLabel": "Neu kaufen"
+    },
+    "packing": {
+      "packedLabel": "Gepackt"
     },
     "listOverview": {
       "title": "Meine Listen",
