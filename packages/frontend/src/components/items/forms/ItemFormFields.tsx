@@ -94,19 +94,22 @@ export const MultipleExpiryDatesField = ({
       </Box>
       <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 1}}>
         {Array.from({length: quantity || 1}).map((_, idx) => (
-          <TextField
-            key={idx}
-            size="small"
-            type="date"
-            value={newItem.expiryDates?.[idx] || ''}
-            onChange={e => {
-              const expiryDates = [...(newItem.expiryDates || [])];
-              expiryDates[idx] = e.target.value;
-              onChange({...newItem, expiryDates});
-            }}
-            disabled={disabled}
-            label={`Menge ${idx + 1}`}
-          />
+          <Box key={idx} sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
+            <Box sx={{fontSize: '0.8em', fontWeight: 500, color: '#666'}}>Menge {idx + 1}</Box>
+            <TextField
+              size="small"
+              type="date"
+              variant="standard"
+              value={newItem.expiryDates?.[idx] || ''}
+              onChange={e => {
+                const expiryDates = [...(newItem.expiryDates || [])];
+                expiryDates[idx] = e.target.value;
+                onChange({...newItem, expiryDates});
+              }}
+              disabled={disabled}
+              sx={{width: '100%'}}
+            />
+          </Box>
         ))}
       </Box>
     </Box>

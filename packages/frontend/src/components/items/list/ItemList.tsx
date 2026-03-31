@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import type {Item} from 'src/types/item';
 import {useItemOperations} from 'src/hooks/useItemOperations';
 import {useCheckboxState} from 'src/hooks/useCheckboxState';
@@ -302,7 +302,6 @@ export const ItemList = ({
                 value={newItem.expiryDate || ''}
                 onChange={e => setNewItem({...newItem, expiryDate: e.target.value})}
                 disabled={creatingItem}
-                InputLabelProps={{shrink: true}}
                 sx={{width: 180}}
               />
             )}
