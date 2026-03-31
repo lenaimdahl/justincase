@@ -10,3 +10,28 @@ body,
   display: flex;
   flex-direction: column;
 }
+
+/* Item status highlighting styles */
+
+/* Fresh items - no special highlighting */
+.item-status-fresh {
+  background-color: transparent;
+}
+
+/* Warning items - yellow highlighting */
+.item-status-warning {
+  background-color: #fef3c7; /* Light yellow background */
+}
+
+.item-status-warning td {
+  border-color: #fbbf24; /* Amber border for table cells */
+}
+
+/* Expired items - red highlighting */
+.item-status-expired {
+  background-color: #fee2e2; /* Light red background */
+}
+
+.item-status-expired td {
+  border-color: #ef4444; /* Red border for table cells */
+}

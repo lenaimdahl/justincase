@@ -126,7 +126,42 @@ All code must pass linting and type checks before merging.
 
 ---
 
-## 5. Development setup
+## 5. Comments and documentation
+
+**Use minimal, essential comments only:**
+
+- Only add comments for **non-obvious logic** or **complex algorithms**
+- Never comment self-explanatory code
+- Remove inline comments that restate what the code already says
+- Keep JSDoc blocks for exported functions (valuable for IDE hints)
+- Code should be readable without comments through clear naming and structure
+
+**Examples:**
+
+```typescript
+// ✅ CORRECT - JSDoc for exported functions, no obvious inline comments
+/**
+ * Calculate days between two dates
+ */
+function getDaysBetween(from: Date, to: Date): number {
+  const msPerDay = 24 * 60 * 60 * 1000;
+  return Math.floor((to.getTime() - from.getTime()) / msPerDay);
+}
+
+// ❌ WRONG - Redundant comments
+/**
+ * Get current date
+ * @returns Date object representing today
+ */
+function getCurrentDate(): Date {
+  const now = new Date(); // Create new date
+  return now; // Return it
+}
+```
+
+---
+
+## 7. Development setup
 
 ### Backend
 
@@ -148,7 +183,7 @@ yarn dev
 
 ---
 
-## 6. Testing
+## 8. Testing
 
 - Unit tests are colocated with the source code and have the `.test.ts` extension
 - vitest is used for both frontend and backend
@@ -160,7 +195,7 @@ yarn test
 
 ---
 
-## 7. Code review guidelines
+## 9. Code review guidelines
 
 - Pull request titles follow conventional commits
 - Each PR should describe:
@@ -172,7 +207,7 @@ yarn test
 
 ---
 
-## 8. Contributions
+## 10. Contributions
 
 - Open issues or tickets first
 - Assign yourself to a ticket before work
@@ -180,7 +215,7 @@ yarn test
 
 ---
 
-## 9. Deployment
+## 11. Deployment
 
 - Frontend and backend are automatically deployed via Vercel on merge to `main`
 - Use environment variables for sensitive data
@@ -188,7 +223,7 @@ yarn test
 
 ---
 
-## 10. Dependency versioning
+## 12. Dependency versioning
 
 - All dependencies in **every `package.json` file** must use **exact versions** (no `^`, `~`, or other range specifiers)
 - Example: `"react": "18.2.0"` instead of `"react": "^18.2.0"`
@@ -197,7 +232,7 @@ yarn test
 
 ---
 
-## 11. Additional notes
+## 13. Additional notes
 
 - All dates in items must be handled in UTC+1
 - Status highlights (yellow/red) are derived from the date logic in frontend
