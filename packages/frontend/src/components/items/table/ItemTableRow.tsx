@@ -3,6 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import type {Item, UpdateItemRequest} from 'src/types/item';
+import {getStatusClassName} from 'src/utils/dateHelpers';
 
 interface ItemTableRowProps {
   item: Item;
@@ -15,9 +16,11 @@ interface ItemTableRowProps {
 export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDelete}: ItemTableRowProps) => {
   const isSaving = state.isSaving;
   const hasError = !!state.error;
+  const statusClassName = getStatusClassName(state.expiryDate);
 
   return (
     <TableRow
+      className={statusClassName}
       sx={{
         opacity: isSaving ? 0.6 : 1,
         backgroundColor: hasError ? '#ffebee' : 'transparent',

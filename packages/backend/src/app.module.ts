@@ -5,7 +5,6 @@ import {HealthController, UnderscoreHealthController} from 'src/controllers/heal
 import {ListsController} from 'src/controllers/lists.controller';
 import {ItemsModule} from 'src/modules/items/items.module';
 import {ListsService} from 'src/services/lists.service';
-import {SeedService} from 'src/services/seed.service';
 import {MainController} from './controllers/main.controller';
 
 @Module({
@@ -23,6 +22,6 @@ import {MainController} from './controllers/main.controller';
     ItemsModule,
   ],
   controllers: [HealthController, MainController, UnderscoreHealthController, ListsController],
-  providers: [ListsService, SeedService],
+  providers: [ListsService],
 })
 export class AppModule {}

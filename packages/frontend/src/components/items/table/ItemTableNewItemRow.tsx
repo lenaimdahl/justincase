@@ -1,6 +1,7 @@
 import {TableRow, TableCell, IconButton, CircularProgress, TextField, Box} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import type {CreateItemRequest} from 'src/types/item';
+import {getStatusClassName} from 'src/utils/dateHelpers';
 
 interface ItemTableNewItemRowProps {
   newItem: CreateItemRequest;
@@ -10,8 +11,10 @@ interface ItemTableNewItemRowProps {
 }
 
 export const ItemTableNewItemRow = ({newItem, creatingItem, onItemChange, onSubmit}: ItemTableNewItemRowProps) => {
+  const statusClassName = getStatusClassName(newItem.expiryDate);
+
   return (
-    <TableRow sx={{backgroundColor: '#f9f9f9'}}>
+    <TableRow className={statusClassName} sx={{backgroundColor: '#f9f9f9'}}>
       <TableCell sx={{overflow: 'hidden'}}>
         <TextField
           size="small"
