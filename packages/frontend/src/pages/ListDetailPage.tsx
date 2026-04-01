@@ -1,5 +1,6 @@
 import {useParams} from 'react-router-dom';
-import {Container, Box, Alert, Typography, CircularProgress} from '@mui/material';
+import {Container, Box, Alert, CircularProgress} from '@mui/material';
+import {ListHeader} from 'src/components/lists/ListHeader';
 import {ItemView} from 'src/components/items/ItemView';
 import {useFetchItems} from 'src/hooks/useFetchItems';
 import {fetchListById} from 'src/api/lists';
@@ -69,18 +70,7 @@ export const ListDetailPage = () => {
         px: {xs: 1, sm: 2},
       }}
     >
-      <Box sx={{mb: 3}}>
-        <Typography
-          variant="h4"
-          component="h1"
-          sx={{
-            color: list.color,
-            fontSize: {xs: '1.75rem', sm: '2.125rem'},
-          }}
-        >
-          {list.icon} {list.name}
-        </Typography>
-      </Box>
+      <ListHeader list={list} />
 
       {error && (
         <Alert severity="error" sx={{mb: 3}}>

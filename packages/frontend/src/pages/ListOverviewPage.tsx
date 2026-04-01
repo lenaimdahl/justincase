@@ -13,7 +13,7 @@ import type {FieldConfig} from 'src/api/lists';
 
 export const ListOverviewPage = () => {
   const navigate = useNavigate();
-  const {lists, loading, error, refetch} = useFetchLists();
+  const {lists, loading, error} = useFetchLists();
   const [openConfigurator, setOpenConfigurator] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const notification = useNotification();
@@ -31,15 +31,16 @@ export const ListOverviewPage = () => {
     setCreatingList(true);
 
     try {
-      await createList({
+      const newList = await createList({
         name,
         icon,
         color,
         fieldConfig,
       });
       handleCloseConfigurator();
-      await refetch();
       notification.success(`List "${name}" created successfully`);
+      // Navigate to the new list detail page
+      navigate(`/lists/${newList.id}`);
     } catch (err) {
       handleError(err, 'Failed to create list');
     } finally {

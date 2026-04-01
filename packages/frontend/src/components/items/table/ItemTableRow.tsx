@@ -3,17 +3,26 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import type {Item, UpdateItemRequest} from 'src/types/item';
+import type {FieldConfig} from 'src/types/list';
 import {getStatusClassName} from 'src/utils/dateHelpers';
 
 interface ItemTableRowProps {
   item: Item;
   state: Item & {isSaving?: boolean; error?: string | null};
+  fieldConfig?: FieldConfig;
   onAdjustQuantity: (itemId: string, adjustment: number) => Promise<void>;
   onUpdateField: (itemId: string, field: keyof UpdateItemRequest, value: string | number) => void;
   onDelete: (itemId: string) => Promise<void>;
 }
 
-export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDelete}: ItemTableRowProps) => {
+export const ItemTableRow = ({
+  item,
+  state,
+  fieldConfig,
+  onAdjustQuantity,
+  onUpdateField,
+  onDelete,
+}: ItemTableRowProps) => {
   const isSaving = state.isSaving;
   const hasError = !!state.error;
   const statusClassName = getStatusClassName(state.expiryDate);
@@ -34,66 +43,76 @@ export const ItemTableRow = ({item, state, onAdjustQuantity, onUpdateField, onDe
           {state.name}
         </Typography>
       </TableCell>
-      <TableCell align="right" sx={{overflow: 'hidden'}}>
-        <Box sx={{display: 'flex', alignItems: 'center', gap: 0.5}}>
-          <IconButton
+      {fieldConfig?.hasQuantity !== false && (
+        <>
+          <TableCell align="right" sx={{overflow: 'hidden'}}>
+            <Box sx={{display: 'flex', alignItems: 'center', gap: 0.5}}>
+              <IconButton
+                size="small"
+                onClick={() => onAdjustQuantity(item._id, -1)}
+                disabled={isSaving || state.quantity <= 0}
+                title="Decrease quantity"
+                sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
+              >
+                <RemoveIcon fontSize="small" />
+              </IconButton>
+              <Box sx={{minWidth: 30, textAlign: 'center', fontSize: {xs: '0.875rem', sm: '1rem'}}}>
+                {state.quantity}
+              </Box>
+              <IconButton
+                size="small"
+                onClick={() => onAdjustQuantity(item._id, 1)}
+                disabled={isSaving}
+                title="Increase quantity"
+                sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
+              >
+                <AddIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          </TableCell>
+          <TableCell sx={{overflow: 'hidden'}}>
+            <TextField
+              size="small"
+              label="Einheit"
+              variant="standard"
+              value={state.unit || ''}
+              onChange={e => onUpdateField(item._id, 'unit', e.target.value)}
+              disabled={isSaving}
+              error={hasError}
+              sx={{maxWidth: {xs: 80, sm: 120}}}
+            />
+          </TableCell>
+        </>
+      )}
+      {fieldConfig?.hasExpiryDate !== false && (
+        <TableCell sx={{overflow: 'hidden'}}>
+          <TextField
             size="small"
-            onClick={() => onAdjustQuantity(item._id, -1)}
-            disabled={isSaving || state.quantity <= 0}
-            title="Decrease quantity"
-            sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
-          >
-            <RemoveIcon fontSize="small" />
-          </IconButton>
-          <Box sx={{minWidth: 30, textAlign: 'center', fontSize: {xs: '0.875rem', sm: '1rem'}}}>{state.quantity}</Box>
-          <IconButton
-            size="small"
-            onClick={() => onAdjustQuantity(item._id, 1)}
+            type="date"
+            variant="standard"
+            label="Ablaufdatum"
+            value={state.expiryDate || ''}
+            onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
             disabled={isSaving}
-            title="Increase quantity"
-            sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
-          >
-            <AddIcon fontSize="small" />
-          </IconButton>
-        </Box>
-      </TableCell>
-      <TableCell sx={{overflow: 'hidden'}}>
-        <TextField
-          size="small"
-          label="Einheit"
-          variant="standard"
-          value={state.unit || ''}
-          onChange={e => onUpdateField(item._id, 'unit', e.target.value)}
-          disabled={isSaving}
-          error={hasError}
-          sx={{maxWidth: {xs: 80, sm: 120}}}
-        />
-      </TableCell>
-      <TableCell sx={{overflow: 'hidden'}}>
-        <TextField
-          size="small"
-          type="date"
-          variant="standard"
-          label="Ablaufdatum"
-          value={state.expiryDate || ''}
-          onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
-          disabled={isSaving}
-          error={hasError}
-          sx={{maxWidth: {xs: 120, sm: 150}}}
-        />
-      </TableCell>
-      <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}, overflow: 'hidden'}}>
-        <TextField
-          size="small"
-          label="Notiz"
-          variant="standard"
-          value={state.comment || ''}
-          onChange={e => onUpdateField(item._id, 'comment', e.target.value)}
-          disabled={isSaving}
-          error={hasError}
-          sx={{maxWidth: 150}}
-        />
-      </TableCell>
+            error={hasError}
+            sx={{maxWidth: {xs: 120, sm: 150}}}
+          />
+        </TableCell>
+      )}
+      {fieldConfig?.hasNotes !== false && (
+        <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}, overflow: 'hidden'}}>
+          <TextField
+            size="small"
+            label="Notiz"
+            variant="standard"
+            value={state.comment || ''}
+            onChange={e => onUpdateField(item._id, 'comment', e.target.value)}
+            disabled={isSaving}
+            error={hasError}
+            sx={{maxWidth: 150}}
+          />
+        </TableCell>
+      )}
       <TableCell align="center">
         <IconButton
           size="small"
