@@ -1,17 +1,24 @@
 import {useState} from 'react';
-import {Box, Typography, Card, CardContent, Table, TableBody, TableContainer, Paper, Grid} from '@mui/material';
+import {Box, Typography, Card, CardContent, Grid} from '@mui/material';
 import {useTranslation} from 'react-i18next';
 import {EXAMPLE_LISTS, EXAMPLE_ITEMS} from 'src/constants/exampleItems';
-import {ItemTableHeader} from 'src/components/items/itemtables/ItemTableHeader';
-import {ExampleItemTableRow} from 'src/components/items/itemtables/examples/ExampleItemTableRow';
-import {ExampleGuestListHeader} from 'src/components/items/itemtables/examples/ExampleGuestListHeader';
-import {ExampleGuestListRow} from 'src/components/items/itemtables/examples/ExampleGuestListRow';
-import {ExamplePackingListHeader} from 'src/components/items/itemtables/examples/ExamplePackingListHeader';
-import {ExamplePackingListRow} from 'src/components/items/itemtables/examples/ExamplePackingListRow';
-import {ExampleShoppingListHeader} from 'src/components/items/itemtables/examples/ExampleShoppingListHeader';
-import {ExampleShoppingListRow} from 'src/components/items/itemtables/examples/ExampleShoppingListRow';
-import {ExamplePantryListHeader} from 'src/components/items/itemtables/examples/ExamplePantryListHeader';
-import {ExamplePantryListRow} from 'src/components/items/itemtables/examples/ExamplePantryListRow';
+import {ItemTable} from 'src/components/items/itemtables/ItemTable';
+import type {FieldConfig} from 'src/types/list';
+
+const getFieldConfigForList = (listId: string): FieldConfig => {
+  switch (listId) {
+    case 'example-shopping':
+      return {hasCheckbox: true, hasQuantity: true};
+    case 'example-guests':
+      return {hasCheckbox: true, multipleCheckboxes: true, checkboxLabels: ['Zugesagt', 'Abgesagt']};
+    case 'example-packing':
+      return {hasCheckbox: true};
+    case 'example-pantry':
+      return {hasQuantity: true, hasExpiryDate: true};
+    default:
+      return {hasCheckbox: true};
+  }
+};
 
 export const ExampleItemsShowcase = () => {
   const {t} = useTranslation();
@@ -102,75 +109,12 @@ export const ExampleItemsShowcase = () => {
             Items
           </Typography>
 
-          <TableContainer
-            component={Paper}
-            sx={{
-              mb: 3,
-              overflowX: 'auto',
-              '&::-webkit-scrollbar': {
-                height: 8,
-              },
-              '&::-webkit-scrollbar-track': {
-                background: '#f1f1f1',
-              },
-              '&::-webkit-scrollbar-thumb': {
-                background: '#888',
-                borderRadius: 4,
-                '&:hover': {
-                  background: '#555',
-                },
-              },
-            }}
-          >
-            <Table sx={{minWidth: {xs: 600, sm: 700}}}>
-              {expandedList === 'example-shopping' ? (
-                <>
-                  <ExampleShoppingListHeader />
-                  <TableBody>
-                    {getListItems(expandedList).map(item => (
-                      <ExampleShoppingListRow key={item._id} item={item} />
-                    ))}
-                  </TableBody>
-                </>
-              ) : expandedList === 'example-guests' ? (
-                <>
-                  <ExampleGuestListHeader />
-                  <TableBody>
-                    {getListItems(expandedList).map(item => (
-                      <ExampleGuestListRow key={item._id} item={item} />
-                    ))}
-                  </TableBody>
-                </>
-              ) : expandedList === 'example-packing' ? (
-                <>
-                  <ExamplePackingListHeader />
-                  <TableBody>
-                    {getListItems(expandedList).map(item => (
-                      <ExamplePackingListRow key={item._id} item={item} />
-                    ))}
-                  </TableBody>
-                </>
-              ) : expandedList === 'example-pantry' ? (
-                <>
-                  <ExamplePantryListHeader />
-                  <TableBody>
-                    {getListItems(expandedList).map(item => (
-                      <ExamplePantryListRow key={item._id} item={item} />
-                    ))}
-                  </TableBody>
-                </>
-              ) : (
-                <>
-                  <ItemTableHeader />
-                  <TableBody>
-                    {getListItems(expandedList).map(item => (
-                      <ExampleItemTableRow key={item._id} item={item} />
-                    ))}
-                  </TableBody>
-                </>
-              )}
-            </Table>
-          </TableContainer>
+          <ItemTable
+            listId={expandedList}
+            items={getListItems(expandedList)}
+            fieldConfig={getFieldConfigForList(expandedList)}
+            onItemsChange={async () => {}}
+          />
         </Box>
       )}
 
