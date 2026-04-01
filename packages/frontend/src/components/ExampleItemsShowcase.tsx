@@ -8,11 +8,11 @@ import type {FieldConfig} from 'src/types/list';
 const getFieldConfigForList = (listId: string): FieldConfig => {
   switch (listId) {
     case 'example-shopping':
-      return {hasCheckbox: true, hasQuantity: true};
+      return {hasCheckbox: true, hasQuantity: true, hasExpiryDate: false};
     case 'example-guests':
       return {hasCheckbox: true, multipleCheckboxes: true, checkboxLabels: ['Zugesagt', 'Abgesagt']};
     case 'example-packing':
-      return {hasCheckbox: true};
+      return {hasCheckbox: true, hasExpiryDate: false};
     case 'example-pantry':
       return {hasQuantity: true, hasExpiryDate: true};
     default:

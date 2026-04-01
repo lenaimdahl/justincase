@@ -22,6 +22,7 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     description: 'Mit Häkchen und Mengen',
     hasCheckbox: true,
     hasQuantity: true,
+    hasExpiryDate: false,
   },
   guestlist: {
     name: 'Gästeliste',
@@ -34,6 +35,7 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     name: 'Packliste',
     description: 'Mit Häkchen zum Abhaken',
     hasCheckbox: true,
+    hasExpiryDate: false,
   },
   pantry: {
     name: 'Vorratsschrank',
