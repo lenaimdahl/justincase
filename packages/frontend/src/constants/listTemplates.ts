@@ -34,7 +34,7 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasCheckbox: true,
     multipleCheckboxes: true,
     checkboxLabels: ['Zugesagt', 'Abgesagt'],
-    hasQuantity: false,
+    hasQuantity: true,
     hasUnit: false,
     hasNotes: false,
   },
