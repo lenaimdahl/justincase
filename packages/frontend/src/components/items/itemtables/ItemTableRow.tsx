@@ -92,7 +92,6 @@ export const ItemTableRow = ({
             size="small"
             type="date"
             variant="standard"
-            label="Ablaufdatum"
             value={state.expiryDate || ''}
             onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
             disabled={isSaving}
@@ -105,7 +104,6 @@ export const ItemTableRow = ({
         <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}, overflow: 'hidden'}}>
           <TextField
             size="small"
-            label="Notiz"
             variant="standard"
             value={state.comment || ''}
             onChange={e => onUpdateField(item._id, 'comment', e.target.value)}

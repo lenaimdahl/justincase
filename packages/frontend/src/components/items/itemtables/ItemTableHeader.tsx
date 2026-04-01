@@ -1,4 +1,5 @@
 import {TableRow, TableCell} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import type {FieldConfig} from 'src/types/list';
 
 interface ItemTableHeaderProps {
@@ -6,21 +7,25 @@ interface ItemTableHeaderProps {
 }
 
 export const ItemTableHeader = ({fieldConfig}: ItemTableHeaderProps) => {
+  const {t} = useTranslation();
+
   return (
     <TableRow sx={{backgroundColor: '#f5f5f5'}}>
-      <TableCell sx={{fontWeight: 'bold'}}>Name</TableCell>
+      <TableCell sx={{fontWeight: 'bold'}}>{t('common.name')}</TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
           <TableCell align="right" sx={{fontWeight: 'bold'}}>
-            Quantity
+            {t('common.quantity')}
           </TableCell>
-          <TableCell sx={{fontWeight: 'bold'}}>Unit</TableCell>
+          <TableCell sx={{fontWeight: 'bold'}}>{t('common.unit')}</TableCell>
         </>
       )}
-      {fieldConfig?.hasExpiryDate !== false && <TableCell sx={{fontWeight: 'bold'}}>Expiry Date</TableCell>}
-      {fieldConfig?.hasNotes !== false && <TableCell sx={{fontWeight: 'bold'}}>Comment</TableCell>}
+      {fieldConfig?.hasExpiryDate !== false && (
+        <TableCell sx={{fontWeight: 'bold'}}>{t('common.expiryDate')}</TableCell>
+      )}
+      {fieldConfig?.hasNotes !== false && <TableCell sx={{fontWeight: 'bold'}}>{t('common.comment')}</TableCell>}
       <TableCell align="center" sx={{fontWeight: 'bold'}}>
-        Actions
+        {t('common.actions')}
       </TableCell>
     </TableRow>
   );

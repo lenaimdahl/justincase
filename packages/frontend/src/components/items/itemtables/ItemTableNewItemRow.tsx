@@ -1,4 +1,4 @@
-import {TableRow, TableCell, IconButton, CircularProgress, TextField, Box} from '@mui/material';
+import {TableRow, TableCell, Button, CircularProgress, TextField, Box} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import {useTranslation} from 'react-i18next';
 import type {CreateItemRequest} from 'src/types/item';
@@ -28,7 +28,7 @@ export const ItemTableNewItemRow = ({
       <TableCell sx={{overflow: 'hidden'}}>
         <TextField
           size="small"
-          label="Name"
+          label={t('common.name')}
           variant="standard"
           value={newItem.name}
           onChange={e => onItemChange({...newItem, name: e.target.value})}
@@ -45,7 +45,7 @@ export const ItemTableNewItemRow = ({
                 size="small"
                 type="number"
                 variant="standard"
-                label="Menge"
+                label={t('common.quantity')}
                 value={newItem.quantity}
                 onChange={e =>
                   onItemChange({
@@ -63,7 +63,6 @@ export const ItemTableNewItemRow = ({
           <TableCell sx={{overflow: 'hidden'}}>
             <TextField
               size="small"
-              label="Einheit"
               variant="standard"
               value={newItem.unit}
               onChange={e => onItemChange({...newItem, unit: e.target.value})}
@@ -79,7 +78,6 @@ export const ItemTableNewItemRow = ({
             size="small"
             type="date"
             variant="standard"
-            label="Ablaufdatum"
             value={newItem.expiryDate}
             onChange={e => onItemChange({...newItem, expiryDate: e.target.value})}
             disabled={creatingItem}
@@ -91,7 +89,6 @@ export const ItemTableNewItemRow = ({
         <TableCell sx={{overflow: 'hidden'}}>
           <TextField
             size="small"
-            label="Notiz"
             variant="standard"
             value={newItem.comment}
             onChange={e => onItemChange({...newItem, comment: e.target.value})}
@@ -101,15 +98,25 @@ export const ItemTableNewItemRow = ({
         </TableCell>
       )}
       <TableCell align="center">
-        <IconButton
-          size="small"
+        <Button
+          variant="contained"
+          startIcon={creatingItem ? undefined : <AddIcon />}
           onClick={onSubmit}
           disabled={creatingItem || !newItem.name.trim()}
-          color="primary"
-          title={t('components.ariaLabels.addItem')}
+          sx={{
+            background: 'linear-gradient(135deg, #9c27b0 0%, #e91e63 100%)',
+            '&:hover': {
+              background: 'linear-gradient(135deg, #7b1fa2 0%, #c2185b 100%)',
+            },
+            color: 'white',
+            textTransform: 'none',
+            whiteSpace: 'nowrap',
+            fontSize: {xs: '0.75rem', sm: '0.875rem'},
+            padding: {xs: '6px 12px', sm: '8px 16px'},
+          }}
         >
-          {creatingItem ? <CircularProgress size={20} /> : <AddIcon fontSize="small" />}
-        </IconButton>
+          {creatingItem ? <CircularProgress size={20} sx={{color: 'white'}} /> : t('common.add')}
+        </Button>
       </TableCell>
     </TableRow>
   );
