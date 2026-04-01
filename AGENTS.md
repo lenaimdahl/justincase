@@ -53,7 +53,7 @@ This file explains how coding agents should work in this repository.
 ## 1. Project structure
 
 ```
-src/
+packages/
   frontend/   # React app
   backend/    # NestJS app with MongoDB
 ```
@@ -114,7 +114,7 @@ docs: update README with setup instructions
 - Folder structure:
 
 ```
-src/frontend/
+packages/frontend/
   components/
   hooks/
   pages/
@@ -159,7 +159,7 @@ This improves readability, prevents import path issues when moving files, and ma
 - Folder structure:
 
 ```
-src/backend/
+packages/backend/
   modules/
   controllers/
   services/
@@ -212,7 +212,7 @@ function getCurrentDate(): Date {
 ### Backend
 
 ```bash
-cd src/backend
+cd packages/backend
 yarn install
 yarn dev
 ```
@@ -220,12 +220,12 @@ yarn dev
 ### Frontend
 
 ```bash
-cd src/frontend
+cd packages/frontend
 yarn install
 yarn dev
 ```
 
-- MongoDB connection string: `.env` file in `src/backend/` (example `.env.example` provided)
+- MongoDB connection string: `.env` file in `packages/backend/` (example `.env.example` provided)
 
 ---
 
