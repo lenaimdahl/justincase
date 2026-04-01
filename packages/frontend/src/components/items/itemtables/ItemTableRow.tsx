@@ -40,14 +40,14 @@ export const ItemTableRow = ({
         },
       }}
     >
-      <TableCell>
+      <TableCell sx={{width: '40%'}}>
         <Typography variant="body2" sx={{fontSize: {xs: '0.875rem', sm: '1rem'}}}>
           {state.name}
         </Typography>
       </TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
-          <TableCell align="right" sx={{overflow: 'hidden'}}>
+          <TableCell align="center" sx={{overflow: 'hidden', width: '15%'}}>
             <Box sx={{display: 'flex', alignItems: 'center', gap: 0.5}}>
               <IconButton
                 size="small"
@@ -72,22 +72,24 @@ export const ItemTableRow = ({
               </IconButton>
             </Box>
           </TableCell>
-          <TableCell sx={{overflow: 'hidden'}}>
-            <TextField
-              size="small"
-              label="Einheit"
-              variant="standard"
-              value={state.unit || ''}
-              onChange={e => onUpdateField(item._id, 'unit', e.target.value)}
-              disabled={isSaving}
-              error={hasError}
-              sx={{maxWidth: {xs: 80, sm: 120}}}
-            />
-          </TableCell>
+          {fieldConfig?.hasUnit !== false && (
+            <TableCell sx={{overflow: 'hidden', width: '15%'}}>
+              <TextField
+                size="small"
+                label="Einheit"
+                variant="standard"
+                value={state.unit || ''}
+                onChange={e => onUpdateField(item._id, 'unit', e.target.value)}
+                disabled={isSaving}
+                error={hasError}
+                sx={{maxWidth: {xs: 80, sm: 120}}}
+              />
+            </TableCell>
+          )}
         </>
       )}
       {fieldConfig?.hasExpiryDate !== false && (
-        <TableCell sx={{overflow: 'hidden'}}>
+        <TableCell sx={{overflow: 'hidden', width: '15%'}}>
           <TextField
             size="small"
             type="date"
@@ -101,7 +103,7 @@ export const ItemTableRow = ({
         </TableCell>
       )}
       {fieldConfig?.hasNotes !== false && (
-        <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}, overflow: 'hidden'}}>
+        <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}, overflow: 'hidden', width: '15%'}}>
           <TextField
             size="small"
             variant="standard"
@@ -113,7 +115,7 @@ export const ItemTableRow = ({
           />
         </TableCell>
       )}
-      <TableCell align="center">
+      <TableCell align="center" sx={{width: '10%'}}>
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5}}>
           {fieldConfig?.hasCheckbox !== false && (
             <Checkbox

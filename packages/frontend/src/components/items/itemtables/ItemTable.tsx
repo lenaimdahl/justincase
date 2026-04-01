@@ -69,7 +69,7 @@ export const ItemTable = ({listId, items, fieldConfig, loading = false, onItemsC
           },
         }}
       >
-        <Table sx={{minWidth: {xs: 600, sm: 700}}}>
+        <Table sx={{minWidth: {xs: 600, sm: 700}, tableLayout: 'fixed'}}>
           <TableHead>
             <ItemTableHeader fieldConfig={fieldConfig} />
           </TableHead>
