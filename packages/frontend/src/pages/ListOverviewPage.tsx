@@ -13,7 +13,7 @@ import type {FieldConfig} from 'src/api/lists';
 
 export const ListOverviewPage = () => {
   const navigate = useNavigate();
-  const {lists, loading, error} = useFetchLists();
+  const {lists, loading, error, refetch} = useFetchLists();
   const [openConfigurator, setOpenConfigurator] = useState(false);
   const [creatingList, setCreatingList] = useState(false);
   const notification = useNotification();

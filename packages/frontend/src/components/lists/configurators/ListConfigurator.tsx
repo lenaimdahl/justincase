@@ -48,6 +48,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
       'checkboxLabels',
       'hasExpiryDate',
       'hasQuantity',
+      'hasUnit',
       'hasNotes',
       'hasPriority',
     ] as const;

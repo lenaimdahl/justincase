@@ -12,6 +12,7 @@ export interface PresetTemplate {
   checkboxLabels?: string[];
   hasExpiryDate?: boolean;
   hasQuantity?: boolean;
+  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
 }
@@ -23,6 +24,7 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasCheckbox: true,
     checkboxLabels: ['Refilled'],
     hasQuantity: true,
+    hasUnit: true,
     hasNotes: true,
     hasExpiryDate: false,
   },
@@ -32,7 +34,7 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasCheckbox: true,
     multipleCheckboxes: true,
     checkboxLabels: ['Zugesagt', 'Abgesagt'],
-    hasQuantity: true,
+    hasQuantity: false,
     hasUnit: false,
     hasNotes: false,
   },
@@ -52,6 +54,7 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasCheckbox: true,
     checkboxLabels: ['Refill'],
     hasQuantity: true,
+    hasUnit: true,
     hasNotes: true,
     hasExpiryDate: true,
   },
