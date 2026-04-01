@@ -1,4 +1,4 @@
-import {TableRow, TableCell, IconButton, CircularProgress, Box, TextField, Typography} from '@mui/material';
+import {TableRow, TableCell, IconButton, CircularProgress, Box, TextField, Typography, Checkbox} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -114,16 +114,26 @@ export const ItemTableRow = ({
         </TableCell>
       )}
       <TableCell align="center">
-        <IconButton
-          size="small"
-          onClick={() => onDelete(item._id)}
-          disabled={isSaving}
-          color="error"
-          title={t('components.ariaLabels.deleteItem')}
-          sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
-        >
-          {isSaving ? <CircularProgress size={20} /> : <DeleteIcon fontSize="small" />}
-        </IconButton>
+        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5}}>
+          {fieldConfig?.hasCheckbox !== false && (
+            <Checkbox
+              checked={state.checked || false}
+              onChange={e => onUpdateField(item._id, 'checked', e.target.checked ? 1 : 0)}
+              disabled={isSaving}
+              size="small"
+            />
+          )}
+          <IconButton
+            size="small"
+            onClick={() => onDelete(item._id)}
+            disabled={isSaving}
+            color="error"
+            title={t('components.ariaLabels.deleteItem')}
+            sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
+          >
+            {isSaving ? <CircularProgress size={20} /> : <DeleteIcon fontSize="small" />}
+          </IconButton>
+        </Box>
       </TableCell>
     </TableRow>
   );

@@ -11,6 +11,7 @@ export interface Item {
   expiryDate?: string;
   expiryDates?: string[];
   comment?: string;
+  checked?: number;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -22,6 +23,7 @@ export interface CreateItemRequest {
   expiryDate?: string;
   expiryDates?: string[];
   comment?: string;
+  checked?: number;
 }
 
 export interface UpdateItemRequest {
@@ -31,6 +33,7 @@ export interface UpdateItemRequest {
   expiryDate?: string;
   expiryDates?: string[];
   comment?: string;
+  checked?: number;
 }
 
 export interface AdjustQuantityRequest {
