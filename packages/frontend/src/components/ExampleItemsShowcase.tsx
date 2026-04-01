@@ -4,8 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {EXAMPLE_LISTS, EXAMPLE_ITEMS} from 'src/constants/exampleItems';
 import {ItemTableHeader} from 'src/components/items/table/ItemTableHeader';
 import {ExampleItemTableRow} from 'src/components/items/table/ExampleItemTableRow';
-import {ExampleGästelisteHeader} from 'src/components/items/table/ExampleGästelisteHeader';
-import {ExampleGästelisteRow} from 'src/components/items/table/ExampleGästelisteRow';
+import {ExampleGuestListHeader} from 'src/components/items/table/ExampleGuestListHeader';
+import {ExampleGuestListRow} from 'src/components/items/table/ExampleGuestListRow';
 import {ExamplePackingListHeader} from 'src/components/items/table/ExamplePackingListHeader';
 import {ExamplePackingListRow} from 'src/components/items/table/ExamplePackingListRow';
 import {ExampleShoppingListHeader} from 'src/components/items/table/ExampleShoppingListHeader';
@@ -134,10 +134,10 @@ export const ExampleItemsShowcase = () => {
                 </>
               ) : expandedList === 'example-guests' ? (
                 <>
-                  <ExampleGästelisteHeader />
+                  <ExampleGuestListHeader />
                   <TableBody>
                     {getListItems(expandedList).map(item => (
-                      <ExampleGästelisteRow key={item._id} item={item} />
+                      <ExampleGuestListRow key={item._id} item={item} />
                     ))}
                   </TableBody>
                 </>

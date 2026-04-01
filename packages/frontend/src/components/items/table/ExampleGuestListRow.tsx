@@ -2,11 +2,11 @@ import {TableRow, TableCell, Typography, Box, Checkbox} from '@mui/material';
 import {useTranslation} from 'react-i18next';
 import type {Item} from 'src/types/item';
 
-interface ExampleGästelisteRowProps {
+interface ExampleGuestListRowProps {
   item: Item;
 }
 
-export const ExampleGästelisteRow = ({item}: ExampleGästelisteRowProps) => {
+export const ExampleGuestListRow = ({item}: ExampleGuestListRowProps) => {
   const {t} = useTranslation();
   const isConfirmed = item.comment === '✓';
 

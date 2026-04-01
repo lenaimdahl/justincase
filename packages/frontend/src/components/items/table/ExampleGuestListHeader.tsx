@@ -1,7 +1,7 @@
 import {TableRow, TableCell, TableHead} from '@mui/material';
 import {useTranslation} from 'react-i18next';
 
-export const ExampleGästelisteHeader = () => {
+export const ExampleGuestListHeader = () => {
   const {t} = useTranslation();
 
   return (
