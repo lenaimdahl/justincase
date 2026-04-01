@@ -64,7 +64,7 @@ describe('ListsGrid Component', () => {
 
   it('should render empty grid when no lists provided', () => {
     const handleListClick = vi.fn();
-    const {container} = render(<ListsGrid lists={[]} onListClick={handleListClick} />);
+    render(<ListsGrid lists={[]} onListClick={handleListClick} />);
 
     const buttons = screen.queryAllByRole('button');
     expect(buttons).toHaveLength(0);
