@@ -2,16 +2,16 @@ import {useState} from 'react';
 import {Box, Typography, Card, CardContent, Table, TableBody, TableContainer, Paper, Grid} from '@mui/material';
 import {useTranslation} from 'react-i18next';
 import {EXAMPLE_LISTS, EXAMPLE_ITEMS} from 'src/constants/exampleItems';
-import {ItemTableHeader} from 'src/components/items/display/ItemTableHeader';
-import {ExampleItemTableRow} from 'src/components/items/display/examples/ExampleItemTableRow';
-import {ExampleGuestListHeader} from 'src/components/items/display/examples/ExampleGuestListHeader';
-import {ExampleGuestListRow} from 'src/components/items/display/examples/ExampleGuestListRow';
-import {ExamplePackingListHeader} from 'src/components/items/display/examples/ExamplePackingListHeader';
-import {ExamplePackingListRow} from 'src/components/items/display/examples/ExamplePackingListRow';
-import {ExampleShoppingListHeader} from 'src/components/items/display/examples/ExampleShoppingListHeader';
-import {ExampleShoppingListRow} from 'src/components/items/display/examples/ExampleShoppingListRow';
-import {ExamplePantryListHeader} from 'src/components/items/display/examples/ExamplePantryListHeader';
-import {ExamplePantryListRow} from 'src/components/items/display/examples/ExamplePantryListRow';
+import {ItemTableHeader} from 'src/components/items/itemtables/ItemTableHeader';
+import {ExampleItemTableRow} from 'src/components/items/itemtables/examples/ExampleItemTableRow';
+import {ExampleGuestListHeader} from 'src/components/items/itemtables/examples/ExampleGuestListHeader';
+import {ExampleGuestListRow} from 'src/components/items/itemtables/examples/ExampleGuestListRow';
+import {ExamplePackingListHeader} from 'src/components/items/itemtables/examples/ExamplePackingListHeader';
+import {ExamplePackingListRow} from 'src/components/items/itemtables/examples/ExamplePackingListRow';
+import {ExampleShoppingListHeader} from 'src/components/items/itemtables/examples/ExampleShoppingListHeader';
+import {ExampleShoppingListRow} from 'src/components/items/itemtables/examples/ExampleShoppingListRow';
+import {ExamplePantryListHeader} from 'src/components/items/itemtables/examples/ExamplePantryListHeader';
+import {ExamplePantryListRow} from 'src/components/items/itemtables/examples/ExamplePantryListRow';
 
 export const ExampleItemsShowcase = () => {
   const {t} = useTranslation();

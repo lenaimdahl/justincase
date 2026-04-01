@@ -1,7 +1,7 @@
 import {Box} from '@mui/material';
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
-import {ItemTable} from 'src/components/items/display/ItemTable';
+import {ItemTable} from 'src/components/items/itemtables/ItemTable';
 
 interface ItemViewProps {
   listId: string;
