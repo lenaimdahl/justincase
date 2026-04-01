@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Box, Typography, Card, CardContent, Grid} from '@mui/material';
 import {useTranslation} from 'react-i18next';
 import {EXAMPLE_LISTS, EXAMPLE_ITEMS} from 'src/constants/exampleItems';
-import {ItemTable} from 'src/components/items/itemtables/ItemTable';
+import {ItemTable} from 'src/components/items/tables/ItemTable';
 import type {FieldConfig} from 'src/types/list';
 
 const getFieldConfigForList = (listId: string): FieldConfig => {
