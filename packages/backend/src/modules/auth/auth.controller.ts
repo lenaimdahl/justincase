@@ -28,8 +28,8 @@ export class AuthController {
   @Post('login')
   @HttpCode(200)
   @Throttle({default: {limit: 10, ttl: 60000}})
-  async login(@CurrentUser() user: UserDocument, @Body() _dto: LoginDto) {
-    this.logger.debug(`POST /api/auth/login -> user ${user.email}`);
+  async login(@CurrentUser() user: UserDocument, @Body() loginDto: LoginDto) {
+    this.logger.debug(`POST /api/auth/login -> user ${user.email} (email: ${loginDto.email})`);
     return this.authService.login(user);
   }
 

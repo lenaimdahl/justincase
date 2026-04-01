@@ -1,4 +1,4 @@
-import {ConflictException, Injectable, Logger, UnauthorizedException} from '@nestjs/common';
+import {ConflictException, Injectable, Logger} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import {JwtPayload} from 'src/modules/auth/dtos/jwt-payload.dto';
@@ -87,9 +87,6 @@ export class AuthService {
   }
 
   getProfile(user: UserDocument): {email: string; id: string; username?: string} {
-    if (!user) {
-      throw new UnauthorizedException();
-    }
     return {
       email: user.email,
       id: String(user._id),

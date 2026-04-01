@@ -1,5 +1,5 @@
 import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
-import {API_BASE_URL} from 'src/utils/api';
+import {API_BASE_URL, TOKEN_KEY} from 'src/utils/api';
 
 interface AuthUser {
   email: string;
@@ -16,8 +16,6 @@ interface AuthContextType {
   token: string | null;
   user: AuthUser | null;
 }
-
-const TOKEN_KEY = 'justincase_token';
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
