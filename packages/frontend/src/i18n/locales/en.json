@@ -60,13 +60,13 @@
       "cancelled": "Cancelled"
     },
     "shopping": {
-      "yumLabel": "Bought"
-    },
-    "pantry": {
-      "buyNewLabel": "Buy New"
+      "actionLabel": "Bought"
     },
     "packing": {
-      "packedLabel": "Packed"
+      "actionLabel": "Packed"
+    },
+    "pantry": {
+      "actionLabel": "Buy New"
     },
     "listOverview": {
       "title": "My Lists",

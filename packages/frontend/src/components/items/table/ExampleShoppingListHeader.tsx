@@ -13,7 +13,7 @@ export const ExampleShoppingListHeader = () => {
         </TableCell>
         <TableCell sx={{fontWeight: 'bold'}}>{t('common.comment')}</TableCell>
         <TableCell align="center" sx={{fontWeight: 'bold'}}>
-          {t('pages.shopping.yumLabel') || 'Yum!'}
+          {t('pages.shopping.actionLabel')}
         </TableCell>
       </TableRow>
     </TableHead>

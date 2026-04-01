@@ -15,7 +15,7 @@ export const ExamplePantryListHeader = () => {
         <TableCell sx={{fontWeight: 'bold'}}>{t('common.expiryDate')}</TableCell>
         <TableCell sx={{fontWeight: 'bold'}}>{t('common.comment')}</TableCell>
         <TableCell align="center" sx={{fontWeight: 'bold'}}>
-          {t('pages.pantry.buyNewLabel') || 'Buy New'}
+          {t('pages.pantry.actionLabel')}
         </TableCell>
       </TableRow>
     </TableHead>

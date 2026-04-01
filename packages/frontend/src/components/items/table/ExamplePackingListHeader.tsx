@@ -13,7 +13,7 @@ export const ExamplePackingListHeader = () => {
         </TableCell>
         <TableCell sx={{fontWeight: 'bold'}}>{t('common.comment')}</TableCell>
         <TableCell align="center" sx={{fontWeight: 'bold'}}>
-          {t('pages.packing.packedLabel') || 'Packed'}
+          {t('pages.packing.actionLabel')}
         </TableCell>
       </TableRow>
     </TableHead>

@@ -60,13 +60,13 @@
       "cancelled": "Abgesagt"
     },
     "shopping": {
-      "yumLabel": "Gekauft"
-    },
-    "pantry": {
-      "buyNewLabel": "Neu kaufen"
+      "actionLabel": "Gekauft"
     },
     "packing": {
-      "packedLabel": "Gepackt"
+      "actionLabel": "Gepackt"
+    },
+    "pantry": {
+      "actionLabel": "Neu kaufen"
     },
     "listOverview": {
       "title": "Meine Listen",

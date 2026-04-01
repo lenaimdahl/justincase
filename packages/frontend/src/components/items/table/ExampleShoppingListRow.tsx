@@ -34,7 +34,7 @@ export const ExampleShoppingListRow = ({item}: ExampleShoppingListRowProps) => {
         </Typography>
       </TableCell>
       <TableCell align="center">
-        <Checkbox checked={isYum} disabled size="small" title={t('pages.shopping.yumLabel') || 'Yum!'} />
+        <Checkbox checked={isYum} disabled size="small" title={t('pages.shopping.actionLabel')} />
       </TableCell>
     </TableRow>
   );

@@ -1,15 +1,20 @@
-import {TableRow, TableCell} from '@mui/material';
+import {TableRow, TableCell, TableHead} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 
 export const ExampleGästelisteHeader = () => {
+  const {t} = useTranslation();
+
   return (
-    <TableRow sx={{backgroundColor: '#f5f5f5'}}>
-      <TableCell sx={{fontWeight: 'bold'}}>Name</TableCell>
-      <TableCell align="right" sx={{fontWeight: 'bold'}}>
-        Quantity
-      </TableCell>
-      <TableCell align="center" sx={{fontWeight: 'bold'}}>
-        Actions
-      </TableCell>
-    </TableRow>
+    <TableHead>
+      <TableRow>
+        <TableCell sx={{fontWeight: 'bold'}}>{t('common.name')}</TableCell>
+        <TableCell align="right" sx={{fontWeight: 'bold'}}>
+          {t('common.quantity')}
+        </TableCell>
+        <TableCell align="center" sx={{fontWeight: 'bold'}}>
+          {t('common.actions')}
+        </TableCell>
+      </TableRow>
+    </TableHead>
   );
 };

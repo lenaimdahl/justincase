@@ -80,7 +80,7 @@ export const ExamplePantryListRow = ({item}: ExamplePantryListRowProps) => {
         </Typography>
       </TableCell>
       <TableCell align="center">
-        <Checkbox checked={isBuyNew} disabled size="small" title={t('pages.pantry.buyNewLabel') || 'Buy New'} />
+        <Checkbox checked={isBuyNew} disabled size="small" title={t('pages.pantry.actionLabel')} />
       </TableCell>
     </TableRow>
   );

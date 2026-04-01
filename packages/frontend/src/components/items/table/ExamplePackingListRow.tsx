@@ -34,7 +34,7 @@ export const ExamplePackingListRow = ({item}: ExamplePackingListRowProps) => {
         </Typography>
       </TableCell>
       <TableCell align="center">
-        <Checkbox checked={isPacked} disabled size="small" title={t('pages.packing.packedLabel') || 'Packed'} />
+        <Checkbox checked={isPacked} disabled size="small" title={t('pages.packing.actionLabel')} />
       </TableCell>
     </TableRow>
   );
