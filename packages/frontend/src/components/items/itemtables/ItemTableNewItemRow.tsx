@@ -25,7 +25,7 @@ export const ItemTableNewItemRow = ({
 
   return (
     <TableRow className={statusClassName} sx={{backgroundColor: '#f9f9f9'}}>
-      <TableCell sx={{overflow: 'hidden', width: '40%'}}>
+      <TableCell sx={{overflow: 'hidden'}}>
         <TextField
           size="small"
           label={t('common.name')}
@@ -39,7 +39,7 @@ export const ItemTableNewItemRow = ({
       </TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
-          <TableCell align="center" sx={{overflow: 'hidden', width: '15%'}}>
+          <TableCell align="center" sx={{overflow: 'hidden'}}>
             <Box sx={{width: '100%', maxWidth: 80}}>
               <TextField
                 size="small"
@@ -61,7 +61,7 @@ export const ItemTableNewItemRow = ({
             </Box>
           </TableCell>
           {fieldConfig?.hasUnit !== false && (
-            <TableCell sx={{overflow: 'hidden', width: '15%'}}>
+            <TableCell sx={{overflow: 'hidden'}}>
               <TextField
                 size="small"
                 variant="standard"
@@ -75,7 +75,7 @@ export const ItemTableNewItemRow = ({
         </>
       )}
       {fieldConfig?.hasExpiryDate !== false && (
-        <TableCell sx={{overflow: 'hidden', width: '15%'}}>
+        <TableCell sx={{overflow: 'hidden'}}>
           <TextField
             size="small"
             type="date"
@@ -88,7 +88,7 @@ export const ItemTableNewItemRow = ({
         </TableCell>
       )}
       {fieldConfig?.hasNotes !== false && (
-        <TableCell sx={{overflow: 'hidden', width: '15%'}}>
+        <TableCell sx={{overflow: 'hidden'}}>
           <TextField
             size="small"
             variant="standard"
@@ -99,7 +99,7 @@ export const ItemTableNewItemRow = ({
           />
         </TableCell>
       )}
-      <TableCell align="center" sx={{width: '10%'}}>
+      <TableCell align="center">
         <Button
           variant="contained"
           startIcon={creatingItem ? undefined : <AddIcon />}

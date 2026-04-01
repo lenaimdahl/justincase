@@ -54,7 +54,7 @@ export class ListsService {
         multipleCheckboxes: false,
         checkboxLabels: [],
         hasExpiryDate: false,
-        hasQuantity: false,
+        hasQuantity: true,
         hasUnit: true,
         hasNotes: false,
         hasPriority: false,

@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "Name",
-    "quantity": "Menge",
+    "quantity": "Anzahl",
     "comment": "Bemerkung",
     "unit": "Einheit",
     "expiryDate": "Verfallsdatum",
@@ -21,8 +21,8 @@
     },
     "ariaLabels": {
       "addItem": "Artikel hinzufügen",
-      "decreaseQuantity": "Menge verringern",
-      "increaseQuantity": "Menge erhöhen",
+      "decreaseQuantity": "Anzahl verringern",
+      "increaseQuantity": "Anzahl erhöhen",
       "deleteItem": "Artikel löschen",
       "closeNotification": "Benachrichtigung schließen"
     },

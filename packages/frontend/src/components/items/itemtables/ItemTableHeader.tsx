@@ -18,24 +18,20 @@ export const ItemTableHeader = ({fieldConfig}: ItemTableHeaderProps) => {
 
   return (
     <TableRow sx={{backgroundColor: '#f5f5f5'}}>
-      <TableCell sx={{fontWeight: 'bold', width: '40%'}}>{t('common.name')}</TableCell>
+      <TableCell sx={{fontWeight: 'bold'}}>{t('common.name')}</TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
-          <TableCell align="center" sx={{fontWeight: 'bold', width: '15%'}}>
+          <TableCell align="center" sx={{fontWeight: 'bold'}}>
             {t('common.quantity')}
           </TableCell>
-          {fieldConfig?.hasUnit !== false && (
-            <TableCell sx={{fontWeight: 'bold', width: '15%'}}>{t('common.unit')}</TableCell>
-          )}
+          {fieldConfig?.hasUnit !== false && <TableCell sx={{fontWeight: 'bold'}}>{t('common.unit')}</TableCell>}
         </>
       )}
       {fieldConfig?.hasExpiryDate !== false && (
-        <TableCell sx={{fontWeight: 'bold', width: '15%'}}>{t('common.expiryDate')}</TableCell>
+        <TableCell sx={{fontWeight: 'bold'}}>{t('common.expiryDate')}</TableCell>
       )}
-      {fieldConfig?.hasNotes !== false && (
-        <TableCell sx={{fontWeight: 'bold', width: '15%'}}>{t('common.comment')}</TableCell>
-      )}
-      <TableCell align="center" sx={{fontWeight: 'bold', width: '10%'}}>
+      {fieldConfig?.hasNotes !== false && <TableCell sx={{fontWeight: 'bold'}}>{t('common.comment')}</TableCell>}
+      <TableCell align="center" sx={{fontWeight: 'bold'}}>
         {getActionHeaderLabel()}
       </TableCell>
     </TableRow>
