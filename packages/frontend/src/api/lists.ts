@@ -3,7 +3,7 @@
  * Handles all HTTP requests to the backend lists endpoints
  */
 
-import {API_BASE_URL} from 'src/utils/api';
+import {API_BASE_URL, getAuthHeaders} from 'src/utils/api';
 
 export interface FieldConfig {
   hasCheckbox?: boolean;
@@ -45,7 +45,9 @@ export interface UpdateListRequest {
  * Fetch all lists
  */
 export async function fetchLists(): Promise<List[]> {
-  const response = await fetch(`${API_BASE_URL}/lists`);
+  const response = await fetch(`${API_BASE_URL}/lists`, {
+    headers: getAuthHeaders(),
+  });
   if (!response.ok) {
     throw new Error(`Failed to fetch lists: ${response.statusText}`);
   }
@@ -56,7 +58,9 @@ export async function fetchLists(): Promise<List[]> {
  * Fetch a single list by ID
  */
 export async function fetchListById(listId: string): Promise<List> {
-  const response = await fetch(`${API_BASE_URL}/lists/${listId}`);
+  const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
+    headers: getAuthHeaders(),
+  });
   if (!response.ok) {
     throw new Error(`Failed to fetch list: ${response.statusText}`);
   }
@@ -69,7 +73,7 @@ export async function fetchListById(listId: string): Promise<List> {
 export async function createList(data: CreateListRequest): Promise<List> {
   const response = await fetch(`${API_BASE_URL}/lists`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
     body: JSON.stringify(data),
   });
   if (!response.ok) {
@@ -84,7 +88,7 @@ export async function createList(data: CreateListRequest): Promise<List> {
 export async function updateList(listId: string, data: UpdateListRequest): Promise<List> {
   const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
     method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
     body: JSON.stringify(data),
   });
   if (!response.ok) {
@@ -99,6 +103,7 @@ export async function updateList(listId: string, data: UpdateListRequest): Promi
 export async function deleteList(listId: string): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
     method: 'DELETE',
+    headers: getAuthHeaders(),
   });
   if (!response.ok) {
     throw new Error(`Failed to delete list: ${response.statusText}`);

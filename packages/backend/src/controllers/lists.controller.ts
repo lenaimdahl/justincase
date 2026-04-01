@@ -1,8 +1,11 @@
 import {Body, Controller, Delete, Get, HttpCode, Logger, Param, Patch, Post} from '@nestjs/common';
 import {CreateListDto} from 'src/dtos/create-list.dto';
 import {UpdateListDto} from 'src/dtos/update-list.dto';
+import {CurrentUser} from 'src/modules/auth/decorators/current-user.decorator';
 import {ItemsService} from 'src/modules/items/items.service';
-import {type List, ListsService} from 'src/services/lists.service';
+import {ListsService} from 'src/modules/lists/lists.service';
+import type {ListDocument} from 'src/modules/lists/schemas/list.schema';
+import type {UserDocument} from 'src/modules/users/schemas/user.schema';
 
 @Controller('api/lists')
 export class ListsController {
@@ -14,44 +17,51 @@ export class ListsController {
   ) {}
 
   @Post()
-  create(@Body() createListDto: CreateListDto): List {
-    const result = this.listsService.create(createListDto);
-    this.logger.debug(`POST /lists -> 201 Created (id: ${result.id})`);
+  async create(@CurrentUser() user: UserDocument, @Body() createListDto: CreateListDto): Promise<ListDocument> {
+    const result = await this.listsService.create(String(user._id), createListDto);
+    this.logger.debug(`POST /lists -> 201 Created (id: ${result._id})`);
     return result;
   }
 
   @Get()
-  async findAll(): Promise<List[]> {
-    const lists = this.listsService.findAll();
+  async findAll(@CurrentUser() user: UserDocument): Promise<(ListDocument & {itemCount: number})[]> {
+    const lists = await this.listsService.findAll(String(user._id));
     const result = await Promise.all(
       lists.map(async list => ({
-        ...list,
-        itemCount: await this.itemsService.countByListId(list.id),
+        ...list.toObject(),
+        itemCount: await this.itemsService.countByListId(String(list._id)),
       }))
     );
     this.logger.debug(`GET /lists -> 200 OK (${result.length} lists)`);
-    return result;
+    return result as (ListDocument & {itemCount: number})[];
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<List> {
-    const list = this.listsService.findOne(id);
+  async findOne(
+    @CurrentUser() user: UserDocument,
+    @Param('id') id: string
+  ): Promise<ListDocument & {itemCount: number}> {
+    const list = await this.listsService.findOne(String(user._id), id);
     const itemCount = await this.itemsService.countByListId(id);
     this.logger.debug(`GET /lists/${id} -> 200 OK`);
-    return {...list, itemCount};
+    return {...list.toObject(), itemCount} as ListDocument & {itemCount: number};
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateListDto: UpdateListDto): List {
-    const result = this.listsService.update(id, updateListDto);
+  async update(
+    @CurrentUser() user: UserDocument,
+    @Param('id') id: string,
+    @Body() updateListDto: UpdateListDto
+  ): Promise<ListDocument> {
+    const result = await this.listsService.update(String(user._id), id, updateListDto);
     this.logger.debug(`PATCH /lists/${id} -> 200 OK`);
     return result;
   }
 
   @Delete(':id')
   @HttpCode(204)
-  remove(@Param('id') id: string): void {
-    this.listsService.remove(id);
+  async remove(@CurrentUser() user: UserDocument, @Param('id') id: string): Promise<void> {
+    await this.listsService.remove(String(user._id), id);
     this.logger.debug(`DELETE /lists/${id} -> 204 No Content`);
   }
 }

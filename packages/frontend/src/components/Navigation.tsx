@@ -1,8 +1,17 @@
-import {AppBar, Toolbar, Typography, Box, Link as MuiLink} from '@mui/material';
+import {AppBar, Toolbar, Typography, Box, Button, Link as MuiLink} from '@mui/material';
 import {useTranslation} from 'react-i18next';
+import {useNavigate} from 'react-router-dom';
+import {useAuth} from 'src/contexts/AuthContext';
 
 export const Navigation = () => {
   const {t} = useTranslation();
+  const {isAuthenticated, logout, user} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   return (
     <AppBar position="sticky">
@@ -17,7 +26,7 @@ export const Navigation = () => {
         >
           {t('components.navigation.brand')}
         </Typography>
-        <Box sx={{display: 'flex', gap: 3}}>
+        <Box sx={{display: 'flex', gap: 3, alignItems: 'center'}}>
           <MuiLink
             href="/"
             sx={{
@@ -44,19 +53,18 @@ export const Navigation = () => {
           >
             {t('components.navigation.lists')}
           </MuiLink>
-          <MuiLink
-            href="/settings"
-            sx={{
-              color: 'inherit',
-              textDecoration: 'none',
-              fontWeight: 500,
-              '&:hover': {
-                opacity: 0.8,
-              },
-            }}
-          >
-            {t('components.navigation.settings')}
-          </MuiLink>
+          {isAuthenticated && (
+            <>
+              {user?.username && (
+                <Typography variant="body2" sx={{opacity: 0.8}}>
+                  {user.username}
+                </Typography>
+              )}
+              <Button color="inherit" onClick={handleLogout} size="small" variant="outlined">
+                Logout
+              </Button>
+            </>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
