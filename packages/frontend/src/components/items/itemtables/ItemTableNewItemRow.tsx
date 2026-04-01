@@ -39,13 +39,12 @@ export const ItemTableNewItemRow = ({
       </TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
-          <TableCell align="center" sx={{overflow: 'hidden'}}>
+          <TableCell sx={{overflow: 'hidden'}}>
             <Box sx={{width: '100%', maxWidth: 80}}>
               <TextField
                 size="small"
                 type="number"
                 variant="standard"
-                label={t('common.quantity')}
                 value={newItem.quantity}
                 onChange={e =>
                   onItemChange({

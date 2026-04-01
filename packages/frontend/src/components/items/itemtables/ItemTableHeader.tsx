@@ -21,9 +21,7 @@ export const ItemTableHeader = ({fieldConfig}: ItemTableHeaderProps) => {
       <TableCell sx={{fontWeight: 'bold'}}>{t('common.name')}</TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
-          <TableCell align="center" sx={{fontWeight: 'bold'}}>
-            {t('common.quantity')}
-          </TableCell>
+          <TableCell sx={{fontWeight: 'bold'}}>{t('common.quantity')}</TableCell>
           {fieldConfig?.hasUnit !== false && <TableCell sx={{fontWeight: 'bold'}}>{t('common.unit')}</TableCell>}
         </>
       )}

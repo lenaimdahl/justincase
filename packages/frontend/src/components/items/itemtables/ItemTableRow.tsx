@@ -47,7 +47,7 @@ export const ItemTableRow = ({
       </TableCell>
       {fieldConfig?.hasQuantity !== false && (
         <>
-          <TableCell align="center" sx={{overflow: 'hidden'}}>
+          <TableCell sx={{overflow: 'hidden'}}>
             <Box sx={{display: 'flex', alignItems: 'center', gap: 0.5}}>
               <IconButton
                 size="small"
@@ -119,7 +119,7 @@ export const ItemTableRow = ({
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5}}>
           {fieldConfig?.hasCheckbox !== false && (
             <Checkbox
-              checked={state.checked || false}
+              checked={!!state.checked}
               onChange={e => onUpdateField(item._id, 'checked', e.target.checked ? 1 : 0)}
               disabled={isSaving}
               size="small"
