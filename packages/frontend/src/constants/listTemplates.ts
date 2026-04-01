@@ -19,9 +19,10 @@ export interface PresetTemplate {
 export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
   shopping: {
     name: 'Einkaufsliste',
-    description: 'Mit Häkchen und Mengen',
+    description: 'Mit Mengen und Kommentaren',
     hasCheckbox: true,
     hasQuantity: true,
+    hasNotes: true,
     hasExpiryDate: false,
   },
   guestlist: {
@@ -30,17 +31,23 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasCheckbox: true,
     multipleCheckboxes: true,
     checkboxLabels: ['Zugesagt', 'Abgesagt'],
+    hasQuantity: true,
+    hasNotes: false,
   },
   packing: {
     name: 'Packliste',
-    description: 'Mit Häkchen zum Abhaken',
+    description: 'Mit Häkchen und Kommentaren',
     hasCheckbox: true,
+    hasQuantity: true,
+    hasNotes: true,
     hasExpiryDate: false,
   },
   pantry: {
     name: 'Vorratsschrank',
-    description: 'Mit Verfallsdaten und Mengen',
+    description: 'Mit Verfallsdaten und Kommentaren',
+    hasCheckbox: true,
     hasQuantity: true,
+    hasNotes: true,
     hasExpiryDate: true,
   },
 };
