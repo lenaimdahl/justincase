@@ -4,7 +4,7 @@ import {Container, Box, CircularProgress, Alert} from '@mui/material';
 import {ListOverviewHeader} from 'src/components/lists/display/ListOverviewHeader';
 import {ListsGrid} from 'src/components/lists/display/ListsGrid';
 import {EmptyListsState} from 'src/components/lists/display/EmptyListsState';
-import {ListConfigurator} from 'src/components/lists/dialogs/ListConfigurator';
+import {ListConfigurator} from 'src/components/lists/configurators/ListConfigurator';
 import {useFetchLists} from 'src/hooks/useFetchLists';
 import {useNotification} from 'src/hooks/useNotification';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
