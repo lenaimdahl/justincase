@@ -39,7 +39,6 @@ export const ListOverviewPage = () => {
       });
       handleCloseConfigurator();
       notification.success(`List "${name}" created successfully`);
-      // Navigate to the new list detail page
       navigate(`/lists/${newList.id}`);
     } catch (err) {
       handleError(err, 'Failed to create list');

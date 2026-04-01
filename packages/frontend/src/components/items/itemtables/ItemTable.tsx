@@ -54,7 +54,6 @@ export const ItemTable = ({listId, items, fieldConfig, loading = false, onItemsC
         sx={{
           mb: 3,
           overflowX: 'auto',
-          // Enable horizontal scroll on mobile
           '&::-webkit-scrollbar': {
             height: 8,
           },

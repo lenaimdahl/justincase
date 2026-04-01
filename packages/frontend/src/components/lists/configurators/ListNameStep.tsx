@@ -1,4 +1,5 @@
 import {Box, TextField, Typography} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 
 interface ListNameStepProps {
   name: string;
@@ -8,10 +9,12 @@ interface ListNameStepProps {
 }
 
 export const ListNameStep = ({name, icon, loading = false, onNameChange}: ListNameStepProps) => {
+  const {t} = useTranslation();
+
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
       <Typography variant="subtitle2" color="textSecondary">
-        Gib deiner Liste einen Namen:
+        {t('pages.listOverview.inputLabel')}
       </Typography>
       <Box
         sx={{
@@ -27,8 +30,8 @@ export const ListNameStep = ({name, icon, loading = false, onNameChange}: ListNa
         <TextField
           autoFocus
           fullWidth
-          label="Listen-Name"
-          placeholder="z.B. Vorrat, Kühlschrank, Gefrierschrank..."
+          label={t('pages.listOverview.inputLabel')}
+          placeholder={t('components.placeholders.listNameExample')}
           value={name}
           onChange={e => onNameChange(e.target.value)}
           disabled={loading}

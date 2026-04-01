@@ -21,7 +21,6 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({child
 
     setNotifications(prev => [...prev, newNotification]);
 
-    // Auto-remove notification after duration
     if (newNotification.duration) {
       setTimeout(() => {
         removeNotification(id);

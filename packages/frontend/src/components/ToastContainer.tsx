@@ -1,8 +1,10 @@
 import {useContext} from 'react';
+import {useTranslation} from 'react-i18next';
 import {NotificationContext} from 'src/contexts/NotificationContext';
 import {getToastIcon, getToastStyles} from 'src/utils/toastUtils';
 
 export const ToastContainer = () => {
+  const {t} = useTranslation();
   const context = useContext(NotificationContext);
 
   if (!context || context.notifications.length === 0) {
@@ -31,7 +33,7 @@ export const ToastContainer = () => {
               onClick={() => context.removeNotification(notif.id)}
               onKeyDown={e => handleCloseNotification(notif.id, e)}
               className="flex-shrink-0 ml-2 hover:opacity-70 transition-opacity"
-              aria-label="Close notification"
+              aria-label={t('components.ariaLabels.closeNotification')}
               type="button"
             >
               ✕

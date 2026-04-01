@@ -5,7 +5,11 @@
     "comment": "Comment",
     "unit": "Unit",
     "expiryDate": "Expiry Date",
-    "actions": "Actions"
+    "actions": "Actions",
+    "add": "Add",
+    "delete": "Delete",
+    "close": "Close",
+    "notes": "Notes"
   },
   "components": {
     "navigation": {
@@ -14,6 +18,18 @@
       "lists": "Lists",
       "items": "Items",
       "settings": "Settings"
+    },
+    "ariaLabels": {
+      "addItem": "Add item",
+      "decreaseQuantity": "Decrease quantity",
+      "increaseQuantity": "Increase quantity",
+      "deleteItem": "Delete item",
+      "closeNotification": "Close notification"
+    },
+    "placeholders": {
+      "itemName": "Item name",
+      "notes": "Notes...",
+      "listNameExample": "e.g., Pantry, Fridge, Freezer..."
     }
   },
   "pages": {

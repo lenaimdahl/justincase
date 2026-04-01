@@ -1,5 +1,6 @@
 import {TableRow, TableCell, IconButton, CircularProgress, TextField, Box} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import {useTranslation} from 'react-i18next';
 import type {CreateItemRequest} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 import {getStatusClassName} from 'src/utils/dateHelpers';
@@ -19,6 +20,7 @@ export const ItemTableNewItemRow = ({
   onItemChange,
   onSubmit,
 }: ItemTableNewItemRowProps) => {
+  const {t} = useTranslation();
   const statusClassName = getStatusClassName(newItem.expiryDate);
 
   return (
@@ -104,7 +106,7 @@ export const ItemTableNewItemRow = ({
           onClick={onSubmit}
           disabled={creatingItem || !newItem.name.trim()}
           color="primary"
-          title="Add item"
+          title={t('components.ariaLabels.addItem')}
         >
           {creatingItem ? <CircularProgress size={20} /> : <AddIcon fontSize="small" />}
         </IconButton>

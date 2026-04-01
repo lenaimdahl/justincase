@@ -2,6 +2,7 @@ import {TableRow, TableCell, IconButton, CircularProgress, Box, TextField, Typog
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {useTranslation} from 'react-i18next';
 import type {Item, UpdateItemRequest} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 import {getStatusClassName} from 'src/utils/dateHelpers';
@@ -23,6 +24,7 @@ export const ItemTableRow = ({
   onUpdateField,
   onDelete,
 }: ItemTableRowProps) => {
+  const {t} = useTranslation();
   const isSaving = state.isSaving;
   const hasError = !!state.error;
   const statusClassName = getStatusClassName(state.expiryDate);
@@ -51,7 +53,7 @@ export const ItemTableRow = ({
                 size="small"
                 onClick={() => onAdjustQuantity(item._id, -1)}
                 disabled={isSaving || state.quantity <= 0}
-                title="Decrease quantity"
+                title={t('components.ariaLabels.decreaseQuantity')}
                 sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
               >
                 <RemoveIcon fontSize="small" />
@@ -63,7 +65,7 @@ export const ItemTableRow = ({
                 size="small"
                 onClick={() => onAdjustQuantity(item._id, 1)}
                 disabled={isSaving}
-                title="Increase quantity"
+                title={t('components.ariaLabels.increaseQuantity')}
                 sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
               >
                 <AddIcon fontSize="small" />
@@ -119,7 +121,7 @@ export const ItemTableRow = ({
           onClick={() => onDelete(item._id)}
           disabled={isSaving}
           color="error"
-          title="Delete item"
+          title={t('components.ariaLabels.deleteItem')}
           sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
         >
           {isSaving ? <CircularProgress size={20} /> : <DeleteIcon fontSize="small" />}
