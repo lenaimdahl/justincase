@@ -3,9 +3,9 @@ import {Table, TableBody, TableContainer, TableHead, Paper, CircularProgress, Bo
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 import {useItemOperations} from 'src/hooks/useItemOperations';
-import {ItemTableHeader} from 'src/components/items/table/ItemTableHeader';
-import {ItemTableRow} from 'src/components/items/table/ItemTableRow';
-import {ItemTableNewItemRow} from 'src/components/items/table/ItemTableNewItemRow';
+import {ItemTableHeader} from 'src/components/items/display/ItemTableHeader';
+import {ItemTableRow} from 'src/components/items/display/ItemTableRow';
+import {ItemTableNewItemRow} from 'src/components/items/display/ItemTableNewItemRow';
 
 interface ItemTableProps {
   listId: string;
