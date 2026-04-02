@@ -13,9 +13,17 @@ interface ItemTableProps {
   fieldConfig?: FieldConfig;
   loading?: boolean;
   onItemsChange: () => Promise<void>;
+  readOnly?: boolean;
 }
 
-export const ItemTable = ({listId, items, fieldConfig, loading = false, onItemsChange}: ItemTableProps) => {
+export const ItemTable = ({
+  listId,
+  items,
+  fieldConfig,
+  loading = false,
+  onItemsChange,
+  readOnly = false,
+}: ItemTableProps) => {
   const {
     editingState,
     newItem,
@@ -83,20 +91,22 @@ export const ItemTable = ({listId, items, fieldConfig, loading = false, onItemsC
                   item={item}
                   state={state}
                   fieldConfig={fieldConfig}
-                  onAdjustQuantity={handleAdjustQuantity}
-                  onUpdateField={updateField}
-                  onDelete={handleDeleteItem}
+                  onAdjustQuantity={readOnly ? async () => {} : handleAdjustQuantity}
+                  onUpdateField={readOnly ? () => {} : updateField}
+                  onDelete={readOnly ? async () => {} : handleDeleteItem}
                 />
               );
             })}
 
-            <ItemTableNewItemRow
-              newItem={newItem}
-              creatingItem={creatingItem}
-              fieldConfig={fieldConfig}
-              onItemChange={setNewItem}
-              onSubmit={handleCreateItem}
-            />
+            {!readOnly && (
+              <ItemTableNewItemRow
+                newItem={newItem}
+                creatingItem={creatingItem}
+                fieldConfig={fieldConfig}
+                onItemChange={setNewItem}
+                onSubmit={handleCreateItem}
+              />
+            )}
           </TableBody>
         </Table>
       </TableContainer>

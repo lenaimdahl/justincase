@@ -14,6 +14,7 @@ interface ItemTableRowProps {
   onAdjustQuantity: (itemId: string, adjustment: number) => Promise<void>;
   onUpdateField: (itemId: string, field: keyof UpdateItemRequest, value: string | number) => void;
   onDelete: (itemId: string) => Promise<void>;
+  readOnly?: boolean;
 }
 
 export const ItemTableRow = ({
@@ -23,6 +24,7 @@ export const ItemTableRow = ({
   onAdjustQuantity,
   onUpdateField,
   onDelete,
+  readOnly = false,
 }: ItemTableRowProps) => {
   const {t} = useTranslation();
   const isSaving = state.isSaving;
@@ -52,8 +54,8 @@ export const ItemTableRow = ({
               <IconButton
                 size="small"
                 onClick={() => onAdjustQuantity(item._id, -1)}
-                disabled={isSaving || state.quantity <= 0}
-                title={t('components.ariaLabels.decreaseQuantity')}
+                disabled={readOnly || isSaving || state.quantity <= 0}
+                aria-label={t('components.ariaLabels.decreaseQuantity')}
                 sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
               >
                 <RemoveIcon fontSize="small" />
@@ -64,8 +66,8 @@ export const ItemTableRow = ({
               <IconButton
                 size="small"
                 onClick={() => onAdjustQuantity(item._id, 1)}
-                disabled={isSaving}
-                title={t('components.ariaLabels.increaseQuantity')}
+                disabled={readOnly || isSaving}
+                aria-label={t('components.ariaLabels.increaseQuantity')}
                 sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
               >
                 <AddIcon fontSize="small" />
@@ -76,11 +78,11 @@ export const ItemTableRow = ({
             <TableCell sx={{overflow: 'hidden'}}>
               <TextField
                 size="small"
-                label="Einheit"
+                label={t('common.unit')}
                 variant="standard"
                 value={state.unit || ''}
                 onChange={e => onUpdateField(item._id, 'unit', e.target.value)}
-                disabled={isSaving}
+                disabled={readOnly || isSaving}
                 error={hasError}
                 sx={{maxWidth: {xs: 80, sm: 120}}}
               />
@@ -96,7 +98,7 @@ export const ItemTableRow = ({
             variant="standard"
             value={state.expiryDate || ''}
             onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
-            disabled={isSaving}
+            disabled={readOnly || isSaving}
             error={hasError}
             sx={{maxWidth: {xs: 120, sm: 150}}}
           />
@@ -109,7 +111,7 @@ export const ItemTableRow = ({
             variant="standard"
             value={state.comment || ''}
             onChange={e => onUpdateField(item._id, 'comment', e.target.value)}
-            disabled={isSaving}
+            disabled={readOnly || isSaving}
             error={hasError}
             sx={{maxWidth: 150}}
           />
@@ -118,19 +120,14 @@ export const ItemTableRow = ({
       <TableCell align="center">
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5}}>
           {fieldConfig?.hasCheckbox !== false && (
-            <Checkbox
-              checked={!!state.checked}
-              onChange={e => onUpdateField(item._id, 'checked', e.target.checked ? 1 : 0)}
-              disabled={isSaving}
-              size="small"
-            />
+            <Checkbox checked={!!state.checked} onChange={() => {}} disabled={true} size="small" />
           )}
           <IconButton
             size="small"
             onClick={() => onDelete(item._id)}
-            disabled={isSaving}
+            disabled={readOnly || isSaving}
             color="error"
-            title={t('components.ariaLabels.deleteItem')}
+            aria-label={t('components.ariaLabels.deleteItem')}
             sx={{padding: {xs: '6px', sm: '8px'}, minWidth: {xs: 44, sm: 'auto'}, minHeight: {xs: 44, sm: 'auto'}}}
           >
             {isSaving ? <CircularProgress size={20} /> : <DeleteIcon fontSize="small" />}

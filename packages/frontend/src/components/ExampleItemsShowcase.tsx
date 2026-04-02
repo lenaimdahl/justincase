@@ -129,6 +129,7 @@ export const ExampleItemsShowcase = () => {
             items={getListItems(expandedList)}
             fieldConfig={getFieldConfigForList(expandedList)}
             onItemsChange={async () => {}}
+            readOnly={true}
           />
         </Box>
       )}
