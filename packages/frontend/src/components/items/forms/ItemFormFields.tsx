@@ -88,17 +88,20 @@ export const MultipleExpiryDatesField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
+  const {t} = useTranslation();
   if (!fieldConfig.hasExpiryDate || !fieldConfig.hasQuantity || (quantity || 1) <= 1) return null;
 
   return (
     <Box sx={{mt: 1.5, p: 1.5, border: '1px solid #ddd', borderRadius: 1, bgcolor: '#f9f9f9'}}>
       <Box component="strong" sx={{fontSize: {xs: '0.85em', sm: '0.9em'}, display: 'block', mb: 1}}>
-        Ablaufdatum für jede Menge:
+        {t('pages.listConfigurator.expiryDatesLabel')}
       </Box>
       <Box sx={{display: 'grid', gridTemplateColumns: {xs: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))'}, gap: 1}}>
         {Array.from({length: quantity || 1}).map((_, idx) => (
           <Box key={idx} sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
-            <Box sx={{fontSize: {xs: '0.75em', sm: '0.8em'}, fontWeight: 500, color: '#666'}}>Menge {idx + 1}</Box>
+            <Box sx={{fontSize: {xs: '0.75em', sm: '0.8em'}, fontWeight: 500, color: '#666'}}>
+              {t('pages.listConfigurator.quantityLabel')} {idx + 1}
+            </Box>
             <TextField
               size="small"
               type="date"

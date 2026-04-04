@@ -63,7 +63,7 @@ export const Navigation = () => {
         {/* Mobile Menu Button */}
         <IconButton
           color="inherit"
-          aria-label="menu"
+          aria-label={t('pages.listConfigurator.navigationOpen')}
           onClick={() => setMobileMenuOpen(true)}
           sx={{display: {xs: 'flex', sm: 'none'}, minWidth: 44, minHeight: 44}}
         >
@@ -77,7 +77,7 @@ export const Navigation = () => {
           <Box sx={{display: 'flex', justifyContent: 'flex-end', px: 2, mb: 2}}>
             <IconButton
               onClick={() => setMobileMenuOpen(false)}
-              aria-label="close menu"
+              aria-label={t('pages.listConfigurator.navigationClose')}
               sx={{minWidth: 44, minHeight: 44}}
             >
               <CloseIcon />

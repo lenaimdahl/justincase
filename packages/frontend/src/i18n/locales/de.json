@@ -9,7 +9,8 @@
     "add": "Hinzufügen",
     "delete": "Löschen",
     "close": "Schließen",
-    "notes": "Notizen"
+    "notes": "Notizen",
+    "priority": "Priorität"
   },
   "components": {
     "navigation": {
@@ -115,7 +116,22 @@
       }
     },
     "listConfigurator": {
-      "templates": "Vorlagen"
+      "templates": "Vorlagen",
+      "title": "Neue Liste erstellen",
+      "stepTemplate": "Vorlage",
+      "stepColor": "Farbe",
+      "stepIcon": "Icon",
+      "stepName": "Name",
+      "expiryDatesLabel": "Verfallsdatum für jede Menge:",
+      "quantityLabel": "Menge",
+      "navigationOpen": "Navigationsmenü öffnen",
+      "navigationClose": "Navigationsmenü schließen",
+      "cancel": "Abbrechen",
+      "back": "Zurück",
+      "next": "Weiter",
+      "create": "Erstellen",
+      "step": "Schritt",
+      "of": "von"
     }
   }
 }

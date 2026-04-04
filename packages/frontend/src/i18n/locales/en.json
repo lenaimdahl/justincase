@@ -9,7 +9,8 @@
     "add": "Add",
     "delete": "Delete",
     "close": "Close",
-    "notes": "Notes"
+    "notes": "Notes",
+    "priority": "Priority"
   },
   "components": {
     "navigation": {
@@ -115,7 +116,22 @@
       }
     },
     "listConfigurator": {
-      "templates": "Templates"
+      "templates": "Templates",
+      "title": "Create New List",
+      "stepTemplate": "Template",
+      "stepColor": "Color",
+      "stepIcon": "Icon",
+      "stepName": "Name",
+      "expiryDatesLabel": "Expiry date for each quantity:",
+      "quantityLabel": "Quantity",
+      "navigationOpen": "Open navigation menu",
+      "navigationClose": "Close navigation menu",
+      "cancel": "Cancel",
+      "back": "Back",
+      "next": "Next",
+      "create": "Create",
+      "step": "Step",
+      "of": "of"
     }
   }
 }

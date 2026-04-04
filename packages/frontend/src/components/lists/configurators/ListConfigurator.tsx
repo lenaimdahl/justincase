@@ -1,5 +1,6 @@
 import {Dialog, DialogTitle, DialogContent, DialogActions, Button, Stepper, Step, StepLabel, Box} from '@mui/material';
 import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import type {FieldConfig} from 'src/api/lists';
 import {ListTemplateStep, ListColorStep, ListIconStep, ListNameStep} from 'src/components/lists/configurators/steps';
 import {PRESET_TEMPLATES, DEFAULT_FIELD_CONFIG} from 'src/constants/listTemplates';
@@ -12,6 +13,7 @@ interface ListConfiguratorProps {
 }
 
 export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: ListConfiguratorProps) => {
+  const {t} = useTranslation();
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');
   const [icon, setIcon] = useState('📝');
@@ -19,10 +21,10 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
   const [fieldConfig, setFieldConfig] = useState<FieldConfig>(DEFAULT_FIELD_CONFIG);
   const [templateSelected, setTemplateSelected] = useState(false);
 
-  const totalSteps = 4; // Templates, Color, Icon, Name
+  const totalSteps = 4;
 
   const handleNext = () => {
-    if (step === 2 && !name.trim()) return; // Validate name before submit
+    if (step === 2 && !name.trim()) return;
     if (step < totalSteps - 1) {
       setStep(step + 1);
     }
@@ -36,7 +38,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
 
   const handleApplyTemplate = (template: keyof typeof PRESET_TEMPLATES) => {
     const preset = PRESET_TEMPLATES[template];
-    setName(preset.name);
+    setName(t(preset.name));
     const newConfig: FieldConfig = {...DEFAULT_FIELD_CONFIG};
 
     const fieldsToMap = [
@@ -58,7 +60,6 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
 
     setFieldConfig(newConfig);
     setTemplateSelected(true);
-    // Move to next step after template selection
     setStep(1);
   };
 
@@ -93,19 +94,19 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
         },
       }}
     >
-      <DialogTitle sx={{fontSize: {xs: '1.25rem', sm: '1.5rem'}}}>Liste erstellen</DialogTitle>
+      <DialogTitle sx={{fontSize: {xs: '1.25rem', sm: '1.5rem'}}}>{t('pages.listConfigurator.title')}</DialogTitle>
       <Stepper activeStep={step} sx={{p: 2}}>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Vorlage</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepTemplate')}</StepLabel>
         </Step>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Farbe</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepColor')}</StepLabel>
         </Step>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Icon</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepIcon')}</StepLabel>
         </Step>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Name</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepName')}</StepLabel>
         </Step>
       </Stepper>
 
@@ -120,19 +121,19 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
 
         {step === 3 && <ListNameStep name={name} icon={icon} loading={loading} onNameChange={setName} />}
 
-        {/* Progress indicator */}
         <Box sx={{mt: 3, mb: -2, textAlign: 'center', fontSize: {xs: '0.8em', sm: '0.9em'}, color: '#999'}}>
-          Schritt {step + 1} von {totalSteps}
+          {t('pages.listConfigurator.step', {defaultValue: 'Step'})} {step + 1}{' '}
+          {t('pages.listConfigurator.of', {defaultValue: 'of'})} {totalSteps}
         </Box>
       </DialogContent>
 
       <DialogActions sx={{p: {xs: 1, sm: 2}, gap: {xs: 1, sm: undefined}}}>
         <Button onClick={handleReset} disabled={loading} sx={{minHeight: {xs: 44, sm: 'auto'}}}>
-          Abbrechen
+          {t('pages.listConfigurator.cancel', {defaultValue: 'Cancel'})}
         </Button>
         {step > 0 && (
           <Button onClick={handleBack} disabled={loading} sx={{minHeight: {xs: 44, sm: 'auto'}}}>
-            Zurück
+            {t('pages.listConfigurator.back', {defaultValue: 'Back'})}
           </Button>
         )}
         {step < totalSteps - 1 && (
@@ -142,7 +143,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
             disabled={(step === 2 && !name.trim()) || loading}
             sx={{minHeight: {xs: 44, sm: 'auto'}}}
           >
-            Weiter
+            {t('pages.listConfigurator.next', {defaultValue: 'Next'})}
           </Button>
         )}
         {step === totalSteps - 1 && (
@@ -152,7 +153,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
             disabled={!name.trim() || loading}
             sx={{minHeight: {xs: 44, sm: 'auto'}}}
           >
-            Erstellen
+            {t('pages.listConfigurator.create', {defaultValue: 'Create'})}
           </Button>
         )}
       </DialogActions>
