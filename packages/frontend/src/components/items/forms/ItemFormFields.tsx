@@ -1,4 +1,5 @@
 import {TextField, FormControl, InputLabel, Select, MenuItem, Box} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import type {CreateItemRequest} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 
@@ -17,11 +18,13 @@ export const QuantityField = ({
 }) => {
   if (!fieldConfig.hasQuantity) return null;
 
+  const {t} = useTranslation();
+
   return (
     <TextField
       size="small"
       type="number"
-      placeholder="Menge"
+      placeholder={t('common.quantity')}
       value={value || 1}
       onChange={e => {
         const qty = parseInt(e.target.value) || 1;
@@ -38,7 +41,8 @@ export const QuantityField = ({
       }}
       disabled={disabled}
       slotProps={{htmlInput: {min: 1}}}
-      sx={{minWidth: 100}}
+      sx={{minWidth: {xs: '100%', sm: 100}}}
+      fullWidth={{xs: true, sm: false}}
     />
   );
 };
@@ -67,7 +71,8 @@ export const SingleExpiryDateField = ({
       value={value || ''}
       onChange={e => onChange({...newItem, expiryDate: e.target.value})}
       disabled={disabled}
-      sx={{minWidth: 140}}
+      sx={{minWidth: {xs: '100%', sm: 140}}}
+      fullWidth={{xs: true, sm: false}}
     />
   );
 };
@@ -89,13 +94,13 @@ export const MultipleExpiryDatesField = ({
 
   return (
     <Box sx={{mt: 1.5, p: 1.5, border: '1px solid #ddd', borderRadius: 1, bgcolor: '#f9f9f9'}}>
-      <Box component="strong" sx={{fontSize: '0.9em', display: 'block', mb: 1}}>
+      <Box component="strong" sx={{fontSize: {xs: '0.85em', sm: '0.9em'}, display: 'block', mb: 1}}>
         Ablaufdatum für jede Menge:
       </Box>
-      <Box sx={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 1}}>
+      <Box sx={{display: 'grid', gridTemplateColumns: {xs: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))'}, gap: 1}}>
         {Array.from({length: quantity || 1}).map((_, idx) => (
           <Box key={idx} sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
-            <Box sx={{fontSize: '0.8em', fontWeight: 500, color: '#666'}}>Menge {idx + 1}</Box>
+            <Box sx={{fontSize: {xs: '0.75em', sm: '0.8em'}, fontWeight: 500, color: '#666'}}>Menge {idx + 1}</Box>
             <TextField
               size="small"
               type="date"
@@ -132,7 +137,7 @@ export const PriorityField = ({
   if (!fieldConfig.hasPriority) return null;
 
   return (
-    <FormControl size="small" sx={{minWidth: 130}}>
+    <FormControl size="small" sx={{minWidth: {xs: '100%', sm: 130}}} fullWidth={{xs: true, sm: false}}>
       <InputLabel>Priorität</InputLabel>
       <Select
         value={comment?.split('|priority:')[1]?.split('|')[0] || ''}
@@ -162,16 +167,19 @@ export const NotesField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
+  const {t} = useTranslation();
+
   if (!fieldConfig.hasNotes) return null;
 
   return (
     <TextField
       size="small"
-      placeholder="Notiz..."
+      placeholder={t('components.placeholders.notes')}
       value={value || ''}
       onChange={e => onChange({...newItem, comment: e.target.value})}
       disabled={disabled}
-      sx={{minWidth: 150}}
+      sx={{minWidth: {xs: '100%', sm: 150}}}
+      fullWidth={{xs: true, sm: false}}
     />
   );
 };

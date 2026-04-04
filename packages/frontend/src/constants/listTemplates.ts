@@ -12,6 +12,7 @@ export interface PresetTemplate {
   checkboxLabels?: string[];
   hasExpiryDate?: boolean;
   hasQuantity?: boolean;
+  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
 }
@@ -19,26 +20,41 @@ export interface PresetTemplate {
 export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
   shopping: {
     name: 'Einkaufsliste',
-    description: 'Mit Häkchen und Mengen',
+    description: 'Mit Mengen und Kommentaren',
     hasCheckbox: true,
+    checkboxLabels: ['Refilled'],
     hasQuantity: true,
+    hasUnit: true,
+    hasNotes: true,
+    hasExpiryDate: false,
   },
   guestlist: {
     name: 'Gästeliste',
     description: 'Mit Zusagen und Absagen',
     hasCheckbox: true,
-    multipleCheckboxes: true,
-    checkboxLabels: ['Zugesagt', 'Abgesagt'],
+    checkboxLabels: ['Zugesagt'],
+    hasQuantity: true,
+    hasUnit: false,
+    hasNotes: false,
   },
   packing: {
     name: 'Packliste',
-    description: 'Mit Häkchen zum Abhaken',
+    description: 'Mit Häkchen und Kommentaren',
     hasCheckbox: true,
+    checkboxLabels: ['Packed'],
+    hasQuantity: true,
+    hasUnit: false,
+    hasNotes: true,
+    hasExpiryDate: false,
   },
   pantry: {
     name: 'Vorratsschrank',
-    description: 'Mit Verfallsdaten und Mengen',
+    description: 'Mit Verfallsdaten und Kommentaren',
+    hasCheckbox: true,
+    checkboxLabels: ['Refill'],
     hasQuantity: true,
+    hasUnit: true,
+    hasNotes: true,
     hasExpiryDate: true,
   },
 };
@@ -49,6 +65,7 @@ export const DEFAULT_FIELD_CONFIG: FieldConfig = {
   checkboxLabels: [],
   hasExpiryDate: false,
   hasQuantity: false,
+  hasUnit: true,
   hasNotes: false,
   hasPriority: false,
 };

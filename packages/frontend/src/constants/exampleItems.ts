@@ -79,23 +79,20 @@ export const EXAMPLE_ITEMS: Item[] = [
     listId: 'example-guests',
     name: 'Anna Mueller',
     quantity: 1,
-    unit: 'Person',
-    comment: '✓',
+    checked: 1,
   },
   {
     _id: 'example-guests-2',
     listId: 'example-guests',
     name: 'Tom Schmidt',
     quantity: 4,
-    unit: 'People',
-    comment: '✓',
+    checked: 1,
   },
   {
     _id: 'example-guests-3',
     listId: 'example-guests',
     name: 'Lisa Weber',
     quantity: 1,
-    unit: 'Person',
   },
 
   // Packing List - items to pack

@@ -1,5 +1,6 @@
 import {Box, Button, Card, TextField} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import {useTranslation} from 'react-i18next';
 import type {CreateItemRequest} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 import {
@@ -19,29 +20,30 @@ interface ItemFormProps {
 }
 
 export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSubmit}: ItemFormProps) => {
+  const {t} = useTranslation();
+
   return (
-    <Card sx={{p: 2, width: '100%'}}>
-      {/* Main Fields Row */}
+    <Card sx={{p: {xs: 1.5, sm: 2}, width: '100%'}}>
       <Box
         sx={{
           display: 'flex',
-          gap: 1.5,
-          alignItems: 'flex-end',
-          flexWrap: 'nowrap',
-          overflowX: 'auto',
+          gap: {xs: 1, sm: 1.5},
+          alignItems: {xs: 'stretch', sm: 'flex-end'},
+          flexDirection: {xs: 'column', sm: 'row'},
+          flexWrap: {xs: 'wrap', sm: 'nowrap'},
+          overflowX: {xs: 'visible', sm: 'auto'},
         }}
       >
-        {/* Item Name */}
         <TextField
           size="small"
-          placeholder="Item name..."
+          placeholder={t('components.placeholders.itemName')}
           value={newItem.name || ''}
           onChange={e => onItemChange({...newItem, name: e.target.value})}
           disabled={creatingItem}
-          sx={{minWidth: 150}}
+          sx={{minWidth: {xs: '100%', sm: 150}}}
+          fullWidth={{xs: true, sm: false}}
         />
 
-        {/* Quantity */}
         <QuantityField
           value={newItem.quantity || 1}
           disabled={creatingItem}
@@ -50,7 +52,6 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
           onChange={onItemChange}
         />
 
-        {/* Single Expiry Date */}
         <SingleExpiryDateField
           value={newItem.expiryDate || ''}
           disabled={creatingItem}
@@ -60,7 +61,6 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
           onChange={onItemChange}
         />
 
-        {/* Priority */}
         <PriorityField
           fieldConfig={fieldConfig}
           disabled={creatingItem}
@@ -69,7 +69,6 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
           onChange={onItemChange}
         />
 
-        {/* Notes */}
         <NotesField
           fieldConfig={fieldConfig}
           disabled={creatingItem}
@@ -78,7 +77,6 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
           onChange={onItemChange}
         />
 
-        {/* Submit Button */}
         <Button
           variant="contained"
           startIcon={<AddIcon />}
@@ -89,15 +87,15 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
             '&:hover': {
               background: 'linear-gradient(135deg, #7b1fa2 0%, #c2185b 100%)',
             },
-            height: '40px',
+            minHeight: {xs: 44, sm: 40},
+            minWidth: {xs: '100%', sm: 'auto'},
             flexShrink: 0,
           }}
         >
-          hinzufügen
+          {t('common.add')}
         </Button>
       </Box>
 
-      {/* Multiple Expiry Dates (if quantity > 1) */}
       <MultipleExpiryDatesField
         quantity={newItem.quantity}
         fieldConfig={fieldConfig}

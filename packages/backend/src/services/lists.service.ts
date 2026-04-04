@@ -15,6 +15,7 @@ export interface FieldConfig {
   checkboxLabels?: string[];
   hasExpiryDate?: boolean;
   hasQuantity?: boolean;
+  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
 }
@@ -53,7 +54,8 @@ export class ListsService {
         multipleCheckboxes: false,
         checkboxLabels: [],
         hasExpiryDate: false,
-        hasQuantity: false,
+        hasQuantity: true,
+        hasUnit: true,
         hasNotes: false,
         hasPriority: false,
       },

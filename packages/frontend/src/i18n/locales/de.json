@@ -1,11 +1,15 @@
 {
   "common": {
     "name": "Name",
-    "quantity": "Menge",
+    "quantity": "Anzahl",
     "comment": "Bemerkung",
     "unit": "Einheit",
     "expiryDate": "Verfallsdatum",
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "add": "Hinzufügen",
+    "delete": "Löschen",
+    "close": "Schließen",
+    "notes": "Notizen"
   },
   "components": {
     "navigation": {
@@ -14,6 +18,18 @@
       "lists": "Listen",
       "items": "Artikel",
       "settings": "Einstellungen"
+    },
+    "ariaLabels": {
+      "addItem": "Artikel hinzufügen",
+      "decreaseQuantity": "Anzahl verringern",
+      "increaseQuantity": "Anzahl erhöhen",
+      "deleteItem": "Artikel löschen",
+      "closeNotification": "Benachrichtigung schließen"
+    },
+    "placeholders": {
+      "itemName": "Artikelname",
+      "notes": "Notizen...",
+      "listNameExample": "z.B. Vorrat, Kühlschrank, Gefrierschrank..."
     }
   },
   "pages": {
