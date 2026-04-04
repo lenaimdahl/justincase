@@ -1,11 +1,13 @@
 import {useEffect} from 'react';
 import {Table, TableBody, TableContainer, TableHead, Paper, CircularProgress, Box, Alert} from '@mui/material';
+import {useMediaQuery, useTheme} from '@mui/material';
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 import {useItemOperations} from 'src/hooks/useItemOperations';
 import {ItemTableHeader} from 'src/components/items/tables/header/ItemTableHeader';
 import {ItemTableRow} from 'src/components/items/tables/rows/ItemTableRow';
 import {ItemTableNewItemRow} from 'src/components/items/tables/new-row/ItemTableNewItemRow';
+import {ItemCard} from 'src/components/items/tables/mobile/ItemCard';
 
 interface ItemTableProps {
   listId: string;
@@ -37,6 +39,9 @@ export const ItemTable = ({
     initializeEditingState,
   } = useItemOperations(listId, onItemsChange);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   useEffect(() => {
     initializeEditingState(items);
   }, [items, initializeEditingState]);
@@ -57,48 +62,27 @@ export const ItemTable = ({
         </Alert>
       )}
 
-      <TableContainer
-        component={Paper}
-        sx={{
-          mb: 3,
-          overflowX: 'auto',
-          '&::-webkit-scrollbar': {
-            height: 8,
-          },
-          '&::-webkit-scrollbar-track': {
-            background: '#f1f1f1',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            background: '#888',
-            borderRadius: 4,
-            '&:hover': {
-              background: '#555',
-            },
-          },
-        }}
-      >
-        <Table sx={{minWidth: {xs: 600, sm: 700}}}>
-          <TableHead>
-            <ItemTableHeader fieldConfig={fieldConfig} />
-          </TableHead>
-          <TableBody>
-            {items.map(item => {
-              const state = editingState[item._id] || item;
+      {/* Mobile Card View */}
+      {isMobile ? (
+        <Box sx={{mb: 3}}>
+          {items.map(item => {
+            const state = editingState[item._id] || item;
 
-              return (
-                <ItemTableRow
-                  key={item._id}
-                  item={item}
-                  state={state}
-                  fieldConfig={fieldConfig}
-                  onAdjustQuantity={readOnly ? async () => {} : handleAdjustQuantity}
-                  onUpdateField={readOnly ? () => {} : updateField}
-                  onDelete={readOnly ? async () => {} : handleDeleteItem}
-                />
-              );
-            })}
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                state={state}
+                fieldConfig={fieldConfig}
+                onAdjustQuantity={readOnly ? async () => {} : handleAdjustQuantity}
+                onUpdateField={readOnly ? () => {} : updateField}
+                onDelete={readOnly ? async () => {} : handleDeleteItem}
+              />
+            );
+          })}
 
-            {!readOnly && (
+          {!readOnly && (
+            <Box sx={{mt: 2, p: 2, border: '2px dashed #ccc', borderRadius: 1, textAlign: 'center'}}>
               <ItemTableNewItemRow
                 newItem={newItem}
                 creatingItem={creatingItem}
@@ -106,10 +90,65 @@ export const ItemTable = ({
                 onItemChange={setNewItem}
                 onSubmit={handleCreateItem}
               />
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </Box>
+          )}
+        </Box>
+      ) : (
+        /* Desktop Table View */
+        <TableContainer
+          component={Paper}
+          sx={{
+            mb: 3,
+            overflowX: 'auto',
+            '&::-webkit-scrollbar': {
+              height: 8,
+            },
+            '&::-webkit-scrollbar-track': {
+              background: '#f1f1f1',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: '#888',
+              borderRadius: 4,
+              '&:hover': {
+                background: '#555',
+              },
+            },
+          }}
+        >
+          <Table sx={{minWidth: {xs: 600, sm: 700}}}>
+            <TableHead>
+              <ItemTableHeader fieldConfig={fieldConfig} />
+            </TableHead>
+            <TableBody>
+              {items.map(item => {
+                const state = editingState[item._id] || item;
+
+                return (
+                  <ItemTableRow
+                    key={item._id}
+                    item={item}
+                    state={state}
+                    fieldConfig={fieldConfig}
+                    onAdjustQuantity={readOnly ? async () => {} : handleAdjustQuantity}
+                    onUpdateField={readOnly ? () => {} : updateField}
+                    onDelete={readOnly ? async () => {} : handleDeleteItem}
+                  />
+                );
+              })}
+
+              {!readOnly && (
+                <ItemTableNewItemRow
+                  newItem={newItem}
+                  creatingItem={creatingItem}
+                  fieldConfig={fieldConfig}
+                  onItemChange={setNewItem}
+                  onSubmit={handleCreateItem}
+                />
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </Box>
   );
 };
