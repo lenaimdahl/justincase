@@ -18,8 +18,8 @@ import {CreateItemDto} from 'src/dtos/create-item.dto';
 import {UpdateItemDto} from 'src/dtos/update-item.dto';
 import {ItemsService} from 'src/modules/items/items.service';
 
-@ApiTags('items')
 @ApiBearerAuth()
+@ApiTags('items')
 @Controller('api/lists/:id/items')
 @UsePipes(new ValidationPipe({whitelist: true}))
 export class ItemsController {
@@ -27,51 +27,51 @@ export class ItemsController {
 
   constructor(private readonly itemsService: ItemsService) {}
 
-  @Get()
-  @ApiOperation({summary: 'Get all items in a list'})
-  @ApiResponse({status: 200, description: 'List of items'})
-  async findAll(@Param('id') listId: string) {
-    const result = await this.itemsService.findAll(listId);
-    this.logger.debug(`GET /lists/${listId}/items -> 200 OK (${result.length} items)`);
+  @ApiOperation({summary: 'Adjust item quantity'})
+  @ApiResponse({description: 'Updated item', status: 200})
+  @ApiResponse({description: 'Item not found', status: 404})
+  @Patch(':itemId/adjust')
+  async adjustQuantity(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: AdjustQuantityDto) {
+    const result = await this.itemsService.adjustQuantity(listId, itemId, dto);
+    this.logger.debug(`PATCH /lists/${listId}/items/${itemId}/adjust -> 200 OK`);
     return result;
   }
 
-  @Post()
   @ApiOperation({summary: 'Create a new item in a list'})
-  @ApiResponse({status: 201, description: 'Item created'})
+  @ApiResponse({description: 'Item created', status: 201})
+  @Post()
   async create(@Param('id') listId: string, @Body() dto: CreateItemDto) {
     const result = await this.itemsService.create(listId, dto);
     this.logger.debug(`POST /lists/${listId}/items -> 201 Created (id: ${result._id})`);
     return result;
   }
 
-  @Patch(':itemId')
-  @ApiOperation({summary: 'Update an item'})
-  @ApiResponse({status: 200, description: 'Updated item'})
-  @ApiResponse({status: 404, description: 'Item not found'})
-  async update(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: UpdateItemDto) {
-    const result = await this.itemsService.update(listId, itemId, dto);
-    this.logger.debug(`PATCH /lists/${listId}/items/${itemId} -> 200 OK`);
+  @ApiOperation({summary: 'Get all items in a list'})
+  @ApiResponse({description: 'List of items', status: 200})
+  @Get()
+  async findAll(@Param('id') listId: string) {
+    const result = await this.itemsService.findAll(listId);
+    this.logger.debug(`GET /lists/${listId}/items -> 200 OK (${result.length} items)`);
     return result;
   }
 
+  @ApiOperation({summary: 'Delete an item'})
+  @ApiResponse({description: 'Item deleted', status: 204})
+  @ApiResponse({description: 'Item not found', status: 404})
   @Delete(':itemId')
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiOperation({summary: 'Delete an item'})
-  @ApiResponse({status: 204, description: 'Item deleted'})
-  @ApiResponse({status: 404, description: 'Item not found'})
   async remove(@Param('id') listId: string, @Param('itemId') itemId: string) {
     await this.itemsService.remove(listId, itemId);
     this.logger.debug(`DELETE /lists/${listId}/items/${itemId} -> 204 No Content`);
   }
 
-  @Patch(':itemId/adjust')
-  @ApiOperation({summary: 'Adjust item quantity'})
-  @ApiResponse({status: 200, description: 'Updated item'})
-  @ApiResponse({status: 404, description: 'Item not found'})
-  async adjustQuantity(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: AdjustQuantityDto) {
-    const result = await this.itemsService.adjustQuantity(listId, itemId, dto);
-    this.logger.debug(`PATCH /lists/${listId}/items/${itemId}/adjust -> 200 OK`);
+  @ApiOperation({summary: 'Update an item'})
+  @ApiResponse({description: 'Updated item', status: 200})
+  @ApiResponse({description: 'Item not found', status: 404})
+  @Patch(':itemId')
+  async update(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: UpdateItemDto) {
+    const result = await this.itemsService.update(listId, itemId, dto);
+    this.logger.debug(`PATCH /lists/${listId}/items/${itemId} -> 200 OK`);
     return result;
   }
 }

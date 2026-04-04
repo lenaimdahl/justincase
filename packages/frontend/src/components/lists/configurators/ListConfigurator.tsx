@@ -92,7 +92,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
       }}
     >
       <DialogTitle sx={{fontSize: {xs: '1.25rem', sm: '1.5rem'}}}>Liste erstellen</DialogTitle>
-      <Stepper activeStep={step} sx={{p: 2}} orientation={{xs: 'horizontal'} as any}>
+      <Stepper activeStep={step} sx={{p: 2}}>
         <Step>
           <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Vorlage</StepLabel>
         </Step>

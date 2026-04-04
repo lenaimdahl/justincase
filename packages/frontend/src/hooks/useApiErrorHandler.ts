@@ -1,11 +1,11 @@
-import {useNotification} from 'src/hooks/useNotification';
 import {useCallback} from 'react';
+import {useNotification} from 'src/hooks/useNotification';
 
 interface ApiError {
-  status?: number;
-  message?: string;
-  error?: string;
   details?: unknown;
+  error?: string;
+  message?: string;
+  status?: number;
 }
 
 export const useApiErrorHandler = () => {
@@ -44,7 +44,7 @@ export const useApiErrorHandler = () => {
       }
 
       // Log error for debugging
-      console.error('[API Error]', {error, status, message: errorMessage});
+      console.error('[API Error]', {error, message: errorMessage, status});
 
       // Show notification
       notification.error(errorMessage);

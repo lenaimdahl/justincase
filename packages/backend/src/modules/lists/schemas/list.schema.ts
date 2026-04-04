@@ -4,32 +4,32 @@ import {HydratedDocument} from 'mongoose';
 export type ListDocument = HydratedDocument<List>;
 
 export class FieldConfig {
-  hasCheckbox?: boolean;
-  multipleCheckboxes?: boolean;
   checkboxLabels?: string[];
+  hasCheckbox?: boolean;
   hasExpiryDate?: boolean;
-  hasQuantity?: boolean;
-  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
+  hasQuantity?: boolean;
+  hasUnit?: boolean;
+  multipleCheckboxes?: boolean;
 }
 
 @Schema({timestamps: true})
 export class List {
-  @Prop({required: true})
-  userId!: string;
+  @Prop({default: '#9c27b0'})
+  color!: string;
 
-  @Prop({required: true})
-  name!: string;
+  @Prop({default: () => ({}), type: Object})
+  fieldConfig!: FieldConfig;
 
   @Prop({default: '📝'})
   icon!: string;
 
-  @Prop({default: '#9c27b0'})
-  color!: string;
+  @Prop({required: true})
+  name!: string;
 
-  @Prop({type: Object, default: () => ({})})
-  fieldConfig!: FieldConfig;
+  @Prop({required: true})
+  userId!: string;
 }
 
 export const ListSchema = SchemaFactory.createForClass(List);

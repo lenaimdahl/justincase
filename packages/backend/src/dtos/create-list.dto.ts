@@ -1,34 +1,34 @@
-import {IsNotEmpty, IsString, IsBoolean, IsOptional, IsArray} from 'class-validator';
 import {ApiProperty, ApiPropertyOptional} from '@nestjs/swagger';
+import {IsArray, IsBoolean, IsNotEmpty, IsOptional, IsString} from 'class-validator';
 
 export interface FieldConfig {
-  hasCheckbox?: boolean;
-  multipleCheckboxes?: boolean;
   checkboxLabels?: string[];
+  hasCheckbox?: boolean;
   hasExpiryDate?: boolean;
-  hasQuantity?: boolean;
-  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
+  hasQuantity?: boolean;
+  hasUnit?: boolean;
+  multipleCheckboxes?: boolean;
 }
 
 export class CreateListDto {
-  @ApiProperty({example: 'Groceries'})
-  @IsString()
-  @IsNotEmpty()
-  name!: string;
-
-  @ApiPropertyOptional({example: '🛒'})
-  @IsString()
-  @IsOptional()
-  icon?: string;
-
   @ApiPropertyOptional({example: '#9c27b0'})
-  @IsString()
   @IsOptional()
+  @IsString()
   color?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   fieldConfig?: FieldConfig;
+
+  @ApiPropertyOptional({example: '🛒'})
+  @IsOptional()
+  @IsString()
+  icon?: string;
+
+  @ApiProperty({example: 'Groceries'})
+  @IsNotEmpty()
+  @IsString()
+  name!: string;
 }

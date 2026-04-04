@@ -14,9 +14,6 @@ export class ListsService {
   async create(userId: string, createListDto: CreateListDto): Promise<ListDocument> {
     this.logger.debug(`Creating list "${createListDto.name}" for user ${userId}`);
     const list = new this.listModel({
-      userId,
-      name: createListDto.name,
-      icon: createListDto.icon ?? '📝',
       color: createListDto.color ?? '#9c27b0',
       fieldConfig: createListDto.fieldConfig ?? {
         checkboxLabels: [],
@@ -27,6 +24,9 @@ export class ListsService {
         hasQuantity: false,
         multipleCheckboxes: false,
       },
+      icon: createListDto.icon ?? '📝',
+      name: createListDto.name,
+      userId,
     });
     const saved = await list.save();
     this.logger.debug(`List created with id ${saved._id}`);
@@ -46,6 +46,15 @@ export class ListsService {
       throw new NotFoundException(`List with id ${id} not found`);
     }
     return list;
+  }
+
+  async remove(userId: string, id: string): Promise<void> {
+    this.logger.debug(`Removing list ${id} for user ${userId}`);
+    const result = await this.listModel.deleteOne({_id: id, userId}).exec();
+    if (result.deletedCount === 0) {
+      this.logger.error(`List ${id} not found for user ${userId}`);
+      throw new NotFoundException(`List with id ${id} not found`);
+    }
   }
 
   async update(userId: string, id: string, updateListDto: UpdateListDto): Promise<ListDocument> {
@@ -68,14 +77,5 @@ export class ListsService {
       throw new NotFoundException(`List with id ${id} not found`);
     }
     return list;
-  }
-
-  async remove(userId: string, id: string): Promise<void> {
-    this.logger.debug(`Removing list ${id} for user ${userId}`);
-    const result = await this.listModel.deleteOne({_id: id, userId}).exec();
-    if (result.deletedCount === 0) {
-      this.logger.error(`List ${id} not found for user ${userId}`);
-      throw new NotFoundException(`List with id ${id} not found`);
-    }
   }
 }

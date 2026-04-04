@@ -1,25 +1,26 @@
-import {useState, useCallback} from 'react';
-import type {Item, CreateItemRequest, UpdateItemRequest, EditingItem} from 'src/types/item';
-import {createItem, updateItem, deleteItem, adjustItemQuantity} from 'src/api/items';
-import {useNotification} from 'src/hooks/useNotification';
+import type {CreateItemRequest, EditingItem, Item, UpdateItemRequest} from 'src/types/item';
+
+import {useCallback, useState} from 'react';
+import {adjustItemQuantity, createItem, deleteItem, updateItem} from 'src/api/items';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
+import {useNotification} from 'src/hooks/useNotification';
 
 const DEBOUNCE_DELAY = 1000; // ms
 
 interface UseItemOperationsReturn {
-  editingState: Record<string, EditingItem>;
-  itemsInEditMode: Set<string>;
-  newItem: CreateItemRequest & {expiryDates?: string[]};
+  createError: null | string;
   creatingItem: boolean;
-  createError: string | null;
-  setNewItem: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
-  setCreateError: (error: string | null) => void;
-  updateField: (itemId: string, field: keyof UpdateItemRequest, value: string | number) => void;
+  editingState: Record<string, EditingItem>;
   handleAdjustQuantity: (itemId: string, adjustment: number) => Promise<void>;
-  handleDeleteItem: (itemId: string) => Promise<void>;
   handleCreateItem: () => Promise<void>;
-  toggleEditMode: (itemId: string) => void;
+  handleDeleteItem: (itemId: string) => Promise<void>;
   initializeEditingState: (items: Item[]) => void;
+  itemsInEditMode: Set<string>;
+  newItem: {expiryDates?: string[]} & CreateItemRequest;
+  setCreateError: (error: null | string) => void;
+  setNewItem: (item: {expiryDates?: string[]} & CreateItemRequest) => void;
+  toggleEditMode: (itemId: string) => void;
+  updateField: (itemId: string, field: keyof UpdateItemRequest, value: number | string) => void;
 }
 
 /**
@@ -28,16 +29,16 @@ interface UseItemOperationsReturn {
 export const useItemOperations = (listId: string, onItemsChange: () => Promise<void>): UseItemOperationsReturn => {
   const [editingState, setEditingState] = useState<Record<string, EditingItem>>({});
   const [itemsInEditMode, setItemsInEditMode] = useState<Set<string>>(new Set());
-  const [newItem, setNewItem] = useState<CreateItemRequest & {expiryDates?: string[]}>({
+  const [newItem, setNewItem] = useState<{expiryDates?: string[]} & CreateItemRequest>({
+    comment: '',
+    expiryDate: '',
+    expiryDates: [],
     name: '',
     quantity: 1,
     unit: '',
-    expiryDate: '',
-    comment: '',
-    expiryDates: [],
   });
   const [creatingItem, setCreatingItem] = useState(false);
-  const [createError, setCreateError] = useState<string | null>(null);
+  const [createError, setCreateError] = useState<null | string>(null);
   const notification = useNotification();
   const {handleError} = useApiErrorHandler();
 
@@ -48,9 +49,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         if (!editingState[item._id]) {
           newState[item._id] = {
             ...item,
+            error: null,
             isEditing: false,
             isSaving: false,
-            error: null,
           };
         }
       });
@@ -62,13 +63,13 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
   );
 
   const updateField = useCallback(
-    (itemId: string, field: keyof UpdateItemRequest, value: string | number) => {
+    (itemId: string, field: keyof UpdateItemRequest, value: number | string) => {
       setEditingState(prev => ({
         ...prev,
         [itemId]: {
           ...prev[itemId],
-          [field]: value,
           error: null,
+          [field]: value,
         },
       }));
 
@@ -79,7 +80,7 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         }
 
         const updateData: UpdateItemRequest = {};
-        (updateData as Record<string, string | number>)[field] = value;
+        (updateData as Record<string, number | string>)[field] = value;
 
         setEditingState(prev => ({
           ...prev,
@@ -100,8 +101,8 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
             ...prev,
             [itemId]: {
               ...prev[itemId],
-              isSaving: false,
               error: errorMessage,
+              isSaving: false,
             },
           }));
         }
@@ -143,8 +144,8 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
           ...prev,
           [itemId]: {
             ...prev[itemId],
-            isSaving: false,
             error: errorMessage,
+            isSaving: false,
           },
         }));
       }
@@ -174,8 +175,8 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
           ...prev,
           [itemId]: {
             ...prev[itemId],
-            isSaving: false,
             error: errorMessage,
+            isSaving: false,
           },
         }));
       }
@@ -196,11 +197,11 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
     try {
       // Create a single item with expiryDates array if multiple dates provided
       const expiryDates = (newItem as any).expiryDates || [];
-      const itemToCreate: CreateItemRequest & {expiryDates?: string[]} = {
+      const itemToCreate: {expiryDates?: string[]} & CreateItemRequest = {
+        comment: newItem.comment,
         name: newItem.name,
         quantity: newItem.quantity || 1,
         unit: newItem.unit,
-        comment: newItem.comment,
       };
 
       if (expiryDates.length > 0) {
@@ -212,12 +213,12 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
       await createItem(listId, itemToCreate);
 
       setNewItem({
+        comment: '',
+        expiryDate: '',
+        expiryDates: [],
         name: '',
         quantity: 1,
         unit: '',
-        expiryDate: '',
-        comment: '',
-        expiryDates: [],
       });
       await onItemsChange();
       notification.success('Item created successfully');
@@ -242,18 +243,18 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
   }, []);
 
   return {
+    createError,
+    creatingItem,
     editingState,
+    handleAdjustQuantity,
+    handleCreateItem,
+    handleDeleteItem,
+    initializeEditingState,
     itemsInEditMode,
     newItem,
-    creatingItem,
-    createError,
-    setNewItem,
     setCreateError,
-    updateField,
-    handleAdjustQuantity,
-    handleDeleteItem,
-    handleCreateItem,
+    setNewItem,
     toggleEditMode,
-    initializeEditingState,
+    updateField,
   };
 };

@@ -1,12 +1,13 @@
-import {useState, useEffect, useCallback} from 'react';
 import type {Item} from 'src/types/item';
+
+import {useCallback, useEffect, useState} from 'react';
 import {fetchItemsByListId} from 'src/api/items';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 
 interface UseFetchItemsReturn {
+  error: null | string;
   items: Item[];
   loading: boolean;
-  error: string | null;
   refetch: () => Promise<void>;
 }
 
@@ -16,7 +17,7 @@ interface UseFetchItemsReturn {
 export const useFetchItems = (listId: string): UseFetchItemsReturn => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<null | string>(null);
   const {handleError} = useApiErrorHandler();
 
   const fetchItems = useCallback(async () => {
@@ -38,5 +39,5 @@ export const useFetchItems = (listId: string): UseFetchItemsReturn => {
     fetchItems();
   }, [fetchItems]);
 
-  return {items, loading, error, refetch: fetchItems};
+  return {error, items, loading, refetch: fetchItems};
 };
