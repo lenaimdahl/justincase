@@ -17,7 +17,10 @@ export const useAuthConfig = (): AuthConfig => {
         if (!res.ok) {
           return;
         }
-        res.json().then((data: AuthConfig) => setGoogleOAuthEnabled(data.googleOAuthEnabled)).catch(() => {});
+        res
+          .json()
+          .then((data: AuthConfig) => setGoogleOAuthEnabled(data.googleOAuthEnabled))
+          .catch(() => {});
       })
       .catch(() => {});
   }, []);
