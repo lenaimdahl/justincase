@@ -1,4 +1,5 @@
 import {Body, Controller, Delete, Get, HttpCode, Logger, Param, Patch, Post} from '@nestjs/common';
+import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {CreateListDto} from 'src/dtos/create-list.dto';
 import {UpdateListDto} from 'src/dtos/update-list.dto';
 import {CurrentUser} from 'src/modules/auth/decorators/current-user.decorator';
@@ -7,6 +8,8 @@ import {ListsService} from 'src/modules/lists/lists.service';
 import type {ListDocument} from 'src/modules/lists/schemas/list.schema';
 import type {UserDocument} from 'src/modules/users/schemas/user.schema';
 
+@ApiTags('lists')
+@ApiBearerAuth()
 @Controller('api/lists')
 export class ListsController {
   private readonly logger = new Logger(ListsController.name);
@@ -17,6 +20,8 @@ export class ListsController {
   ) {}
 
   @Post()
+  @ApiOperation({summary: 'Create a new list'})
+  @ApiResponse({status: 201, description: 'List created'})
   async create(@CurrentUser() user: UserDocument, @Body() createListDto: CreateListDto): Promise<ListDocument> {
     const result = await this.listsService.create(String(user._id), createListDto);
     this.logger.debug(`POST /lists -> 201 Created (id: ${result._id})`);
@@ -24,6 +29,8 @@ export class ListsController {
   }
 
   @Get()
+  @ApiOperation({summary: 'Get all lists for the current user'})
+  @ApiResponse({status: 200, description: 'List of lists'})
   async findAll(@CurrentUser() user: UserDocument): Promise<(ListDocument & {itemCount: number})[]> {
     const lists = await this.listsService.findAll(String(user._id));
     const result = await Promise.all(
@@ -37,6 +44,9 @@ export class ListsController {
   }
 
   @Get(':id')
+  @ApiOperation({summary: 'Get a single list by ID'})
+  @ApiResponse({status: 200, description: 'The list'})
+  @ApiResponse({status: 404, description: 'List not found'})
   async findOne(
     @CurrentUser() user: UserDocument,
     @Param('id') id: string
@@ -48,6 +58,9 @@ export class ListsController {
   }
 
   @Patch(':id')
+  @ApiOperation({summary: 'Update a list'})
+  @ApiResponse({status: 200, description: 'Updated list'})
+  @ApiResponse({status: 404, description: 'List not found'})
   async update(
     @CurrentUser() user: UserDocument,
     @Param('id') id: string,
@@ -60,6 +73,9 @@ export class ListsController {
 
   @Delete(':id')
   @HttpCode(204)
+  @ApiOperation({summary: 'Delete a list'})
+  @ApiResponse({status: 204, description: 'List deleted'})
+  @ApiResponse({status: 404, description: 'List not found'})
   async remove(@CurrentUser() user: UserDocument, @Param('id') id: string): Promise<void> {
     await this.listsService.remove(String(user._id), id);
     this.logger.debug(`DELETE /lists/${id} -> 204 No Content`);
