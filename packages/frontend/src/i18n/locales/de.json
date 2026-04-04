@@ -100,19 +100,23 @@
       "predefinedTemplate": "Vordefinierte Vorlage",
       "shopping": {
         "name": "Einkaufsliste",
-        "description": "Mit Mengen und Notizen"
+        "description": "Mit Mengen und Notizen",
+        "checkboxLabel": "Gefüllt"
       },
       "guestlist": {
         "name": "Gästeliste",
-        "description": "Mit Zusagen und Absagen"
+        "description": "Mit Zusagen und Absagen",
+        "checkboxLabel": "Zugesagt"
       },
       "packing": {
         "name": "Packliste",
-        "description": "Mit Häkchen und Notizen"
+        "description": "Mit Häkchen und Notizen",
+        "checkboxLabel": "Gepackt"
       },
       "pantry": {
         "name": "Vorrat",
-        "description": "Mit Verfallsdaten und Notizen"
+        "description": "Mit Verfallsdaten und Notizen",
+        "checkboxLabel": "Auffüllen"
       }
     },
     "listConfigurator": {

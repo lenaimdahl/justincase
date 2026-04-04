@@ -100,19 +100,23 @@
       "predefinedTemplate": "Predefined template",
       "shopping": {
         "name": "Shopping List",
-        "description": "With quantities and notes"
+        "description": "With quantities and notes",
+        "checkboxLabel": "Refilled"
       },
       "guestlist": {
         "name": "Guest List",
-        "description": "With confirmations and cancellations"
+        "description": "With confirmations and cancellations",
+        "checkboxLabel": "Confirmed"
       },
       "packing": {
         "name": "Packing List",
-        "description": "With checkmarks and notes"
+        "description": "With checkmarks and notes",
+        "checkboxLabel": "Packed"
       },
       "pantry": {
         "name": "Pantry",
-        "description": "With expiry dates and notes"
+        "description": "With expiry dates and notes",
+        "checkboxLabel": "Refill"
       }
     },
     "listConfigurator": {
