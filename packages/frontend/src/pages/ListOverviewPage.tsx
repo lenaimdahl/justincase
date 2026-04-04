@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Container, Box, CircularProgress, Alert} from '@mui/material';
-import {ListOverviewHeader} from 'src/components/lists/grid/ListOverviewHeader';
-import {ListsGrid} from 'src/components/lists/grid/ListsGrid';
-import {EmptyListsState} from 'src/components/lists/grid/EmptyListsState';
-import {ListConfigurator} from 'src/components/lists/dialogs/ListConfigurator';
+import {ListOverviewHeader} from 'src/components/lists/overview/ListOverviewHeader';
+import {ListsGrid} from 'src/components/lists/overview/ListsGrid';
+import {EmptyListsState} from 'src/components/lists/overview/EmptyListsState';
+import {ListConfigurator} from 'src/components/lists/configurators/ListConfigurator';
 import {useFetchLists} from 'src/hooks/useFetchLists';
 import {useNotification} from 'src/hooks/useNotification';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
@@ -31,15 +31,15 @@ export const ListOverviewPage = () => {
     setCreatingList(true);
 
     try {
-      await createList({
+      const newList = await createList({
         name,
         icon,
         color,
         fieldConfig,
       });
       handleCloseConfigurator();
-      await refetch();
       notification.success(`List "${name}" created successfully`);
+      navigate(`/lists/${newList.id}`);
     } catch (err) {
       handleError(err, 'Failed to create list');
     } finally {

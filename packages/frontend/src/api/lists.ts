@@ -11,6 +11,7 @@ export interface FieldConfig {
   checkboxLabels?: string[];
   hasExpiryDate?: boolean;
   hasQuantity?: boolean;
+  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
 }

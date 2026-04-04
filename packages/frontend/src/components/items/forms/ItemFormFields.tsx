@@ -1,4 +1,5 @@
 import {TextField, FormControl, InputLabel, Select, MenuItem, Box} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import type {CreateItemRequest} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
 
@@ -17,11 +18,13 @@ export const QuantityField = ({
 }) => {
   if (!fieldConfig.hasQuantity) return null;
 
+  const {t} = useTranslation();
+
   return (
     <TextField
       size="small"
       type="number"
-      placeholder="Menge"
+      placeholder={t('common.quantity')}
       value={value || 1}
       onChange={e => {
         const qty = parseInt(e.target.value) || 1;
@@ -162,12 +165,14 @@ export const NotesField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
+  const {t} = useTranslation();
+
   if (!fieldConfig.hasNotes) return null;
 
   return (
     <TextField
       size="small"
-      placeholder="Notiz..."
+      placeholder={t('components.placeholders.notes')}
       value={value || ''}
       onChange={e => onChange({...newItem, comment: e.target.value})}
       disabled={disabled}

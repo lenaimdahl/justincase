@@ -1,7 +1,7 @@
 import {describe, it, expect, vi} from 'vitest';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {ListsGrid} from 'src/components/lists/grid/ListsGrid';
+import {ListsGrid} from 'src/components/lists/overview/ListsGrid';
 import type {List} from 'src/types/list';
 
 describe('ListsGrid Component', () => {
@@ -64,7 +64,7 @@ describe('ListsGrid Component', () => {
 
   it('should render empty grid when no lists provided', () => {
     const handleListClick = vi.fn();
-    const {container} = render(<ListsGrid lists={[]} onListClick={handleListClick} />);
+    render(<ListsGrid lists={[]} onListClick={handleListClick} />);
 
     const buttons = screen.queryAllByRole('button');
     expect(buttons).toHaveLength(0);

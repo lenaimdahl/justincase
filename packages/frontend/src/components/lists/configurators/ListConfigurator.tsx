@@ -1,12 +1,7 @@
 import {Dialog, DialogTitle, DialogContent, DialogActions, Button, Stepper, Step, StepLabel, Box} from '@mui/material';
 import {useState} from 'react';
 import type {FieldConfig} from 'src/api/lists';
-import {ListTemplateStep} from 'src/components/lists/dialogs/ListTemplateStep';
-import {ListColorStep} from 'src/components/lists/dialogs/ListColorStep';
-import {ListIconStep} from 'src/components/lists/dialogs/ListIconStep';
-import {ListNameStep} from 'src/components/lists/dialogs/ListNameStep';
-import {ListFieldsStep} from 'src/components/lists/dialogs/ListFieldsStep';
-import {ListCheckboxesStep} from 'src/components/lists/dialogs/ListCheckboxesStep';
+import {ListTemplateStep, ListColorStep, ListIconStep, ListNameStep} from 'src/components/lists/configurators/steps';
 import {PRESET_TEMPLATES, DEFAULT_FIELD_CONFIG} from 'src/constants/listTemplates';
 
 interface ListConfiguratorProps {
@@ -22,11 +17,12 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
   const [icon, setIcon] = useState('📝');
   const [color, setColor] = useState('#9c27b0');
   const [fieldConfig, setFieldConfig] = useState<FieldConfig>(DEFAULT_FIELD_CONFIG);
+  const [templateSelected, setTemplateSelected] = useState(false);
 
-  const totalSteps = 6; // Templates, Color, Icon, Name, Fields, Checkboxes
+  const totalSteps = 4; // Templates, Color, Icon, Name
 
   const handleNext = () => {
-    if (step === 3 && !name.trim()) return; // Validate name before moving to fields
+    if (step === 2 && !name.trim()) return; // Validate name before submit
     if (step < totalSteps - 1) {
       setStep(step + 1);
     }
@@ -36,38 +32,6 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
     if (step > 0) {
       setStep(step - 1);
     }
-  };
-
-  const handleFieldChange = (field: keyof FieldConfig) => {
-    if (field === 'multipleCheckboxes') {
-      setFieldConfig({
-        ...fieldConfig,
-        [field]: !(fieldConfig[field] as boolean),
-        checkboxLabels: !(fieldConfig[field] as boolean) ? ['', ''] : [],
-      });
-    } else {
-      setFieldConfig({
-        ...fieldConfig,
-        [field]: !(fieldConfig[field] as boolean),
-      });
-    }
-  };
-
-  const handleCheckboxLabelChange = (index: number, value: string) => {
-    const labels = [...(fieldConfig.checkboxLabels || [])];
-    labels[index] = value;
-    setFieldConfig({...fieldConfig, checkboxLabels: labels});
-  };
-
-  const handleAddCheckboxLabel = () => {
-    const labels = [...(fieldConfig.checkboxLabels || [])];
-    labels.push('');
-    setFieldConfig({...fieldConfig, checkboxLabels: labels});
-  };
-
-  const handleRemoveCheckboxLabel = (index: number) => {
-    const labels = (fieldConfig.checkboxLabels || []).filter((_, i) => i !== index);
-    setFieldConfig({...fieldConfig, checkboxLabels: labels});
   };
 
   const handleApplyTemplate = (template: keyof typeof PRESET_TEMPLATES) => {
@@ -81,6 +45,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
       'checkboxLabels',
       'hasExpiryDate',
       'hasQuantity',
+      'hasUnit',
       'hasNotes',
       'hasPriority',
     ] as const;
@@ -92,6 +57,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
     });
 
     setFieldConfig(newConfig);
+    setTemplateSelected(true);
     // Move to next step after template selection
     setStep(1);
   };
@@ -108,6 +74,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
     setIcon('📝');
     setColor('#9c27b0');
     setFieldConfig(DEFAULT_FIELD_CONFIG);
+    setTemplateSelected(false);
     onClose();
   };
 
@@ -127,35 +94,18 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
         <Step>
           <StepLabel>Name</StepLabel>
         </Step>
-        <Step>
-          <StepLabel>Felder</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Checkboxen</StepLabel>
-        </Step>
       </Stepper>
 
       <DialogContent sx={{minHeight: 300}}>
-        {step === 0 && <ListTemplateStep loading={loading} onTemplateSelect={handleApplyTemplate} />}
+        {step === 0 && !templateSelected && (
+          <ListTemplateStep loading={loading} onTemplateSelect={handleApplyTemplate} />
+        )}
 
         {step === 1 && <ListColorStep color={color} loading={loading} onColorChange={setColor} />}
 
         {step === 2 && <ListIconStep icon={icon} loading={loading} onIconChange={setIcon} />}
 
         {step === 3 && <ListNameStep name={name} icon={icon} loading={loading} onNameChange={setName} />}
-
-        {step === 4 && <ListFieldsStep fieldConfig={fieldConfig} loading={loading} onFieldChange={handleFieldChange} />}
-
-        {step === 5 && (
-          <ListCheckboxesStep
-            fieldConfig={fieldConfig}
-            loading={loading}
-            onMultipleCheckboxesChange={() => handleFieldChange('multipleCheckboxes')}
-            onCheckboxLabelChange={handleCheckboxLabelChange}
-            onAddCheckboxLabel={handleAddCheckboxLabel}
-            onRemoveCheckboxLabel={handleRemoveCheckboxLabel}
-          />
-        )}
 
         {/* Progress indicator */}
         <Box sx={{mt: 3, mb: -2, textAlign: 'center', fontSize: '0.9em', color: '#999'}}>
@@ -173,7 +123,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
           </Button>
         )}
         {step < totalSteps - 1 && (
-          <Button onClick={handleNext} variant="contained" disabled={(step === 3 && !name.trim()) || loading}>
+          <Button onClick={handleNext} variant="contained" disabled={(step === 2 && !name.trim()) || loading}>
             Weiter
           </Button>
         )}

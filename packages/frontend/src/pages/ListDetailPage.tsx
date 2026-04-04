@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom';
-import {Container, Box, Alert, Typography, CircularProgress} from '@mui/material';
-import {ItemView} from 'src/components/items/ItemView';
+import {Container, Box, Alert, CircularProgress} from '@mui/material';
+import {ListHeader} from 'src/components/lists/header/ListHeader';
+import {ItemTable} from 'src/components/items/tables/ItemTable';
 import {useFetchItems} from 'src/hooks/useFetchItems';
 import {fetchListById} from 'src/api/lists';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
@@ -69,18 +70,7 @@ export const ListDetailPage = () => {
         px: {xs: 1, sm: 2},
       }}
     >
-      <Box sx={{mb: 3}}>
-        <Typography
-          variant="h4"
-          component="h1"
-          sx={{
-            color: list.color,
-            fontSize: {xs: '1.75rem', sm: '2.125rem'},
-          }}
-        >
-          {list.icon} {list.name}
-        </Typography>
-      </Box>
+      <ListHeader list={list} />
 
       {error && (
         <Alert severity="error" sx={{mb: 3}}>
@@ -88,7 +78,11 @@ export const ListDetailPage = () => {
         </Alert>
       )}
 
-      <ItemView listId={listId} items={items} fieldConfig={list.fieldConfig} onItemsChange={refetch} />
+      <Box sx={{width: '100%', display: 'flex', justifyContent: 'center', p: 2}}>
+        <Box sx={{width: '100%', maxWidth: 1200}}>
+          <ItemTable listId={listId} items={items} fieldConfig={list.fieldConfig} onItemsChange={refetch} />
+        </Box>
+      </Box>
     </Container>
   );
 };

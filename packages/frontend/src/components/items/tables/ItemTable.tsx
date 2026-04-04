@@ -1,19 +1,29 @@
 import {useEffect} from 'react';
 import {Table, TableBody, TableContainer, TableHead, Paper, CircularProgress, Box, Alert} from '@mui/material';
 import type {Item} from 'src/types/item';
+import type {FieldConfig} from 'src/types/list';
 import {useItemOperations} from 'src/hooks/useItemOperations';
-import {ItemTableHeader} from 'src/components/items/table/ItemTableHeader';
-import {ItemTableRow} from 'src/components/items/table/ItemTableRow';
-import {ItemTableNewItemRow} from 'src/components/items/table/ItemTableNewItemRow';
+import {ItemTableHeader} from 'src/components/items/tables/header/ItemTableHeader';
+import {ItemTableRow} from 'src/components/items/tables/rows/ItemTableRow';
+import {ItemTableNewItemRow} from 'src/components/items/tables/new-row/ItemTableNewItemRow';
 
 interface ItemTableProps {
   listId: string;
   items: Item[];
+  fieldConfig?: FieldConfig;
   loading?: boolean;
   onItemsChange: () => Promise<void>;
+  readOnly?: boolean;
 }
 
-export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemTableProps) => {
+export const ItemTable = ({
+  listId,
+  items,
+  fieldConfig,
+  loading = false,
+  onItemsChange,
+  readOnly = false,
+}: ItemTableProps) => {
   const {
     editingState,
     newItem,
@@ -52,7 +62,6 @@ export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemT
         sx={{
           mb: 3,
           overflowX: 'auto',
-          // Enable horizontal scroll on mobile
           '&::-webkit-scrollbar': {
             height: 8,
           },
@@ -70,7 +79,7 @@ export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemT
       >
         <Table sx={{minWidth: {xs: 600, sm: 700}}}>
           <TableHead>
-            <ItemTableHeader />
+            <ItemTableHeader fieldConfig={fieldConfig} />
           </TableHead>
           <TableBody>
             {items.map(item => {
@@ -81,19 +90,23 @@ export const ItemTable = ({listId, items, loading = false, onItemsChange}: ItemT
                   key={item._id}
                   item={item}
                   state={state}
-                  onAdjustQuantity={handleAdjustQuantity}
-                  onUpdateField={updateField}
-                  onDelete={handleDeleteItem}
+                  fieldConfig={fieldConfig}
+                  onAdjustQuantity={readOnly ? async () => {} : handleAdjustQuantity}
+                  onUpdateField={readOnly ? () => {} : updateField}
+                  onDelete={readOnly ? async () => {} : handleDeleteItem}
                 />
               );
             })}
 
-            <ItemTableNewItemRow
-              newItem={newItem}
-              creatingItem={creatingItem}
-              onItemChange={setNewItem}
-              onSubmit={handleCreateItem}
-            />
+            {!readOnly && (
+              <ItemTableNewItemRow
+                newItem={newItem}
+                creatingItem={creatingItem}
+                fieldConfig={fieldConfig}
+                onItemChange={setNewItem}
+                onSubmit={handleCreateItem}
+              />
+            )}
           </TableBody>
         </Table>
       </TableContainer>

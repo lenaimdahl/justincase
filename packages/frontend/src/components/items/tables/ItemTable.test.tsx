@@ -1,6 +1,6 @@
 import {describe, it, expect, vi, beforeEach} from 'vitest';
 import {render, screen, waitFor} from '@testing-library/react';
-import {ItemTable} from 'src/components/items/table/ItemTable';
+import {ItemTable} from 'src/components/items/tables/ItemTable';
 import {NotificationProvider} from 'src/contexts/NotificationContext';
 import type {Item} from 'src/types/item';
 

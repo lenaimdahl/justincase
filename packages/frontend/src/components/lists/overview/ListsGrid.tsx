@@ -1,5 +1,5 @@
 import {Box} from '@mui/material';
-import {ListCard} from 'src/components/lists/ListCard';
+import {ListCard} from 'src/components/lists/card/ListCard';
 import type {List} from 'src/types/list';
 
 interface ListsGridProps {
