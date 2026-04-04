@@ -1,4 +1,5 @@
 import {Body, Controller, Get, HttpCode, Logger, Post, Req, UseGuards} from '@nestjs/common';
+import {ConfigService} from '@nestjs/config';
 import {ApiOperation, ApiResponse, ApiTags, ApiBearerAuth} from '@nestjs/swagger';
 import {Throttle} from '@nestjs/throttler';
 import {AuthService} from 'src/modules/auth/auth.service';
@@ -15,7 +16,10 @@ import type {UserDocument} from 'src/modules/users/schemas/user.schema';
 export class AuthController {
   private readonly logger = new Logger(AuthController.name);
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly config: ConfigService
+  ) {}
 
   @Public()
   @Post('register')
@@ -59,6 +63,15 @@ export class AuthController {
   getProfile(@CurrentUser() user: UserDocument) {
     this.logger.debug(`GET /api/auth/me -> user ${user.email}`);
     return this.authService.getProfile(user);
+  }
+
+  @Public()
+  @Get('config')
+  @ApiOperation({summary: 'Get auth configuration (e.g. whether Google OAuth is enabled)'})
+  @ApiResponse({status: 200, description: 'Auth configuration'})
+  getConfig() {
+    this.logger.debug(`GET /api/auth/config`);
+    return {googleOAuthEnabled: !!this.config.get<string>('GOOGLE_CLIENT_ID')};
   }
 
   @Public()
