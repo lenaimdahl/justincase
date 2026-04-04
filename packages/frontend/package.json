@@ -11,6 +11,7 @@
     "react-router-dom": "6.28.0"
   },
   "devDependencies": {
+    "@ffflorian/eslint-config-react": "0.2.2",
     "@ffflorian/prettier-config": "0.6.7",
     "@testing-library/dom": "9.3.4",
     "@testing-library/jest-dom": "6.1.5",
@@ -21,7 +22,10 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.1",
     "@vitest/ui": "4.1.0",
+    "eslint": "9.39.4",
+    "eslint-plugin-oxlint": "1.58.0",
     "jsdom": "23.2.0",
+    "oxlint": "1.58.0",
     "prettier": "3.8.1",
     "typescript": "5.9.3",
     "vite": "8.0.1",
@@ -35,7 +39,7 @@
     "clean": "rm -rf dist",
     "dev": "yarn start:dev",
     "format": "yarn prettier --write",
-    "lint": "yarn prettier --list-different",
+    "lint": "eslint . && yarn prettier --list-different",
     "prettier": "prettier --ignore-path ../../.prettierignore .",
     "preview": "vite preview",
     "start:dev": "vite",

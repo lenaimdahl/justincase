@@ -24,10 +24,10 @@ export class ItemsController {
 
   constructor(private readonly itemsService: ItemsService) {}
 
-  @Get()
-  async findAll(@Param('id') listId: string) {
-    const result = await this.itemsService.findAll(listId);
-    this.logger.debug(`GET /lists/${listId}/items -> 200 OK (${result.length} items)`);
+  @Patch(':itemId/adjust')
+  async adjustQuantity(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: AdjustQuantityDto) {
+    const result = await this.itemsService.adjustQuantity(listId, itemId, dto);
+    this.logger.debug(`PATCH /lists/${listId}/items/${itemId}/adjust -> 200 OK`);
     return result;
   }
 
@@ -38,10 +38,10 @@ export class ItemsController {
     return result;
   }
 
-  @Patch(':itemId')
-  async update(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: UpdateItemDto) {
-    const result = await this.itemsService.update(listId, itemId, dto);
-    this.logger.debug(`PATCH /lists/${listId}/items/${itemId} -> 200 OK`);
+  @Get()
+  async findAll(@Param('id') listId: string) {
+    const result = await this.itemsService.findAll(listId);
+    this.logger.debug(`GET /lists/${listId}/items -> 200 OK (${result.length} items)`);
     return result;
   }
 
@@ -52,10 +52,10 @@ export class ItemsController {
     this.logger.debug(`DELETE /lists/${listId}/items/${itemId} -> 204 No Content`);
   }
 
-  @Patch(':itemId/adjust')
-  async adjustQuantity(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: AdjustQuantityDto) {
-    const result = await this.itemsService.adjustQuantity(listId, itemId, dto);
-    this.logger.debug(`PATCH /lists/${listId}/items/${itemId}/adjust -> 200 OK`);
+  @Patch(':itemId')
+  async update(@Param('id') listId: string, @Param('itemId') itemId: string, @Body() dto: UpdateItemDto) {
+    const result = await this.itemsService.update(listId, itemId, dto);
+    this.logger.debug(`PATCH /lists/${listId}/items/${itemId} -> 200 OK`);
     return result;
   }
 }

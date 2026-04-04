@@ -10,26 +10,6 @@ interface NotificationProviderProps {
 export const NotificationProvider: React.FC<NotificationProviderProps> = ({children}) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  const addNotification = useCallback((type: NotificationType, message: string, duration?: number): string => {
-    const id = `${Date.now()}-${Math.random()}`;
-    const newNotification: Notification = {
-      id,
-      type,
-      message,
-      duration: duration ?? (type === 'success' ? 3000 : undefined),
-    };
-
-    setNotifications(prev => [...prev, newNotification]);
-
-    if (newNotification.duration) {
-      setTimeout(() => {
-        removeNotification(id);
-      }, newNotification.duration);
-    }
-
-    return id;
-  }, []);
-
   const removeNotification = useCallback((id: string) => {
     setNotifications(prev => prev.filter(notif => notif.id !== id));
   }, []);
@@ -37,6 +17,29 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({child
   const clearAll = useCallback(() => {
     setNotifications([]);
   }, []);
+
+  const addNotification = useCallback(
+    (type: NotificationType, message: string, duration?: number): string => {
+      const id = `${Date.now()}-${Math.random()}`;
+      const newNotification: Notification = {
+        id,
+        type,
+        message,
+        duration: duration ?? (type === 'success' ? 3000 : undefined),
+      };
+
+      setNotifications(prev => [...prev, newNotification]);
+
+      if (newNotification.duration) {
+        setTimeout(() => {
+          removeNotification(id);
+        }, newNotification.duration);
+      }
+
+      return id;
+    },
+    [removeNotification]
+  );
 
   const value: NotificationContextType = {
     notifications,

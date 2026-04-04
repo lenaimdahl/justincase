@@ -70,7 +70,7 @@ export const ListCheckboxesStep = ({
 
       {!fieldConfig.hasCheckbox && (
         <Box sx={{fontSize: '0.9em', color: '#999', p: 2, backgroundColor: '#f5f5f5', borderRadius: 1}}>
-          Aktivieren Sie "Checkboxen" im vorherigen Schritt, um diese Optionen zu verwenden.
+          {'Aktivieren Sie "Checkboxen" im vorherigen Schritt, um diese Optionen zu verwenden.'}
         </Box>
       )}
     </Box>

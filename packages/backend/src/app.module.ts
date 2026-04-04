@@ -10,13 +10,15 @@ import {JwtAuthGuard} from 'src/modules/auth/guards/jwt-auth.guard';
 import {ItemsModule} from 'src/modules/items/items.module';
 import {ListsModule} from 'src/modules/lists/lists.module';
 import {UsersModule} from 'src/modules/users/users.module';
+
 import {MainController} from './controllers/main.controller';
 
 @Module({
+  controllers: [HealthController, MainController, UnderscoreHealthController, ListsController],
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
       envFilePath: '.env',
+      isGlobal: true,
     }),
     MongooseModule.forRootAsync({
       inject: [ConfigService],
@@ -30,7 +32,6 @@ import {MainController} from './controllers/main.controller';
     ItemsModule,
     ListsModule,
   ],
-  controllers: [HealthController, MainController, UnderscoreHealthController, ListsController],
   providers: [
     {
       provide: APP_GUARD,

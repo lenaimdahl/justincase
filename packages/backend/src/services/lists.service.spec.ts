@@ -1,8 +1,8 @@
 import {NotFoundException} from '@nestjs/common';
-import {beforeEach, describe, expect, it} from 'vitest';
 import {CreateListDto} from 'src/dtos/create-list.dto';
 import {UpdateListDto} from 'src/dtos/update-list.dto';
 import {ListsService} from 'src/services/lists.service';
+import {beforeEach, describe, expect, it} from 'vitest';
 
 describe('ListsService', () => {
   let service: ListsService;
@@ -41,7 +41,7 @@ describe('ListsService', () => {
 
       const lists = service.findAll();
       expect(lists).toHaveLength(2);
-      expect(lists.map(l => l.name)).toEqual(expect.arrayContaining(['List A', 'List B']));
+      expect(lists.map(list => list.name)).toEqual(expect.arrayContaining(['List A', 'List B']));
     });
   });
 
@@ -70,7 +70,7 @@ describe('ListsService', () => {
 
     it('should update icon and color', () => {
       const created = service.create({name: 'My List'});
-      const dto: UpdateListDto = {icon: '🛒', color: '#ff0000'};
+      const dto: UpdateListDto = {color: '#ff0000', icon: '🛒'};
       const updated = service.update(created.id, dto);
 
       expect(updated.icon).toBe('🛒');

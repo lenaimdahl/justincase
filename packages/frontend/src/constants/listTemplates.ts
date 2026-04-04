@@ -5,67 +5,67 @@ export const LIST_ICONS = ['📝', '🛒', '👥', '🏠', '✈️', '🎉', '�
 export const LIST_COLORS = ['#9c27b0', '#e91e63', '#f44336', '#ff9800', '#4caf50', '#2196f3', '#00bcd4', '#9e9e9e'];
 
 export interface PresetTemplate {
-  name: string;
+  checkboxLabels?: string[];
   description?: string;
   hasCheckbox?: boolean;
-  multipleCheckboxes?: boolean;
-  checkboxLabels?: string[];
   hasExpiryDate?: boolean;
-  hasQuantity?: boolean;
-  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
+  hasQuantity?: boolean;
+  hasUnit?: boolean;
+  multipleCheckboxes?: boolean;
+  name: string;
 }
 
 export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
-  shopping: {
-    name: 'Einkaufsliste',
-    description: 'Mit Mengen und Kommentaren',
-    hasCheckbox: true,
-    checkboxLabels: ['Refilled'],
-    hasQuantity: true,
-    hasUnit: true,
-    hasNotes: true,
-    hasExpiryDate: false,
-  },
   guestlist: {
-    name: 'Gästeliste',
+    checkboxLabels: ['Zugesagt'],
     description: 'Mit Zusagen und Absagen',
     hasCheckbox: true,
-    checkboxLabels: ['Zugesagt'],
+    hasNotes: false,
     hasQuantity: true,
     hasUnit: false,
-    hasNotes: false,
+    name: 'Gästeliste',
   },
   packing: {
-    name: 'Packliste',
+    checkboxLabels: ['Packed'],
     description: 'Mit Häkchen und Kommentaren',
     hasCheckbox: true,
-    checkboxLabels: ['Packed'],
+    hasExpiryDate: false,
+    hasNotes: true,
     hasQuantity: true,
     hasUnit: false,
-    hasNotes: true,
-    hasExpiryDate: false,
+    name: 'Packliste',
   },
   pantry: {
-    name: 'Vorratsschrank',
+    checkboxLabels: ['Refill'],
     description: 'Mit Verfallsdaten und Kommentaren',
     hasCheckbox: true,
-    checkboxLabels: ['Refill'],
+    hasExpiryDate: true,
+    hasNotes: true,
     hasQuantity: true,
     hasUnit: true,
+    name: 'Vorratsschrank',
+  },
+  shopping: {
+    checkboxLabels: ['Refilled'],
+    description: 'Mit Mengen und Kommentaren',
+    hasCheckbox: true,
+    hasExpiryDate: false,
     hasNotes: true,
-    hasExpiryDate: true,
+    hasQuantity: true,
+    hasUnit: true,
+    name: 'Einkaufsliste',
   },
 };
 
 export const DEFAULT_FIELD_CONFIG: FieldConfig = {
-  hasCheckbox: true,
-  multipleCheckboxes: false,
   checkboxLabels: [],
+  hasCheckbox: true,
   hasExpiryDate: false,
-  hasQuantity: false,
-  hasUnit: true,
   hasNotes: false,
   hasPriority: false,
+  hasQuantity: false,
+  hasUnit: true,
+  multipleCheckboxes: false,
 };

@@ -1,6 +1,19 @@
-import {IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, Min, IsArray} from 'class-validator';
+import {IsArray, IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, Min} from 'class-validator';
 
 export class CreateItemDto {
+  @IsOptional()
+  @IsString()
+  comment?: string;
+
+  @IsDateString()
+  @IsOptional()
+  expiryDate?: string;
+
+  @IsArray()
+  @IsDateString({}, {each: true})
+  @IsOptional()
+  expiryDates?: string[];
+
   @IsNotEmpty()
   @IsString()
   name!: string;
@@ -12,17 +25,4 @@ export class CreateItemDto {
   @IsOptional()
   @IsString()
   unit?: string;
-
-  @IsOptional()
-  @IsDateString()
-  expiryDate?: string;
-
-  @IsOptional()
-  @IsArray()
-  @IsDateString({}, {each: true})
-  expiryDates?: string[];
-
-  @IsOptional()
-  @IsString()
-  comment?: string;
 }
