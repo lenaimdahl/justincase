@@ -1,4 +1,5 @@
 import {Box, TextField, Button, Grid} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import {LIST_ICONS, LIST_COLORS, PRESET_TEMPLATES} from 'src/constants/listTemplates';
 
 interface ListBasicsStepProps {
@@ -22,6 +23,7 @@ export const ListBasicsStep = ({
   onColorChange,
   onTemplateSelect,
 }: ListBasicsStepProps) => {
+  const {t} = useTranslation();
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 3, mt: 2}}>
       {/* List Name */}
@@ -78,7 +80,9 @@ export const ListBasicsStep = ({
 
       {/* Preset Templates */}
       <Box>
-        <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>Vorlagen</Box>
+        <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>
+          {t('pages.listConfigurator.templates', 'Vorlagen')}
+        </Box>
         <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1}}>
           {Object.entries(PRESET_TEMPLATES).map(([key, template]) => (
             <Button
@@ -89,7 +93,7 @@ export const ListBasicsStep = ({
               sx={{justifyContent: 'flex-start'}}
               disabled={loading}
             >
-              {template.name}
+              {t(template.name)}
             </Button>
           ))}
         </Box>

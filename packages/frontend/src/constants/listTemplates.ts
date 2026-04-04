@@ -19,8 +19,8 @@ export interface PresetTemplate {
 
 export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
   shopping: {
-    name: 'Einkaufsliste',
-    description: 'Mit Mengen und Kommentaren',
+    name: 'pages.listTemplates.shopping.name',
+    description: 'pages.listTemplates.shopping.description',
     hasCheckbox: true,
     checkboxLabels: ['Refilled'],
     hasQuantity: true,
@@ -29,8 +29,8 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasExpiryDate: false,
   },
   guestlist: {
-    name: 'Gästeliste',
-    description: 'Mit Zusagen und Absagen',
+    name: 'pages.listTemplates.guestlist.name',
+    description: 'pages.listTemplates.guestlist.description',
     hasCheckbox: true,
     checkboxLabels: ['Zugesagt'],
     hasQuantity: true,
@@ -38,8 +38,8 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasNotes: false,
   },
   packing: {
-    name: 'Packliste',
-    description: 'Mit Häkchen und Kommentaren',
+    name: 'pages.listTemplates.packing.name',
+    description: 'pages.listTemplates.packing.description',
     hasCheckbox: true,
     checkboxLabels: ['Packed'],
     hasQuantity: true,
@@ -48,8 +48,8 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
     hasExpiryDate: false,
   },
   pantry: {
-    name: 'Vorratsschrank',
-    description: 'Mit Verfallsdaten und Kommentaren',
+    name: 'pages.listTemplates.pantry.name',
+    description: 'pages.listTemplates.pantry.description',
     hasCheckbox: true,
     checkboxLabels: ['Refill'],
     hasQuantity: true,

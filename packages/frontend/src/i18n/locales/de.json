@@ -93,6 +93,29 @@
       "cancelButton": "Abbrechen",
       "emptyState": "Noch keine Listen",
       "emptyStateDescription": "Erstellen Sie Ihre erste Liste, um zu beginnen"
+    },
+    "listTemplates": {
+      "selectTemplate": "Wähle eine Vorlage als Startpunkt:",
+      "predefinedTemplate": "Vordefinierte Vorlage",
+      "shopping": {
+        "name": "Einkaufsliste",
+        "description": "Mit Mengen und Notizen"
+      },
+      "guestlist": {
+        "name": "Gästeliste",
+        "description": "Mit Zusagen und Absagen"
+      },
+      "packing": {
+        "name": "Packliste",
+        "description": "Mit Häkchen und Notizen"
+      },
+      "pantry": {
+        "name": "Vorrat",
+        "description": "Mit Verfallsdaten und Notizen"
+      }
+    },
+    "listConfigurator": {
+      "templates": "Vorlagen"
     }
   }
 }

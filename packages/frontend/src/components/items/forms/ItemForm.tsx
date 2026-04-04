@@ -23,14 +23,15 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
   const {t} = useTranslation();
 
   return (
-    <Card sx={{p: 2, width: '100%'}}>
+    <Card sx={{p: {xs: 1.5, sm: 2}, width: '100%'}}>
       <Box
         sx={{
           display: 'flex',
-          gap: 1.5,
-          alignItems: 'flex-end',
-          flexWrap: 'nowrap',
-          overflowX: 'auto',
+          gap: {xs: 1, sm: 1.5},
+          alignItems: {xs: 'stretch', sm: 'flex-end'},
+          flexDirection: {xs: 'column', sm: 'row'},
+          flexWrap: {xs: 'wrap', sm: 'nowrap'},
+          overflowX: {xs: 'visible', sm: 'auto'},
         }}
       >
         <TextField
@@ -39,7 +40,7 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
           value={newItem.name || ''}
           onChange={e => onItemChange({...newItem, name: e.target.value})}
           disabled={creatingItem}
-          sx={{minWidth: 150}}
+          sx={{width: {xs: '100%', sm: 150}}}
         />
 
         <QuantityField
@@ -85,7 +86,8 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
             '&:hover': {
               background: 'linear-gradient(135deg, #7b1fa2 0%, #c2185b 100%)',
             },
-            height: '40px',
+            minHeight: {xs: 44, sm: 40},
+            minWidth: {xs: '100%', sm: 'auto'},
             flexShrink: 0,
           }}
         >

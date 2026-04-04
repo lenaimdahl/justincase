@@ -93,6 +93,29 @@
       "cancelButton": "Cancel",
       "emptyState": "No lists yet",
       "emptyStateDescription": "Create your first list to get started"
+    },
+    "listTemplates": {
+      "selectTemplate": "Choose a template to get started:",
+      "predefinedTemplate": "Predefined template",
+      "shopping": {
+        "name": "Shopping List",
+        "description": "With quantities and notes"
+      },
+      "guestlist": {
+        "name": "Guest List",
+        "description": "With confirmations and cancellations"
+      },
+      "packing": {
+        "name": "Packing List",
+        "description": "With checkmarks and notes"
+      },
+      "pantry": {
+        "name": "Pantry",
+        "description": "With expiry dates and notes"
+      }
+    },
+    "listConfigurator": {
+      "templates": "Templates"
     }
   }
 }

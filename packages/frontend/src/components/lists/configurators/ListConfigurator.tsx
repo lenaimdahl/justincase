@@ -79,24 +79,37 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
   };
 
   return (
-    <Dialog open={open} onClose={handleReset} maxWidth="sm" fullWidth>
-      <DialogTitle>Liste erstellen</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={handleReset}
+      maxWidth="sm"
+      fullWidth
+      slotProps={{
+        paper: {
+          sx: {
+            maxHeight: {xs: '90vh', sm: '90vh'},
+            borderRadius: {xs: 2, sm: 4},
+          },
+        },
+      }}
+    >
+      <DialogTitle sx={{fontSize: {xs: '1.25rem', sm: '1.5rem'}}}>Liste erstellen</DialogTitle>
       <Stepper activeStep={step} sx={{p: 2}}>
         <Step>
-          <StepLabel>Vorlage</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Vorlage</StepLabel>
         </Step>
         <Step>
-          <StepLabel>Farbe</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Farbe</StepLabel>
         </Step>
         <Step>
-          <StepLabel>Icon</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Icon</StepLabel>
         </Step>
         <Step>
-          <StepLabel>Name</StepLabel>
+          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>Name</StepLabel>
         </Step>
       </Stepper>
 
-      <DialogContent sx={{minHeight: 300}}>
+      <DialogContent sx={{minHeight: {xs: 250, sm: 300}, overflowY: 'auto'}}>
         {step === 0 && !templateSelected && (
           <ListTemplateStep loading={loading} onTemplateSelect={handleApplyTemplate} />
         )}
@@ -108,27 +121,37 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
         {step === 3 && <ListNameStep name={name} icon={icon} loading={loading} onNameChange={setName} />}
 
         {/* Progress indicator */}
-        <Box sx={{mt: 3, mb: -2, textAlign: 'center', fontSize: '0.9em', color: '#999'}}>
+        <Box sx={{mt: 3, mb: -2, textAlign: 'center', fontSize: {xs: '0.8em', sm: '0.9em'}, color: '#999'}}>
           Schritt {step + 1} von {totalSteps}
         </Box>
       </DialogContent>
 
-      <DialogActions>
-        <Button onClick={handleReset} disabled={loading}>
+      <DialogActions sx={{p: {xs: 1, sm: 2}, gap: {xs: 1, sm: undefined}}}>
+        <Button onClick={handleReset} disabled={loading} sx={{minHeight: {xs: 44, sm: 'auto'}}}>
           Abbrechen
         </Button>
         {step > 0 && (
-          <Button onClick={handleBack} disabled={loading}>
+          <Button onClick={handleBack} disabled={loading} sx={{minHeight: {xs: 44, sm: 'auto'}}}>
             Zurück
           </Button>
         )}
         {step < totalSteps - 1 && (
-          <Button onClick={handleNext} variant="contained" disabled={(step === 2 && !name.trim()) || loading}>
+          <Button
+            onClick={handleNext}
+            variant="contained"
+            disabled={(step === 2 && !name.trim()) || loading}
+            sx={{minHeight: {xs: 44, sm: 'auto'}}}
+          >
             Weiter
           </Button>
         )}
         {step === totalSteps - 1 && (
-          <Button onClick={handleSubmit} variant="contained" disabled={!name.trim() || loading}>
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            disabled={!name.trim() || loading}
+            sx={{minHeight: {xs: 44, sm: 'auto'}}}
+          >
             Erstellen
           </Button>
         )}
