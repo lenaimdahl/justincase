@@ -33,6 +33,7 @@ export const Navigation = () => {
   const navigationLinks = [
     {href: '/', label: t('components.navigation.home')},
     {href: '/lists', label: t('components.navigation.lists')},
+    {href: '/settings', label: t('components.navigation.settings')},
   ];
 
   return (
