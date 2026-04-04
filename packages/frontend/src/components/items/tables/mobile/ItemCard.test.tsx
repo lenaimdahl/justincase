@@ -114,10 +114,10 @@ describe('ItemCard', () => {
         readOnly={true}
       />
     );
-    
+
     const increaseButton = screen.getByLabelText('components.ariaLabels.increaseQuantity');
     expect(increaseButton).toBeDisabled();
-    
+
     const deleteButton = screen.getByLabelText('components.ariaLabels.deleteItem');
     expect(deleteButton).toBeDisabled();
   });
@@ -133,7 +133,7 @@ describe('ItemCard', () => {
         onDelete={vi.fn()}
       />
     );
-    
+
     const card = container.querySelector('.MuiCard-root');
     expect(card).toHaveStyle({backgroundColor: '#ffebee'});
   });
@@ -155,7 +155,7 @@ describe('ItemCard', () => {
         onDelete={vi.fn()}
       />
     );
-    
+
     expect(screen.queryByText('common.quantity')).not.toBeInTheDocument();
     expect(screen.queryByText('common.unit')).not.toBeInTheDocument();
   });
@@ -172,7 +172,7 @@ describe('ItemCard', () => {
         onDelete={vi.fn()}
       />
     );
-    
+
     expect(screen.getByText('Just notes')).toBeInTheDocument();
     expect(screen.queryByText(/⭐|🔸|🤍/)).not.toBeInTheDocument();
   });
@@ -189,7 +189,7 @@ describe('ItemCard', () => {
         onDelete={vi.fn()}
       />
     );
-    
+
     const increaseButton = screen.getByLabelText('components.ariaLabels.increaseQuantity');
     expect(increaseButton).toBeDisabled();
   });
