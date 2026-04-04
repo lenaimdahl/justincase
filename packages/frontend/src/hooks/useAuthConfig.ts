@@ -12,7 +12,10 @@ export function useAuthConfig(): AuthConfig {
     fetch(`${API_BASE_URL}/auth/config`)
       .then(res => res.json() as Promise<AuthConfig>)
       .then(data => setGoogleOAuthEnabled(data.googleOAuthEnabled))
-      .catch(() => setGoogleOAuthEnabled(false));
+      .catch(err => {
+        console.error('Failed to fetch auth config:', err);
+        setGoogleOAuthEnabled(false);
+      });
   }, []);
 
   return {googleOAuthEnabled};

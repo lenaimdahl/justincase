@@ -24,6 +24,7 @@ import {UsersModule} from 'src/modules/users/users.module';
       }),
     }),
   ],
+  // process.env is used here because ConfigService is not available at static module definition time
   providers: [AuthService, LocalStrategy, JwtStrategy, ...(process.env['GOOGLE_CLIENT_ID'] ? [GoogleStrategy] : [])],
 })
 export class AuthModule {}
