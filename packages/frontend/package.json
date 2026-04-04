@@ -35,7 +35,7 @@
     "clean": "rm -rf dist",
     "dev": "yarn start:dev",
     "format": "yarn prettier --write",
-    "lint": "yarn prettier --list-different",
+    "lint": "yarn prettier --check",
     "prettier": "prettier --ignore-path ../../.prettierignore .",
     "preview": "vite preview",
     "start:dev": "vite",
