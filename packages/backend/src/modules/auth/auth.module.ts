@@ -24,6 +24,6 @@ import {UsersModule} from 'src/modules/users/users.module';
       }),
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, GoogleStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, ...(process.env['GOOGLE_CLIENT_ID'] ? [GoogleStrategy] : [])],
 })
 export class AuthModule {}
