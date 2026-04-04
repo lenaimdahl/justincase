@@ -13,11 +13,13 @@ import {
 } from '@mui/material';
 import type {Item} from 'src/types/item';
 import type {FieldConfig} from 'src/types/list';
+import {DEFAULT_FIELD_CONFIG} from 'src/constants/listTemplates';
 import {useItemOperations} from 'src/hooks/useItemOperations';
 import {ItemTableHeader} from 'src/components/items/tables/header/ItemTableHeader';
 import {ItemTableRow} from 'src/components/items/tables/rows/ItemTableRow';
 import {ItemTableNewItemRow} from 'src/components/items/tables/new-row/ItemTableNewItemRow';
 import {ItemCard} from 'src/components/items/tables/mobile/ItemCard';
+import {ItemForm} from 'src/components/items/forms/ItemForm';
 
 interface ItemTableProps {
   listId: string;
@@ -92,11 +94,11 @@ export const ItemTable = ({
           })}
 
           {!readOnly && (
-            <Box sx={{mt: 2, p: 2, border: '2px dashed #ccc', borderRadius: 1, textAlign: 'center'}}>
-              <ItemTableNewItemRow
+            <Box sx={{mt: 2}}>
+              <ItemForm
                 newItem={newItem}
+                fieldConfig={fieldConfig || DEFAULT_FIELD_CONFIG}
                 creatingItem={creatingItem}
-                fieldConfig={fieldConfig}
                 onItemChange={setNewItem}
                 onSubmit={handleCreateItem}
               />

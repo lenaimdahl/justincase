@@ -134,13 +134,19 @@ export const PriorityField = ({
 }) => {
   if (!fieldConfig.hasPriority) return null;
 
+  const handlePriorityChange = (priority: string) => {
+    const notesPart = comment?.split('|priority:')[0] || '';
+    const newComment = priority ? `${notesPart}|priority:${priority}` : notesPart;
+    onChange({...newItem, comment: newComment});
+  };
+
   return (
     <FormControl size="small" sx={{width: {xs: '100%', sm: 'auto'}, minWidth: {xs: '100%', sm: 130}}}>
       <InputLabel>Priorität</InputLabel>
       <Select
         value={comment?.split('|priority:')[1]?.split('|')[0] || ''}
         label="Priorität"
-        onChange={e => onChange({...newItem, comment: e.target.value})}
+        onChange={e => handlePriorityChange(e.target.value)}
         disabled={disabled}
       >
         <MenuItem value="">Keine</MenuItem>
