@@ -2,64 +2,60 @@ import {Injectable, Logger, NotFoundException} from '@nestjs/common';
 import {CreateListDto} from 'src/dtos/create-list.dto';
 import {UpdateListDto} from 'src/dtos/update-list.dto';
 
-export interface ListItem {
-  id: string;
-  name: string;
-  quantity: number;
-  createdAt: Date;
-}
-
 export interface FieldConfig {
-  hasCheckbox?: boolean;
-  multipleCheckboxes?: boolean;
   checkboxLabels?: string[];
+  hasCheckbox?: boolean;
   hasExpiryDate?: boolean;
-  hasQuantity?: boolean;
-  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
+  hasQuantity?: boolean;
+  hasUnit?: boolean;
+  multipleCheckboxes?: boolean;
 }
 
 export interface List {
+  color: string;
+  createdAt: Date;
+  fieldConfig: FieldConfig;
+  icon: string;
+  id: string;
+  itemCount?: number;
+  items: ListItem[];
+  name: string;
+}
+
+export interface ListItem {
+  createdAt: Date;
   id: string;
   name: string;
-  items: ListItem[];
-  icon: string;
-  color: string;
-  fieldConfig: FieldConfig;
-  createdAt: Date;
-  itemCount?: number;
+  quantity: number;
 }
 
 @Injectable()
 export class ListsService {
-  private readonly logger = new Logger(ListsService.name);
-  private readonly lists = new Map<string, List>();
   private idCounter = 1;
-
-  private generateId(): string {
-    return String(this.idCounter++);
-  }
+  private readonly lists = new Map<string, List>();
+  private readonly logger = new Logger(ListsService.name);
 
   create(createListDto: CreateListDto): List {
     this.logger.debug(`Creating list with name "${createListDto.name}"`);
     const list: List = {
-      id: this.generateId(),
-      name: createListDto.name,
-      items: [],
-      icon: createListDto.icon || '📝',
       color: createListDto.color || '#9c27b0',
+      createdAt: new Date(),
       fieldConfig: createListDto.fieldConfig || {
-        hasCheckbox: true,
-        multipleCheckboxes: false,
         checkboxLabels: [],
+        hasCheckbox: true,
         hasExpiryDate: false,
-        hasQuantity: true,
-        hasUnit: true,
         hasNotes: false,
         hasPriority: false,
+        hasQuantity: true,
+        hasUnit: true,
+        multipleCheckboxes: false,
       },
-      createdAt: new Date(),
+      icon: createListDto.icon || '📝',
+      id: this.generateId(),
+      items: [],
+      name: createListDto.name,
     };
     this.lists.set(list.id, list);
     this.logger.debug(`List created with id ${list.id}`);
@@ -79,6 +75,16 @@ export class ListsService {
       throw new NotFoundException(`List with id ${id} not found`);
     }
     return list;
+  }
+
+  remove(id: string): void {
+    this.logger.debug(`Removing list with id ${id}`);
+    if (!this.lists.has(id)) {
+      this.logger.error(`List with id ${id} not found`);
+      throw new NotFoundException(`List with id ${id} not found`);
+    }
+    this.lists.delete(id);
+    this.logger.debug(`List with id ${id} removed`);
   }
 
   update(id: string, updateListDto: UpdateListDto): List {
@@ -103,13 +109,7 @@ export class ListsService {
     return list;
   }
 
-  remove(id: string): void {
-    this.logger.debug(`Removing list with id ${id}`);
-    if (!this.lists.has(id)) {
-      this.logger.error(`List with id ${id} not found`);
-      throw new NotFoundException(`List with id ${id} not found`);
-    }
-    this.lists.delete(id);
-    this.logger.debug(`List with id ${id} removed`);
+  private generateId(): string {
+    return String(this.idCounter++);
   }
 }

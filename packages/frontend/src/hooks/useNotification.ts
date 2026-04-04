@@ -10,12 +10,12 @@ export const useNotification = () => {
 
   return useMemo(
     () => ({
-      success: (message: string, duration?: number) => context.addNotification('success', message, duration),
+      clearAll: context.clearAll,
       error: (message: string) => context.addNotification('error', message),
       info: (message: string, duration?: number) => context.addNotification('info', message, duration),
-      warning: (message: string, duration?: number) => context.addNotification('warning', message, duration),
       remove: context.removeNotification,
-      clearAll: context.clearAll,
+      success: (message: string, duration?: number) => context.addNotification('success', message, duration),
+      warning: (message: string, duration?: number) => context.addNotification('warning', message, duration),
     }),
     [context]
   );

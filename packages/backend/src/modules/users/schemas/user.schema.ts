@@ -5,23 +5,23 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema({timestamps: true})
 export class User {
-  @Prop({unique: true, sparse: true})
-  username?: string;
+  @Prop({sparse: true, unique: true})
+  appleId?: string;
 
   @Prop({required: true, unique: true})
   email!: string;
 
-  @Prop()
-  passwordHash?: string;
-
   @Prop({sparse: true, unique: true})
   googleId?: string;
 
-  @Prop({sparse: true, unique: true})
-  appleId?: string;
+  @Prop()
+  passwordHash?: string;
 
   @Prop({default: 0})
   tokenVersion!: number;
+
+  @Prop({sparse: true, unique: true})
+  username?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

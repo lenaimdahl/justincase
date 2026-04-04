@@ -14,13 +14,13 @@ import * as bcrypt from 'bcrypt';
 
 const mockUser = {
   _id: 'user-id',
-  email: 'test@example.com',
-  passwordHash: '$2b$12$hash',
-  tokenVersion: 0,
-  googleId: undefined,
   appleId: undefined,
-  username: 'testuser',
+  email: 'test@example.com',
+  googleId: undefined,
+  passwordHash: '$2b$12$hash',
   save: vi.fn(),
+  tokenVersion: 0,
+  username: 'testuser',
 };
 
 const mockUsersService = {

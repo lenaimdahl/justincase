@@ -1,6 +1,7 @@
-import {NestFactory} from '@nestjs/core';
 import {Logger, ValidationPipe} from '@nestjs/common';
+import {NestFactory} from '@nestjs/core';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
+
 import {AppModule} from './app.module';
 
 const isProduction = process.env.NODE_ENV !== 'development';

@@ -9,33 +9,33 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) {}
 
-  async findById(id: string): Promise<UserDocument | null> {
+  async create(data: Partial<User>): Promise<UserDocument> {
+    this.logger.debug(`Creating user with email "${data.email}"`);
+    const user = new this.userModel(data);
+    return user.save();
+  }
+
+  async findByAppleId(appleId: string): Promise<null | UserDocument> {
+    return this.userModel.findOne({appleId: {$eq: appleId}}).exec();
+  }
+
+  async findByEmail(email: string): Promise<null | UserDocument> {
+    return this.userModel.findOne({email: {$eq: email}}).exec();
+  }
+
+  async findByGoogleId(googleId: string): Promise<null | UserDocument> {
+    return this.userModel.findOne({googleId: {$eq: googleId}}).exec();
+  }
+
+  async findById(id: string): Promise<null | UserDocument> {
     if (!isValidObjectId(id)) {
       return null;
     }
     return this.userModel.findById(id).exec();
   }
 
-  async findByEmail(email: string): Promise<UserDocument | null> {
-    return this.userModel.findOne({email: {$eq: email}}).exec();
-  }
-
-  async findByUsername(username: string): Promise<UserDocument | null> {
+  async findByUsername(username: string): Promise<null | UserDocument> {
     return this.userModel.findOne({username: {$eq: username}}).exec();
-  }
-
-  async findByGoogleId(googleId: string): Promise<UserDocument | null> {
-    return this.userModel.findOne({googleId: {$eq: googleId}}).exec();
-  }
-
-  async findByAppleId(appleId: string): Promise<UserDocument | null> {
-    return this.userModel.findOne({appleId: {$eq: appleId}}).exec();
-  }
-
-  async create(data: Partial<User>): Promise<UserDocument> {
-    this.logger.debug(`Creating user with email "${data.email}"`);
-    const user = new this.userModel(data);
-    return user.save();
   }
 
   async incrementTokenVersion(userId: string): Promise<void> {

@@ -3,10 +3,8 @@ import {Public} from 'src/modules/auth/decorators/public.decorator';
 
 @Controller('')
 export class MainController {
-  @Public()
   @Get()
   @HttpCode(200)
-  check() {
-    return;
-  }
+  @Public()
+  check() {}
 }
