@@ -135,6 +135,8 @@ export const PriorityField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
+  const {t} = useTranslation();
+
   if (!fieldConfig.hasPriority) return null;
 
   const handlePriorityChange = (priority: string) => {
@@ -145,17 +147,17 @@ export const PriorityField = ({
 
   return (
     <FormControl size="small" sx={{width: {xs: '100%', sm: 'auto'}, minWidth: {xs: '100%', sm: 130}}}>
-      <InputLabel>Priorität</InputLabel>
+      <InputLabel>{t('common.priority')}</InputLabel>
       <Select
         value={comment?.split('|priority:')[1]?.split('|')[0] || ''}
-        label="Priorität"
+        label={t('common.priority')}
         onChange={e => handlePriorityChange(e.target.value)}
         disabled={disabled}
       >
-        <MenuItem value="">Keine</MenuItem>
-        <MenuItem value="⭐">⭐ Hoch</MenuItem>
-        <MenuItem value="🔸">🔸 Mittel</MenuItem>
-        <MenuItem value="🤍">🤍 Niedrig</MenuItem>
+        <MenuItem value="">{t('common.none')}</MenuItem>
+        <MenuItem value="⭐">⭐ {t('common.high')}</MenuItem>
+        <MenuItem value="🔸">🔸 {t('common.medium')}</MenuItem>
+        <MenuItem value="🤍">🤍 {t('common.low')}</MenuItem>
       </Select>
     </FormControl>
   );
@@ -182,8 +184,12 @@ export const NotesField = ({
     <TextField
       size="small"
       placeholder={t('components.placeholders.notes')}
-      value={value || ''}
-      onChange={e => onChange({...newItem, comment: e.target.value})}
+      value={value?.split('|priority:')[0] || ''}
+      onChange={e => {
+        const priorityPart = newItem.comment?.split('|priority:')[1];
+        const newComment = priorityPart ? `${e.target.value}|priority:${priorityPart}` : e.target.value;
+        onChange({...newItem, comment: newComment});
+      }}
       disabled={disabled}
       sx={{width: {xs: '100%', sm: 150}}}
     />

@@ -10,7 +10,11 @@
     "delete": "Löschen",
     "close": "Schließen",
     "notes": "Notizen",
-    "priority": "Priorität"
+    "priority": "Priorität",
+    "none": "Keine",
+    "high": "Hoch",
+    "medium": "Mittel",
+    "low": "Niedrig"
   },
   "components": {
     "navigation": {
@@ -25,7 +29,9 @@
       "decreaseQuantity": "Anzahl verringern",
       "increaseQuantity": "Anzahl erhöhen",
       "deleteItem": "Artikel löschen",
-      "closeNotification": "Benachrichtigung schließen"
+      "closeNotification": "Benachrichtigung schließen",
+      "openNavigationMenu": "Navigationsmenü öffnen",
+      "closeNavigationMenu": "Navigationsmenü schließen"
     },
     "placeholders": {
       "itemName": "Artikelname",
@@ -128,8 +134,6 @@
       "stepName": "Name",
       "expiryDatesLabel": "Verfallsdatum für jede Menge:",
       "quantityLabel": "Menge",
-      "navigationOpen": "Navigationsmenü öffnen",
-      "navigationClose": "Navigationsmenü schließen",
       "cancel": "Abbrechen",
       "back": "Zurück",
       "next": "Weiter",

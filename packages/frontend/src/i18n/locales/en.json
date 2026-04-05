@@ -10,7 +10,11 @@
     "delete": "Delete",
     "close": "Close",
     "notes": "Notes",
-    "priority": "Priority"
+    "priority": "Priority",
+    "none": "None",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
   },
   "components": {
     "navigation": {
@@ -25,7 +29,9 @@
       "decreaseQuantity": "Decrease quantity",
       "increaseQuantity": "Increase quantity",
       "deleteItem": "Delete item",
-      "closeNotification": "Close notification"
+      "closeNotification": "Close notification",
+      "openNavigationMenu": "Open navigation menu",
+      "closeNavigationMenu": "Close navigation menu"
     },
     "placeholders": {
       "itemName": "Item name",
@@ -128,8 +134,6 @@
       "stepName": "Name",
       "expiryDatesLabel": "Expiry date for each quantity:",
       "quantityLabel": "Quantity",
-      "navigationOpen": "Open navigation menu",
-      "navigationClose": "Close navigation menu",
       "cancel": "Cancel",
       "back": "Back",
       "next": "Next",

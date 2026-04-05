@@ -24,7 +24,6 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
   const totalSteps = 4;
 
   const handleNext = () => {
-    if (step === 2 && !name.trim()) return;
     if (step < totalSteps - 1) {
       setStep(step + 1);
     }
@@ -57,6 +56,10 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
         (newConfig as Record<string, unknown>)[field] = preset[field as keyof typeof preset];
       }
     });
+
+    if (newConfig.checkboxLabels) {
+      newConfig.checkboxLabels = newConfig.checkboxLabels.map(key => t(key));
+    }
 
     setFieldConfig(newConfig);
     setTemplateSelected(true);
@@ -137,12 +140,7 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
           </Button>
         )}
         {step < totalSteps - 1 && (
-          <Button
-            onClick={handleNext}
-            variant="contained"
-            disabled={(step === 2 && !name.trim()) || loading}
-            sx={{minHeight: {xs: 44, sm: 'auto'}}}
-          >
+          <Button onClick={handleNext} variant="contained" disabled={loading} sx={{minHeight: {xs: 44, sm: 'auto'}}}>
             {t('pages.listConfigurator.next', {defaultValue: 'Next'})}
           </Button>
         )}
