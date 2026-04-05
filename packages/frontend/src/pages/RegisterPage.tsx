@@ -1,12 +1,26 @@
 import {Visibility, VisibilityOff} from '@mui/icons-material';
-import {Alert, Box, Button, Container, IconButton, InputAdornment, Link, TextField, Typography} from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  Container,
+  Divider,
+  IconButton,
+  InputAdornment,
+  Link,
+  TextField,
+  Typography,
+} from '@mui/material';
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useAuth} from 'src/contexts/AuthContext';
+import {useAuthConfig} from 'src/hooks/useAuthConfig';
+import {API_BASE_URL} from 'src/utils/api';
 
 export const RegisterPage: React.FC = () => {
   const {register} = useAuth();
   const navigate = useNavigate();
+  const {googleOAuthEnabled} = useAuthConfig();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -93,6 +107,14 @@ export const RegisterPage: React.FC = () => {
           <Button disabled={isLoading} fullWidth sx={{mt: 2, mb: 1}} type="submit" variant="contained">
             {isLoading ? 'Creating account…' : 'Register'}
           </Button>
+          {googleOAuthEnabled && (
+            <>
+              <Divider sx={{my: 2}}>or</Divider>
+              <Button component="a" fullWidth href={`${API_BASE_URL}/auth/google`} variant="outlined">
+                Sign up with Google
+              </Button>
+            </>
+          )}
           <Box sx={{textAlign: 'center', mt: 1}}>
             <Typography variant="body2">
               {'Already have an account? '}
