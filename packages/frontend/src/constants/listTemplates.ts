@@ -5,16 +5,16 @@ export const LIST_ICONS = ['📝', '🛒', '👥', '🏠', '✈️', '🎉', '�
 export const LIST_COLORS = ['#9c27b0', '#e91e63', '#f44336', '#ff9800', '#4caf50', '#2196f3', '#00bcd4', '#9e9e9e'];
 
 export interface PresetTemplate {
-  name: string;
+  checkboxLabels?: string[];
   description?: string;
   hasCheckbox?: boolean;
-  multipleCheckboxes?: boolean;
-  checkboxLabels?: string[];
   hasExpiryDate?: boolean;
-  hasQuantity?: boolean;
-  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
+  hasQuantity?: boolean;
+  hasUnit?: boolean;
+  multipleCheckboxes?: boolean;
+  name: string;
 }
 
 export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
@@ -60,12 +60,12 @@ export const PRESET_TEMPLATES: Record<string, PresetTemplate> = {
 };
 
 export const DEFAULT_FIELD_CONFIG: FieldConfig = {
-  hasCheckbox: true,
-  multipleCheckboxes: false,
   checkboxLabels: [],
+  hasCheckbox: true,
   hasExpiryDate: false,
-  hasQuantity: false,
-  hasUnit: true,
   hasNotes: false,
   hasPriority: false,
+  hasQuantity: false,
+  hasUnit: true,
+  multipleCheckboxes: false,
 };

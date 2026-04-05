@@ -1,6 +1,6 @@
-import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import {defineConfig} from 'vite';
 
 export default defineConfig({
   plugins: [react()],
@@ -10,17 +10,17 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
-    host: 'localhost',
     hmr: {
-      protocol: 'ws',
       host: 'localhost',
       port: 5173,
+      protocol: 'ws',
     },
+    host: 'localhost',
+    port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
         changeOrigin: true,
+        target: 'http://localhost:3000',
       },
     },
   },

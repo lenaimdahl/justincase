@@ -16,9 +16,9 @@ export const QuantityField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
-  if (!fieldConfig.hasQuantity) return null;
-
   const {t} = useTranslation();
+
+  if (!fieldConfig.hasQuantity) return null;
 
   return (
     <TextField

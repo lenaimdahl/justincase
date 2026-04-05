@@ -3,65 +3,43 @@
  * Handles all HTTP requests to the backend lists endpoints
  */
 
-import {API_BASE_URL} from 'src/utils/api';
+import {API_BASE_URL, getAuthHeaders} from 'src/utils/api';
+
+export interface CreateListRequest {
+  color?: string;
+  fieldConfig?: FieldConfig;
+  icon?: string;
+  name: string;
+}
 
 export interface FieldConfig {
-  hasCheckbox?: boolean;
-  multipleCheckboxes?: boolean;
   checkboxLabels?: string[];
+  hasCheckbox?: boolean;
   hasExpiryDate?: boolean;
-  hasQuantity?: boolean;
-  hasUnit?: boolean;
   hasNotes?: boolean;
   hasPriority?: boolean;
+  hasQuantity?: boolean;
+  hasUnit?: boolean;
+  multipleCheckboxes?: boolean;
 }
 
 export interface List {
+  color: string;
+  createdAt?: string;
+  fieldConfig: FieldConfig;
+  icon: string;
   id: string;
-  name: string;
   itemCount?: number;
   items?: any[];
-  icon: string;
-  color: string;
-  fieldConfig: FieldConfig;
-  createdAt?: string;
+  name: string;
   updatedAt?: string;
 }
 
-export interface CreateListRequest {
-  name: string;
-  icon?: string;
-  color?: string;
-  fieldConfig?: FieldConfig;
-}
-
 export interface UpdateListRequest {
-  name?: string;
-  icon?: string;
   color?: string;
   fieldConfig?: FieldConfig;
-}
-
-/**
- * Fetch all lists
- */
-export async function fetchLists(): Promise<List[]> {
-  const response = await fetch(`${API_BASE_URL}/lists`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch lists: ${response.statusText}`);
-  }
-  return response.json();
-}
-
-/**
- * Fetch a single list by ID
- */
-export async function fetchListById(listId: string): Promise<List> {
-  const response = await fetch(`${API_BASE_URL}/lists/${listId}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch list: ${response.statusText}`);
-  }
-  return response.json();
+  icon?: string;
+  name?: string;
 }
 
 /**
@@ -69,27 +47,12 @@ export async function fetchListById(listId: string): Promise<List> {
  */
 export async function createList(data: CreateListRequest): Promise<List> {
   const response = await fetch(`${API_BASE_URL}/lists`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data),
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
+    method: 'POST',
   });
   if (!response.ok) {
     throw new Error(`Failed to create list: ${response.statusText}`);
-  }
-  return response.json();
-}
-
-/**
- * Update a list
- */
-export async function updateList(listId: string, data: UpdateListRequest): Promise<List> {
-  const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to update list: ${response.statusText}`);
   }
   return response.json();
 }
@@ -99,9 +62,51 @@ export async function updateList(listId: string, data: UpdateListRequest): Promi
  */
 export async function deleteList(listId: string): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
+    headers: getAuthHeaders(),
     method: 'DELETE',
   });
   if (!response.ok) {
     throw new Error(`Failed to delete list: ${response.statusText}`);
   }
+}
+
+/**
+ * Fetch a single list by ID
+ */
+export async function fetchListById(listId: string): Promise<List> {
+  const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
+    headers: getAuthHeaders(),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch list: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+/**
+ * Fetch all lists
+ */
+export async function fetchLists(): Promise<List[]> {
+  const response = await fetch(`${API_BASE_URL}/lists`, {
+    headers: getAuthHeaders(),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch lists: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+/**
+ * Update a list
+ */
+export async function updateList(listId: string, data: UpdateListRequest): Promise<List> {
+  const response = await fetch(`${API_BASE_URL}/lists/${listId}`, {
+    body: JSON.stringify(data),
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
+    method: 'PATCH',
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to update list: ${response.statusText}`);
+  }
+  return response.json();
 }

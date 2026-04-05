@@ -10,12 +10,12 @@ import {beforeEach, describe, expect, it, vi} from 'vitest';
 
 const mockItem = {
   _id: 'item-id',
+  comment: 'Full fat',
+  expiryDate: new Date('2026-04-01T23:00:00.000Z'),
   listId: 'list-id',
   name: 'Milk',
   quantity: 2,
   unit: 'liters',
-  expiryDate: new Date('2026-04-01T23:00:00.000Z'),
-  comment: 'Full fat',
 };
 
 const mockItemModel = {
@@ -71,11 +71,11 @@ describe('ItemsService', () => {
   describe('create', () => {
     it('creates an item and stores expiryDate in UTC+1', async () => {
       const dto: CreateItemDto = {
+        comment: 'Full fat',
+        expiryDate: '2026-04-02T00:00:00.000Z',
         name: 'Milk',
         quantity: 2,
         unit: 'liters',
-        expiryDate: '2026-04-02T00:00:00.000Z',
-        comment: 'Full fat',
       };
 
       const result = await service.create('list-id', dto);

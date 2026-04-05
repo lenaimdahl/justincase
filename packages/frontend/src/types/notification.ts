@@ -1,15 +1,15 @@
-export type NotificationType = 'success' | 'error' | 'info' | 'warning';
-
 export interface Notification {
-  id: string;
-  type: NotificationType;
-  message: string;
   duration?: number; // ms, undefined = persistent
+  id: string;
+  message: string;
+  type: NotificationType;
 }
 
 export interface NotificationContextType {
-  notifications: Notification[];
   addNotification: (type: NotificationType, message: string, duration?: number) => string;
-  removeNotification: (id: string) => void;
   clearAll: () => void;
+  notifications: Notification[];
+  removeNotification: (id: string) => void;
 }
+
+export type NotificationType = 'error' | 'info' | 'success' | 'warning';

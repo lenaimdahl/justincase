@@ -3,16 +3,21 @@
  * Handles all HTTP requests to the backend items endpoints
  */
 
-import type {Item, CreateItemRequest, UpdateItemRequest} from 'src/types/item';
-import {API_BASE_URL} from 'src/utils/api';
+import type {CreateItemRequest, Item, UpdateItemRequest} from 'src/types/item';
+
+import {API_BASE_URL, getAuthHeaders} from 'src/utils/api';
 
 /**
- * Fetch all items for a list
+ * Adjust item quantity by a given amount
  */
-export async function fetchItemsByListId(listId: string): Promise<Item[]> {
-  const response = await fetch(`${API_BASE_URL}/lists/${listId}/items`);
+export async function adjustItemQuantity(listId: string, itemId: string, adjustment: number): Promise<Item> {
+  const response = await fetch(`${API_BASE_URL}/lists/${listId}/items/${itemId}/adjust`, {
+    body: JSON.stringify({adjustment}),
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
+    method: 'PATCH',
+  });
   if (!response.ok) {
-    throw new Error(`Failed to fetch items: ${response.statusText}`);
+    throw new Error(`Failed to adjust quantity: ${response.statusText}`);
   }
   return response.json();
 }
@@ -22,27 +27,12 @@ export async function fetchItemsByListId(listId: string): Promise<Item[]> {
  */
 export async function createItem(listId: string, data: CreateItemRequest): Promise<Item> {
   const response = await fetch(`${API_BASE_URL}/lists/${listId}/items`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data),
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
+    method: 'POST',
   });
   if (!response.ok) {
     throw new Error(`Failed to create item: ${response.statusText}`);
-  }
-  return response.json();
-}
-
-/**
- * Update an item
- */
-export async function updateItem(listId: string, itemId: string, data: UpdateItemRequest): Promise<Item> {
-  const response = await fetch(`${API_BASE_URL}/lists/${listId}/items/${itemId}`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to update item: ${response.statusText}`);
   }
   return response.json();
 }
@@ -52,6 +42,7 @@ export async function updateItem(listId: string, itemId: string, data: UpdateIte
  */
 export async function deleteItem(listId: string, itemId: string): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/lists/${listId}/items/${itemId}`, {
+    headers: getAuthHeaders(),
     method: 'DELETE',
   });
   if (!response.ok) {
@@ -60,16 +51,29 @@ export async function deleteItem(listId: string, itemId: string): Promise<void> 
 }
 
 /**
- * Adjust item quantity by a given amount
+ * Fetch all items for a list
  */
-export async function adjustItemQuantity(listId: string, itemId: string, adjustment: number): Promise<Item> {
-  const response = await fetch(`${API_BASE_URL}/lists/${listId}/items/${itemId}/adjust`, {
-    method: 'PATCH',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({adjustment}),
+export async function fetchItemsByListId(listId: string): Promise<Item[]> {
+  const response = await fetch(`${API_BASE_URL}/lists/${listId}/items`, {
+    headers: getAuthHeaders(),
   });
   if (!response.ok) {
-    throw new Error(`Failed to adjust quantity: ${response.statusText}`);
+    throw new Error(`Failed to fetch items: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+/**
+ * Update an item
+ */
+export async function updateItem(listId: string, itemId: string, data: UpdateItemRequest): Promise<Item> {
+  const response = await fetch(`${API_BASE_URL}/lists/${listId}/items/${itemId}`, {
+    body: JSON.stringify(data),
+    headers: {'Content-Type': 'application/json', ...getAuthHeaders()},
+    method: 'PATCH',
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to update item: ${response.statusText}`);
   }
   return response.json();
 }

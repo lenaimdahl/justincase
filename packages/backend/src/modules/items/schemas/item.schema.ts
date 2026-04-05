@@ -5,17 +5,8 @@ export type ItemDocument = HydratedDocument<Item>;
 
 @Schema({timestamps: true})
 export class Item {
-  @Prop({required: true})
-  listId!: string;
-
-  @Prop({required: true})
-  name!: string;
-
-  @Prop({required: true, min: 0})
-  quantity!: number;
-
   @Prop()
-  unit?: string;
+  comment?: string;
 
   @Prop()
   expiryDate?: Date;
@@ -23,8 +14,17 @@ export class Item {
   @Prop({type: [Date]})
   expiryDates?: Date[];
 
+  @Prop({required: true})
+  listId!: string;
+
+  @Prop({required: true})
+  name!: string;
+
+  @Prop({min: 0, required: true})
+  quantity!: number;
+
   @Prop()
-  comment?: string;
+  unit?: string;
 }
 
 export const ItemSchema = SchemaFactory.createForClass(Item);

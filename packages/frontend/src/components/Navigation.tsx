@@ -1,24 +1,34 @@
 import {useState} from 'react';
 import {
   AppBar,
-  Toolbar,
-  Typography,
   Box,
-  Link as MuiLink,
-  IconButton,
+  Button,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  Toolbar,
+  Typography,
+  Link as MuiLink,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 import {useTranslation} from 'react-i18next';
+import {useNavigate} from 'react-router-dom';
+import {useAuth} from 'src/contexts/AuthContext';
 
 export const Navigation = () => {
   const {t} = useTranslation();
+  const {isAuthenticated, logout, user} = useAuth();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   const navigationLinks = [
     {href: '/', label: t('components.navigation.home')},
@@ -41,7 +51,7 @@ export const Navigation = () => {
         </Typography>
 
         {/* Desktop Navigation */}
-        <Box sx={{display: {xs: 'none', sm: 'flex'}, gap: 3}}>
+        <Box sx={{display: {xs: 'none', sm: 'flex'}, gap: 3, alignItems: 'center'}}>
           {navigationLinks.map(link => (
             <MuiLink
               key={link.href}
@@ -58,6 +68,18 @@ export const Navigation = () => {
               {link.label}
             </MuiLink>
           ))}
+          {isAuthenticated && (
+            <>
+              {user?.username && (
+                <Typography variant="body2" sx={{opacity: 0.8}}>
+                  {user.username}
+                </Typography>
+              )}
+              <Button color="inherit" onClick={handleLogout} size="small" variant="outlined">
+                Logout
+              </Button>
+            </>
+          )}
         </Box>
 
         {/* Mobile Menu Button */}
@@ -92,6 +114,19 @@ export const Navigation = () => {
                 </ListItemButton>
               </ListItem>
             ))}
+            {isAuthenticated && (
+              <ListItem disablePadding>
+                <ListItemButton
+                  onClick={async () => {
+                    setMobileMenuOpen(false);
+                    await handleLogout();
+                  }}
+                  sx={{py: 1.5}}
+                >
+                  <ListItemText primary="Logout" />
+                </ListItemButton>
+              </ListItem>
+            )}
           </List>
         </Box>
       </Drawer>
