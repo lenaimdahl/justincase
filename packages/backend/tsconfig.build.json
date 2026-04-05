@@ -1,7 +1,4 @@
 {
-  "compilerOptions": {
-    "baseDir": "./src"
-  },
   "extends": "./tsconfig.json",
   "exclude": ["node_modules", "test", "dist", "**/*spec.ts", "eslint.config.ts", "vitest.config.ts"]
 }
