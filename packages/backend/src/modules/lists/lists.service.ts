@@ -1,6 +1,6 @@
 import {Injectable, Logger, NotFoundException} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
-import {Model} from 'mongoose';
+import {isValidObjectId, Model} from 'mongoose';
 import {CreateListDto} from 'src/dtos/create-list.dto';
 import {UpdateListDto} from 'src/dtos/update-list.dto';
 import {List, ListDocument} from 'src/modules/lists/schemas/list.schema';
@@ -40,6 +40,10 @@ export class ListsService {
 
   async findOne(userId: string, id: string): Promise<ListDocument> {
     this.logger.debug(`Fetching list ${id} for user ${userId}`);
+    if (!isValidObjectId(id)) {
+      this.logger.error(`Invalid list id ${id}`);
+      throw new NotFoundException(`List with id ${id} not found`);
+    }
     const list = await this.listModel.findOne({_id: id, userId}).exec();
     if (!list) {
       this.logger.error(`List ${id} not found for user ${userId}`);
@@ -50,6 +54,10 @@ export class ListsService {
 
   async remove(userId: string, id: string): Promise<void> {
     this.logger.debug(`Removing list ${id} for user ${userId}`);
+    if (!isValidObjectId(id)) {
+      this.logger.error(`Invalid list id ${id}`);
+      throw new NotFoundException(`List with id ${id} not found`);
+    }
     const result = await this.listModel.deleteOne({_id: id, userId}).exec();
     if (result.deletedCount === 0) {
       this.logger.error(`List ${id} not found for user ${userId}`);
@@ -59,6 +67,10 @@ export class ListsService {
 
   async update(userId: string, id: string, updateListDto: UpdateListDto): Promise<ListDocument> {
     this.logger.debug(`Updating list ${id} for user ${userId}`);
+    if (!isValidObjectId(id)) {
+      this.logger.error(`Invalid list id ${id}`);
+      throw new NotFoundException(`List with id ${id} not found`);
+    }
     const list = await this.listModel
       .findOneAndUpdate(
         {_id: id, userId},
