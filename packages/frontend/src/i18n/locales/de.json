@@ -9,7 +9,12 @@
     "add": "Hinzufügen",
     "delete": "Löschen",
     "close": "Schließen",
-    "notes": "Notizen"
+    "notes": "Notizen",
+    "priority": "Priorität",
+    "none": "Keine",
+    "high": "Hoch",
+    "medium": "Mittel",
+    "low": "Niedrig"
   },
   "components": {
     "navigation": {
@@ -24,7 +29,9 @@
       "decreaseQuantity": "Anzahl verringern",
       "increaseQuantity": "Anzahl erhöhen",
       "deleteItem": "Artikel löschen",
-      "closeNotification": "Benachrichtigung schließen"
+      "closeNotification": "Benachrichtigung schließen",
+      "openNavigationMenu": "Navigationsmenü öffnen",
+      "closeNavigationMenu": "Navigationsmenü schließen"
     },
     "placeholders": {
       "itemName": "Artikelname",
@@ -93,6 +100,46 @@
       "cancelButton": "Abbrechen",
       "emptyState": "Noch keine Listen",
       "emptyStateDescription": "Erstellen Sie Ihre erste Liste, um zu beginnen"
+    },
+    "listTemplates": {
+      "selectTemplate": "Wähle eine Vorlage als Startpunkt:",
+      "predefinedTemplate": "Vordefinierte Vorlage",
+      "shopping": {
+        "name": "Einkaufsliste",
+        "description": "Mit Mengen und Notizen",
+        "checkboxLabel": "Gefüllt"
+      },
+      "guestlist": {
+        "name": "Gästeliste",
+        "description": "Mit Zusagen und Absagen",
+        "checkboxLabel": "Zugesagt"
+      },
+      "packing": {
+        "name": "Packliste",
+        "description": "Mit Häkchen und Notizen",
+        "checkboxLabel": "Gepackt"
+      },
+      "pantry": {
+        "name": "Vorrat",
+        "description": "Mit Verfallsdaten und Notizen",
+        "checkboxLabel": "Auffüllen"
+      }
+    },
+    "listConfigurator": {
+      "templates": "Vorlagen",
+      "title": "Neue Liste erstellen",
+      "stepTemplate": "Vorlage",
+      "stepColor": "Farbe",
+      "stepIcon": "Icon",
+      "stepName": "Name",
+      "expiryDatesLabel": "Verfallsdatum für jede Menge:",
+      "quantityLabel": "Menge",
+      "cancel": "Abbrechen",
+      "back": "Zurück",
+      "next": "Weiter",
+      "create": "Erstellen",
+      "step": "Schritt",
+      "of": "von"
     }
   }
 }

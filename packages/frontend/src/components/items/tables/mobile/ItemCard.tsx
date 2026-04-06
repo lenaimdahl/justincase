@@ -31,6 +31,10 @@ export const ItemCard = ({
   const hasError = !!state.error;
   const statusClassName = getStatusClassName(state.expiryDate);
 
+  // Extract priority from comment if it exists
+  const priority = state.comment?.split('|priority:')[1]?.split('|')[0];
+  const noteText = state.comment?.split('|priority:')[0] || state.comment;
+
   return (
     <Card
       className={statusClassName}
@@ -111,25 +115,25 @@ export const ItemCard = ({
               onChange={e => onUpdateField(item._id, 'expiryDate', e.target.value)}
               disabled={readOnly || isSaving}
               error={hasError}
-              InputLabelProps={{shrink: true}}
+              slotProps={{inputLabel: {shrink: true}}}
             />
           )}
 
-          {fieldConfig?.hasPriority !== false && state.priority && (
+          {fieldConfig?.hasPriority !== false && priority && (
             <Box>
               <Typography variant="body2" color="textSecondary" sx={{mb: 1}}>
                 {t('common.priority')}
               </Typography>
-              <Chip label={state.priority} size="small" variant="outlined" />
+              <Chip label={priority} size="small" variant="outlined" />
             </Box>
           )}
 
-          {fieldConfig?.hasNotes !== false && state.comment && (
+          {fieldConfig?.hasNotes !== false && noteText && (
             <Box>
               <Typography variant="body2" color="textSecondary" sx={{mb: 1}}>
                 {t('common.notes')}
               </Typography>
-              <Typography variant="body2">{state.comment}</Typography>
+              <Typography variant="body2">{noteText}</Typography>
             </Box>
           )}
         </Box>

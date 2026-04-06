@@ -37,8 +37,8 @@ export const ListOverviewHeader = ({onCreateClick}: ListOverviewHeaderProps) => 
         startIcon={<AddIcon />}
         onClick={onCreateClick}
         aria-label={t('pages.listOverview.createButton')}
-        fullWidth={{xs: true, sm: false}}
         sx={{
+          width: {xs: '100%', sm: 'auto'},
           background: 'linear-gradient(135deg, #9c27b0 0%, #e91e63 100%)',
           '&:hover': {
             background: 'linear-gradient(135deg, #7b1fa2 0%, #c2185b 100%)',

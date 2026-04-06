@@ -40,8 +40,7 @@ export const ItemForm = ({newItem, fieldConfig, creatingItem, onItemChange, onSu
           value={newItem.name || ''}
           onChange={e => onItemChange({...newItem, name: e.target.value})}
           disabled={creatingItem}
-          sx={{minWidth: {xs: '100%', sm: 150}}}
-          fullWidth={{xs: true, sm: false}}
+          sx={{width: {xs: '100%', sm: 150}}}
         />
 
         <QuantityField

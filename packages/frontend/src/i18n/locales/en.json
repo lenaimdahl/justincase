@@ -9,7 +9,12 @@
     "add": "Add",
     "delete": "Delete",
     "close": "Close",
-    "notes": "Notes"
+    "notes": "Notes",
+    "priority": "Priority",
+    "none": "None",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
   },
   "components": {
     "navigation": {
@@ -24,7 +29,9 @@
       "decreaseQuantity": "Decrease quantity",
       "increaseQuantity": "Increase quantity",
       "deleteItem": "Delete item",
-      "closeNotification": "Close notification"
+      "closeNotification": "Close notification",
+      "openNavigationMenu": "Open navigation menu",
+      "closeNavigationMenu": "Close navigation menu"
     },
     "placeholders": {
       "itemName": "Item name",
@@ -93,6 +100,46 @@
       "cancelButton": "Cancel",
       "emptyState": "No lists yet",
       "emptyStateDescription": "Create your first list to get started"
+    },
+    "listTemplates": {
+      "selectTemplate": "Choose a template to get started:",
+      "predefinedTemplate": "Predefined template",
+      "shopping": {
+        "name": "Shopping List",
+        "description": "With quantities and notes",
+        "checkboxLabel": "Refilled"
+      },
+      "guestlist": {
+        "name": "Guest List",
+        "description": "With confirmations and cancellations",
+        "checkboxLabel": "Confirmed"
+      },
+      "packing": {
+        "name": "Packing List",
+        "description": "With checkmarks and notes",
+        "checkboxLabel": "Packed"
+      },
+      "pantry": {
+        "name": "Pantry",
+        "description": "With expiry dates and notes",
+        "checkboxLabel": "Refill"
+      }
+    },
+    "listConfigurator": {
+      "templates": "Templates",
+      "title": "Create New List",
+      "stepTemplate": "Template",
+      "stepColor": "Color",
+      "stepIcon": "Icon",
+      "stepName": "Name",
+      "expiryDatesLabel": "Expiry date for each quantity:",
+      "quantityLabel": "Quantity",
+      "cancel": "Cancel",
+      "back": "Back",
+      "next": "Next",
+      "create": "Create",
+      "step": "Step",
+      "of": "of"
     }
   }
 }

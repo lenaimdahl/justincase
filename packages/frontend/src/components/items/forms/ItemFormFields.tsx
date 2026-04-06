@@ -41,8 +41,7 @@ export const QuantityField = ({
       }}
       disabled={disabled}
       slotProps={{htmlInput: {min: 1}}}
-      sx={{minWidth: {xs: '100%', sm: 100}}}
-      fullWidth={{xs: true, sm: false}}
+      sx={{width: {xs: '100%', sm: 100}}}
     />
   );
 };
@@ -71,8 +70,7 @@ export const SingleExpiryDateField = ({
       value={value || ''}
       onChange={e => onChange({...newItem, expiryDate: e.target.value})}
       disabled={disabled}
-      sx={{minWidth: {xs: '100%', sm: 140}}}
-      fullWidth={{xs: true, sm: false}}
+      sx={{width: {xs: '100%', sm: 140}}}
     />
   );
 };
@@ -90,17 +88,20 @@ export const MultipleExpiryDatesField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
+  const {t} = useTranslation();
   if (!fieldConfig.hasExpiryDate || !fieldConfig.hasQuantity || (quantity || 1) <= 1) return null;
 
   return (
     <Box sx={{mt: 1.5, p: 1.5, border: '1px solid #ddd', borderRadius: 1, bgcolor: '#f9f9f9'}}>
       <Box component="strong" sx={{fontSize: {xs: '0.85em', sm: '0.9em'}, display: 'block', mb: 1}}>
-        Ablaufdatum für jede Menge:
+        {t('pages.listConfigurator.expiryDatesLabel')}
       </Box>
       <Box sx={{display: 'grid', gridTemplateColumns: {xs: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))'}, gap: 1}}>
         {Array.from({length: quantity || 1}).map((_, idx) => (
           <Box key={idx} sx={{display: 'flex', flexDirection: 'column', gap: 0.5}}>
-            <Box sx={{fontSize: {xs: '0.75em', sm: '0.8em'}, fontWeight: 500, color: '#666'}}>Menge {idx + 1}</Box>
+            <Box sx={{fontSize: {xs: '0.75em', sm: '0.8em'}, fontWeight: 500, color: '#666'}}>
+              {t('pages.listConfigurator.quantityLabel')} {idx + 1}
+            </Box>
             <TextField
               size="small"
               type="date"
@@ -134,21 +135,29 @@ export const PriorityField = ({
   newItem: CreateItemRequest & {expiryDates?: string[]};
   onChange: (item: CreateItemRequest & {expiryDates?: string[]}) => void;
 }) => {
+  const {t} = useTranslation();
+
   if (!fieldConfig.hasPriority) return null;
 
+  const handlePriorityChange = (priority: string) => {
+    const notesPart = comment?.split('|priority:')[0] || '';
+    const newComment = priority ? `${notesPart}|priority:${priority}` : notesPart;
+    onChange({...newItem, comment: newComment});
+  };
+
   return (
-    <FormControl size="small" sx={{minWidth: {xs: '100%', sm: 130}}} fullWidth={{xs: true, sm: false}}>
-      <InputLabel>Priorität</InputLabel>
+    <FormControl size="small" sx={{width: {xs: '100%', sm: 'auto'}, minWidth: {xs: '100%', sm: 130}}}>
+      <InputLabel>{t('common.priority')}</InputLabel>
       <Select
         value={comment?.split('|priority:')[1]?.split('|')[0] || ''}
-        label="Priorität"
-        onChange={e => onChange({...newItem, comment: e.target.value})}
+        label={t('common.priority')}
+        onChange={e => handlePriorityChange(e.target.value)}
         disabled={disabled}
       >
-        <MenuItem value="">Keine</MenuItem>
-        <MenuItem value="⭐">⭐ Hoch</MenuItem>
-        <MenuItem value="🔸">🔸 Mittel</MenuItem>
-        <MenuItem value="🤍">🤍 Niedrig</MenuItem>
+        <MenuItem value="">{t('common.none')}</MenuItem>
+        <MenuItem value="⭐">⭐ {t('common.high')}</MenuItem>
+        <MenuItem value="🔸">🔸 {t('common.medium')}</MenuItem>
+        <MenuItem value="🤍">🤍 {t('common.low')}</MenuItem>
       </Select>
     </FormControl>
   );
@@ -175,11 +184,14 @@ export const NotesField = ({
     <TextField
       size="small"
       placeholder={t('components.placeholders.notes')}
-      value={value || ''}
-      onChange={e => onChange({...newItem, comment: e.target.value})}
+      value={value?.split('|priority:')[0] || ''}
+      onChange={e => {
+        const priorityPart = newItem.comment?.split('|priority:')[1];
+        const newComment = priorityPart ? `${e.target.value}|priority:${priorityPart}` : e.target.value;
+        onChange({...newItem, comment: newComment});
+      }}
       disabled={disabled}
-      sx={{minWidth: {xs: '100%', sm: 150}}}
-      fullWidth={{xs: true, sm: false}}
+      sx={{width: {xs: '100%', sm: 150}}}
     />
   );
 };
