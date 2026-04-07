@@ -3,6 +3,8 @@ FROM node:24-alpine
 # Set working directory
 WORKDIR /app
 
+RUN apk add --no-cache curl
+
 # Copy needed files
 COPY package.json .yarn yarn.lock packages/backend ./
 
