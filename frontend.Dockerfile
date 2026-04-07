@@ -3,13 +3,12 @@ FROM node:24-alpine AS builder
 
 WORKDIR /app
 
-# Copy root workspace configuration
-COPY package.json .yarnrc.yml yarn.lock ./
-COPY .yarn ./.yarn/
+# Copy needed files
+COPY package.json .yarn yarn.lock ./
 COPY packages/frontend ./packages/frontend/
 
 # Install dependencies
-RUN corepack enable && yarn install --immutable
+RUN yarn install --immutable
 
 WORKDIR /app/packages/frontend
 
