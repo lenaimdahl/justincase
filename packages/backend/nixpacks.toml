@@ -2,7 +2,7 @@
 cmds = ["yarn --immutable"]
 
 [phases.build]
-cmds = ["cd packages/backend && yarn build"]
+cmds = ["yarn build"]
 
 [phases.start]
-cmds = ["cd packages/backend && yarn start:prod"]
+cmds = ["yarn start:prod"]
