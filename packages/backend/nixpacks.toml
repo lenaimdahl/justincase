@@ -1,0 +1,8 @@
+[phases.install]
+cmds = ["yarn --immutable"]
+
+[phases.build]
+cmds = ["cd packages/backend && yarn build"]
+
+[phases.start]
+cmds = ["cd packages/backend && yarn start:prod"]
