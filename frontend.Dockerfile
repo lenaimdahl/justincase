@@ -9,6 +9,8 @@ COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/frontend/ ./packages/frontend/
 COPY .yarn/ .yarn/
 
+RUN echo "node_modules" > .gitignore
+
 RUN git init
 RUN git add .
 RUN git config user.name "JustInCase Bot"
