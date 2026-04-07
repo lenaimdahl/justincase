@@ -1,26 +1,23 @@
-# Stage 1: Build
+# Build
 FROM node:24-alpine AS builder
 
 WORKDIR /app
 
-# Copy needed files
-COPY package.json .yarn yarn.lock ./
-COPY packages/frontend ./packages/frontend/
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY packages/frontend/ ./packages/frontend/
+COPY .yarn/ .yarn/
 
-# Install dependencies
 RUN yarn install --immutable
 
 WORKDIR /app/packages/frontend
 
-# Build the frontend
 RUN yarn build
 
-# Stage 2: Serve with nginx
+# Serve
 FROM nginx:alpine
 
+COPY --from=builder /app/packages/frontend/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/packages/frontend/dist /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
 
