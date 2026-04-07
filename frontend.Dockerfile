@@ -8,6 +8,8 @@ COPY packages/frontend/ ./packages/frontend/
 COPY .yarn/ .yarn/
 
 RUN ls -la
+RUN ls -la packages/frontend
+RUN ls -la .yarn/releases
 
 RUN yarn install --immutable
 
