@@ -1,8 +1,0 @@
-[phases.install]
-cmds = ["yarn --immutable"]
-
-[phases.build]
-cmds = ["yarn build"]
-
-[phases.start]
-cmds = ["yarn start:prod"]
