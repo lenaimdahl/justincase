@@ -7,6 +7,8 @@ COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/frontend/ ./packages/frontend/
 COPY .yarn/ .yarn/
 
+RUN ls -la
+
 RUN yarn install --immutable
 
 WORKDIR /app/packages/frontend
