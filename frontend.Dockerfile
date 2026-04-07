@@ -4,7 +4,8 @@ FROM node:24-alpine AS builder
 WORKDIR /app
 
 # Copy needed files
-COPY package.json .yarn yarn.lock packages/frontend ./
+COPY package.json .yarn yarn.lock ./
+COPY packages/frontend ./packages/frontend/
 
 # Install dependencies
 RUN yarn install --immutable
