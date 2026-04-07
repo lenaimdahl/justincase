@@ -22,7 +22,10 @@
       "home": "Startseite",
       "lists": "Listen",
       "items": "Artikel",
-      "settings": "Einstellungen"
+      "settings": "Einstellungen",
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "logout": "Abmelden"
     },
     "ariaLabels": {
       "addItem": "Artikel hinzufügen",

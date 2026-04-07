@@ -22,7 +22,10 @@
       "home": "Home",
       "lists": "Lists",
       "items": "Items",
-      "settings": "Settings"
+      "settings": "Settings",
+      "login": "Login",
+      "register": "Register",
+      "logout": "Logout"
     },
     "ariaLabels": {
       "addItem": "Add item",

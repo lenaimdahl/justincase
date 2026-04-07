@@ -68,7 +68,7 @@ export const Navigation = () => {
               {link.label}
             </MuiLink>
           ))}
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <>
               {user?.username && (
                 <Typography variant="body2" sx={{opacity: 0.8}}>
@@ -76,7 +76,16 @@ export const Navigation = () => {
                 </Typography>
               )}
               <Button color="inherit" onClick={handleLogout} size="small" variant="outlined">
-                Logout
+                {t('components.navigation.logout')}
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button color="inherit" href="/login" size="small" variant="outlined">
+                {t('components.navigation.login')}
+              </Button>
+              <Button color="inherit" href="/register" size="small" variant="contained" sx={{bgcolor: 'primary.light'}}>
+                {t('components.navigation.register')}
               </Button>
             </>
           )}
@@ -114,7 +123,7 @@ export const Navigation = () => {
                 </ListItemButton>
               </ListItem>
             ))}
-            {isAuthenticated && (
+            {isAuthenticated ? (
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={async () => {
@@ -123,9 +132,27 @@ export const Navigation = () => {
                   }}
                   sx={{py: 1.5}}
                 >
-                  <ListItemText primary="Logout" />
+                  <ListItemText primary={t('components.navigation.logout')} />
                 </ListItemButton>
               </ListItem>
+            ) : (
+              <>
+                <ListItem disablePadding>
+                  <ListItemButton component="a" href="/login" onClick={() => setMobileMenuOpen(false)} sx={{py: 1.5}}>
+                    <ListItemText primary={t('components.navigation.login')} />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    component="a"
+                    href="/register"
+                    onClick={() => setMobileMenuOpen(false)}
+                    sx={{py: 1.5}}
+                  >
+                    <ListItemText primary={t('components.navigation.register')} />
+                  </ListItemButton>
+                </ListItem>
+              </>
             )}
           </List>
         </Box>
