@@ -7,21 +7,12 @@ RUN apk add --no-cache git
 
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/frontend/ ./packages/frontend/
+COPY packages/backend/package.json ./packages/backend/package.json
 COPY .yarn/ .yarn/
 
 RUN echo "node_modules" > .gitignore
 
-RUN git init
-RUN git add .
-RUN git config user.name "JustInCase Bot"
-RUN git config user.email "bot@example.com"
-RUN git commit -m "Initial commit"
-
-RUN yarn install
-
-RUN git add .
-RUN git diff --cached
-RUN exit 1
+RUN yarn install --immutable
 
 WORKDIR /app/packages/frontend
 

@@ -6,6 +6,7 @@ RUN apk add --no-cache curl
 
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/backend/ ./packages/backend/
+COPY packages/frontend/package.json ./packages/frontend/package.json
 COPY .yarn/ .yarn/
 
 RUN yarn --immutable
