@@ -33,6 +33,9 @@ export default function Router() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+        </Route>
         <Route
           element={
             <ProtectedRoute>
@@ -40,7 +43,6 @@ export default function Router() {
             </ProtectedRoute>
           }
         >
-          <Route path="/" element={<Home />} />
           <Route path="/lists" element={<ListOverviewPage />} />
           <Route path="/lists/:listId" element={<ListDetailPage />} />
         </Route>
