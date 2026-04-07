@@ -1,23 +1,20 @@
 FROM node:24-alpine
 
-# Set working directory
 WORKDIR /app
 
 RUN apk add --no-cache curl
 
-# Copy needed files
-COPY package.json .yarn yarn.lock packages/backend ./
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY packages/backend/ ./packages/backend/
+COPY packages/frontend/package.json ./packages/frontend/package.json
+COPY .yarn/ .yarn/
 
-# Install dependencies
-RUN yarn install --immutable
+RUN yarn --immutable
 
 WORKDIR /app/packages/backend
 
-# Build the backend (if needed)
 RUN yarn build
 
-# Expose the port (default Nest.js port)
 EXPOSE 3000
 
-# Start the application
 CMD ["yarn", "start:prod"]
