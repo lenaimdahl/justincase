@@ -47,6 +47,9 @@
     "typescript": "5.9.3",
     "vitest": "4.1.0"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "license": "GPL-3.0",
   "name": "justincase-backend",
   "prettier": "@ffflorian/prettier-config",
