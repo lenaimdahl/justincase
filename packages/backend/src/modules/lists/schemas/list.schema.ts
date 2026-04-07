@@ -14,7 +14,7 @@ export class FieldConfig {
   multipleCheckboxes?: boolean;
 }
 
-@Schema({timestamps: true})
+@Schema({timestamps: true, toJSON: {virtuals: true}, toObject: {virtuals: true}})
 export class List {
   @Prop({default: '#9c27b0'})
   color!: string;
