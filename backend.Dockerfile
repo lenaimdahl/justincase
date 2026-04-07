@@ -8,7 +8,7 @@ COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/backend/ ./packages/backend/
 COPY .yarn/ .yarn/
 
-RUN yarn install --immutable
+RUN yarn --immutable
 
 WORKDIR /app/packages/backend
 

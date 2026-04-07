@@ -3,6 +3,8 @@ FROM node:24-alpine AS builder
 
 WORKDIR /app
 
+RUN apk add --no-cache git
+
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/frontend/ ./packages/frontend/
 COPY .yarn/ .yarn/
@@ -11,7 +13,11 @@ RUN ls -la
 RUN ls -la packages/frontend
 RUN ls -la .yarn/releases
 
-RUN yarn install --immutable
+RUN yarn install
+
+RUN git add .
+RUN git diff --cached
+RUN exit 1
 
 WORKDIR /app/packages/frontend
 
