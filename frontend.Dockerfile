@@ -9,9 +9,11 @@ COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/frontend/ ./packages/frontend/
 COPY .yarn/ .yarn/
 
-RUN ls -la
-RUN ls -la packages/frontend
-RUN ls -la .yarn/releases
+RUN git init
+RUN git add .
+RUN git config user.name "JustInCase Bot"
+RUN git config user.email "bot@example.com"
+RUN git commit -m "Initial commit"
 
 RUN yarn install
 
