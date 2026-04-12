@@ -10,8 +10,8 @@ JustInCase is a lightweight inventory tracker where users manage multiple lists 
 
 | Service     | URL                                                                  |
 | ----------- | -------------------------------------------------------------------- |
-| Frontend    | [justincase.ffflorian.dev](https://justincase.ffflorian.dev)         |
-| Backend API | [justincase-api.ffflorian.dev](https://justincase-api.ffflorian.dev) |
+| Frontend    | [justincase.lenaimdahl.de](https://justincase.lenaimdahl.de)         |
+| Backend API | [justincase-api.lenaimdahl.de](https://justincase-api.lenaimdahl.de) |
 
 ## Tech Stack
 
