@@ -134,6 +134,8 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
-# Vite logs files
+# Vite log files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+.env.production
