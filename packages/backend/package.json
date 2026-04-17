@@ -25,7 +25,7 @@
   "devDependencies": {
     "@ffflorian/eslint-config": "0.14.2",
     "@ffflorian/prettier-config": "0.6.7",
-    "@nestjs/cli": "11.0.16",
+    "@nestjs/cli": "11.0.19",
     "@nestjs/schematics": "11.0.9",
     "@nestjs/testing": "11.1.17",
     "@types/bcrypt": "6.0.0",
