@@ -4801,14 +4801,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-oxlint@npm:1.58.0":
-  version: 1.58.0
-  resolution: "eslint-plugin-oxlint@npm:1.58.0"
+"eslint-plugin-oxlint@npm:1.59.0":
+  version: 1.59.0
+  resolution: "eslint-plugin-oxlint@npm:1.59.0"
   dependencies:
     jsonc-parser: "npm:^3.3.1"
   peerDependencies:
-    oxlint: ~1.58.0
-  checksum: 10c0/2772c2fcddbea3fbbf8f2779a8c5892c2d767566d6565ea70d98a1532a7b12e3942bd174430ece2c0e1a8ecd5b46146e491cd8c2650d6435a98fa5ddbeb166af
+    oxlint: ~1.59.0
+  checksum: 10c0/4f075fbc7e9707dc55b4c01c0a6a71597a0a1747cc8fa665a96f1742985631349101142e9209b9f4d457dd47254261bc0af63d94adc889dfa1168802275eb308
   languageName: node
   linkType: hard
 
@@ -6299,7 +6299,7 @@ __metadata:
     class-transformer: "npm:0.5.1"
     class-validator: "npm:0.14.4"
     eslint: "npm:9.39.4"
-    eslint-plugin-oxlint: "npm:1.58.0"
+    eslint-plugin-oxlint: "npm:1.59.0"
     mongoose: "npm:9.3.3"
     oxlint: "npm:1.58.0"
     passport: "npm:0.7.0"
@@ -6338,7 +6338,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:6.0.1"
     "@vitest/ui": "npm:4.1.0"
     eslint: "npm:9.39.4"
-    eslint-plugin-oxlint: "npm:1.58.0"
+    eslint-plugin-oxlint: "npm:1.59.0"
     i18next: "npm:26.0.1"
     jsdom: "npm:23.2.0"
     oxlint: "npm:1.58.0"
