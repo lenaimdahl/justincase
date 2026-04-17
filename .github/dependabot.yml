@@ -8,7 +8,10 @@ updates:
     assignees:
       - ffflorian
       - lenaimdahl
-    versioning-strategy: increase
+    ignore:
+      - dependency-name: node
+        versions:
+          - '>= 25, < 26'
   - package-ecosystem: npm
     directory: '/'
     schedule:
