@@ -1235,19 +1235,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/icons-material@npm:6.5.0":
-  version: 6.5.0
-  resolution: "@mui/icons-material@npm:6.5.0"
+"@mui/icons-material@npm:9.0.0":
+  version: 9.0.0
+  resolution: "@mui/icons-material@npm:9.0.0"
   dependencies:
-    "@babel/runtime": "npm:^7.26.0"
+    "@babel/runtime": "npm:^7.29.2"
   peerDependencies:
-    "@mui/material": ^6.5.0
+    "@mui/material": ^9.0.0
     "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
     react: ^17.0.0 || ^18.0.0 || ^19.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/0afec2280e8dde4ff34686481497c4b3ced8193f0038bf8984fd502808c053ba8464c35409def0380424cade1d282f647fac1db7c55046b2b232b0d2c52a589d
+  checksum: 10c0/1b7ed081342db01c6992023a52985b30a8d59f943e3eba6a34048b15e72c02537166e46114de45e0ee52261edbc8a64abf023e9ec63e68bf6ca0b0bbb28491ac
   languageName: node
   linkType: hard
 
@@ -6326,7 +6326,7 @@ __metadata:
     "@emotion/styled": "npm:11.14.1"
     "@ffflorian/eslint-config-react": "npm:0.2.2"
     "@ffflorian/prettier-config": "npm:0.6.7"
-    "@mui/icons-material": "npm:6.5.0"
+    "@mui/icons-material": "npm:9.0.0"
     "@mui/material": "npm:6.5.0"
     "@testing-library/dom": "npm:9.3.4"
     "@testing-library/jest-dom": "npm:6.1.5"
