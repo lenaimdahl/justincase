@@ -8,6 +8,10 @@ updates:
     assignees:
       - ffflorian
       - lenaimdahl
+    ignore:
+      - dependency-name: node
+        versions:
+          - '>= 25, < 26'
   - package-ecosystem: npm
     directory: '/'
     schedule:
