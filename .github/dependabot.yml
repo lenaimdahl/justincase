@@ -8,6 +8,8 @@ updates:
     assignees:
       - ffflorian
       - lenaimdahl
+    cooldown:
+      default-days: 5
     ignore:
       - dependency-name: node
         versions:
@@ -39,3 +41,5 @@ updates:
       - lenaimdahl
     cooldown:
       default-days: 5
+      exclude:
+        - 'ffflorian/*'
