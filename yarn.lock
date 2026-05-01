@@ -5645,17 +5645,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:26.0.1":
-  version: 26.0.1
-  resolution: "i18next@npm:26.0.1"
-  dependencies:
-    "@babel/runtime": "npm:^7.29.2"
+"i18next@npm:26.0.8":
+  version: 26.0.8
+  resolution: "i18next@npm:26.0.8"
   peerDependencies:
     typescript: ^5 || ^6
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/50c4202aca80ebf236765b47bd1141f1b61da73b331e0aae554c371bed68052a1ad6616c02731f00f84071b5e3211e787799f1143dec24e32af9ebe8995dc70b
+  checksum: 10c0/48bcb3f8731a17ab586d7371a6d4d155cd8eeaec1a237466d21ffe7b32a6e98432481171a53b0583b397b4ac65c3342b8a64d01cd672b6a1686028329d0c0d8e
   languageName: node
   linkType: hard
 
@@ -6339,7 +6337,7 @@ __metadata:
     "@vitest/ui": "npm:4.1.0"
     eslint: "npm:9.39.4"
     eslint-plugin-oxlint: "npm:1.58.0"
-    i18next: "npm:26.0.1"
+    i18next: "npm:26.0.8"
     jsdom: "npm:23.2.0"
     oxlint: "npm:1.58.0"
     prettier: "npm:3.8.1"
