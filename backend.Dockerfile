@@ -2,7 +2,7 @@ FROM node:24-alpine@sha256:d1b3b4da11eefd5941e7f0b9cf17783fc99d9c6fc34884a665f40
 
 WORKDIR /app
 
-RUN apk add --no-cache curl=8.17.0-r1
+RUN apk add --no-cache curl
 
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/backend/ ./packages/backend/
