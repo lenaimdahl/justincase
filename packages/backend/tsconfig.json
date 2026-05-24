@@ -12,6 +12,9 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "outDir": "./dist",
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "rootDir": "./src",
     "removeComments": true,
     "resolvePackageJsonExports": true,
