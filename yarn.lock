@@ -5828,15 +5828,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:26.0.8":
-  version: 26.0.8
-  resolution: "i18next@npm:26.0.8"
+"i18next@npm:26.2.0":
+  version: 26.2.0
+  resolution: "i18next@npm:26.2.0"
   peerDependencies:
     typescript: ^5 || ^6
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/48bcb3f8731a17ab586d7371a6d4d155cd8eeaec1a237466d21ffe7b32a6e98432481171a53b0583b397b4ac65c3342b8a64d01cd672b6a1686028329d0c0d8e
+  checksum: 10c0/8ce453de86422503141ece62785089236894173d50c269d1b4ea1da5f362bc9a3023c1af25c90979decbddb007b35812726cd90de973c445785609ae3c775e75
   languageName: node
   linkType: hard
 
@@ -6520,7 +6520,7 @@ __metadata:
     "@vitest/ui": "npm:4.1.6"
     eslint: "npm:9.39.4"
     eslint-plugin-oxlint: "npm:1.66.0"
-    i18next: "npm:26.0.8"
+    i18next: "npm:26.2.0"
     jsdom: "npm:23.2.0"
     oxlint: "npm:1.66.0"
     prettier: "npm:3.8.3"
