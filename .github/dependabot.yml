@@ -33,6 +33,10 @@ updates:
       mui:
         patterns:
           - '@mui*'
+      vitest:
+        patterns:
+          - '@vitest*'
+          - 'vitest'
     ignore:
       # see https://github.com/jsx-eslint/eslint-plugin-react/issues/3977
       - dependency-name: 'eslint'
