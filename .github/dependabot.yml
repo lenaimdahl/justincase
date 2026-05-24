@@ -7,13 +7,12 @@ updates:
     open-pull-requests-limit: 99
     assignees:
       - ffflorian
-      - lenaimdahl
-    cooldown:
-      default-days: 5
     ignore:
       - dependency-name: node
         versions:
-          - '>= 25, < 26'
+          - '> 24'
+    cooldown:
+      default-days: 5
   - package-ecosystem: npm
     directory: '/'
     schedule:
@@ -23,10 +22,22 @@ updates:
       - ffflorian
       - lenaimdahl
     versioning-strategy: increase
+    groups:
+      react:
+        patterns:
+          - 'react*'
+          - 'react-dom*'
+      nestjs:
+        patterns:
+          - '@nestjs*'
     ignore:
+      # see https://github.com/jsx-eslint/eslint-plugin-react/issues/3977
+      - dependency-name: 'eslint'
+        versions:
+          - '>= 10'
       - dependency-name: '@types/node'
         versions:
-          - '> 24.x'
+          - '>= 24'
     cooldown:
       default-days: 5
       exclude:
@@ -38,7 +49,6 @@ updates:
     open-pull-requests-limit: 99
     assignees:
       - ffflorian
-      - lenaimdahl
     cooldown:
       default-days: 5
       exclude:
