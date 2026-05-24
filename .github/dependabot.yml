@@ -36,7 +36,7 @@ updates:
       vitest:
         patterns:
           - '@vitest*'
-          - 'vitest'
+          - 'vitest*'
       testing-library:
         patterns:
           - '@testing-library*'
