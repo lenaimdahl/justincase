@@ -15,7 +15,7 @@ WORKDIR /app/packages/frontend
 RUN yarn build
 
 # Serve
-FROM nginx:1.31.0-alpine@sha256:c22e76a97fe5bacad9d58bad0a96e903480c05f8dee30884b14550530ddd25a9
+FROM nginx:1.31.1-alpine@sha256:d1aedbc848110c391df415b27a241ea36159e63b51b151c29ab059867f9f5174
 
 COPY --from=builder /app/packages/frontend/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/packages/frontend/dist /usr/share/nginx/html
