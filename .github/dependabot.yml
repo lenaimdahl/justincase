@@ -30,6 +30,9 @@ updates:
       nestjs:
         patterns:
           - '@nestjs*'
+      mui:
+        patterns:
+          - '@mui*'
     ignore:
       # see https://github.com/jsx-eslint/eslint-plugin-react/issues/3977
       - dependency-name: 'eslint'
