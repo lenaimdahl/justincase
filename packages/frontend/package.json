@@ -5,10 +5,10 @@
     "@mui/icons-material": "9.0.1",
     "@mui/material": "9.0.1",
     "i18next": "26.2.0",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
-    "react-i18next": "17.0.1",
-    "react-router-dom": "6.28.0"
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-i18next": "17.0.8",
+    "react-router-dom": "7.15.1"
   },
   "devDependencies": {
     "@ffflorian/eslint-config-react": "0.2.2",
