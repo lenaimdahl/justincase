@@ -5,3 +5,4 @@ build/
 coverage/
 .vite/
 CLAUDE.md
+CHANGELOG.md
