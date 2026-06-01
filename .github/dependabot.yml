@@ -30,6 +30,10 @@ updates:
       nestjs:
         patterns:
           - '@nestjs*'
+      oxlint:
+        patterns:
+          - 'oxlint'
+          - 'eslint-plugin-oxlint'
       mui:
         patterns:
           - '@mui*'
