@@ -11,7 +11,7 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - uses: ffflorian/actions/git-mirror@a0a2ae06249e17b033c28d9be811158e873f3d3b
+      - uses: ffflorian/actions/git-mirror@395dd69a8fe27cbaaf9ee09ebfaeefaf92dfdda5
         with:
           GITLAB_REMOTE: 'git@gitlab.com:ffflorian/justincase.git'
           GITLAB_SECRET: ${{ secrets.GITLAB_SECRET }}
