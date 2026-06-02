@@ -18,6 +18,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -26,7 +27,7 @@ jobs:
       - name: Update yarn
         uses: ffflorian/actions/yarn-update@395dd69a8fe27cbaaf9ee09ebfaeefaf92dfdda5
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           git_authorship: 'Florian Imdahl <git@ffflorian.de>'
           release_cooldown_days: '5'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           assignees: 'ffflorian'
