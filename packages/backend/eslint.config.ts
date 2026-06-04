@@ -2,7 +2,14 @@ import eslintConfig from '@ffflorian/eslint-config';
 import {defineConfig} from 'eslint/config';
 
 export default defineConfig([
-  eslintConfig,
+  ...eslintConfig,
+  {
+    languageOptions: {
+      parserOptions: {
+        tsconfigRootDir: '.',
+      },
+    },
+  },
   {
     rules: {
       'no-magic-numbers': [
