@@ -4,13 +4,6 @@ import {defineConfig} from 'eslint/config';
 export default defineConfig([
   ...eslintConfig,
   {
-    languageOptions: {
-      parserOptions: {
-        tsconfigRootDir: '.',
-      },
-    },
-  },
-  {
     rules: {
       'no-magic-numbers': [
         'error',
