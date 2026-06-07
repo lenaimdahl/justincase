@@ -78,7 +78,7 @@ jobs:
     permissions: {}
     steps:
       - name: Deploy
-        uses: ffflorian/actions/coolify-deploy@395dd69a8fe27cbaaf9ee09ebfaeefaf92dfdda5
+        uses: ffflorian/actions/coolify-deploy@9c7842ec0251a5890f0ca9ef22deed8dbc4ea9fa
         with:
           domain: ${{ secrets.COOLIFY_DOMAIN }}
           token: ${{ secrets.COOLIFY_TOKEN }}
@@ -128,7 +128,7 @@ jobs:
     permissions: {}
     steps:
       - name: Deploy
-        uses: ffflorian/actions/coolify-deploy@395dd69a8fe27cbaaf9ee09ebfaeefaf92dfdda5
+        uses: ffflorian/actions/coolify-deploy@9c7842ec0251a5890f0ca9ef22deed8dbc4ea9fa
         with:
           domain: ${{ secrets.COOLIFY_DOMAIN }}
           token: ${{ secrets.COOLIFY_TOKEN }}
