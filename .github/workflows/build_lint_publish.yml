@@ -75,11 +75,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish_docker_frontend_image
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    permissions: {}
+    permissions:
+      deployments: write
     steps:
       - name: Deploy
         uses: ffflorian/actions/coolify-deploy@9c7842ec0251a5890f0ca9ef22deed8dbc4ea9fa
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          environment: frontend-production
           domain: ${{ secrets.COOLIFY_DOMAIN }}
           token: ${{ secrets.COOLIFY_TOKEN }}
           uuid: ${{ secrets.COOLIFY_UUID_FRONTEND }}
@@ -125,11 +128,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish_docker_backend_image
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    permissions: {}
+    permissions:
+      deployments: write
     steps:
       - name: Deploy
         uses: ffflorian/actions/coolify-deploy@9c7842ec0251a5890f0ca9ef22deed8dbc4ea9fa
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          environment: backend-production
           domain: ${{ secrets.COOLIFY_DOMAIN }}
           token: ${{ secrets.COOLIFY_TOKEN }}
           uuid: ${{ secrets.COOLIFY_UUID_BACKEND }}
