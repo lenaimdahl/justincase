@@ -7,6 +7,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build_lint:
@@ -70,11 +71,18 @@ jobs:
           tags: ${{ steps.docker-meta.outputs.tags }}
           labels: ${{ steps.docker-meta.outputs.labels }}
 
+  # Deploy is part of this workflow because GitHub does not fire release events
+  # when a release is created by a workflow using GITHUB_TOKEN, so a separate
+  # deploy.yml listening on release:published would never be triggered.
   deploy_frontend:
     name: Deploy latest frontend image
     runs-on: ubuntu-latest
     needs: publish_docker_frontend_image
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: |
+      always() && (
+        github.event_name == 'workflow_dispatch' ||
+        (needs.publish.result == 'success' && needs.publish.outputs.new_release_published == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main')
+      )
     permissions:
       deployments: write
     steps:
@@ -123,11 +131,18 @@ jobs:
           tags: ${{ steps.docker-meta.outputs.tags }}
           labels: ${{ steps.docker-meta.outputs.labels }}
 
+  # Deploy is part of this workflow because GitHub does not fire release events
+  # when a release is created by a workflow using GITHUB_TOKEN, so a separate
+  # deploy.yml listening on release:published would never be triggered.
   deploy_backend:
     name: Deploy latest backend image
     runs-on: ubuntu-latest
     needs: publish_docker_backend_image
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: |
+      always() && (
+        github.event_name == 'workflow_dispatch' ||
+        (needs.publish.result == 'success' && needs.publish.outputs.new_release_published == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main')
+      )
     permissions:
       deployments: write
     steps:
