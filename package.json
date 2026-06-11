@@ -19,7 +19,7 @@
     "dist": "yarn workspaces foreach --all --parallel --exclude justincase run dist",
     "lint": "yarn workspaces foreach --all --parallel --exclude justincase run lint",
     "format": "yarn workspaces foreach --all --parallel --exclude justincase run format",
-    "test": "yarn workspaces foreach --all --parallel --exclude justincase run test"
+    "test": "CI=true yarn workspaces foreach --all --parallel --exclude justincase run test"
   },
   "workspaces": [
     "packages/*"
