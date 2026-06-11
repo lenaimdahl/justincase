@@ -22,13 +22,13 @@ JustInCase is a lightweight inventory tracker where users manage multiple lists 
 - Material UI (MUI)
 - i18next (internationalization)
 - React Router
-- Deployed on [Vercel](https://vercel.com)
+- Deployed via [Coolify](https://coolify.io)
 
 **Backend**
 
 - NestJS + TypeScript
 - MongoDB via Mongoose
-- Deployed on [Render](https://render.com)
+- Deployed via [Coolify](https://coolify.io)
 
 ## Development
 
