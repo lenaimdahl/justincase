@@ -49,7 +49,8 @@ export const RegisterPage: React.FC = () => {
           alignItems: 'center',
           display: 'flex',
           flexDirection: 'column',
-          mt: 8,
+          mt: {xs: 4, sm: 8},
+          px: {xs: 2, sm: 0},
         }}
       >
         <Typography component="h1" variant="h4" gutterBottom>
@@ -74,6 +75,7 @@ export const RegisterPage: React.FC = () => {
             required
             type="email"
             value={email}
+            slotProps={{input: {sx: {minHeight: {xs: 44, sm: 'auto'}}}}}
           />
           <TextField
             autoComplete="username"
@@ -82,6 +84,7 @@ export const RegisterPage: React.FC = () => {
             margin="normal"
             onChange={e => setUsername(e.target.value)}
             value={username}
+            slotProps={{input: {sx: {minHeight: {xs: 44, sm: 'auto'}}}}}
           />
           <TextField
             autoComplete="new-password"
@@ -94,28 +97,45 @@ export const RegisterPage: React.FC = () => {
               input: {
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(prev => !prev)} edge="end">
+                    <IconButton
+                      onClick={() => setShowPassword(prev => !prev)}
+                      edge="end"
+                      sx={{minHeight: {xs: 44, sm: 'auto'}, minWidth: {xs: 44, sm: 'auto'}}}
+                    >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
+                sx: {minHeight: {xs: 44, sm: 'auto'}},
               },
             }}
             type={showPassword ? 'text' : 'password'}
             value={password}
           />
-          <Button disabled={isLoading} fullWidth sx={{mt: 2, mb: 1}} type="submit" variant="contained">
+          <Button
+            disabled={isLoading}
+            fullWidth
+            sx={{mt: 3, mb: 2, minHeight: {xs: 44, sm: 'auto'}}}
+            type="submit"
+            variant="contained"
+          >
             {isLoading ? 'Creating account…' : 'Register'}
           </Button>
           {googleOAuthEnabled && (
             <>
               <Divider sx={{my: 2}}>or</Divider>
-              <Button component="a" fullWidth href={`${API_BASE_URL}/auth/google`} variant="outlined">
+              <Button
+                component="a"
+                fullWidth
+                href={`${API_BASE_URL}/auth/google`}
+                variant="outlined"
+                sx={{minHeight: {xs: 44, sm: 'auto'}}}
+              >
                 Sign up with Google
               </Button>
             </>
           )}
-          <Box sx={{textAlign: 'center', mt: 1}}>
+          <Box sx={{textAlign: 'center', mt: 2}}>
             <Typography variant="body2">
               {'Already have an account? '}
               <Link href="/login" underline="hover">

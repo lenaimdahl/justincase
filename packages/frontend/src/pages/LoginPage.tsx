@@ -48,7 +48,8 @@ export const LoginPage: React.FC = () => {
           alignItems: 'center',
           display: 'flex',
           flexDirection: 'column',
-          mt: 8,
+          mt: {xs: 4, sm: 8},
+          px: {xs: 2, sm: 0},
         }}
       >
         <Typography component="h1" variant="h4" gutterBottom>
@@ -73,6 +74,7 @@ export const LoginPage: React.FC = () => {
             required
             type="email"
             value={email}
+            slotProps={{input: {sx: {minHeight: {xs: 44, sm: 'auto'}}}}}
           />
           <TextField
             autoComplete="current-password"
@@ -85,28 +87,45 @@ export const LoginPage: React.FC = () => {
               input: {
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(prev => !prev)} edge="end">
+                    <IconButton
+                      onClick={() => setShowPassword(prev => !prev)}
+                      edge="end"
+                      sx={{minHeight: {xs: 44, sm: 'auto'}, minWidth: {xs: 44, sm: 'auto'}}}
+                    >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
+                sx: {minHeight: {xs: 44, sm: 'auto'}},
               },
             }}
             type={showPassword ? 'text' : 'password'}
             value={password}
           />
-          <Button disabled={isLoading} fullWidth sx={{mt: 2, mb: 1}} type="submit" variant="contained">
+          <Button
+            disabled={isLoading}
+            fullWidth
+            sx={{mt: 3, mb: 2, minHeight: {xs: 44, sm: 'auto'}}}
+            type="submit"
+            variant="contained"
+          >
             {isLoading ? 'Signing in…' : 'Sign In'}
           </Button>
           {googleOAuthEnabled && (
             <>
               <Divider sx={{my: 2}}>or</Divider>
-              <Button component="a" fullWidth href={`${API_BASE_URL}/auth/google`} variant="outlined">
+              <Button
+                component="a"
+                fullWidth
+                href={`${API_BASE_URL}/auth/google`}
+                variant="outlined"
+                sx={{minHeight: {xs: 44, sm: 'auto'}}}
+              >
                 Sign in with Google
               </Button>
             </>
           )}
-          <Box sx={{textAlign: 'center', mt: 1}}>
+          <Box sx={{textAlign: 'center', mt: 2}}>
             <Typography variant="body2">
               {"Don't have an account? "}
               <Link href="/register" underline="hover">

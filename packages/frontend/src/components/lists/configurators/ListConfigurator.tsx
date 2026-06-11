@@ -93,27 +93,40 @@ export const ListConfigurator = ({open, onClose, onSubmit, loading = false}: Lis
           sx: {
             maxHeight: {xs: '90vh', sm: '90vh'},
             borderRadius: {xs: 2, sm: 4},
+            display: 'flex',
+            flexDirection: 'column',
           },
         },
       }}
     >
       <DialogTitle sx={{fontSize: {xs: '1.25rem', sm: '1.5rem'}}}>{t('pages.listConfigurator.title')}</DialogTitle>
-      <Stepper activeStep={step} sx={{p: 2}}>
+      <Stepper
+        activeStep={step}
+        sx={{
+          p: 2,
+          display: {xs: 'none', sm: 'flex'},
+          overflowX: 'auto',
+          '& .MuiStepLabel-label': {
+            fontSize: {xs: '0.65rem', sm: '1rem'},
+            whiteSpace: 'nowrap',
+          },
+        }}
+      >
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepTemplate')}</StepLabel>
+          <StepLabel>{t('pages.listConfigurator.stepTemplate')}</StepLabel>
         </Step>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepColor')}</StepLabel>
+          <StepLabel>{t('pages.listConfigurator.stepColor')}</StepLabel>
         </Step>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepIcon')}</StepLabel>
+          <StepLabel>{t('pages.listConfigurator.stepIcon')}</StepLabel>
         </Step>
         <Step>
-          <StepLabel sx={{fontSize: {xs: '0.75rem', sm: '1rem'}}}>{t('pages.listConfigurator.stepName')}</StepLabel>
+          <StepLabel>{t('pages.listConfigurator.stepName')}</StepLabel>
         </Step>
       </Stepper>
 
-      <DialogContent sx={{minHeight: {xs: 250, sm: 300}, overflowY: 'auto'}}>
+      <DialogContent sx={{minHeight: {xs: 250, sm: 300}, overflowY: 'auto', flex: 1}}>
         {step === 0 && !templateSelected && (
           <ListTemplateStep loading={loading} onTemplateSelect={handleApplyTemplate} />
         )}
