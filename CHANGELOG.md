@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/lenaimdahl/justincase/compare/v1.0.0...v1.0.1) (2026-06-11)
+
+
+### Bug Fixes
+
+* **deps:** bump ffflorian/actions from 1.30.0 to 1.30.1 ([#255](https://github.com/lenaimdahl/justincase/issues/255)) ([b5182c6](https://github.com/lenaimdahl/justincase/commit/b5182c61114d2463a3bad06aae70e61db5806aba))
+
 # 1.0.0 (2026-06-11)
 
 
