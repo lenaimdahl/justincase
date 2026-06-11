@@ -213,7 +213,7 @@ jobs:
       deployments: write
     steps:
       - name: Deploy
-        uses: ffflorian/actions/coolify-deploy@19c9eb3c05c3d1445f442abeb22109175d531293
+        uses: ffflorian/actions/coolify-deploy@4bad1b444464c75ce24b0f55360174abf3dde851
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           environment: frontend-production
@@ -234,7 +234,7 @@ jobs:
       deployments: write
     steps:
       - name: Deploy
-        uses: ffflorian/actions/coolify-deploy@19c9eb3c05c3d1445f442abeb22109175d531293
+        uses: ffflorian/actions/coolify-deploy@4bad1b444464c75ce24b0f55360174abf3dde851
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           environment: backend-production
