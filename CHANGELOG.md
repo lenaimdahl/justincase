@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/lenaimdahl/justincase/compare/v1.0.1...v1.0.2) (2026-06-13)
+
+
+### Bug Fixes
+
+* **deps:** bump esbuild from 0.28.0 to 0.28.1 ([#256](https://github.com/lenaimdahl/justincase/issues/256)) ([d9c9043](https://github.com/lenaimdahl/justincase/commit/d9c9043e25a216b55670359e95d9350ca9e1506e))
+
 ## [1.0.1](https://github.com/lenaimdahl/justincase/compare/v1.0.0...v1.0.1) (2026-06-11)
 
 
