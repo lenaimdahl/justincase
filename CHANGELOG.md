@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/lenaimdahl/justincase/compare/v1.0.3...v1.0.4) (2026-06-17)
+
+
+### Bug Fixes
+
+* **deps:** bump @babel/core from 7.29.0 to 7.29.7 ([#259](https://github.com/lenaimdahl/justincase/issues/259)) [ci skip] ([d1b5f43](https://github.com/lenaimdahl/justincase/commit/d1b5f4384dc3196bf9d00040af0a673db89f5600))
+* **deps:** bump form-data from 4.0.5 to 4.0.6 ([#260](https://github.com/lenaimdahl/justincase/issues/260)) ([fcd3026](https://github.com/lenaimdahl/justincase/commit/fcd3026fbc2fd9dd8f7529f833003c7da31c67ce))
+* **deps:** bump tar from 7.5.13 to 7.5.16 ([#258](https://github.com/lenaimdahl/justincase/issues/258)) [ci skip] ([67bd0c4](https://github.com/lenaimdahl/justincase/commit/67bd0c4a0403f3f745136dc2376df7785221b785))
+
 ## [1.0.3](https://github.com/lenaimdahl/justincase/compare/v1.0.2...v1.0.3) (2026-06-17)
 
 
