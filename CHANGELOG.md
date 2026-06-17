@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/lenaimdahl/justincase/compare/v1.0.2...v1.0.3) (2026-06-17)
+
+
+### Bug Fixes
+
+* **deps:** bump vite from 8.0.14 to 8.0.16 ([#257](https://github.com/lenaimdahl/justincase/issues/257)) ([c4a83a5](https://github.com/lenaimdahl/justincase/commit/c4a83a59b5dec53100304dc00d46b5b6cffaefd8))
+
 ## [1.0.2](https://github.com/lenaimdahl/justincase/compare/v1.0.1...v1.0.2) (2026-06-13)
 
 
