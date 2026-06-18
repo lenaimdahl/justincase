@@ -1,3 +1,13 @@
+## [1.0.6](https://github.com/lenaimdahl/justincase/compare/v1.0.5...v1.0.6) (2026-06-18)
+
+
+### Bug Fixes
+
+* **deps:** bump mongoose from 9.6.3 to 9.7.0 ([#269](https://github.com/lenaimdahl/justincase/issues/269)) [ci skip] ([b16a104](https://github.com/lenaimdahl/justincase/commit/b16a10453bd54f850d3b737f0d133da573fa8f3d))
+* **deps:** bump node from 26.3.0-alpine to 26.3.1-alpine ([#264](https://github.com/lenaimdahl/justincase/issues/264)) ([1bee5b7](https://github.com/lenaimdahl/justincase/commit/1bee5b7f44ef6cc40ba1b1fe7973bf39c127c3f5))
+* **deps:** bump the nestjs group with 5 updates ([#266](https://github.com/lenaimdahl/justincase/issues/266)) [ci skip] ([ad4fd2b](https://github.com/lenaimdahl/justincase/commit/ad4fd2bbad0928503b2be1879114ece7f69908d0))
+* **deps:** bump undici from 7.25.0 to 7.28.0 ([#270](https://github.com/lenaimdahl/justincase/issues/270)) [ci skip] ([abbfd30](https://github.com/lenaimdahl/justincase/commit/abbfd30be5d813b361f0650a8b9b1381f837cdfb))
+
 ## [1.0.5](https://github.com/lenaimdahl/justincase/compare/v1.0.4...v1.0.5) (2026-06-18)
 
 
