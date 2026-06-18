@@ -1,13 +1,13 @@
 {
   "author": "",
   "dependencies": {
-    "@nestjs/common": "11.1.24",
+    "@nestjs/common": "11.1.26",
     "@nestjs/config": "4.0.4",
-    "@nestjs/core": "11.1.24",
+    "@nestjs/core": "11.1.26",
     "@nestjs/jwt": "11.0.2",
     "@nestjs/mongoose": "11.0.4",
     "@nestjs/passport": "11.0.5",
-    "@nestjs/platform-express": "11.1.24",
+    "@nestjs/platform-express": "11.1.26",
     "@nestjs/swagger": "11.4.4",
     "@nestjs/throttler": "6.5.0",
     "bcrypt": "6.0.0",
@@ -25,9 +25,9 @@
   "devDependencies": {
     "@ffflorian/eslint-config": "0.14.2",
     "@ffflorian/prettier-config": "0.8.2",
-    "@nestjs/cli": "11.0.21",
+    "@nestjs/cli": "11.0.23",
     "@nestjs/schematics": "11.1.0",
-    "@nestjs/testing": "11.1.24",
+    "@nestjs/testing": "11.1.26",
     "@types/bcrypt": "6.0.0",
     "@types/express": "5.0.6",
     "@types/node": "~25",
