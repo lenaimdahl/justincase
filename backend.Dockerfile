@@ -1,5 +1,5 @@
 # Build
-FROM node:26.3.0-alpine@sha256:3ad34ca6292aec4a91d8ddeb9229e29d9c2f689efd0dd242860889ac71842eba AS builder
+FROM node:26.3.0-alpine@sha256:9c0e1e52125d6b67d505cf75b4880fcf1290ccea5c480849910e1d57b2cf72b5 AS builder
 
 ENV NPM_CONFIG_UPDATE_NOTIFIER=false
 
@@ -20,7 +20,7 @@ COPY packages/backend/ packages/backend/
 RUN yarn workspace justincase-backend build
 
 # Run
-FROM node:26.3.0-alpine@sha256:3ad34ca6292aec4a91d8ddeb9229e29d9c2f689efd0dd242860889ac71842eba
+FROM node:26.3.0-alpine@sha256:9c0e1e52125d6b67d505cf75b4880fcf1290ccea5c480849910e1d57b2cf72b5
 
 ARG VERSION
 ARG COMMIT
