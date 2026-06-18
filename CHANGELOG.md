@@ -1,3 +1,11 @@
+## [1.0.5](https://github.com/lenaimdahl/justincase/compare/v1.0.4...v1.0.5) (2026-06-18)
+
+
+### Bug Fixes
+
+* **deps:** bump nginx from 1.31.1-alpine to 1.31.2-alpine ([#261](https://github.com/lenaimdahl/justincase/issues/261)) ([b141c16](https://github.com/lenaimdahl/justincase/commit/b141c16bd8becec290ef5ae28e63e57a032dcb9b))
+* **deps:** bump node from `3ad34ca` to `9c0e1e5` ([#262](https://github.com/lenaimdahl/justincase/issues/262)) [ci skip] ([65afd13](https://github.com/lenaimdahl/justincase/commit/65afd13d22c404742f66a055db453a6fe265e09f))
+
 ## [1.0.4](https://github.com/lenaimdahl/justincase/compare/v1.0.3...v1.0.4) (2026-06-17)
 
 
