@@ -23,5 +23,6 @@
     "strictBindCallApply": true,
     "strictNullChecks": true,
     "target": "ES2023"
-  }
+  },
+  "include": ["src/**/*"]
 }
