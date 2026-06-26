@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/lenaimdahl/justincase/compare/v1.0.7...v1.0.8) (2026-06-26)
+
+
+### Bug Fixes
+
+* **deps:** bump the mui group across 1 directory with 2 updates ([#265](https://github.com/lenaimdahl/justincase/issues/265)) ([ebb92fe](https://github.com/lenaimdahl/justincase/commit/ebb92fe79879e7ded12ab0895daa0eb7db8ae107))
+
 ## [1.0.7](https://github.com/lenaimdahl/justincase/compare/v1.0.6...v1.0.7) (2026-06-26)
 
 
