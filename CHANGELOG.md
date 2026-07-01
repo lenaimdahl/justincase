@@ -1,3 +1,12 @@
+## [1.0.9](https://github.com/lenaimdahl/justincase/compare/v1.0.8...v1.0.9) (2026-07-01)
+
+
+### Bug Fixes
+
+* **deps:** bump @mui/material in the mui group across 1 directory ([#284](https://github.com/lenaimdahl/justincase/issues/284)) [ci skip] ([1115795](https://github.com/lenaimdahl/justincase/commit/11157956cef6104e69a294f9c80be2528b330444))
+* **deps:** bump i18next from 26.3.1 to 26.3.2 ([#288](https://github.com/lenaimdahl/justincase/issues/288)) [ci skip] ([23226bd](https://github.com/lenaimdahl/justincase/commit/23226bdfc1e7f9500428e9aa894a2c93df8bfd38))
+* **deps:** bump mongoose from 9.7.1 to 9.7.2 ([#289](https://github.com/lenaimdahl/justincase/issues/289)) ([edbc34a](https://github.com/lenaimdahl/justincase/commit/edbc34ad2ff87b3519cc754ae68a1c62b16502c3))
+
 ## [1.0.8](https://github.com/lenaimdahl/justincase/compare/v1.0.7...v1.0.8) (2026-06-26)
 
 
