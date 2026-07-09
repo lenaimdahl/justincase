@@ -10,7 +10,11 @@ export const useCheckboxState = (initialItems?: string[]) => {
   const handleCheck = useCallback((itemId: string) => {
     setCheckedItems(prev => {
       const newSet = new Set(prev);
-      newSet.has(itemId) ? newSet.delete(itemId) : newSet.add(itemId);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
       return newSet;
     });
   }, []);

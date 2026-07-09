@@ -1,10 +1,24 @@
-import eslintConfig from '@ffflorian/eslint-config-react';
+import eslintBaseConfig from '@ffflorian/eslint-config';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 import {defineConfig} from 'eslint/config';
+import globals from 'globals';
 
 export default defineConfig([
-  ...eslintConfig,
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat['jsx-runtime'],
+  reactHooks.configs.flat.recommended,
+  eslintBaseConfig,
   {
+    files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
+    },
     rules: {
+      'import/no-named-as-default-member': 'off',
       'no-magic-numbers': [
         'error',
         {
@@ -13,17 +27,10 @@ export default defineConfig([
       ],
       'react-hooks/set-state-in-effect': 'off',
     },
-  },
-  {
-    files: ['**/i18n/**'],
-    rules: {
-      'import/no-named-as-default-member': 'off',
-    },
-  },
-  {
-    files: ['**/*.spec.ts', '**/*.test.ts'],
-    rules: {
-      'no-magic-numbers': 'off',
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
   },
 ]);
