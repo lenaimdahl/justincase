@@ -1,3 +1,12 @@
+## [1.0.11](https://github.com/lenaimdahl/justincase/compare/v1.0.10...v1.0.11) (2026-07-22)
+
+
+### Bug Fixes
+
+* **deps:** bump body-parser from 2.2.2 to 2.3.0 ([#292](https://github.com/lenaimdahl/justincase/issues/292)) [ci skip] ([a952fa6](https://github.com/lenaimdahl/justincase/commit/a952fa6e5c929b384a94f4b492e78b5ff9523590))
+* **deps:** bump fast-uri from 3.1.2 to 3.1.4 ([#294](https://github.com/lenaimdahl/justincase/issues/294)) ([b5a86f5](https://github.com/lenaimdahl/justincase/commit/b5a86f525fcf1647c90896deddab45c4b90d72cc))
+* **deps:** bump tar from 7.5.16 to 7.5.20 ([#293](https://github.com/lenaimdahl/justincase/issues/293)) [ci skip] ([b844884](https://github.com/lenaimdahl/justincase/commit/b8448844b6f9f525878b8a8c349c20a3e06d755c))
+
 ## [1.0.10](https://github.com/lenaimdahl/justincase/compare/v1.0.9...v1.0.10) (2026-07-21)
 
 
