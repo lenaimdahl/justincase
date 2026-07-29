@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/lenaimdahl/justincase/compare/v1.0.11...v1.0.12) (2026-07-29)
+
+
+### Bug Fixes
+
+* **deps:** bump tar from 7.5.20 to 7.5.22 ([#295](https://github.com/lenaimdahl/justincase/issues/295)) ([f925bf2](https://github.com/lenaimdahl/justincase/commit/f925bf287bda7015ba6d78ebb74813a634514218))
+
 ## [1.0.11](https://github.com/lenaimdahl/justincase/compare/v1.0.10...v1.0.11) (2026-07-22)
 
 
