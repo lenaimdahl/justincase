@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/lenaimdahl/justincase/compare/v1.0.12...v1.0.13) (2026-07-30)
+
+
+### Bug Fixes
+
+* **deps:** bump postcss from 8.5.15 to 8.5.25 ([#296](https://github.com/lenaimdahl/justincase/issues/296)) ([8bc1e3d](https://github.com/lenaimdahl/justincase/commit/8bc1e3d0a120d74bdc65a4750863c72d5a4fb60b))
+
 ## [1.0.12](https://github.com/lenaimdahl/justincase/compare/v1.0.11...v1.0.12) (2026-07-29)
 
 
