@@ -1,7 +1,7 @@
 {
   "description": "A lightweight inventory tracker with expiry awareness",
   "devDependencies": {
-    "@ffflorian/prettier-config": "1.0.0",
+    "@ffflorian/prettier-config": "1.0.1",
     "lefthook": "2.1.9",
     "prettier": "3.8.4"
   },
