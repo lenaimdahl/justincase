@@ -1,3 +1,10 @@
+## [1.0.14](https://github.com/lenaimdahl/justincase/compare/v1.0.13...v1.0.14) (2026-08-01)
+
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion from 1.1.16 to 1.1.18 ([#297](https://github.com/lenaimdahl/justincase/issues/297)) ([bd80aa0](https://github.com/lenaimdahl/justincase/commit/bd80aa0976e63461debbddb9723275db25480901))
+
 ## [1.0.13](https://github.com/lenaimdahl/justincase/compare/v1.0.12...v1.0.13) (2026-07-30)
 
 
