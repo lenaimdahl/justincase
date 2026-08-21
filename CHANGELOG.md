@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/lenaimdahl/justincase/compare/v1.0.16...v1.1.0) (2026-08-21)
+
+
+### Features
+
+* text with useTranslation ([#330](https://github.com/lenaimdahl/justincase/issues/330)) ([818948f](https://github.com/lenaimdahl/justincase/commit/818948f6266f3bb211d9e7dd69bed033a6234d5e))
+
 ## [1.0.16](https://github.com/lenaimdahl/justincase/compare/v1.0.15...v1.0.16) (2026-08-21)
 
 
