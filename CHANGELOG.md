@@ -1,3 +1,10 @@
+## [1.0.15](https://github.com/lenaimdahl/justincase/compare/v1.0.14...v1.0.15) (2026-08-21)
+
+
+### Bug Fixes
+
+* delete text duplicate ([4f0fc9b](https://github.com/lenaimdahl/justincase/commit/4f0fc9bef0d9249e6d37e134a0b2f08c5bd1a797))
+
 ## [1.0.14](https://github.com/lenaimdahl/justincase/compare/v1.0.13...v1.0.14) (2026-08-01)
 
 
