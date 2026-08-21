@@ -1,3 +1,20 @@
+## [1.0.16](https://github.com/lenaimdahl/justincase/compare/v1.0.15...v1.0.16) (2026-08-21)
+
+
+### Bug Fixes
+
+* **deps:** bump fast-uri from 3.1.4 to 3.1.5 ([#327](https://github.com/lenaimdahl/justincase/issues/327)) [ci skip] ([e7d31c5](https://github.com/lenaimdahl/justincase/commit/e7d31c53dee438c39f9d76352137ebefc10b3304))
+* **deps:** bump i18next from 26.3.2 to 26.3.6 ([#322](https://github.com/lenaimdahl/justincase/issues/322)) [ci skip] ([e78b948](https://github.com/lenaimdahl/justincase/commit/e78b94892e245e19563d6156240997aa8744811f))
+* **deps:** bump ip-address from 10.2.0 to 10.4.0 ([#325](https://github.com/lenaimdahl/justincase/issues/325)) [ci skip] ([a2fc361](https://github.com/lenaimdahl/justincase/commit/a2fc361ae93a7f5b9ac1c9a29b9b5fe48a444e26))
+* **deps:** bump mongoose from 9.7.2 to 9.9.2 ([#318](https://github.com/lenaimdahl/justincase/issues/318)) [ci skip] ([82df22c](https://github.com/lenaimdahl/justincase/commit/82df22cb9e47056e0b43635abdee82e355eb6a5e))
+* **deps:** bump nanoid from 3.3.16 to 3.3.18 ([#328](https://github.com/lenaimdahl/justincase/issues/328)) [ci skip] ([e52a3ef](https://github.com/lenaimdahl/justincase/commit/e52a3ef8b41500f09c91ded4e1e4afbb015bd657))
+* **deps:** bump nginx from 1.31.2-alpine to 1.31.3-alpine ([#300](https://github.com/lenaimdahl/justincase/issues/300)) [ci skip] ([ab25355](https://github.com/lenaimdahl/justincase/commit/ab25355bc7626fd3b63d80f8fd7e88334c8050f3))
+* **deps:** bump node from 26.4.0-alpine to 26.7.0-alpine ([#299](https://github.com/lenaimdahl/justincase/issues/299)) ([34caa7b](https://github.com/lenaimdahl/justincase/commit/34caa7b7fe798183acd056ec65234dd78f7ff508))
+* **deps:** bump the mui group across 1 directory with 2 updates ([#305](https://github.com/lenaimdahl/justincase/issues/305)) [ci skip] ([75e1745](https://github.com/lenaimdahl/justincase/commit/75e17452e2b49187bf87eaebf1cbe2773d1722f5))
+* **deps:** bump the nestjs group across 1 directory with 6 updates ([#306](https://github.com/lenaimdahl/justincase/issues/306)) [ci skip] ([4a9db4b](https://github.com/lenaimdahl/justincase/commit/4a9db4b4dedb7f8bafb2f69b7f88b094fdb39dc0))
+* **deps:** bump the react group across 1 directory with 4 updates ([#308](https://github.com/lenaimdahl/justincase/issues/308)) [ci skip] ([da2ae02](https://github.com/lenaimdahl/justincase/commit/da2ae0292daeff9b9a9b2d251dbfc934f058b677))
+* **deps:** bump undici from 7.28.0 to 7.29.0 ([#326](https://github.com/lenaimdahl/justincase/issues/326)) [ci skip] ([45e96f2](https://github.com/lenaimdahl/justincase/commit/45e96f2c5c4e348bb5b7f56eecc49d4fae7b9872))
+
 ## [1.0.15](https://github.com/lenaimdahl/justincase/compare/v1.0.14...v1.0.15) (2026-08-21)
 
 
