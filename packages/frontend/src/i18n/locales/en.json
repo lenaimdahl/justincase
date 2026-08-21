@@ -51,7 +51,7 @@
       "exampleLabelFresh": "Fresh (More than 7 days)",
       "exampleLabelWarning": "Warning (Within 7 days)",
       "exampleLabelExpired": "Expired (Past expiry date)",
-      "exampleTip": "Tip: Click \"Lists\" in the menu to create your own lists and add items. Only your custom items will appear there—these examples are for demonstration purposes only."
+      "exampleTip": "Click \"Lists\" in the menu to create your own lists and add items. Only your custom items will appear there—these examples are for demonstration purposes only."
     },
     "exampleLists": {
       "shopping": "Shopping List",
