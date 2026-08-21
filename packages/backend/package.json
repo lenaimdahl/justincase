@@ -24,7 +24,7 @@
   "description": "The backend for JustInCase",
   "devDependencies": {
     "@ffflorian/eslint-config": "1.0.1",
-    "@ffflorian/prettier-config": "1.0.0",
+    "@ffflorian/prettier-config": "1.0.1",
     "@nestjs/cli": "11.0.23",
     "@nestjs/schematics": "11.1.0",
     "@nestjs/testing": "11.1.27",
