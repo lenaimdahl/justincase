@@ -1,4 +1,5 @@
 import {Box, Button, Grid, Typography} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import {LIST_ICONS} from 'src/constants/listTemplates';
 
 interface ListIconStepProps {
@@ -8,10 +9,11 @@ interface ListIconStepProps {
 }
 
 export const ListIconStep = ({icon, loading = false, onIconChange}: ListIconStepProps) => {
+  const {t} = useTranslation();
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
       <Typography variant="subtitle2" color="textSecondary">
-        Wähle ein Icon für deine Liste:
+        {t('pages.listConfigurator.iconStepLabel')}
       </Typography>
       <Grid container spacing={1}>
         {LIST_ICONS.map(ic => (

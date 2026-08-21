@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
 import {Container, Box, CircularProgress, Alert} from '@mui/material';
 import {ListOverviewHeader} from 'src/components/lists/overview/ListOverviewHeader';
@@ -12,6 +13,7 @@ import {createList} from 'src/api/lists';
 import type {FieldConfig} from 'src/api/lists';
 
 export const ListOverviewPage = () => {
+  const {t} = useTranslation();
   const navigate = useNavigate();
   const {lists, loading, error} = useFetchLists();
   const [openConfigurator, setOpenConfigurator] = useState(false);
@@ -38,10 +40,10 @@ export const ListOverviewPage = () => {
         fieldConfig,
       });
       handleCloseConfigurator();
-      notification.success(`List "${name}" created successfully`);
+      notification.success(t('notifications.listCreated', {name}));
       navigate(`/lists/${newList.id}`);
     } catch (err) {
-      handleError(err, 'Failed to create list');
+      handleError(err, t('errors.createListFailed'));
     } finally {
       setCreatingList(false);
     }

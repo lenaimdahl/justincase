@@ -1,4 +1,5 @@
 import {useCallback} from 'react';
+import {useTranslation} from 'react-i18next';
 import {useNotification} from 'src/hooks/useNotification';
 
 interface ApiError {
@@ -9,17 +10,19 @@ interface ApiError {
 }
 
 export const useApiErrorHandler = () => {
+  const {t} = useTranslation();
   const notification = useNotification();
 
   const handleError = useCallback(
-    (error: unknown, defaultMessage: string = 'An error occurred') => {
-      let errorMessage = defaultMessage;
+    (error: unknown, defaultMessage?: string) => {
+      const fallbackMessage = defaultMessage ?? t('errors.generic');
+      let errorMessage = fallbackMessage;
       let status: number | undefined;
 
       if (error instanceof Error) {
         // Handle fetch or custom errors
         if (error.message === 'Failed to fetch') {
-          errorMessage = 'Network error. Please check your connection.';
+          errorMessage = t('errors.network');
         } else {
           errorMessage = error.message;
         }
@@ -31,15 +34,15 @@ export const useApiErrorHandler = () => {
         // Classify error by HTTP status
         if (status === 400) {
           // Validation error
-          errorMessage = apiError.message || 'Please check your input and try again.';
+          errorMessage = apiError.message || t('errors.validation');
         } else if (status === 404) {
-          errorMessage = 'Resource not found. It may have been deleted.';
+          errorMessage = t('errors.notFound');
         } else if (status === 500 || status === 502 || status === 503) {
-          errorMessage = 'Server error. Please try again later.';
+          errorMessage = t('errors.server');
         } else if (status === 401 || status === 403) {
-          errorMessage = 'You do not have permission to perform this action.';
+          errorMessage = t('errors.forbidden');
         } else {
-          errorMessage = apiError.message || defaultMessage;
+          errorMessage = apiError.message || fallbackMessage;
         }
       }
 
@@ -51,7 +54,7 @@ export const useApiErrorHandler = () => {
 
       return {errorMessage, status};
     },
-    [notification]
+    [notification, t]
   );
 
   return {handleError};

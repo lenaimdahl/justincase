@@ -12,12 +12,14 @@ import {
   Typography,
 } from '@mui/material';
 import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
 import {useAuth} from 'src/contexts/AuthContext';
 import {useAuthConfig} from 'src/hooks/useAuthConfig';
 import {API_BASE_URL} from 'src/utils/api';
 
 export const RegisterPage: React.FC = () => {
+  const {t} = useTranslation();
   const {register} = useAuth();
   const navigate = useNavigate();
   const {googleOAuthEnabled} = useAuthConfig();
@@ -36,7 +38,7 @@ export const RegisterPage: React.FC = () => {
       await register(email, password, username || undefined);
       navigate('/lists');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Registration failed');
+      setError(err instanceof Error ? err.message : t('auth.register.error'));
     } finally {
       setIsLoading(false);
     }
@@ -57,7 +59,7 @@ export const RegisterPage: React.FC = () => {
           JustInCase
         </Typography>
         <Typography component="h2" variant="h6" color="text.secondary" gutterBottom>
-          Create your account
+          {t('auth.register.heading')}
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{mt: 2, width: '100%'}}>
           {error && (
@@ -69,7 +71,7 @@ export const RegisterPage: React.FC = () => {
             autoComplete="email"
             autoFocus
             fullWidth
-            label="Email"
+            label={t('common.email')}
             margin="normal"
             onChange={e => setEmail(e.target.value)}
             required
@@ -80,7 +82,7 @@ export const RegisterPage: React.FC = () => {
           <TextField
             autoComplete="username"
             fullWidth
-            label="Username (optional)"
+            label={t('auth.register.usernameLabel')}
             margin="normal"
             onChange={e => setUsername(e.target.value)}
             value={username}
@@ -89,7 +91,7 @@ export const RegisterPage: React.FC = () => {
           <TextField
             autoComplete="new-password"
             fullWidth
-            label="Password"
+            label={t('common.password')}
             margin="normal"
             onChange={e => setPassword(e.target.value)}
             required
@@ -119,11 +121,11 @@ export const RegisterPage: React.FC = () => {
             type="submit"
             variant="contained"
           >
-            {isLoading ? 'Creating account…' : 'Register'}
+            {isLoading ? t('auth.register.submitting') : t('auth.register.submit')}
           </Button>
           {googleOAuthEnabled && (
             <>
-              <Divider sx={{my: 2}}>or</Divider>
+              <Divider sx={{my: 2}}>{t('auth.register.orDivider')}</Divider>
               <Button
                 component="a"
                 fullWidth
@@ -131,15 +133,15 @@ export const RegisterPage: React.FC = () => {
                 variant="outlined"
                 sx={{minHeight: {xs: 44, sm: 'auto'}}}
               >
-                Sign up with Google
+                {t('auth.register.googleButton')}
               </Button>
             </>
           )}
           <Box sx={{textAlign: 'center', mt: 2}}>
             <Typography variant="body2">
-              {'Already have an account? '}
+              {`${t('auth.register.hasAccount')} `}
               <Link href="/login" underline="hover">
-                Sign in
+                {t('auth.register.signInLink')}
               </Link>
             </Typography>
           </Box>

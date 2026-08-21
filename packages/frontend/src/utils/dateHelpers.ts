@@ -1,3 +1,5 @@
+import i18next from 'src/i18n/config';
+
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 export const WARNING_THRESHOLD_DAYS = 7;
@@ -39,27 +41,20 @@ export function getStatusClassName(
   return `item-status-${getItemStatus(expiryDate, thresholdDays)}`;
 }
 
-export function getStatusMessage(
-  expiryDate: Date | string | undefined,
-  thresholdDays: number = WARNING_THRESHOLD_DAYS
-): string {
+export function getStatusMessage(expiryDate: Date | string | undefined): string {
   const days = calculateDaysUntilExpiry(expiryDate);
 
   if (days === null) {
-    return 'Kein Verfallsdatum';
+    return i18next.t('dateStatus.noExpiryDate');
   }
   if (days < 0) {
-    const daysPassed = Math.abs(days);
-    return `Abgelaufen vor ${daysPassed} ${pluralize(daysPassed, 'Tag', 'Tagen')}`;
+    return i18next.t('dateStatus.expiredAgo', {count: Math.abs(days)});
   }
   if (days === 0) {
-    return 'Verfällt heute';
-  }
-  if (days <= thresholdDays) {
-    return `Verfällt in ${days} ${pluralize(days, 'Tag', 'Tagen')}`;
+    return i18next.t('dateStatus.expiresToday');
   }
 
-  return `Verfällt in ${days} Tagen`;
+  return i18next.t('dateStatus.expiresIn', {count: days});
 }
 
 function calculateDaysUntilExpiry(expiryDate: Date | string | undefined): null | number {
@@ -97,10 +92,6 @@ function parseExpiryDate(expiryDate: Date | string | undefined): Date | null {
   } catch {
     return null;
   }
-}
-
-function pluralize(count: number, singular: string, plural: string): string {
-  return count === 1 ? singular : plural;
 }
 
 function startOfDay(date: Date): Date {

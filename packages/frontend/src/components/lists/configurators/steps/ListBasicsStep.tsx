@@ -30,7 +30,7 @@ export const ListBasicsStep = ({
       <TextField
         autoFocus
         fullWidth
-        label="Listen-Name"
+        label={t('pages.listOverview.inputLabel')}
         value={name}
         onChange={e => onNameChange(e.target.value)}
         disabled={loading}
@@ -38,7 +38,7 @@ export const ListBasicsStep = ({
 
       {/* Icon Selection */}
       <Box>
-        <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>Icon</Box>
+        <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>{t('pages.listConfigurator.stepIcon')}</Box>
         <Grid container spacing={1}>
           {LIST_ICONS.map(ic => (
             <Grid item key={ic}>
@@ -57,7 +57,7 @@ export const ListBasicsStep = ({
 
       {/* Color Selection */}
       <Box>
-        <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>Farbe</Box>
+        <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>{t('pages.listConfigurator.stepColor')}</Box>
         <Box sx={{display: 'flex', gap: 1, flexWrap: 'wrap'}}>
           {LIST_COLORS.map(c => (
             <Box
@@ -81,7 +81,7 @@ export const ListBasicsStep = ({
       {/* Preset Templates */}
       <Box>
         <Box sx={{mb: 1, fontWeight: 'bold', fontSize: '0.9em'}}>
-          {t('pages.listConfigurator.templates', 'Vorlagen')}
+          {t('pages.listConfigurator.templates', 'Templates')}
         </Box>
         <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1}}>
           {Object.entries(PRESET_TEMPLATES).map(([key, template]) => (

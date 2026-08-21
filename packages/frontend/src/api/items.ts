@@ -5,6 +5,7 @@
 
 import type {CreateItemRequest, Item, UpdateItemRequest} from 'src/types/item';
 
+import i18next from 'src/i18n/config';
 import {API_BASE_URL, getAuthHeaders} from 'src/utils/api';
 
 /**
@@ -17,7 +18,7 @@ export async function adjustItemQuantity(listId: string, itemId: string, adjustm
     method: 'PATCH',
   });
   if (!response.ok) {
-    throw new Error(`Failed to adjust quantity: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.adjustQuantityFailed', {status: response.statusText}));
   }
   return response.json();
 }
@@ -32,7 +33,7 @@ export async function createItem(listId: string, data: CreateItemRequest): Promi
     method: 'POST',
   });
   if (!response.ok) {
-    throw new Error(`Failed to create item: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.createItemFailed', {status: response.statusText}));
   }
   return response.json();
 }
@@ -46,7 +47,7 @@ export async function deleteItem(listId: string, itemId: string): Promise<void> 
     method: 'DELETE',
   });
   if (!response.ok) {
-    throw new Error(`Failed to delete item: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.deleteItemFailed', {status: response.statusText}));
   }
 }
 
@@ -58,7 +59,7 @@ export async function fetchItemsByListId(listId: string): Promise<Item[]> {
     headers: getAuthHeaders(),
   });
   if (!response.ok) {
-    throw new Error(`Failed to fetch items: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.fetchItemsFailed', {status: response.statusText}));
   }
   return response.json();
 }
@@ -73,7 +74,7 @@ export async function updateItem(listId: string, itemId: string, data: UpdateIte
     method: 'PATCH',
   });
   if (!response.ok) {
-    throw new Error(`Failed to update item: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.updateItemFailed', {status: response.statusText}));
   }
   return response.json();
 }

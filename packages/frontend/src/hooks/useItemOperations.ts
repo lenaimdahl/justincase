@@ -1,6 +1,7 @@
 import type {CreateItemRequest, EditingItem, Item, UpdateItemRequest} from 'src/types/item';
 
 import {useCallback, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {adjustItemQuantity, createItem, deleteItem, updateItem} from 'src/api/items';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 import {useNotification} from 'src/hooks/useNotification';
@@ -27,6 +28,7 @@ interface UseItemOperationsReturn {
  * Hook to manage item operations (create, update, delete, adjust quantity)
  */
 export const useItemOperations = (listId: string, onItemsChange: () => Promise<void>): UseItemOperationsReturn => {
+  const {t} = useTranslation();
   const [editingState, setEditingState] = useState<Record<string, EditingItem>>({});
   const [itemsInEditMode, setItemsInEditMode] = useState<Set<string>>(new Set());
   const [newItem, setNewItem] = useState<{expiryDates?: string[]} & CreateItemRequest>({
@@ -94,9 +96,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
             ...prev,
             [itemId]: {...prev[itemId], isSaving: false},
           }));
-          notification.success('Item updated');
+          notification.success(t('notifications.itemUpdated'));
         } catch (err) {
-          const {errorMessage} = handleError(err, 'Update failed');
+          const {errorMessage} = handleError(err, t('errors.updateFailed'));
           setEditingState(prev => ({
             ...prev,
             [itemId]: {
@@ -110,7 +112,7 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
 
       return () => clearTimeout(timer);
     },
-    [listId, editingState, onItemsChange, notification, handleError]
+    [listId, editingState, onItemsChange, notification, handleError, t]
   );
 
   const handleAdjustQuantity = useCallback(
@@ -137,9 +139,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
           ...prev,
           [itemId]: {...prev[itemId], isSaving: false},
         }));
-        notification.success('Quantity updated');
+        notification.success(t('notifications.quantityUpdated'));
       } catch (err) {
-        const {errorMessage} = handleError(err, 'Quantity adjustment failed');
+        const {errorMessage} = handleError(err, t('errors.quantityAdjustFailed'));
         setEditingState(prev => ({
           ...prev,
           [itemId]: {
@@ -150,7 +152,7 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         }));
       }
     },
-    [listId, editingState, onItemsChange, notification, handleError]
+    [listId, editingState, onItemsChange, notification, handleError, t]
   );
 
   const handleDeleteItem = useCallback(
@@ -168,9 +170,9 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
           delete newState[itemId];
           return newState;
         });
-        notification.success('Item deleted');
+        notification.success(t('notifications.itemDeleted'));
       } catch (err) {
-        const {errorMessage} = handleError(err, 'Delete failed');
+        const {errorMessage} = handleError(err, t('errors.deleteFailed'));
         setEditingState(prev => ({
           ...prev,
           [itemId]: {
@@ -181,13 +183,14 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         }));
       }
     },
-    [listId, onItemsChange, notification, handleError]
+    [listId, onItemsChange, notification, handleError, t]
   );
 
   const handleCreateItem = useCallback(async () => {
     if (!newItem.name.trim()) {
-      setCreateError('Item name is required');
-      notification.error('Item name is required');
+      const itemNameRequired = t('notifications.itemNameRequired');
+      setCreateError(itemNameRequired);
+      notification.error(itemNameRequired);
       return;
     }
 
@@ -221,14 +224,14 @@ export const useItemOperations = (listId: string, onItemsChange: () => Promise<v
         unit: '',
       });
       await onItemsChange();
-      notification.success('Item created successfully');
+      notification.success(t('notifications.itemCreated'));
     } catch (err) {
-      const {errorMessage} = handleError(err, 'Failed to create item');
+      const {errorMessage} = handleError(err, t('errors.createItemFailed'));
       setCreateError(errorMessage);
     } finally {
       setCreatingItem(false);
     }
-  }, [listId, newItem, onItemsChange, notification, handleError]);
+  }, [listId, newItem, onItemsChange, notification, handleError, t]);
 
   const toggleEditMode = useCallback((itemId: string) => {
     setItemsInEditMode(prev => {

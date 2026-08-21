@@ -1,4 +1,5 @@
 import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {API_BASE_URL, TOKEN_KEY} from 'src/utils/api';
 
 interface AuthUser {
@@ -24,6 +25,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
+  const {t} = useTranslation();
   const [token, setToken] = useState<string | null>(() => localStorage.getItem(TOKEN_KEY));
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -71,7 +73,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
       if (!response.ok) {
         const error = (await response.json()) as {message?: string};
-        throw new Error(error.message ?? 'Login failed');
+        throw new Error(error.message ?? t('auth.login.error'));
       }
 
       const data = (await response.json()) as {accessToken: string};
@@ -79,7 +81,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
       setToken(data.accessToken);
       await fetchProfile(data.accessToken);
     },
-    [fetchProfile]
+    [fetchProfile, t]
   );
 
   const register = useCallback(
@@ -92,7 +94,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
       if (!response.ok) {
         const error = (await response.json()) as {message?: string};
-        throw new Error(error.message ?? 'Registration failed');
+        throw new Error(error.message ?? t('auth.register.error'));
       }
 
       const data = (await response.json()) as {accessToken: string};
@@ -100,7 +102,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
       setToken(data.accessToken);
       await fetchProfile(data.accessToken);
     },
-    [fetchProfile]
+    [fetchProfile, t]
   );
 
   const logout = useCallback(async () => {

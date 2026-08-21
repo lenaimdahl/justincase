@@ -12,7 +12,7 @@ export const ListTemplateStep = ({loading = false, onTemplateSelect}: ListTempla
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
       <Typography variant="subtitle2" color="textSecondary">
-        {t('pages.listTemplates.selectTemplate', 'Wähle eine Vorlage als Startpunkt:')}
+        {t('pages.listTemplates.selectTemplate', 'Choose a template to get started:')}
       </Typography>
       <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2}}>
         {Object.entries(PRESET_TEMPLATES).map(([key, template]) => (

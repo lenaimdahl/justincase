@@ -43,32 +43,37 @@ export const EXAMPLE_LISTS: ExampleList[] = [
   },
 ];
 
+export interface ExampleItem extends Omit<Item, 'comment' | 'name'> {
+  commentKey?: string;
+  nameKey: string;
+}
+
 /**
  * Example items to demonstrate different list types on home page
- * Each list shows how that template type would be used
+ * name/comment hold i18n keys (see pages.exampleItems in the locale files), translated in ExampleItemsShowcase
  */
-export const EXAMPLE_ITEMS: Item[] = [
+export const EXAMPLE_ITEMS: ExampleItem[] = [
   // Shopping List - items to buy
   {
     _id: 'example-shopping-1',
-    comment: 'Best before min. 1 week',
+    commentKey: 'pages.exampleItems.shoppingMilkComment',
     listId: 'example-shopping',
-    name: 'Milk',
+    nameKey: 'pages.exampleItems.shoppingMilk',
     quantity: 1,
     unit: 'L',
   },
   {
     _id: 'example-shopping-2',
-    comment: 'Whole wheat',
+    commentKey: 'pages.exampleItems.shoppingBreadComment',
     listId: 'example-shopping',
-    name: 'Bread',
+    nameKey: 'pages.exampleItems.shoppingBread',
     quantity: 1,
     unit: 'loaf',
   },
   {
     _id: 'example-shopping-3',
     listId: 'example-shopping',
-    name: 'Apples',
+    nameKey: 'pages.exampleItems.shoppingApples',
     quantity: 2,
     unit: 'kg',
   },
@@ -78,44 +83,44 @@ export const EXAMPLE_ITEMS: Item[] = [
     _id: 'example-guests-1',
     checked: 1,
     listId: 'example-guests',
-    name: 'Anna Mueller',
+    nameKey: 'pages.exampleItems.guestAnna',
     quantity: 1,
   },
   {
     _id: 'example-guests-2',
     checked: 1,
     listId: 'example-guests',
-    name: 'Tom Schmidt',
+    nameKey: 'pages.exampleItems.guestTom',
     quantity: 4,
   },
   {
     _id: 'example-guests-3',
     listId: 'example-guests',
-    name: 'Lisa Weber',
+    nameKey: 'pages.exampleItems.guestLisa',
     quantity: 1,
   },
 
   // Packing List - items to pack
   {
     _id: 'example-packing-1',
-    comment: 'T-shirts and pants',
+    commentKey: 'pages.exampleItems.packingClothesComment',
     listId: 'example-packing',
-    name: 'Clothes',
+    nameKey: 'pages.exampleItems.packingClothes',
     quantity: 5,
     unit: 'items',
   },
   {
     _id: 'example-packing-2',
     listId: 'example-packing',
-    name: 'Toothbrush',
+    nameKey: 'pages.exampleItems.packingToothbrush',
     quantity: 1,
     unit: 'pcs',
   },
   {
     _id: 'example-packing-3',
-    comment: 'Passport, tickets, insurance',
+    commentKey: 'pages.exampleItems.packingDocumentsComment',
     listId: 'example-packing',
-    name: 'Documents',
+    nameKey: 'pages.exampleItems.packingDocuments',
     quantity: 1,
     unit: 'set',
   },
@@ -123,28 +128,28 @@ export const EXAMPLE_ITEMS: Item[] = [
   // Pantry - items with expiry dates showing all statuses
   {
     _id: 'example-pantry-fresh',
-    comment: 'Fresh - long shelf life',
+    commentKey: 'pages.exampleItems.pantryFlourComment',
     expiryDate: '2026-09-30',
     listId: 'example-pantry',
-    name: 'Flour',
+    nameKey: 'pages.exampleItems.pantryFlour',
     quantity: 2,
     unit: 'kg',
   },
   {
     _id: 'example-pantry-warning',
-    comment: 'Warning - expires in 5 days',
+    commentKey: 'pages.exampleItems.pantryYogurtComment',
     expiryDate: '2026-04-05',
     listId: 'example-pantry',
-    name: 'Yogurt',
+    nameKey: 'pages.exampleItems.pantryYogurt',
     quantity: 4,
     unit: 'cups',
   },
   {
     _id: 'example-pantry-expired',
-    comment: 'Expired - needs replacing',
+    commentKey: 'pages.exampleItems.pantryKetchupComment',
     expiryDate: '2026-03-20',
     listId: 'example-pantry',
-    name: 'Ketchup',
+    nameKey: 'pages.exampleItems.pantryKetchup',
     quantity: 1,
     unit: 'bottle',
   },
