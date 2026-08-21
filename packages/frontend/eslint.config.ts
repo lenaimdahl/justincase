@@ -33,4 +33,10 @@ export default defineConfig([
       },
     },
   },
+  {
+    files: ['**/*.{ts,mts,cts}'],
+    rules: {
+      'id-length': ['error', {exceptions: ['_', 't']}],
+    },
+  },
 ]);

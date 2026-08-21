@@ -4,6 +4,12 @@ import userEvent from '@testing-library/user-event';
 import {ListsGrid} from 'src/components/lists/overview/ListsGrid';
 import type {List} from 'src/types/list';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options?: {count?: number}) => (options?.count !== undefined ? `${options.count} items` : key),
+  }),
+}));
+
 describe('ListsGrid Component', () => {
   const mockLists: List[] = [
     {
@@ -47,8 +53,8 @@ describe('ListsGrid Component', () => {
     const handleListClick = vi.fn();
     render(<ListsGrid lists={mockLists} onListClick={handleListClick} />);
 
-    expect(screen.getByText('8 Items')).toBeInTheDocument();
-    expect(screen.getByText('5 Items')).toBeInTheDocument();
+    expect(screen.getByText('8 items')).toBeInTheDocument();
+    expect(screen.getByText('5 items')).toBeInTheDocument();
   });
 
   it('should call onListClick when a list card is clicked', async () => {

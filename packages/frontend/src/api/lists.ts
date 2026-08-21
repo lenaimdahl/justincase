@@ -3,6 +3,7 @@
  * Handles all HTTP requests to the backend lists endpoints
  */
 
+import i18next from 'src/i18n/config';
 import {API_BASE_URL, getAuthHeaders} from 'src/utils/api';
 
 export interface CreateListRequest {
@@ -52,7 +53,7 @@ export async function createList(data: CreateListRequest): Promise<List> {
     method: 'POST',
   });
   if (!response.ok) {
-    throw new Error(`Failed to create list: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.createListFailed', {status: response.statusText}));
   }
   return response.json();
 }
@@ -66,7 +67,7 @@ export async function deleteList(listId: string): Promise<void> {
     method: 'DELETE',
   });
   if (!response.ok) {
-    throw new Error(`Failed to delete list: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.deleteListFailed', {status: response.statusText}));
   }
 }
 
@@ -78,7 +79,7 @@ export async function fetchListById(listId: string): Promise<List> {
     headers: getAuthHeaders(),
   });
   if (!response.ok) {
-    throw new Error(`Failed to fetch list: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.fetchListFailed', {status: response.statusText}));
   }
   return response.json();
 }
@@ -91,7 +92,7 @@ export async function fetchLists(): Promise<List[]> {
     headers: getAuthHeaders(),
   });
   if (!response.ok) {
-    throw new Error(`Failed to fetch lists: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.fetchListsFailed', {status: response.statusText}));
   }
   return response.json();
 }
@@ -106,7 +107,7 @@ export async function updateList(listId: string, data: UpdateListRequest): Promi
     method: 'PATCH',
   });
   if (!response.ok) {
-    throw new Error(`Failed to update list: ${response.statusText}`);
+    throw new Error(i18next.t('errors.api.updateListFailed', {status: response.statusText}));
   }
   return response.json();
 }

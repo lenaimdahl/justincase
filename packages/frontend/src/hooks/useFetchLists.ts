@@ -1,6 +1,7 @@
 import type {List} from 'src/api/lists';
 
 import {useCallback, useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {fetchLists} from 'src/api/lists';
 import {useApiErrorHandler} from 'src/hooks/useApiErrorHandler';
 
@@ -15,6 +16,7 @@ interface UseFetchListsReturn {
  * Hook to fetch lists from the backend API
  */
 export const useFetchLists = (): UseFetchListsReturn => {
+  const {t} = useTranslation();
   const [lists, setLists] = useState<List[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
@@ -28,12 +30,12 @@ export const useFetchLists = (): UseFetchListsReturn => {
       const data = await fetchLists();
       setLists(data);
     } catch (err) {
-      const {errorMessage} = handleError(err, 'Failed to fetch lists');
+      const {errorMessage} = handleError(err, t('errors.fetchListsFailed'));
       setError(errorMessage);
     } finally {
       setLoading(false);
     }
-  }, [handleError]);
+  }, [handleError, t]);
 
   useEffect(() => {
     fetchListsData();

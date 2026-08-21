@@ -12,12 +12,14 @@ import {
   Typography,
 } from '@mui/material';
 import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
 import {useAuth} from 'src/contexts/AuthContext';
 import {useAuthConfig} from 'src/hooks/useAuthConfig';
 import {API_BASE_URL} from 'src/utils/api';
 
 export const LoginPage: React.FC = () => {
+  const {t} = useTranslation();
   const {login} = useAuth();
   const navigate = useNavigate();
   const {googleOAuthEnabled} = useAuthConfig();
@@ -35,7 +37,7 @@ export const LoginPage: React.FC = () => {
       await login(email, password);
       navigate('/lists');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : t('auth.login.error'));
     } finally {
       setIsLoading(false);
     }
@@ -56,7 +58,7 @@ export const LoginPage: React.FC = () => {
           JustInCase
         </Typography>
         <Typography component="h2" variant="h6" color="text.secondary" gutterBottom>
-          Sign in to your account
+          {t('auth.login.heading')}
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{mt: 2, width: '100%'}}>
           {error && (
@@ -68,7 +70,7 @@ export const LoginPage: React.FC = () => {
             autoComplete="email"
             autoFocus
             fullWidth
-            label="Email"
+            label={t('common.email')}
             margin="normal"
             onChange={e => setEmail(e.target.value)}
             required
@@ -79,7 +81,7 @@ export const LoginPage: React.FC = () => {
           <TextField
             autoComplete="current-password"
             fullWidth
-            label="Password"
+            label={t('common.password')}
             margin="normal"
             onChange={e => setPassword(e.target.value)}
             required
@@ -109,11 +111,11 @@ export const LoginPage: React.FC = () => {
             type="submit"
             variant="contained"
           >
-            {isLoading ? 'Signing in…' : 'Sign In'}
+            {isLoading ? t('auth.login.submitting') : t('auth.login.submit')}
           </Button>
           {googleOAuthEnabled && (
             <>
-              <Divider sx={{my: 2}}>or</Divider>
+              <Divider sx={{my: 2}}>{t('auth.login.orDivider')}</Divider>
               <Button
                 component="a"
                 fullWidth
@@ -121,15 +123,15 @@ export const LoginPage: React.FC = () => {
                 variant="outlined"
                 sx={{minHeight: {xs: 44, sm: 'auto'}}}
               >
-                Sign in with Google
+                {t('auth.login.googleButton')}
               </Button>
             </>
           )}
           <Box sx={{textAlign: 'center', mt: 2}}>
             <Typography variant="body2">
-              {"Don't have an account? "}
+              {`${t('auth.login.noAccount')} `}
               <Link href="/register" underline="hover">
-                Register
+                {t('auth.login.registerLink')}
               </Link>
             </Typography>
           </Box>

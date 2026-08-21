@@ -14,7 +14,78 @@
     "none": "Keine",
     "high": "Hoch",
     "medium": "Mittel",
-    "low": "Niedrig"
+    "low": "Niedrig",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "itemCount_one": "{{count}} Artikel",
+    "itemCount_other": "{{count}} Artikel"
+  },
+  "auth": {
+    "login": {
+      "heading": "Melde dich bei deinem Konto an",
+      "submit": "Anmelden",
+      "submitting": "Anmeldung läuft…",
+      "orDivider": "oder",
+      "googleButton": "Mit Google anmelden",
+      "noAccount": "Noch kein Konto?",
+      "registerLink": "Registrieren",
+      "error": "Anmeldung fehlgeschlagen"
+    },
+    "register": {
+      "heading": "Erstelle dein Konto",
+      "usernameLabel": "Benutzername (optional)",
+      "submit": "Registrieren",
+      "submitting": "Konto wird erstellt…",
+      "orDivider": "oder",
+      "googleButton": "Mit Google registrieren",
+      "hasAccount": "Bereits ein Konto?",
+      "signInLink": "Anmelden",
+      "error": "Registrierung fehlgeschlagen"
+    }
+  },
+  "errors": {
+    "generic": "Ein Fehler ist aufgetreten",
+    "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung.",
+    "validation": "Bitte überprüfe deine Eingabe und versuche es erneut.",
+    "notFound": "Ressource nicht gefunden. Sie wurde möglicherweise gelöscht.",
+    "server": "Serverfehler. Bitte versuche es später erneut.",
+    "forbidden": "Du hast keine Berechtigung, diese Aktion durchzuführen.",
+    "loadListFailed": "Liste konnte nicht geladen werden",
+    "createListFailed": "Liste konnte nicht erstellt werden",
+    "fetchListsFailed": "Listen konnten nicht geladen werden",
+    "fetchItemsFailed": "Artikel konnten nicht geladen werden",
+    "updateFailed": "Aktualisierung fehlgeschlagen",
+    "quantityAdjustFailed": "Anzahl konnte nicht angepasst werden",
+    "deleteFailed": "Löschen fehlgeschlagen",
+    "createItemFailed": "Artikel konnte nicht erstellt werden",
+    "api": {
+      "adjustQuantityFailed": "Anzahl konnte nicht angepasst werden: {{status}}",
+      "createItemFailed": "Artikel konnte nicht erstellt werden: {{status}}",
+      "deleteItemFailed": "Artikel konnte nicht gelöscht werden: {{status}}",
+      "fetchItemsFailed": "Artikel konnten nicht geladen werden: {{status}}",
+      "updateItemFailed": "Artikel konnte nicht aktualisiert werden: {{status}}",
+      "createListFailed": "Liste konnte nicht erstellt werden: {{status}}",
+      "deleteListFailed": "Liste konnte nicht gelöscht werden: {{status}}",
+      "fetchListFailed": "Liste konnte nicht geladen werden: {{status}}",
+      "fetchListsFailed": "Listen konnten nicht geladen werden: {{status}}",
+      "updateListFailed": "Liste konnte nicht aktualisiert werden: {{status}}"
+    }
+  },
+  "notifications": {
+    "itemUpdated": "Artikel aktualisiert",
+    "quantityUpdated": "Anzahl aktualisiert",
+    "itemDeleted": "Artikel gelöscht",
+    "itemNameRequired": "Artikelname ist erforderlich",
+    "itemCreated": "Artikel erfolgreich erstellt",
+    "listCreated": "Liste \"{{name}}\" erfolgreich erstellt"
+  },
+  "dateStatus": {
+    "noExpiryDate": "Kein Verfallsdatum",
+    "expiresToday": "Verfällt heute",
+    "expiredAgo_one": "Abgelaufen vor {{count}} Tag",
+    "expiredAgo_other": "Abgelaufen vor {{count}} Tagen",
+    "expiresIn_one": "Verfällt in {{count}} Tag",
+    "expiresIn_other": "Verfällt in {{count}} Tagen"
   },
   "components": {
     "navigation": {
@@ -51,7 +122,9 @@
       "exampleLabelFresh": "Frisch (mehr als 7 Tage)",
       "exampleLabelWarning": "Warnung (innerhalb von 7 Tagen)",
       "exampleLabelExpired": "Abgelaufen (nach Ablaufdatum)",
-      "exampleTip": "Tipp: Klicken Sie im Menü auf \"Listen\", um Ihre eigenen Listen zu erstellen und Artikel hinzuzufügen. Nur Ihre benutzerdefinierten Artikel werden dort angezeigt – diese Beispiele dienen nur zu Demonstrationszwecken."
+      "tipLabel": "Tipp:",
+      "exampleTip": "Klicken Sie im Menü auf \"Listen\", um Ihre eigenen Listen zu erstellen und Artikel hinzuzufügen. Nur Ihre benutzerdefinierten Artikel werden dort angezeigt – diese Beispiele dienen nur zu Demonstrationszwecken.",
+      "itemsHeading": "{{name}} Artikel"
     },
     "exampleLists": {
       "shopping": "Einkaufsliste",
@@ -104,6 +177,10 @@
       "emptyState": "Noch keine Listen",
       "emptyStateDescription": "Erstellen Sie Ihre erste Liste, um zu beginnen"
     },
+    "listDetail": {
+      "idNotFound": "Listen-ID nicht gefunden",
+      "notFound": "Liste nicht gefunden"
+    },
     "listTemplates": {
       "selectTemplate": "Wähle eine Vorlage als Startpunkt:",
       "predefinedTemplate": "Vordefinierte Vorlage",
@@ -135,6 +212,10 @@
       "stepColor": "Farbe",
       "stepIcon": "Icon",
       "stepName": "Name",
+      "colorStepLabel": "Wähle eine Farbe für deine Liste:",
+      "iconStepLabel": "Wähle ein Icon für deine Liste:",
+      "availableFieldsTitle": "Verfügbare Felder",
+      "checkboxesFieldLabel": "Checkboxen",
       "expiryDatesLabel": "Verfallsdatum für jede Menge:",
       "quantityLabel": "Menge",
       "cancel": "Abbrechen",
@@ -142,7 +223,15 @@
       "next": "Weiter",
       "create": "Erstellen",
       "step": "Schritt",
-      "of": "von"
+      "of": "von",
+      "checkboxesStep": {
+        "title": "Checkbox-Optionen",
+        "multipleLabel": "Mehrere Checkbox-Kategorien",
+        "labelsHint": "Definieren Sie die Labels für die Checkbox-Optionen",
+        "labelPlaceholder": "Label {{number}}",
+        "addLabel": "Label hinzufügen",
+        "disabledHint": "Aktivieren Sie \"Checkboxen\" im vorherigen Schritt, um diese Optionen zu verwenden."
+      }
     }
   }
 }

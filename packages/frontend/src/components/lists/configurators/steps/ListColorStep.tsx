@@ -1,4 +1,5 @@
 import {Box, Typography} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import {LIST_COLORS} from 'src/constants/listTemplates';
 
 interface ListColorStepProps {
@@ -8,10 +9,11 @@ interface ListColorStepProps {
 }
 
 export const ListColorStep = ({color, loading = false, onColorChange}: ListColorStepProps) => {
+  const {t} = useTranslation();
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
       <Typography variant="subtitle2" color="textSecondary">
-        Wähle eine Farbe für deine Liste:
+        {t('pages.listConfigurator.colorStepLabel')}
       </Typography>
       <Box sx={{display: 'flex', gap: 1, flexWrap: 'wrap'}}>
         {LIST_COLORS.map(c => (

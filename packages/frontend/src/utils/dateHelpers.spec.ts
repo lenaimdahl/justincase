@@ -114,27 +114,27 @@ describe('dateHelpers', () => {
   describe('getStatusMessage', () => {
     it('returns message for fresh items', () => {
       const message = getStatusMessage('2026-04-15');
-      expect(message).toContain('Tagen');
+      expect(message).toContain('days');
     });
 
     it('returns message for warning items', () => {
       const message = getStatusMessage('2026-04-05');
-      expect(message).toContain('Verfällt in 5');
+      expect(message).toContain('Expires in 5');
     });
 
     it('returns expired message for past dates', () => {
       const message = getStatusMessage('2026-03-20');
-      expect(message).toContain('Abgelaufen');
+      expect(message).toContain('Expired');
     });
 
     it('returns correct message for today', () => {
       const message = getStatusMessage('2026-03-31');
-      expect(message).toBe('Verfällt heute');
+      expect(message).toBe('Expires today');
     });
 
     it('returns message for missing expiry date', () => {
       const message = getStatusMessage(undefined);
-      expect(message).toBe('Kein Verfallsdatum');
+      expect(message).toBe('No expiry date');
     });
   });
 });

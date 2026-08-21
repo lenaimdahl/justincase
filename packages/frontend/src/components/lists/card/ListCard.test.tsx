@@ -4,6 +4,12 @@ import userEvent from '@testing-library/user-event';
 import {ListCard} from 'src/components/lists/card/ListCard';
 import type {List} from 'src/types/list';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string, options?: {count?: number}) => (options?.count !== undefined ? `${options.count} items` : key),
+  }),
+}));
+
 describe('ListCard Component', () => {
   const mockList: List = {
     id: '1',
@@ -29,7 +35,7 @@ describe('ListCard Component', () => {
   it('should render item count', () => {
     const handleClick = vi.fn();
     render(<ListCard {...mockList} onClick={handleClick} />);
-    expect(screen.getByText('5 Items')).toBeInTheDocument();
+    expect(screen.getByText('5 items')).toBeInTheDocument();
   });
 
   it('should call onClick when clicked', async () => {

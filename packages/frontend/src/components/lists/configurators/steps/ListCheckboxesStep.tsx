@@ -1,6 +1,7 @@
 import {Box, FormControlLabel, Checkbox, TextField, IconButton, Button} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {useTranslation} from 'react-i18next';
 import type {FieldConfig} from 'src/api/lists';
 
 interface ListCheckboxesStepProps {
@@ -20,9 +21,10 @@ export const ListCheckboxesStep = ({
   onAddCheckboxLabel,
   onRemoveCheckboxLabel,
 }: ListCheckboxesStepProps) => {
+  const {t} = useTranslation();
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
-      <Box sx={{fontWeight: 'bold', fontSize: '0.95em', mb: 1}}>Checkbox-Optionen</Box>
+      <Box sx={{fontWeight: 'bold', fontSize: '0.95em', mb: 1}}>{t('pages.listConfigurator.checkboxesStep.title')}</Box>
 
       <FormControlLabel
         control={
@@ -32,18 +34,20 @@ export const ListCheckboxesStep = ({
             disabled={loading || !fieldConfig.hasCheckbox}
           />
         }
-        label="Mehrere Checkbox-Kategorien"
+        label={t('pages.listConfigurator.checkboxesStep.multipleLabel')}
       />
 
       {fieldConfig.multipleCheckboxes && (
         <Box sx={{ml: 2, display: 'flex', flexDirection: 'column', gap: 1.5}}>
-          <Box sx={{fontSize: '0.9em', color: '#666', mb: 1}}>Definieren Sie die Labels für die Checkbox-Optionen</Box>
+          <Box sx={{fontSize: '0.9em', color: '#666', mb: 1}}>
+            {t('pages.listConfigurator.checkboxesStep.labelsHint')}
+          </Box>
 
           {(fieldConfig.checkboxLabels || []).map((label, index) => (
             <Box key={index} sx={{display: 'flex', gap: 1, alignItems: 'center'}}>
               <TextField
                 size="small"
-                placeholder={`Label ${index + 1}`}
+                placeholder={t('pages.listConfigurator.checkboxesStep.labelPlaceholder', {number: index + 1})}
                 value={label}
                 onChange={e => onCheckboxLabelChange(index, e.target.value)}
                 disabled={loading}
@@ -63,14 +67,14 @@ export const ListCheckboxesStep = ({
             size="small"
             sx={{alignSelf: 'flex-start'}}
           >
-            Label hinzufügen
+            {t('pages.listConfigurator.checkboxesStep.addLabel')}
           </Button>
         </Box>
       )}
 
       {!fieldConfig.hasCheckbox && (
         <Box sx={{fontSize: '0.9em', color: '#999', p: 2, backgroundColor: '#f5f5f5', borderRadius: 1}}>
-          {'Aktivieren Sie "Checkboxen" im vorherigen Schritt, um diese Optionen zu verwenden.'}
+          {t('pages.listConfigurator.checkboxesStep.disabledHint')}
         </Box>
       )}
     </Box>

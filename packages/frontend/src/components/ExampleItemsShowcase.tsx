@@ -1,19 +1,26 @@
 import {useState} from 'react';
 import {Box, Typography, Card, CardContent, Grid} from '@mui/material';
 import {useTranslation} from 'react-i18next';
+import type {TFunction} from 'i18next';
 import {EXAMPLE_LISTS, EXAMPLE_ITEMS} from 'src/constants/exampleItems';
 import {ItemTable} from 'src/components/items/tables/ItemTable';
 import type {FieldConfig} from 'src/types/list';
 
-const getFieldConfigForList = (listId: string): FieldConfig => {
+const getFieldConfigForList = (listId: string, t: TFunction): FieldConfig => {
   switch (listId) {
     case 'example-shopping':
-      return {hasCheckbox: true, checkboxLabels: ['Refilled'], hasQuantity: true, hasNotes: true, hasExpiryDate: false};
+      return {
+        hasCheckbox: true,
+        checkboxLabels: [t('pages.shopping.actionLabel')],
+        hasQuantity: true,
+        hasNotes: true,
+        hasExpiryDate: false,
+      };
     case 'example-guests':
       return {
         hasCheckbox: true,
         multipleCheckboxes: true,
-        checkboxLabels: ['Zugesagt', 'Abgesagt'],
+        checkboxLabels: [t('pages.guestListTable.confirmed'), t('pages.guestListTable.cancelled')],
         hasQuantity: true,
         hasUnit: false,
         hasNotes: false,
@@ -22,14 +29,20 @@ const getFieldConfigForList = (listId: string): FieldConfig => {
     case 'example-packing':
       return {
         hasCheckbox: true,
-        checkboxLabels: ['Packed'],
+        checkboxLabels: [t('pages.packing.actionLabel')],
         hasQuantity: true,
         hasUnit: false,
         hasNotes: true,
         hasExpiryDate: false,
       };
     case 'example-pantry':
-      return {hasCheckbox: true, checkboxLabels: ['Refill'], hasQuantity: true, hasNotes: true, hasExpiryDate: true};
+      return {
+        hasCheckbox: true,
+        checkboxLabels: [t('pages.pantry.actionLabel')],
+        hasQuantity: true,
+        hasNotes: true,
+        hasExpiryDate: true,
+      };
     default:
       return {hasCheckbox: true};
   }
@@ -39,7 +52,12 @@ export const ExampleItemsShowcase = () => {
   const {t} = useTranslation();
   const [expandedList, setExpandedList] = useState<string | false>(EXAMPLE_LISTS[0].id);
 
-  const getListItems = (listId: string) => EXAMPLE_ITEMS.filter(item => item.listId === listId);
+  const getListItems = (listId: string) =>
+    EXAMPLE_ITEMS.filter(item => item.listId === listId).map(({nameKey, commentKey, ...item}) => ({
+      ...item,
+      comment: commentKey ? t(commentKey) : undefined,
+      name: t(nameKey),
+    }));
 
   return (
     <Box sx={{mt: 6}}>
@@ -107,7 +125,7 @@ export const ExampleItemsShowcase = () => {
                   {t(list.nameKey)}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  {getListItems(list.id).length} items
+                  {t('common.itemCount', {count: getListItems(list.id).length})}
                 </Typography>
               </CardContent>
             </Card>
@@ -119,15 +137,17 @@ export const ExampleItemsShowcase = () => {
       {expandedList && (
         <Box sx={{mb: 4}}>
           <Typography variant="h6" sx={{mb: 2}}>
-            {EXAMPLE_LISTS.find(l => l.id === expandedList) &&
-              t(EXAMPLE_LISTS.find(l => l.id === expandedList)!.nameKey)}{' '}
-            Items
+            {t('pages.home.itemsHeading', {
+              name:
+                EXAMPLE_LISTS.find(l => l.id === expandedList) &&
+                t(EXAMPLE_LISTS.find(l => l.id === expandedList)!.nameKey),
+            })}
           </Typography>
 
           <ItemTable
             listId={expandedList}
             items={getListItems(expandedList)}
-            fieldConfig={getFieldConfigForList(expandedList)}
+            fieldConfig={getFieldConfigForList(expandedList, t)}
             onItemsChange={async () => {}}
             readOnly={true}
           />
@@ -135,7 +155,7 @@ export const ExampleItemsShowcase = () => {
       )}
 
       <Typography variant="body2" color="textSecondary" sx={{mt: 3}}>
-        💡 <strong>Tip:</strong> {t('pages.home.exampleTip')}
+        💡 <strong>{t('pages.home.tipLabel')}</strong> {t('pages.home.exampleTip')}
       </Typography>
     </Box>
   );

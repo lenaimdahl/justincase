@@ -1,4 +1,5 @@
 import {Card, CardContent, CardActionArea, Typography, Box, Chip} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import type {List} from 'src/types/list';
 
 interface ListCardProps extends List {
@@ -6,6 +7,7 @@ interface ListCardProps extends List {
 }
 
 export const ListCard = ({name, itemCount, onClick}: ListCardProps) => {
+  const {t} = useTranslation();
   return (
     <Card
       sx={{
@@ -22,7 +24,7 @@ export const ListCard = ({name, itemCount, onClick}: ListCardProps) => {
       <CardActionArea
         onClick={onClick}
         sx={{flexGrow: 1}}
-        aria-label={`${name}, ${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}
+        aria-label={`${name}, ${t('common.itemCount', {count: itemCount})}`}
       >
         <CardContent sx={{display: 'flex', flexDirection: 'column', gap: 1}}>
           <Typography variant="h6" component="div" sx={{color: '#6a1b9a'}}>
@@ -30,7 +32,7 @@ export const ListCard = ({name, itemCount, onClick}: ListCardProps) => {
           </Typography>
           <Box sx={{display: 'flex', gap: 1, mt: 1}}>
             <Chip
-              label={`${itemCount} ${itemCount === 1 ? 'Item' : 'Items'}`}
+              label={t('common.itemCount', {count: itemCount})}
               size="small"
               sx={{
                 backgroundColor: '#e1bee7',

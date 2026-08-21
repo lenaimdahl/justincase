@@ -1,5 +1,6 @@
 import {useParams} from 'react-router-dom';
 import {Container, Box, Alert, CircularProgress} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import {ListHeader} from 'src/components/lists/header/ListHeader';
 import {ItemTable} from 'src/components/items/tables/ItemTable';
 import {useFetchItems} from 'src/hooks/useFetchItems';
@@ -9,6 +10,7 @@ import {useState, useEffect} from 'react';
 import type {List} from 'src/api/lists';
 
 export const ListDetailPage = () => {
+  const {t} = useTranslation();
   const {listId} = useParams<{listId: string}>();
   const {items, error, refetch} = useFetchItems(listId || '');
   const [list, setList] = useState<List | null>(null);
@@ -24,7 +26,7 @@ export const ListDetailPage = () => {
         const data = await fetchListById(listId);
         setList(data);
       } catch (err) {
-        const {errorMessage} = handleError(err, 'Failed to load list');
+        const {errorMessage} = handleError(err, t('errors.loadListFailed'));
         setListError(errorMessage);
       } finally {
         setListLoading(false);
@@ -32,12 +34,12 @@ export const ListDetailPage = () => {
     };
 
     loadList();
-  }, [listId, handleError]);
+  }, [listId, handleError, t]);
 
   if (!listId) {
     return (
       <Container component="main" sx={{py: {xs: 2, sm: 4}}}>
-        <Alert severity="error">List ID not found</Alert>
+        <Alert severity="error">{t('pages.listDetail.idNotFound')}</Alert>
       </Container>
     );
   }
@@ -55,7 +57,7 @@ export const ListDetailPage = () => {
   if (!list) {
     return (
       <Container component="main" sx={{py: {xs: 2, sm: 4}}}>
-        <Alert severity="error">{listError || 'List not found'}</Alert>
+        <Alert severity="error">{listError || t('pages.listDetail.notFound')}</Alert>
       </Container>
     );
   }

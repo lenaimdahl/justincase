@@ -1,4 +1,5 @@
 import {Box, FormControlLabel, Checkbox} from '@mui/material';
+import {useTranslation} from 'react-i18next';
 import type {FieldConfig} from 'src/api/lists';
 
 interface ListFieldsStepProps {
@@ -8,9 +9,10 @@ interface ListFieldsStepProps {
 }
 
 export const ListFieldsStep = ({fieldConfig, loading = false, onFieldChange}: ListFieldsStepProps) => {
+  const {t} = useTranslation();
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt: 2}}>
-      <Box sx={{fontWeight: 'bold', fontSize: '0.95em', mb: 1}}>Verfügbare Felder</Box>
+      <Box sx={{fontWeight: 'bold', fontSize: '0.95em', mb: 1}}>{t('pages.listConfigurator.availableFieldsTitle')}</Box>
 
       <FormControlLabel
         control={
@@ -20,7 +22,7 @@ export const ListFieldsStep = ({fieldConfig, loading = false, onFieldChange}: Li
             disabled={loading}
           />
         }
-        label="Checkboxen"
+        label={t('pages.listConfigurator.checkboxesFieldLabel')}
       />
 
       <FormControlLabel
@@ -31,7 +33,7 @@ export const ListFieldsStep = ({fieldConfig, loading = false, onFieldChange}: Li
             disabled={loading}
           />
         }
-        label="Menge"
+        label={t('common.quantity')}
       />
 
       <FormControlLabel
@@ -42,7 +44,7 @@ export const ListFieldsStep = ({fieldConfig, loading = false, onFieldChange}: Li
             disabled={loading}
           />
         }
-        label="Ablaufdatum"
+        label={t('common.expiryDate')}
       />
 
       <FormControlLabel
@@ -53,7 +55,7 @@ export const ListFieldsStep = ({fieldConfig, loading = false, onFieldChange}: Li
             disabled={loading}
           />
         }
-        label="Notizen"
+        label={t('common.notes')}
       />
 
       <FormControlLabel
@@ -64,7 +66,7 @@ export const ListFieldsStep = ({fieldConfig, loading = false, onFieldChange}: Li
             disabled={loading}
           />
         }
-        label="Priorität"
+        label={t('common.priority')}
       />
     </Box>
   );

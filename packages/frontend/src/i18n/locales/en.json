@@ -14,7 +14,78 @@
     "none": "None",
     "high": "High",
     "medium": "Medium",
-    "low": "Low"
+    "low": "Low",
+    "email": "Email",
+    "password": "Password",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items"
+  },
+  "auth": {
+    "login": {
+      "heading": "Sign in to your account",
+      "submit": "Sign In",
+      "submitting": "Signing in…",
+      "orDivider": "or",
+      "googleButton": "Sign in with Google",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Register",
+      "error": "Login failed"
+    },
+    "register": {
+      "heading": "Create your account",
+      "usernameLabel": "Username (optional)",
+      "submit": "Register",
+      "submitting": "Creating account…",
+      "orDivider": "or",
+      "googleButton": "Sign up with Google",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "error": "Registration failed"
+    }
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "network": "Network error. Please check your connection.",
+    "validation": "Please check your input and try again.",
+    "notFound": "Resource not found. It may have been deleted.",
+    "server": "Server error. Please try again later.",
+    "forbidden": "You do not have permission to perform this action.",
+    "loadListFailed": "Failed to load list",
+    "createListFailed": "Failed to create list",
+    "fetchListsFailed": "Failed to fetch lists",
+    "fetchItemsFailed": "Failed to fetch items",
+    "updateFailed": "Update failed",
+    "quantityAdjustFailed": "Quantity adjustment failed",
+    "deleteFailed": "Delete failed",
+    "createItemFailed": "Failed to create item",
+    "api": {
+      "adjustQuantityFailed": "Failed to adjust quantity: {{status}}",
+      "createItemFailed": "Failed to create item: {{status}}",
+      "deleteItemFailed": "Failed to delete item: {{status}}",
+      "fetchItemsFailed": "Failed to fetch items: {{status}}",
+      "updateItemFailed": "Failed to update item: {{status}}",
+      "createListFailed": "Failed to create list: {{status}}",
+      "deleteListFailed": "Failed to delete list: {{status}}",
+      "fetchListFailed": "Failed to fetch list: {{status}}",
+      "fetchListsFailed": "Failed to fetch lists: {{status}}",
+      "updateListFailed": "Failed to update list: {{status}}"
+    }
+  },
+  "notifications": {
+    "itemUpdated": "Item updated",
+    "quantityUpdated": "Quantity updated",
+    "itemDeleted": "Item deleted",
+    "itemNameRequired": "Item name is required",
+    "itemCreated": "Item created successfully",
+    "listCreated": "List \"{{name}}\" created successfully"
+  },
+  "dateStatus": {
+    "noExpiryDate": "No expiry date",
+    "expiresToday": "Expires today",
+    "expiredAgo_one": "Expired {{count}} day ago",
+    "expiredAgo_other": "Expired {{count}} days ago",
+    "expiresIn_one": "Expires in {{count}} day",
+    "expiresIn_other": "Expires in {{count}} days"
   },
   "components": {
     "navigation": {
@@ -51,7 +122,9 @@
       "exampleLabelFresh": "Fresh (More than 7 days)",
       "exampleLabelWarning": "Warning (Within 7 days)",
       "exampleLabelExpired": "Expired (Past expiry date)",
-      "exampleTip": "Click \"Lists\" in the menu to create your own lists and add items. Only your custom items will appear there—these examples are for demonstration purposes only."
+      "tipLabel": "Tip:",
+      "exampleTip": "Click \"Lists\" in the menu to create your own lists and add items. Only your custom items will appear there—these examples are for demonstration purposes only.",
+      "itemsHeading": "{{name}} Items"
     },
     "exampleLists": {
       "shopping": "Shopping List",
@@ -104,6 +177,10 @@
       "emptyState": "No lists yet",
       "emptyStateDescription": "Create your first list to get started"
     },
+    "listDetail": {
+      "idNotFound": "List ID not found",
+      "notFound": "List not found"
+    },
     "listTemplates": {
       "selectTemplate": "Choose a template to get started:",
       "predefinedTemplate": "Predefined template",
@@ -135,6 +212,10 @@
       "stepColor": "Color",
       "stepIcon": "Icon",
       "stepName": "Name",
+      "colorStepLabel": "Choose a color for your list:",
+      "iconStepLabel": "Choose an icon for your list:",
+      "availableFieldsTitle": "Available Fields",
+      "checkboxesFieldLabel": "Checkboxes",
       "expiryDatesLabel": "Expiry date for each quantity:",
       "quantityLabel": "Quantity",
       "cancel": "Cancel",
@@ -142,7 +223,15 @@
       "next": "Next",
       "create": "Create",
       "step": "Step",
-      "of": "of"
+      "of": "of",
+      "checkboxesStep": {
+        "title": "Checkbox Options",
+        "multipleLabel": "Multiple checkbox categories",
+        "labelsHint": "Define the labels for the checkbox options",
+        "labelPlaceholder": "Label {{number}}",
+        "addLabel": "Add label",
+        "disabledHint": "Enable \"Checkboxes\" in the previous step to use these options."
+      }
     }
   }
 }
