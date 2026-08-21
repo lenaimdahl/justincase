@@ -8,11 +8,6 @@ import {Item, ItemDocument} from 'src/modules/items/schemas/item.schema';
 
 const UTC_PLUS_ONE_OFFSET_MS = 60 * 60 * 1000;
 
-function toUtcPlusOne(dateStr: string): Date {
-  const date = new Date(dateStr);
-  return new Date(date.getTime() - UTC_PLUS_ONE_OFFSET_MS);
-}
-
 @Injectable()
 export class ItemsService {
   private readonly logger = new Logger(ItemsService.name);
@@ -109,4 +104,9 @@ export class ItemsService {
     this.logger.debug(`Item ${itemId} updated in list ${listId}`);
     return item;
   }
+}
+
+function toUtcPlusOne(dateStr: string): Date {
+  const date = new Date(dateStr);
+  return new Date(date.getTime() - UTC_PLUS_ONE_OFFSET_MS);
 }
