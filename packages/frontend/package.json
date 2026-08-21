@@ -21,7 +21,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.4",
     "@vitest/ui": "4.1.9",
-    "eslint": "9.39.4",
+    "eslint": "9.39.5",
     "eslint-plugin-oxlint": "1.71.0",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
