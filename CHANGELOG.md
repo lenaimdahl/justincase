@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/lenaimdahl/justincase/compare/v1.1.0...v1.2.0) (2026-08-21)
+
+
+### Features
+
+* use logo an favicon ([#331](https://github.com/lenaimdahl/justincase/issues/331)) ([c9c1f25](https://github.com/lenaimdahl/justincase/commit/c9c1f25b54c3bbb6966e5961b3dc6ca223082ba4))
+
 # [1.1.0](https://github.com/lenaimdahl/justincase/compare/v1.0.16...v1.1.0) (2026-08-21)
 
 
