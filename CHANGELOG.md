@@ -1,3 +1,16 @@
+## [1.2.1](https://github.com/lenaimdahl/justincase/compare/v1.2.0...v1.2.1) (2026-09-01)
+
+
+### Bug Fixes
+
+* **deps:** bump i18next from 26.3.6 to 26.4.0 ([#358](https://github.com/lenaimdahl/justincase/issues/358)) [ci skip] ([94ed2f4](https://github.com/lenaimdahl/justincase/commit/94ed2f4952c7c62d8e467fccee1bec501d3a8b9f))
+* **deps:** bump mongoose from 9.9.2 to 9.9.4 ([#357](https://github.com/lenaimdahl/justincase/issues/357)) [ci skip] ([8425b34](https://github.com/lenaimdahl/justincase/commit/8425b3439b435440dee2d5d9cd0324e0cd2cac56))
+* **deps:** bump nginx from 1.31.3-alpine to 1.31.4-alpine ([#342](https://github.com/lenaimdahl/justincase/issues/342)) [ci skip] ([0bf62ec](https://github.com/lenaimdahl/justincase/commit/0bf62ecf39e2f7e67318d5e46aae3e47256545bf))
+* **deps:** bump node from 26.7.0-alpine to 26.8.1-alpine ([#341](https://github.com/lenaimdahl/justincase/issues/341)) ([e94a1f8](https://github.com/lenaimdahl/justincase/commit/e94a1f850f6ed5a50b96f6a8e4128dc68a0d8893))
+* **deps:** bump react-i18next in the react group across 1 directory ([#345](https://github.com/lenaimdahl/justincase/issues/345)) [ci skip] ([1ab92f2](https://github.com/lenaimdahl/justincase/commit/1ab92f229425a28fd08f2bfdaa29dbfe7e099079))
+* **deps:** bump the nestjs group across 1 directory with 6 updates ([#359](https://github.com/lenaimdahl/justincase/issues/359)) [ci skip] ([3ed572e](https://github.com/lenaimdahl/justincase/commit/3ed572e24ba700767d7849a7e336823a9cee5f6b))
+* **deps:** bump the nestjs group with 5 updates ([#343](https://github.com/lenaimdahl/justincase/issues/343)) [ci skip] ([381bac0](https://github.com/lenaimdahl/justincase/commit/381bac040c01e26c7bb7356df748e200a42523c4))
+
 # [1.2.0](https://github.com/lenaimdahl/justincase/compare/v1.1.0...v1.2.0) (2026-08-21)
 
 
