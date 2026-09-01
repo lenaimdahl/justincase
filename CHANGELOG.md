@@ -1,3 +1,11 @@
+## [1.2.2](https://github.com/lenaimdahl/justincase/compare/v1.2.1...v1.2.2) (2026-09-01)
+
+
+### Bug Fixes
+
+* Force release ([6dcbd56](https://github.com/lenaimdahl/justincase/commit/6dcbd568f191fe1742e810ab8cd6d3243c1bbfe3))
+* Revert "fix(deps): bump the nestjs group across 1 directory with 6 updates ([#359](https://github.com/lenaimdahl/justincase/issues/359)) [ci skip]" ([2dff9e4](https://github.com/lenaimdahl/justincase/commit/2dff9e474563345a0613538cace11da28c95d556))
+
 ## [1.2.1](https://github.com/lenaimdahl/justincase/compare/v1.2.0...v1.2.1) (2026-09-01)
 
 
