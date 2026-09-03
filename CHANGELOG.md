@@ -1,3 +1,12 @@
+## [1.2.4](https://github.com/lenaimdahl/justincase/compare/v1.2.3...v1.2.4) (2026-09-03)
+
+
+### Bug Fixes
+
+* **deps:** bump @humanfs/node from 0.16.7 to 0.16.8 ([#363](https://github.com/lenaimdahl/justincase/issues/363)) [ci skip] ([74599a5](https://github.com/lenaimdahl/justincase/commit/74599a57b4d192e92f92601c194d2bea93f3280b))
+* **deps:** bump browserslist from 4.28.5 to 4.28.8 ([#364](https://github.com/lenaimdahl/justincase/issues/364)) [ci skip] ([79c2d88](https://github.com/lenaimdahl/justincase/commit/79c2d8809e94d1ef189519882e6d7019249dce86))
+* **deps:** bump qs from 6.15.2 to 6.16.0 ([#362](https://github.com/lenaimdahl/justincase/issues/362)) ([c72026f](https://github.com/lenaimdahl/justincase/commit/c72026f670c2ab301981d56376120561e6b6400f))
+
 ## [1.2.3](https://github.com/lenaimdahl/justincase/compare/v1.2.2...v1.2.3) (2026-09-03)
 
 
