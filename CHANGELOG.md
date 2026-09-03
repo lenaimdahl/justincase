@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/lenaimdahl/justincase/compare/v1.2.2...v1.2.3) (2026-09-03)
+
+
+### Bug Fixes
+
+* **deps:** bump fast-uri from 3.1.5 to 3.1.7 ([#361](https://github.com/lenaimdahl/justincase/issues/361)) ([84355c6](https://github.com/lenaimdahl/justincase/commit/84355c61274cab29cf08eaad5767d0059fbd02d7))
+
 ## [1.2.2](https://github.com/lenaimdahl/justincase/compare/v1.2.1...v1.2.2) (2026-09-01)
 
 
