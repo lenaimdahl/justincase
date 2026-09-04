@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/lenaimdahl/justincase/compare/v1.2.4...v1.2.5) (2026-09-04)
+
+
+### Bug Fixes
+
+* **deps:** bump fflate from 0.8.2 to 0.8.3 ([#365](https://github.com/lenaimdahl/justincase/issues/365)) ([d81d836](https://github.com/lenaimdahl/justincase/commit/d81d8363d633af63ce47515b1592441df17d3bc9))
+
 ## [1.2.4](https://github.com/lenaimdahl/justincase/compare/v1.2.3...v1.2.4) (2026-09-03)
 
 
