@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/lenaimdahl/justincase/compare/v1.2.5...v1.2.6) (2026-09-13)
+
+
+### Bug Fixes
+
+* **deps:** bump js-yaml from 4.1.1 to 4.3.2 ([#366](https://github.com/lenaimdahl/justincase/issues/366)) ([aea366a](https://github.com/lenaimdahl/justincase/commit/aea366a1b44edfa191beece1bec4250d5ddcb038))
+
 ## [1.2.5](https://github.com/lenaimdahl/justincase/compare/v1.2.4...v1.2.5) (2026-09-04)
 
 
