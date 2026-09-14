@@ -7,6 +7,7 @@
     "expiryDate": "Expiry Date",
     "actions": "Actions",
     "add": "Add",
+    "edit": "Edit",
     "delete": "Delete",
     "close": "Close",
     "notes": "Notes",
@@ -52,6 +53,8 @@
     "forbidden": "You do not have permission to perform this action.",
     "loadListFailed": "Failed to load list",
     "createListFailed": "Failed to create list",
+    "updateListFailed": "Failed to update list",
+    "deleteListFailed": "Failed to delete list",
     "fetchListsFailed": "Failed to fetch lists",
     "fetchItemsFailed": "Failed to fetch items",
     "updateFailed": "Update failed",
@@ -77,7 +80,9 @@
     "itemDeleted": "Item deleted",
     "itemNameRequired": "Item name is required",
     "itemCreated": "Item created successfully",
-    "listCreated": "List \"{{name}}\" created successfully"
+    "listCreated": "List \"{{name}}\" created successfully",
+    "listUpdated": "List \"{{name}}\" updated successfully",
+    "listDeleted": "List \"{{name}}\" deleted"
   },
   "dateStatus": {
     "noExpiryDate": "No expiry date",
@@ -105,7 +110,8 @@
       "deleteItem": "Delete item",
       "closeNotification": "Close notification",
       "openNavigationMenu": "Open navigation menu",
-      "closeNavigationMenu": "Close navigation menu"
+      "closeNavigationMenu": "Close navigation menu",
+      "listOptions": "List options"
     },
     "placeholders": {
       "itemName": "Item name",
@@ -175,7 +181,12 @@
       "inputLabel": "List Name",
       "cancelButton": "Cancel",
       "emptyState": "No lists yet",
-      "emptyStateDescription": "Create your first list to get started"
+      "emptyStateDescription": "Create your first list to get started",
+      "editDialogTitle": "Edit List",
+      "saveButton": "Save",
+      "deleteDialogTitle": "Delete List",
+      "deleteConfirmMessage_one": "Are you sure you want to delete \"{{name}}\"? This will also delete {{count}} item in this list. This action cannot be undone.",
+      "deleteConfirmMessage_other": "Are you sure you want to delete \"{{name}}\"? This will also delete {{count}} items in this list. This action cannot be undone."
     },
     "listDetail": {
       "idNotFound": "List ID not found",

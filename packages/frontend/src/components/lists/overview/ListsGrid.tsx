@@ -5,9 +5,11 @@ import type {List} from 'src/types/list';
 interface ListsGridProps {
   lists: List[];
   onListClick: (listId: string) => void;
+  onEditList: (list: List) => void;
+  onDeleteList: (list: List) => void;
 }
 
-export const ListsGrid = ({lists, onListClick}: ListsGridProps) => {
+export const ListsGrid = ({lists, onListClick, onEditList, onDeleteList}: ListsGridProps) => {
   return (
     <Box
       sx={{
@@ -30,6 +32,8 @@ export const ListsGrid = ({lists, onListClick}: ListsGridProps) => {
           color={list.color}
           fieldConfig={list.fieldConfig}
           onClick={() => onListClick(list.id)}
+          onEdit={() => onEditList(list)}
+          onDelete={() => onDeleteList(list)}
         />
       ))}
     </Box>
