@@ -1,3 +1,11 @@
+## [1.2.7](https://github.com/lenaimdahl/justincase/compare/v1.2.6...v1.2.7) (2026-09-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ip-address from 10.4.0 to 10.7.2 ([#368](https://github.com/lenaimdahl/justincase/issues/368)) ([fbf2aa6](https://github.com/lenaimdahl/justincase/commit/fbf2aa6f57eef945e5907a1e505459b1b4c6f372))
+* **deps:** bump undici from 8.10.0 to 8.11.2 ([#367](https://github.com/lenaimdahl/justincase/issues/367)) [ci skip] ([f8822a3](https://github.com/lenaimdahl/justincase/commit/f8822a3c01361a4b429bc80dd1126d1801a0dd56))
+
 ## [1.2.6](https://github.com/lenaimdahl/justincase/compare/v1.2.5...v1.2.6) (2026-09-13)
 
 
