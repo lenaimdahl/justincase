@@ -6502,7 +6502,7 @@ __metadata:
     class-validator: "npm:0.15.1"
     eslint: "npm:9.39.5"
     eslint-plugin-oxlint: "npm:1.80.0"
-    mongoose: "npm:9.9.4"
+    mongoose: "npm:9.10.2"
     oxlint: "npm:1.80.0"
     passport: "npm:0.7.0"
     passport-google-oauth20: "npm:2.0.0"
@@ -6588,10 +6588,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kareem@npm:3.3.0":
-  version: 3.3.0
-  resolution: "kareem@npm:3.3.0"
-  checksum: 10c0/51b5adb120bb535ab905d8fa265ae0a5a1b865ac23164d62cfaa5a0fc8e66f4bf39a12cdfa3e76d3710af30b19bf17ca293c47cae6473f5b8721ca5ac83c6952
+"kareem@npm:3.4.0":
+  version: 3.4.0
+  resolution: "kareem@npm:3.4.0"
+  checksum: 10c0/766251a46a3dcdaa3584eb63cb29321c7f51d313015692b82ce8fe584413334091d9b79b9fa3b25dfa186e4bc9646ad627f2e1ca0ae20cdb782278ce54420221
   languageName: node
   linkType: hard
 
@@ -7387,9 +7387,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:~7.5":
-  version: 7.5.0
-  resolution: "mongodb@npm:7.5.0"
+"mongodb@npm:~7.6":
+  version: 7.6.0
+  resolution: "mongodb@npm:7.6.0"
   dependencies:
     "@mongodb-js/saslprep": "npm:^1.4.11"
     bson: "npm:^7.2.0"
@@ -7417,22 +7417,22 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: 10c0/468db2b24fa3e497d6212bc3073c008b46ebffdace1197be5982c976d61e962e85727ac4443c6c8b59a9baed10d14ed589b6ea9234e87727469d7a19e82f9cd0
+  checksum: 10c0/91f45d49aaa17af40b1dbd4f5eff85fd11f12c7df993cadbe51e96c31f40c74596b2d979f7eeebb376889a1397deb9081db10cbb0e8904853c80b1f2fcddf7d0
   languageName: node
   linkType: hard
 
-"mongoose@npm:9.9.4":
-  version: 9.9.4
-  resolution: "mongoose@npm:9.9.4"
+"mongoose@npm:9.10.2":
+  version: 9.10.2
+  resolution: "mongoose@npm:9.10.2"
   dependencies:
     "@standard-schema/spec": "npm:^1.1.0"
-    kareem: "npm:3.3.0"
-    mongodb: "npm:~7.5"
+    kareem: "npm:3.4.0"
+    mongodb: "npm:~7.6"
     mpath: "npm:0.9.0"
     mquery: "npm:6.0.0"
     ms: "npm:2.1.3"
     sift: "npm:17.1.3"
-  checksum: 10c0/5312b8ce1d2d14864006721f079d8c9c2130a3ccdf13fedb0fcf1d4b59888f14d53fa81a29333d265e8292d88bdc025269c94033fe97e4278c534b8492080017
+  checksum: 10c0/feb491ab18eb93b728ac0655a379b24e24f813c1ed4626559ae6c2f3b53cdfb5e4ea72e5cf29fab4f6fabe19d29e1aefa947d65b246d3e1e4f80ad763c612301
   languageName: node
   linkType: hard
 
