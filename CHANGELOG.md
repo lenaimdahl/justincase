@@ -1,3 +1,18 @@
+## [1.2.8](https://github.com/lenaimdahl/justincase/compare/v1.2.7...v1.2.8) (2026-10-02)
+
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion from 1.1.18 to 1.1.21 ([#395](https://github.com/lenaimdahl/justincase/issues/395)) [ci skip] ([4c08778](https://github.com/lenaimdahl/justincase/commit/4c087780cd28b9f0470a5d8a2771e279a942c750))
+* **deps:** bump fast-uri from 3.1.7 to 3.1.8 ([#394](https://github.com/lenaimdahl/justincase/issues/394)) [ci skip] ([a2d1f40](https://github.com/lenaimdahl/justincase/commit/a2d1f40cd9e8dfb56c7f0839208faac763af1f84))
+* **deps:** bump i18next from 26.4.0 to 26.4.2 ([#392](https://github.com/lenaimdahl/justincase/issues/392)) [ci skip] ([7d187d3](https://github.com/lenaimdahl/justincase/commit/7d187d32798c6112e3389df8da82d07b7b78fd96))
+* **deps:** bump mongoose from 9.9.4 to 9.10.2 ([#387](https://github.com/lenaimdahl/justincase/issues/387)) [ci skip] ([19a4312](https://github.com/lenaimdahl/justincase/commit/19a43126e0b1a940ac5a346e25fc05b106242ce1))
+* **deps:** bump nginx from 1.31.4-alpine to 1.31.6-alpine ([#372](https://github.com/lenaimdahl/justincase/issues/372)) [ci skip] ([fa1e1cc](https://github.com/lenaimdahl/justincase/commit/fa1e1cc0e04984315da4f8dc23922d0333f8b9bd))
+* **deps:** bump node from 26.8.1-alpine to 26.10.0-alpine ([#371](https://github.com/lenaimdahl/justincase/issues/371)) ([cdb9981](https://github.com/lenaimdahl/justincase/commit/cdb9981d493058381f9d2dd566e5d853abee55cc))
+* **deps:** bump the mui group across 1 directory with 2 updates ([#374](https://github.com/lenaimdahl/justincase/issues/374)) [ci skip] ([6d3276f](https://github.com/lenaimdahl/justincase/commit/6d3276f81d15a42ec99228126b0f92abfd8153e8))
+* **deps:** bump the nestjs group across 1 directory with 12 updates ([#375](https://github.com/lenaimdahl/justincase/issues/375)) [ci skip] ([d3b825d](https://github.com/lenaimdahl/justincase/commit/d3b825d2fc369fa63f1afabf307696c6ab306592))
+* **deps:** bump the react group across 1 directory with 4 updates ([#377](https://github.com/lenaimdahl/justincase/issues/377)) [ci skip] ([ad47d0d](https://github.com/lenaimdahl/justincase/commit/ad47d0dd2f75f86a8519b1680cf3e898b6826676))
+
 ## [1.2.7](https://github.com/lenaimdahl/justincase/compare/v1.2.6...v1.2.7) (2026-09-29)
 
 
