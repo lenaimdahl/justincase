@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/lenaimdahl/justincase/compare/v1.2.8...v1.2.9) (2026-10-13)
+
+
+### Bug Fixes
+
+* Disable absolute redirects in nginx config ([993a184](https://github.com/lenaimdahl/justincase/commit/993a1847ec2599d634295b82ef07eda2020455bf))
+
 ## [1.2.8](https://github.com/lenaimdahl/justincase/compare/v1.2.7...v1.2.8) (2026-10-02)
 
 
