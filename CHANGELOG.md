@@ -1,3 +1,10 @@
+## [1.2.10](https://github.com/lenaimdahl/justincase/compare/v1.2.9...v1.2.10) (2026-10-17)
+
+
+### Bug Fixes
+
+* **deps:** bump proxy-addr from 2.0.7 to 2.0.8 ([#396](https://github.com/lenaimdahl/justincase/issues/396)) ([fd5d049](https://github.com/lenaimdahl/justincase/commit/fd5d0496f53da0cc55e88957f32ea44caa18d988))
+
 ## [1.2.9](https://github.com/lenaimdahl/justincase/compare/v1.2.8...v1.2.9) (2026-10-13)
 
 
