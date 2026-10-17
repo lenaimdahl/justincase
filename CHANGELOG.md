@@ -1,3 +1,10 @@
+## [1.2.11](https://github.com/lenaimdahl/justincase/compare/v1.2.10...v1.2.11) (2026-10-17)
+
+
+### Bug Fixes
+
+* **deps:** bump source-map-js from 1.2.1 to 1.2.2 ([#397](https://github.com/lenaimdahl/justincase/issues/397)) ([f97630d](https://github.com/lenaimdahl/justincase/commit/f97630df650cc741f220091faf6ef10b051488c0))
+
 ## [1.2.10](https://github.com/lenaimdahl/justincase/compare/v1.2.9...v1.2.10) (2026-10-17)
 
 
