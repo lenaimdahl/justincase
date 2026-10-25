@@ -1,3 +1,10 @@
+## [1.2.16](https://github.com/lenaimdahl/justincase/compare/v1.2.15...v1.2.16) (2026-10-25)
+
+
+### Bug Fixes
+
+* **deps:** bump ip-address from 10.7.2 to 10.7.5 ([#410](https://github.com/lenaimdahl/justincase/issues/410)) ([f29dd0e](https://github.com/lenaimdahl/justincase/commit/f29dd0e5d79b6db8bba3bf4c6af68b32f18ea26d))
+
 ## [1.2.15](https://github.com/lenaimdahl/justincase/compare/v1.2.14...v1.2.15) (2026-10-25)
 
 
