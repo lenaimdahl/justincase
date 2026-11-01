@@ -4,7 +4,7 @@
     "@emotion/styled": "11.14.1",
     "@mui/icons-material": "9.4.0",
     "@mui/material": "9.4.0",
-    "i18next": "26.4.2",
+    "i18next": "26.5.11",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-i18next": "17.0.15",
