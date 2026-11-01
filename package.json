@@ -3,7 +3,7 @@
   "devDependencies": {
     "@ffflorian/prettier-config": "1.0.3",
     "lefthook": "2.1.14",
-    "prettier": "3.9.9"
+    "prettier": "3.9.10"
   },
   "engines": {
     "node": ">= 22.0"
