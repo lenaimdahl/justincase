@@ -2,7 +2,7 @@
   "description": "A lightweight inventory tracker with expiry awareness",
   "devDependencies": {
     "@ffflorian/prettier-config": "1.0.3",
-    "lefthook": "2.1.14",
+    "lefthook": "2.2.2",
     "prettier": "3.9.10"
   },
   "engines": {
