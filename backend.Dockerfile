@@ -33,7 +33,7 @@ ENV VERSION=$VERSION
 WORKDIR /app
 
 # hadolint ignore=DL3018
-RUN apk add --no-cache curl yarn
+RUN apk upgrade --no-cache && apk add --no-cache curl yarn
 
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn/ .yarn/
