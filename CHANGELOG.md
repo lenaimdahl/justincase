@@ -1,3 +1,44 @@
+## [1.2.17](https://github.com/lenaimdahl/justincase/compare/v1.2.16...v1.2.17) (2026-11-09)
+
+### Bug Fixes
+
+* **deps:** bump i18next from 26.4.2 to 26.7.1 ([#424](https://github.com/lenaimdahl/justincase/issues/424)) [ci skip] ([4ec5c72](https://github.com/lenaimdahl/justincase/commit/4ec5c7274c03ed59d2bc1543c115f0268b27af0f))
+* **deps:** bump i18next from 26.4.2 to 26.7.1 ([#439](https://github.com/lenaimdahl/justincase/issues/439)) [ci skip] ([50cbc1a](https://github.com/lenaimdahl/justincase/commit/50cbc1a0bf6feb51300b84ec90d96ea24b092f25))
+* **deps:** bump mongoose from 9.10.2 to 9.11.4 ([#425](https://github.com/lenaimdahl/justincase/issues/425)) [ci skip] ([2fa5347](https://github.com/lenaimdahl/justincase/commit/2fa534796490d647db9468da3ebc34efbd5836bf))
+* **deps:** bump nginx from `e2d97c2` to `785835e` ([#413](https://github.com/lenaimdahl/justincase/issues/413)) ([40d2cfe](https://github.com/lenaimdahl/justincase/commit/40d2cfe9f2df14d0d32b8347bc7c96a38aeae0b5))
+* **deps:** bump node from 26.12.1-alpine to 26.13.0-alpine ([#412](https://github.com/lenaimdahl/justincase/issues/412)) [ci skip] ([0844753](https://github.com/lenaimdahl/justincase/commit/084475333889ba2294f00d83bd256a68f1ea25a6))
+* **deps:** bump qs from 6.16.0 to 6.17.1 ([#432](https://github.com/lenaimdahl/justincase/issues/432)) [ci skip] ([a80b4dd](https://github.com/lenaimdahl/justincase/commit/a80b4dd0cc86f4c5d3b454469c2afc96928e335d))
+* **deps:** bump the mui group with 2 updates ([#415](https://github.com/lenaimdahl/justincase/issues/415)) [ci skip] ([e3dc963](https://github.com/lenaimdahl/justincase/commit/e3dc963ccea094043882ab2623fec6f34a72a6fc))
+* **deps:** bump the nestjs group with 8 updates ([#416](https://github.com/lenaimdahl/justincase/issues/416)) [ci skip] ([44da278](https://github.com/lenaimdahl/justincase/commit/44da278c2441cddb001ad47c8b691f973c43dc2c))
+* **deps:** bump the nestjs group with 8 updates ([#437](https://github.com/lenaimdahl/justincase/issues/437)) [ci skip] ([8ad2ed0](https://github.com/lenaimdahl/justincase/commit/8ad2ed060ad16e6f1e4ddc7f96647caf58548a03))
+* **deps:** bump the react group across 1 directory with 2 updates ([#436](https://github.com/lenaimdahl/justincase/issues/436)) [ci skip] ([9bc506b](https://github.com/lenaimdahl/justincase/commit/9bc506b5e96c978c203d31a5f6b1c0caf9454441))
+* **deps:** bump the react group with 3 updates ([#418](https://github.com/lenaimdahl/justincase/issues/418)) [ci skip] ([7601f17](https://github.com/lenaimdahl/justincase/commit/7601f173271ca794d5a4eca35363202089ae8172))
+
+### Continuous Integration
+
+* **deps:** bump actions/setup-node from 7.0.0 to 7.1.0 ([#414](https://github.com/lenaimdahl/justincase/issues/414)) [ci skip] ([e3300fb](https://github.com/lenaimdahl/justincase/commit/e3300fbd2baf1f99e99b1e4a869642085764fd6d))
+* **deps:** bump the [secure] group with 3 updates ([#411](https://github.com/lenaimdahl/justincase/issues/411)) [ci skip] ([4f1f002](https://github.com/lenaimdahl/justincase/commit/4f1f002651868498f19a8dec937be7b80cbd4905))
+* **deps:** bump the [secure] group with 3 updates ([#435](https://github.com/lenaimdahl/justincase/issues/435)) [ci skip] ([61df9bf](https://github.com/lenaimdahl/justincase/commit/61df9bf016cba8b43829ef1362aacff60fac2a4d))
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump @[secure]/eslint-config from 1.2.3 to 1.2.8 ([#423](https://github.com/lenaimdahl/justincase/issues/423)) [ci skip] ([e057cc6](https://github.com/lenaimdahl/justincase/commit/e057cc61d751e542a1989e9e058ae3a9b28e9f94))
+* **deps-dev:** bump @testing-library/user-event ([#419](https://github.com/lenaimdahl/justincase/issues/419)) [ci skip] ([f985a18](https://github.com/lenaimdahl/justincase/commit/f985a187e0540e80ff5366007c5b1e9321870159))
+* **deps-dev:** bump @types/node from 26.6.3 to 26.6.5 ([#426](https://github.com/lenaimdahl/justincase/issues/426)) [ci skip] ([3e663f1](https://github.com/lenaimdahl/justincase/commit/3e663f12359d1847cbfbaccf8ecb5c17757c86ad))
+* **deps-dev:** bump @types/node from 26.6.5 to 26.6.6 ([#438](https://github.com/lenaimdahl/justincase/issues/438)) [ci skip] ([7df8721](https://github.com/lenaimdahl/justincase/commit/7df87216f394db70ad8e8df23f697a8b71cf185c))
+* **deps-dev:** bump @vitejs/plugin-react from 6.1.1 to 6.1.2 ([#427](https://github.com/lenaimdahl/justincase/issues/427)) [ci skip] ([640f386](https://github.com/lenaimdahl/justincase/commit/640f386aa5293d43b8572d4de39a2106451fcb9b))
+* **deps-dev:** bump @vitejs/plugin-react from 6.1.2 to 6.2.1 ([#440](https://github.com/lenaimdahl/justincase/issues/440)) [ci skip] ([93ff696](https://github.com/lenaimdahl/justincase/commit/93ff696d78ce2ff36748121b9f0fa470ac01a2b9))
+* **deps-dev:** bump globals from 17.12.0 to 17.14.0 ([#430](https://github.com/lenaimdahl/justincase/issues/430)) [ci skip] ([046cc5a](https://github.com/lenaimdahl/justincase/commit/046cc5a93c032564755030c5b8fed71b9d1e34f9))
+* **deps-dev:** bump jsdom from 30.1.1 to 30.1.3 ([#431](https://github.com/lenaimdahl/justincase/issues/431)) [ci skip] ([fe96588](https://github.com/lenaimdahl/justincase/commit/fe965885a8588cc3ebddab185c4250096b24061e))
+* **deps-dev:** bump lefthook from 2.1.14 to 2.2.2 ([#422](https://github.com/lenaimdahl/justincase/issues/422)) [ci skip] ([ef8aa9a](https://github.com/lenaimdahl/justincase/commit/ef8aa9abd61cae3d16b8be9eef2e7d48142df0ff))
+* **deps-dev:** bump prettier from 3.9.9 to 3.9.10 ([#429](https://github.com/lenaimdahl/justincase/issues/429)) [ci skip] ([b5ec69b](https://github.com/lenaimdahl/justincase/commit/b5ec69b5115ed23c218c2ab70402bf1093e4ef24))
+* **deps-dev:** bump supertest from 7.3.0 to 7.3.1 ([#428](https://github.com/lenaimdahl/justincase/issues/428)) [ci skip] ([13db7f0](https://github.com/lenaimdahl/justincase/commit/13db7f03104a3769964602f0f881860f9e638448))
+* **deps-dev:** bump the oxlint group across 1 directory with 2 updates ([#417](https://github.com/lenaimdahl/justincase/issues/417)) [ci skip] ([d89cf70](https://github.com/lenaimdahl/justincase/commit/d89cf702684a184b0a694f5fb7fac30988966c6c))
+* **deps-dev:** bump the vitest group across 1 directory with 2 updates ([#434](https://github.com/lenaimdahl/justincase/issues/434)) [ci skip] ([66cc609](https://github.com/lenaimdahl/justincase/commit/66cc6091ccf8c6d8e53e098e4c4fc4134b01adb7))
+* **deps-dev:** bump vite from 8.3.3 to 8.3.5 ([#421](https://github.com/lenaimdahl/justincase/issues/421)) [ci skip] ([e0005d8](https://github.com/lenaimdahl/justincase/commit/e0005d8a85f5fbb8ef392c97c70f0231f6e4e109))
+* **deps-dev:** bump vitest from 5.0.2 to 5.0.5 in the vitest group ([#420](https://github.com/lenaimdahl/justincase/issues/420)) [ci skip] ([48d1e49](https://github.com/lenaimdahl/justincase/commit/48d1e49fc58ee937857d53bdbe2074fb2eb782bd))
+* Update dependabot.yml [ci skip] ([7819b19](https://github.com/lenaimdahl/justincase/commit/7819b19a956c1d0a5d816244446976815618552e))
+
 ## [1.2.16](https://github.com/lenaimdahl/justincase/compare/v1.2.15...v1.2.16) (2026-10-25)
 
 
