@@ -31,10 +31,10 @@ updates:
     groups:
       mui:
         patterns:
-          - '@mui*'
+          - '@mui/*'
       nestjs:
         patterns:
-          - '@nestjs*'
+          - '@nestjs/*'
       oxlint:
         patterns:
           - oxlint
