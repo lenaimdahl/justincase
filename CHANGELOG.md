@@ -1,3 +1,9 @@
+## [1.2.18](https://github.com/lenaimdahl/justincase/compare/v1.2.17...v1.2.18) (2026-11-09)
+
+### Bug Fixes
+
+* Run apk upgrade ([16e3117](https://github.com/lenaimdahl/justincase/commit/16e31179fe599fad3abb879292640a25f199be59))
+
 ## [1.2.17](https://github.com/lenaimdahl/justincase/compare/v1.2.16...v1.2.17) (2026-11-09)
 
 ### Bug Fixes
