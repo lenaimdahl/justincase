@@ -1,3 +1,9 @@
+## [1.2.19](https://github.com/lenaimdahl/justincase/compare/v1.2.18...v1.2.19) (2026-11-13)
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion from 5.0.6 to 5.0.13 ([#441](https://github.com/lenaimdahl/justincase/issues/441)) ([79da3b4](https://github.com/lenaimdahl/justincase/commit/79da3b47d39dbe5bc63c32df040a930655a69007))
+
 ## [1.2.18](https://github.com/lenaimdahl/justincase/compare/v1.2.17...v1.2.18) (2026-11-09)
 
 ### Bug Fixes
