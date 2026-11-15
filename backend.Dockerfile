@@ -1,5 +1,5 @@
 # Build
-FROM node:26.13.0-alpine@sha256:c6ad9e9c1d80f6eb607c26b4b0a132ff7a2344fad1c78ea3baa2a7d4c8de6d94 AS builder
+FROM node:26.13.1-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS builder
 
 ENV NPM_CONFIG_UPDATE_NOTIFIER=false
 
@@ -20,7 +20,7 @@ COPY packages/backend/ packages/backend/
 RUN yarn workspace justincase-backend build
 
 # Production dependencies
-FROM node:26.13.0-alpine@sha256:c6ad9e9c1d80f6eb607c26b4b0a132ff7a2344fad1c78ea3baa2a7d4c8de6d94 AS deps
+FROM node:26.13.1-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS deps
 
 ENV NPM_CONFIG_UPDATE_NOTIFIER=false
 
@@ -37,7 +37,7 @@ COPY packages/frontend/package.json packages/frontend/package.json
 RUN yarn workspaces focus justincase-backend --production && yarn cache clean
 
 # Run
-FROM node:26.13.0-alpine@sha256:c6ad9e9c1d80f6eb607c26b4b0a132ff7a2344fad1c78ea3baa2a7d4c8de6d94
+FROM node:26.13.1-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5
 
 ARG VERSION
 ARG COMMIT
