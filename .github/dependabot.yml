@@ -16,7 +16,7 @@ updates:
     open-pull-requests-limit: 99
     package-ecosystem: docker
     schedule:
-      interval: monthly
+      interval: weekly
   - assignees:
       - ffflorian
       - lenaimdahl
@@ -63,7 +63,7 @@ updates:
     open-pull-requests-limit: 99
     package-ecosystem: npm
     schedule:
-      interval: monthly
+      interval: weekly
     versioning-strategy: increase
   - assignees:
       - ffflorian
@@ -81,5 +81,5 @@ updates:
     open-pull-requests-limit: 99
     package-ecosystem: github-actions
     schedule:
-      interval: monthly
+      interval: weekly
 version: 2
