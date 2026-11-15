@@ -19,6 +19,23 @@ COPY packages/backend/ packages/backend/
 
 RUN yarn workspace justincase-backend build
 
+# Production dependencies
+FROM node:26.13.0-alpine@sha256:c6ad9e9c1d80f6eb607c26b4b0a132ff7a2344fad1c78ea3baa2a7d4c8de6d94 AS deps
+
+ENV NPM_CONFIG_UPDATE_NOTIFIER=false
+
+WORKDIR /app
+
+# hadolint ignore=DL3018
+RUN apk add --no-cache yarn
+
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn/ .yarn/
+COPY packages/backend/package.json packages/backend/package.json
+COPY packages/frontend/package.json packages/frontend/package.json
+
+RUN yarn workspaces focus justincase-backend --production && yarn cache clean
+
 # Run
 FROM node:26.13.0-alpine@sha256:c6ad9e9c1d80f6eb607c26b4b0a132ff7a2344fad1c78ea3baa2a7d4c8de6d94
 
@@ -32,16 +49,12 @@ ENV VERSION=$VERSION
 
 WORKDIR /app
 
-# hadolint ignore=DL3018
-RUN apk upgrade --no-cache && apk add --no-cache curl yarn
+# npm bundles its own (vulnerable) undici and is not needed at runtime
+# hadolint ignore=DL3017
+RUN apk upgrade --no-cache \
+    && rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
 
-COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn/ .yarn/
-COPY packages/backend/package.json packages/backend/package.json
-COPY packages/frontend/package.json packages/frontend/package.json
-
-RUN yarn workspaces focus justincase-backend --production && yarn cache clean
-
+COPY --from=deps /app ./
 COPY --from=builder /app/packages/backend/dist packages/backend/dist
 
 EXPOSE 3000
