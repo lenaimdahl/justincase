@@ -1007,9 +1007,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/eslint-config@npm:1.2.8":
-  version: 1.2.8
-  resolution: "@ffflorian/eslint-config@npm:1.2.8"
+"@ffflorian/eslint-config@npm:1.2.9":
+  version: 1.2.9
+  resolution: "@ffflorian/eslint-config@npm:1.2.9"
   dependencies:
     "@eslint/js": "npm:10.0.1"
     eslint: "npm:9.39.5"
@@ -1017,13 +1017,13 @@ __metadata:
     eslint-plugin-import: "npm:2.32.0"
     eslint-plugin-oxlint: "npm:1.90.0"
     eslint-plugin-perfectionist: "npm:5.13.0"
-    globals: "npm:17.13.0"
+    globals: "npm:17.14.0"
     jiti: "npm:2.7.0"
     typescript-eslint: "npm:8.72.1"
   peerDependencies:
     eslint: ">=8.x || <10.x"
     typescript: ">=6.0.3"
-  checksum: 10c0/7564a35e678665e40b1450c2ca69e9053ddf53f13437622f360c1479166ad6f6d2f6c3759763d97fb9ecea567794001e0a1d6c32851d95d373cba30885d39d2a
+  checksum: 10c0/1284a3afc3c5f309e5aeef008cbee507fbec242b9597a49490877750e187912810eb6b2565abe9fce70efd0d5b7367bfffb5dd90d9b4d036d5c355049bc086ea
   languageName: node
   linkType: hard
 
@@ -5465,13 +5465,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:17.13.0":
-  version: 17.13.0
-  resolution: "globals@npm:17.13.0"
-  checksum: 10c0/8371d9e4e5581640141b5cce70a098edd765d2e3ab063b14998e590698071e0afb4a4a6739ccfbdcbdeb2565c5553697ba07d95703c51039912cf341a7dba7a7
-  languageName: node
-  linkType: hard
-
 "globals@npm:17.14.0":
   version: 17.14.0
   resolution: "globals@npm:17.14.0"
@@ -6268,7 +6261,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "justincase-backend@workspace:packages/backend"
   dependencies:
-    "@ffflorian/eslint-config": "npm:1.2.8"
+    "@ffflorian/eslint-config": "npm:1.2.9"
     "@ffflorian/prettier-config": "npm:1.0.3"
     "@nestjs/cli": "npm:12.0.11"
     "@nestjs/common": "npm:12.3.3"
