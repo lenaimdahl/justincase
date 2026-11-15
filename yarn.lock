@@ -269,13 +269,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.29.7":
-  version: 7.29.7
-  resolution: "@babel/runtime@npm:7.29.7"
-  checksum: 10c0/ca11572f7146b21e0bde6a9ed4bb6a89eafbee5f0944c7eb54d0d8a2dac962c33638a1d611e14faa71dfbb92b4b5f9236232208568a6b7d5c6f3f39ddb91771e
-  languageName: node
-  linkType: hard
-
 "@babel/runtime@npm:^7.29.7 || ^8.0.5":
   version: 8.0.8
   resolution: "@babel/runtime@npm:8.0.8"
@@ -5500,15 +5493,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:26.7.1":
-  version: 26.7.1
-  resolution: "i18next@npm:26.7.1"
+"i18next@npm:27.1.1":
+  version: 27.1.1
+  resolution: "i18next@npm:27.1.1"
   peerDependencies:
     typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/742c0d5ea25a68e0380de3be5c4b7d1f2a9ab9da81d5f2a85ea2892a500f60ba1a87a2c1fd6e0cd16588f37175dc88da817d3b26dda1963044f045bd86202960
+  checksum: 10c0/505e7a83a9cd3a4060346dbdae7dd4a439a9a7332e3c52bdafea3fff4abf633978506cf6faabbae53afb160abae55dd5a2c487a7b6947446cef741f60f1c60ae
   languageName: node
   linkType: hard
 
@@ -6160,7 +6153,7 @@ __metadata:
     class-validator: "npm:0.15.1"
     eslint: "npm:9.39.5"
     eslint-plugin-oxlint: "npm:1.93.0"
-    mongoose: "npm:9.11.4"
+    mongoose: "npm:9.12.1"
     oxlint: "npm:1.93.0"
     passport: "npm:0.7.0"
     passport-google-oauth20: "npm:2.0.0"
@@ -6201,13 +6194,13 @@ __metadata:
     eslint-plugin-react: "npm:7.37.5"
     eslint-plugin-react-hooks: "npm:7.1.1"
     globals: "npm:17.14.0"
-    i18next: "npm:26.7.1"
+    i18next: "npm:27.1.1"
     jsdom: "npm:31.0.0"
     oxlint: "npm:1.93.0"
     prettier: "npm:3.9.10"
     react: "npm:19.3.1"
     react-dom: "npm:19.3.1"
-    react-i18next: "npm:17.1.12"
+    react-i18next: "npm:18.0.1"
     react-router-dom: "npm:7.18.5"
     typescript: "npm:6.0.3"
     vite: "npm:8.3.7"
@@ -6908,9 +6901,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:~7.7":
-  version: 7.7.0
-  resolution: "mongodb@npm:7.7.0"
+"mongodb@npm:~7.8":
+  version: 7.8.0
+  resolution: "mongodb@npm:7.8.0"
   dependencies:
     "@mongodb-js/saslprep": "npm:^1.5.0"
     bson: "npm:^7.3.2"
@@ -6938,22 +6931,22 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: 10c0/1da73343caa716308e5ef7e2e2efe439f58e093384b6b3066c3bcf343a050a5ee776443a401056728b130a86a2b92f35bf5216ab4b4778cb8e06a950da30be33
+  checksum: 10c0/abdf1e7465717963839c26cc2d785ca73036a8ef84574080e6ac59077182c396a0a310f726dbe432efa05c5d9b72deb4049cf395bbe2976a2d3b58c299462017
   languageName: node
   linkType: hard
 
-"mongoose@npm:9.11.4":
-  version: 9.11.4
-  resolution: "mongoose@npm:9.11.4"
+"mongoose@npm:9.12.1":
+  version: 9.12.1
+  resolution: "mongoose@npm:9.12.1"
   dependencies:
     "@standard-schema/spec": "npm:^1.1.0"
     kareem: "npm:3.4.1"
-    mongodb: "npm:~7.7"
+    mongodb: "npm:~7.8"
     mpath: "npm:0.9.0"
     mquery: "npm:6.0.1"
     ms: "npm:2.1.3"
-    sift: "npm:17.1.3"
-  checksum: 10c0/4fab337e4a7cf3a8369ff48f965406ef29963145ec16aff286812ceca5e0d0c9d0a8dfbf318104fe1c26df51eedbc73eb6a3732dd1642383f2978975eb640373
+    sift: "npm:17.1.4"
+  checksum: 10c0/f5911e270cfd558f3d0e40799f97195497fc11eb73220cc6af5c07da9943b785e5e95f8fbce925a1723528dcc1efde1c7e9023e00e4e494d504474d74461d5bf
   languageName: node
   linkType: hard
 
@@ -7708,25 +7701,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:17.1.12":
-  version: 17.1.12
-  resolution: "react-i18next@npm:17.1.12"
+"react-i18next@npm:18.0.1":
+  version: 18.0.1
+  resolution: "react-i18next@npm:18.0.1"
   dependencies:
-    "@babel/runtime": "npm:^7.29.7"
     html-parse-stringify: "npm:^4.0.1"
-    use-sync-external-store: "npm:^1.6.0"
   peerDependencies:
-    i18next: ">= 26.2.0"
-    react: ">= 16.8.0"
+    "@types/react": "*"
+    i18next: ">= 27.0.1"
+    react: ">= 18.0.0"
     typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-native:
+    "@types/react":
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/92b9bb4261420575e3d5c619474f6b855fac12c285f8ca797c8b2b9e0322ec9464ca778786c98cbe2a51e57af4bc25f0675a45aa9f58dc0c315650a1ce8afe85
+  checksum: 10c0/a372c17158db33d7deec495dfdff127930334cdc264a931ea942289f25ddbd45e9debb69e986e587db4be8e8eff6ea0a50351b73fd6469be65c1cfa0acde4120
   languageName: node
   linkType: hard
 
@@ -8307,10 +8297,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sift@npm:17.1.3":
-  version: 17.1.3
-  resolution: "sift@npm:17.1.3"
-  checksum: 10c0/bb05d1d65cc9b549b402c1366ba1fcf685311808b6d5c2f4fa2f477d7b524218bbf6c99587562d5613d407820a6b5a7cad809f89c3f75c513ff5d8c0e0a0cead
+"sift@npm:17.1.4":
+  version: 17.1.4
+  resolution: "sift@npm:17.1.4"
+  checksum: 10c0/9db645b0423c66cf5e54cd523ad37870cdb899161d2788dedc9667da9021fb5df8da22729bfbb8a9fdb113f68e6876b767ac930e1e63fd3bf70304f9d775432a
   languageName: node
   linkType: hard
 
@@ -9123,15 +9113,6 @@ __metadata:
   dependencies:
     punycode: "npm:^2.1.0"
   checksum: 10c0/4ef57b45aa820d7ac6496e9208559986c665e49447cb072744c13b66925a362d96dd5a46c4530a6b8e203e5db5fe849369444440cb22ecfc26c679359e5dfa3c
-  languageName: node
-  linkType: hard
-
-"use-sync-external-store@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "use-sync-external-store@npm:1.6.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/35e1179f872a53227bdf8a827f7911da4c37c0f4091c29b76b1e32473d1670ebe7bcd880b808b7549ba9a5605c233350f800ffab963ee4a4ee346ee983b6019b
   languageName: node
   linkType: hard
 
