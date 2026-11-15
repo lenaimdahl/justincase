@@ -27,8 +27,9 @@ COPY packages/frontend/public/ packages/frontend/public/
 RUN yarn workspace justincase-frontend build
 
 # Serve
-FROM nginx:1.31.8-alpine@sha256:fed7e14be83cbd2661a75cdc5b872d936cf155d46c327084d30b8df19ae88d72
+FROM nginx:1.31.8-alpine-slim@sha256:4c734d33ee731135dc9f2349914a34551c920f4451fca8bb05bf5880eb9079e8
 
+# hadolint ignore=DL3017
 RUN apk upgrade --no-cache
 
 COPY packages/frontend/nginx.conf /etc/nginx/conf.d/default.conf
