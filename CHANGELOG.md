@@ -1,3 +1,9 @@
+## [1.2.21](https://github.com/lenaimdahl/justincase/compare/v1.2.20...v1.2.21) (2026-11-18)
+
+### Bug Fixes
+
+* **deps:** bump nginx to 1.31.9 ([8f05411](https://github.com/lenaimdahl/justincase/commit/8f0541147cb0f46c0477e416a4677cf627a46f68))
+
 ## [1.2.20](https://github.com/lenaimdahl/justincase/compare/v1.2.19...v1.2.20) (2026-11-15)
 
 ### Bug Fixes
