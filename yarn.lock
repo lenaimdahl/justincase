@@ -862,12 +862,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ffflorian/prettier-config@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@ffflorian/prettier-config@npm:1.0.3"
+"@ffflorian/prettier-config@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@ffflorian/prettier-config@npm:1.2.0"
   peerDependencies:
     prettier: ">= 1.17.0"
-  checksum: 10c0/f88726a81a04b20d1df2c6e0fa72c6f9575976df28be01ea8d1fc390b3e1869521cd157896da51a6b8a8e9433e0373d349179c3b9055be820de23733c53cc115
+  checksum: 10c0/e86c483dd8677a272d6a4d6d7ec41f5ec020e45375c99e760fcc748abbbef0afc6eeee3a3fa8bebceec2a5b9b163537d2f4f78d1b205b6e83dabaf30608e5e08
   languageName: node
   linkType: hard
 
@@ -6127,7 +6127,7 @@ __metadata:
   resolution: "justincase-backend@workspace:packages/backend"
   dependencies:
     "@ffflorian/eslint-config": "npm:1.2.9"
-    "@ffflorian/prettier-config": "npm:1.0.3"
+    "@ffflorian/prettier-config": "npm:1.2.0"
     "@nestjs/cli": "npm:12.0.12"
     "@nestjs/common": "npm:12.4.2"
     "@nestjs/config": "npm:12.1.1"
@@ -6177,7 +6177,7 @@ __metadata:
   dependencies:
     "@emotion/react": "npm:11.14.0"
     "@emotion/styled": "npm:11.14.1"
-    "@ffflorian/prettier-config": "npm:1.0.3"
+    "@ffflorian/prettier-config": "npm:1.2.0"
     "@mui/icons-material": "npm:9.5.0"
     "@mui/material": "npm:9.5.0"
     "@testing-library/dom": "npm:10.4.2"
@@ -6212,7 +6212,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "justincase@workspace:."
   dependencies:
-    "@ffflorian/prettier-config": "npm:1.0.3"
+    "@ffflorian/prettier-config": "npm:1.2.0"
     lefthook: "npm:2.2.2"
     prettier: "npm:3.9.10"
   languageName: unknown
