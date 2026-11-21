@@ -1,3 +1,20 @@
+## [1.2.22](https://github.com/lenaimdahl/justincase/compare/v1.2.21...v1.2.22) (2026-11-21)
+
+### Bug Fixes
+
+* **deps:** bump i18next from 27.1.1 to 27.1.2 ([#464](https://github.com/lenaimdahl/justincase/issues/464)) ([6312645](https://github.com/lenaimdahl/justincase/commit/6312645ebbe1527d87fbe1214ffc486e5037dc33))
+* **deps:** bump nginx from `0b98e1d` to `5bfced7` ([#457](https://github.com/lenaimdahl/justincase/issues/457)) ([523dc4b](https://github.com/lenaimdahl/justincase/commit/523dc4bc2b7c4cc6f8d14ffc8722394545bd5c64))
+* **deps:** bump the nestjs group across 1 directory with 8 updates ([#458](https://github.com/lenaimdahl/justincase/issues/458)) [ci skip] ([5f31bec](https://github.com/lenaimdahl/justincase/commit/5f31bec27abed025fa631038548856aaef8ecc33))
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump @[secure]/eslint-config from 1.2.9 to 1.4.1 ([#463](https://github.com/lenaimdahl/justincase/issues/463)) ([46dc666](https://github.com/lenaimdahl/justincase/commit/46dc666f1e3ac1f891bcb8beb8f6b00b2ea74eb2))
+* **deps-dev:** bump @[secure]/prettier-config from 1.0.3 to 1.2.0 ([#461](https://github.com/lenaimdahl/justincase/issues/461)) ([8b82d8b](https://github.com/lenaimdahl/justincase/commit/8b82d8ba41280cf8b14f8cf86e93a447c56a8291))
+* **deps-dev:** bump @testing-library/user-event ([#459](https://github.com/lenaimdahl/justincase/issues/459)) ([00b7669](https://github.com/lenaimdahl/justincase/commit/00b7669bb416313bb40d902ff79b5cd1237c75c8))
+* **deps-dev:** bump jsdom from 31.0.0 to 31.0.1 ([#460](https://github.com/lenaimdahl/justincase/issues/460)) ([2b6f8c8](https://github.com/lenaimdahl/justincase/commit/2b6f8c878b3d4124bb41e94d1d606e48ce989d81))
+* **deps-dev:** bump prettier from 3.9.10 to 3.10.1 ([#462](https://github.com/lenaimdahl/justincase/issues/462)) ([0aeedc5](https://github.com/lenaimdahl/justincase/commit/0aeedc58689a9819656894bf9d8ae82be4e80d9c))
+* **deps-dev:** bump vite from 8.3.7 to 8.3.8 ([#465](https://github.com/lenaimdahl/justincase/issues/465)) ([988968a](https://github.com/lenaimdahl/justincase/commit/988968ac77d5d40281663c7b2165a8b09f2bd17b))
+
 ## [1.2.21](https://github.com/lenaimdahl/justincase/compare/v1.2.20...v1.2.21) (2026-11-18)
 
 ### Bug Fixes
