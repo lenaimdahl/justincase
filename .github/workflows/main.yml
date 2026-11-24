@@ -110,7 +110,7 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     container:
-      image: nginx:1.31.1-alpine@sha256:8b1e78743a03dbb2c95171cc58639fef29abc8816598e27fb910ed2e621e589a
+      image: nginx:1.31.10-alpine-slim@sha256:c293b28729906d97fa5302fce3bd79bd27a3ea9a5d9604e21c6ff0ebf14549fc
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     steps:
       - name: Checkout
