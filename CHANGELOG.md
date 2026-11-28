@@ -1,3 +1,19 @@
+## [1.2.24](https://github.com/lenaimdahl/justincase/compare/v1.2.23...v1.2.24) (2026-11-28)
+
+### Bug Fixes
+
+* **deps:** bump i18next from 27.1.2 to 27.2.4 ([#473](https://github.com/lenaimdahl/justincase/issues/473)) [ci skip] ([cb406cd](https://github.com/lenaimdahl/justincase/commit/cb406cd616ac7dff298997302cbae4a54d863c7e))
+* **deps:** bump mongoose from 9.12.1 to 9.12.3 ([#474](https://github.com/lenaimdahl/justincase/issues/474)) [ci skip] ([ab0aef0](https://github.com/lenaimdahl/justincase/commit/ab0aef0882981f8684b289d2479260d074c67060))
+* **deps:** bump the react group across 1 directory with 2 updates ([#468](https://github.com/lenaimdahl/justincase/issues/468)) [ci skip] ([d7adf50](https://github.com/lenaimdahl/justincase/commit/d7adf5058f69def316bf0dc94d170372de2a3cfe))
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump @[secure]/eslint-config from 1.4.1 to 1.4.2 ([#472](https://github.com/lenaimdahl/justincase/issues/472)) ([adbef8e](https://github.com/lenaimdahl/justincase/commit/adbef8e86487b9f30c58a12b7f4cd89a9a0b572e))
+* **deps-dev:** bump @[secure]/prettier-config from 1.2.0 to 1.2.1 ([#471](https://github.com/lenaimdahl/justincase/issues/471)) ([77ba8f1](https://github.com/lenaimdahl/justincase/commit/77ba8f110d0552f6679edf6c6c93d0c6bf5a040c))
+* **deps-dev:** bump the oxlint group with 2 updates ([#467](https://github.com/lenaimdahl/justincase/issues/467)) ([c6a7d86](https://github.com/lenaimdahl/justincase/commit/c6a7d86352ae3af249cbfce728af5680bb613798))
+* **deps-dev:** bump the testing-library group with 2 updates ([#469](https://github.com/lenaimdahl/justincase/issues/469)) ([de1d425](https://github.com/lenaimdahl/justincase/commit/de1d4255444afd85112a7235165dc7f5d71a3fc3))
+* **deps-dev:** bump the vitest group with 2 updates ([#470](https://github.com/lenaimdahl/justincase/issues/470)) ([16d66f8](https://github.com/lenaimdahl/justincase/commit/16d66f83b5d75ed3df957b74d491bc26696f72a4))
+
 ## [1.2.23](https://github.com/lenaimdahl/justincase/compare/v1.2.22...v1.2.23) (2026-11-24)
 
 ### Bug Fixes
