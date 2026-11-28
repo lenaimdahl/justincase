@@ -7,6 +7,7 @@
     "expiryDate": "Verfallsdatum",
     "actions": "Aktionen",
     "add": "Hinzufügen",
+    "edit": "Bearbeiten",
     "delete": "Löschen",
     "close": "Schließen",
     "notes": "Notizen",
@@ -52,6 +53,8 @@
     "forbidden": "Du hast keine Berechtigung, diese Aktion durchzuführen.",
     "loadListFailed": "Liste konnte nicht geladen werden",
     "createListFailed": "Liste konnte nicht erstellt werden",
+    "updateListFailed": "Liste konnte nicht aktualisiert werden",
+    "deleteListFailed": "Liste konnte nicht gelöscht werden",
     "fetchListsFailed": "Listen konnten nicht geladen werden",
     "fetchItemsFailed": "Artikel konnten nicht geladen werden",
     "updateFailed": "Aktualisierung fehlgeschlagen",
@@ -77,7 +80,9 @@
     "itemDeleted": "Artikel gelöscht",
     "itemNameRequired": "Artikelname ist erforderlich",
     "itemCreated": "Artikel erfolgreich erstellt",
-    "listCreated": "Liste \"{{name}}\" erfolgreich erstellt"
+    "listCreated": "Liste \"{{name}}\" erfolgreich erstellt",
+    "listUpdated": "Liste \"{{name}}\" erfolgreich aktualisiert",
+    "listDeleted": "Liste \"{{name}}\" gelöscht"
   },
   "dateStatus": {
     "noExpiryDate": "Kein Verfallsdatum",
@@ -105,7 +110,8 @@
       "deleteItem": "Artikel löschen",
       "closeNotification": "Benachrichtigung schließen",
       "openNavigationMenu": "Navigationsmenü öffnen",
-      "closeNavigationMenu": "Navigationsmenü schließen"
+      "closeNavigationMenu": "Navigationsmenü schließen",
+      "listOptions": "Listenoptionen"
     },
     "placeholders": {
       "itemName": "Artikelname",
@@ -175,7 +181,12 @@
       "inputLabel": "Listenname",
       "cancelButton": "Abbrechen",
       "emptyState": "Noch keine Listen",
-      "emptyStateDescription": "Erstellen Sie Ihre erste Liste, um zu beginnen"
+      "emptyStateDescription": "Erstellen Sie Ihre erste Liste, um zu beginnen",
+      "editDialogTitle": "Liste bearbeiten",
+      "saveButton": "Speichern",
+      "deleteDialogTitle": "Liste löschen",
+      "deleteConfirmMessage_one": "Möchtest du \"{{name}}\" wirklich löschen? Dabei wird auch {{count}} Artikel in dieser Liste gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "deleteConfirmMessage_other": "Möchtest du \"{{name}}\" wirklich löschen? Dabei werden auch {{count}} Artikel in dieser Liste gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
     },
     "listDetail": {
       "idNotFound": "Listen-ID nicht gefunden",

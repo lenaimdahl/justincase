@@ -32,9 +32,23 @@ describe('ListsGrid Component', () => {
     },
   ];
 
-  it('should render grid container', () => {
+  const renderGrid = (lists: List[] = mockLists) => {
     const handleListClick = vi.fn();
-    const {container} = render(<ListsGrid lists={mockLists} onListClick={handleListClick} />);
+    const handleEditList = vi.fn();
+    const handleDeleteList = vi.fn();
+    const result = render(
+      <ListsGrid
+        lists={lists}
+        onListClick={handleListClick}
+        onEditList={handleEditList}
+        onDeleteList={handleDeleteList}
+      />
+    );
+    return {...result, handleListClick, handleEditList, handleDeleteList};
+  };
+
+  it('should render grid container', () => {
+    const {container} = renderGrid();
 
     // Box component creates a grid layout - check for MuiBox
     const gridContainer = container.querySelector('[class*="MuiBox"]');
@@ -42,25 +56,22 @@ describe('ListsGrid Component', () => {
   });
 
   it('should render all lists as cards', () => {
-    const handleListClick = vi.fn();
-    render(<ListsGrid lists={mockLists} onListClick={handleListClick} />);
+    renderGrid();
 
     expect(screen.getByText('Groceries')).toBeInTheDocument();
     expect(screen.getByText('Todo')).toBeInTheDocument();
   });
 
   it('should display correct item counts', () => {
-    const handleListClick = vi.fn();
-    render(<ListsGrid lists={mockLists} onListClick={handleListClick} />);
+    renderGrid();
 
     expect(screen.getByText('8 items')).toBeInTheDocument();
     expect(screen.getByText('5 items')).toBeInTheDocument();
   });
 
   it('should call onListClick when a list card is clicked', async () => {
-    const handleListClick = vi.fn();
     const user = userEvent.setup();
-    render(<ListsGrid lists={mockLists} onListClick={handleListClick} />);
+    const {handleListClick} = renderGrid();
 
     const groceriesButton = screen.getByLabelText(/Groceries/);
     await user.click(groceriesButton);
@@ -69,19 +80,17 @@ describe('ListsGrid Component', () => {
   });
 
   it('should render empty grid when no lists provided', () => {
-    const handleListClick = vi.fn();
-    render(<ListsGrid lists={[]} onListClick={handleListClick} />);
+    renderGrid([]);
 
     const buttons = screen.queryAllByRole('button');
     expect(buttons).toHaveLength(0);
   });
 
   it('should render cards in correct order', () => {
-    const handleListClick = vi.fn();
-    render(<ListsGrid lists={mockLists} onListClick={handleListClick} />);
+    renderGrid();
 
-    const allButtons = screen.getAllByRole('button');
-    expect(allButtons[0]).toHaveAttribute('aria-label', expect.stringContaining('Groceries'));
-    expect(allButtons[1]).toHaveAttribute('aria-label', expect.stringContaining('Todo'));
+    const cardButtons = screen.getAllByRole('button', {name: /items$/});
+    expect(cardButtons[0]).toHaveAttribute('aria-label', expect.stringContaining('Groceries'));
+    expect(cardButtons[1]).toHaveAttribute('aria-label', expect.stringContaining('Todo'));
   });
 });
